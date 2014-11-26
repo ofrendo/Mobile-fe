@@ -9,7 +9,9 @@ ant-built
 ant-gen
 # Eclipse builds
 gen
-bin/
+bin/*.apk
+bin/*.ap_
+bin/*
 out
 # Gradle builds
 /build
@@ -24,3 +26,4 @@ CordovaLib/bin/cordovaapp-cordovalib.jar
 *.apk
 *.ap_
 *.dex
+*.jar
