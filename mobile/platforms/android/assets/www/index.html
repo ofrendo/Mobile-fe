@@ -9,11 +9,13 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <script type="text/javascript" src="js/angular.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true_or_false"></script>
+        <script type="text/javascript" src="js/maps.js"></script>
         <title>Hello World</title>
     </head>
     <body>
         <div class="app">
-            <h1>Hello World</h1>
+            <h1>Position</h1>
+            <div id="map-canvas"></div>
             <h2>1 + 2 = {{1 + 2}}</h2>
             <div id="test">
             	<textarea cols="10" rows="5" ng-model="text"></textarea>
