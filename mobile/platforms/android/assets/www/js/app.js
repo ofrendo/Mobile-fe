@@ -1,4 +1,4 @@
-var app = angular.module("app", ["ngRoute"]);
+var app = angular.module("app");
 
 //Configure routes for the different screens
 app.config(["$routeProvider", function($routeProvider) {
