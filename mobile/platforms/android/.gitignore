@@ -18,6 +18,8 @@ CordovaLib/.classpath
 CordovaLib/project.properties
 project.properties
 
+CordovaLib/bin/cordovaapp-cordovalib.jar
+
 *.class
 *.apk
 *.ap_
