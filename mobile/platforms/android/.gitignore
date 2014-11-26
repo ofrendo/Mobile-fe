@@ -9,12 +9,12 @@ ant-built
 ant-gen
 # Eclipse builds
 gen
-bin
+bin/
 out
 # Gradle builds
 /build
 
+*.class
 *.apk
 *.ap_
-
-*.class
+*.dex
