@@ -1,3 +1,3 @@
-app.controller("ManageTripCtrl", ["$scope", "$http", function($scope, $http) {
-	$scope.title = "Hello manage trip!";
+app.controller("manageTripCtrl", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+	$scope.title = "Deine Reise: " + $routeParams.tripId;
 }]);

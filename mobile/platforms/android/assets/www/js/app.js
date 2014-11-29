@@ -5,11 +5,11 @@ app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider.
 		when('/home', {
 			templateUrl: 'partials/home.html',
-			controller: 'HomeCtrl'
+			controller: 'homeCtrl as homeCtrl'
 		}).
-		when('/manageTrip', {
+		when('/manageTrip/:tripId', {
 			templateUrl: 'partials/manageTrip.html',
-			controller: 'ManageTripCtrl'
+			controller: 'manageTripCtrl'
 		}).
 		otherwise({
 			redirectTo: '/home'
