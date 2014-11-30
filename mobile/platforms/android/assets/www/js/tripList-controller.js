@@ -1,5 +1,13 @@
-app.controller("globalCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("tripListController", ["$scope", "$http", "$location", function($scope, $http, $location) {
+	$scope.title = "Deine Reisen";
+	
 	this.trips = trips;
+	
+	// calls the manageTrip view
+	this.navToManageTrip = function(trip){
+		var path = '/manageTrip/' + trip.id;
+		$location.path(path);
+	};
 }]);
 
 // fill with demo data
@@ -8,15 +16,7 @@ var trips = {
 		id: 1,
 		name: 'trip1',
 		dateStart: new Date(2014, 11, 30),
-		dateEnd: new Date(2014, 11, 31),
-		cities: [
-			{
-				name: 'Entenhausen'
-			},
-			{
-				name: 'Berlin'
-			}
-		]
+		dateEnd: new Date(2014, 11, 31)
 	},
 	'2': {
 		id: 2,

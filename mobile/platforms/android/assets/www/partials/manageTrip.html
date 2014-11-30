@@ -1,1 +1,8 @@
 <h1>{{title}}</h1>
+<ul ng-repeat="city in manageTripCtrl.trip.cities | orderBy: 'dateStart'">
+	<li>{{city.name}}</li>
+</ul>
+<input type="button" value="Neues Ziel" ng-click="manageTripCtrl.showAddCity()">
+<form ng-show="manageTripCtrl.showAddCityBool">
+	Name: <input type="text" name="name">
+</form>

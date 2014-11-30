@@ -7,6 +7,7 @@ function initialize() {
 	zoom: 5,
 	center: pos
   };
+  
   var map = new google.maps.Map(document.getElementById('map-canvas'),
 	  mapOptions);
 

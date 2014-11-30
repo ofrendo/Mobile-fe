@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 <ul>
-	<li ng-repeat="trip in global.trips | orderBy: 'dateStart'" ng-click="homeCtrl.navToManageTrip(trip)">
+	<li ng-repeat="trip in tripListCtrl.trips | orderBy: 'dateStart'" ng-click="tripListCtrl.navToManageTrip(trip)">
 		{{trip.name}} vom {{trip.dateStart | date: 'dd.MM.yy'}} bis {{trip.dateEnd | date: 'dd.MM.yy'}}
 	</li>
 </ul>
