@@ -1,0 +1,6 @@
+<h1>{{title}}</h1>
+<input type="text" id="searchText" ng-model="searchText" />
+<input type="button" ng-click="addCityCtrl.search()" value="Suchen" />
+<ul>
+	<li ng-repeat="result in results">{{result.formatted_address}}</li>
+</ul>

@@ -11,6 +11,10 @@ app.config(["$routeProvider", function($routeProvider) {
 			templateUrl: 'partials/manageTrip.html',
 			controller: 'manageTripController as manageTripCtrl'
 		}).
+		when('/addCity/:tripId', {
+			templateUrl: 'partials/addCity.html',
+			controller: 'addCityController as addCityCtrl'
+		}).
 		otherwise({
 			redirectTo: '/tripList'
 		});

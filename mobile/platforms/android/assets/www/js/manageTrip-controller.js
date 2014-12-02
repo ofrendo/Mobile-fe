@@ -1,13 +1,10 @@
-app.controller("manageTripController", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+app.controller("manageTripController", ["$scope", "$http", "$routeParams", "$location", function($scope, $http, $routeParams, $location) {
 	$scope.title = "Deine Reise: " + $routeParams.tripId;
 	
-	this.showAddCityBool = false;
-	
-	this.showAddCity = function(){
-		this.showAddCityBool = true;
-	}
-	this.hideAddCity = function(){
-		this.showAddCityBool = false;
+	// calls the addcity view
+	this.navToAddCity = function(){
+		var path = '/addCity/' + trip.id;
+		$location.path(path);
 	}
 	
 	// get the corresponding trip
