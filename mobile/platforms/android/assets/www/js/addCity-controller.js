@@ -1,10 +1,16 @@
 app.controller("addCityController", ["$scope", "$http", "$routeParams", "$location", "$timeout", function($scope, $http, $routeParams, $location, $timeout) {
-	$scope.title = "Stadt hinzufügen";
+	$scope.title = "Stadt hinzuf&uuml;gen";
 	
 	var geocoder = new google.maps.Geocoder();
 	
+	 var autocomplete = new google.maps.places.Autocomplete(
+			 (document.getElementById('searchText')),
+			{ types: ['(cities)'] });
+
+	
 	// start search for city via google maps api
-	this.search = function(){
+	// obsolete --> better use google places than google maps for searches
+	/*this.search = function(){
 		//$scope.results = [];
 		geocoder.geocode( { 'address': $scope.searchText}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
@@ -15,5 +21,10 @@ app.controller("addCityController", ["$scope", "$http", "$routeParams", "$locati
 	        alert("Geocode was not successful for the following reason: " + status);
 	      }
 	    });
+	};*/
+	
+	// provide autocompletion
+	this.autocomplete = function(){
+		
 	}
 }]);
