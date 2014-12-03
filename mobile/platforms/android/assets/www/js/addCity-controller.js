@@ -1,5 +1,5 @@
 app.controller("addCityController", ["$scope", "$http", "$routeParams", "$location", "$timeout", function($scope, $http, $routeParams, $location, $timeout) {
-	$scope.title = "Stadt hinzuf&uuml;gen";
+	$scope.title = "Stadt hinzufügen";
 	
 	var geocoder = new google.maps.Geocoder();
 	
