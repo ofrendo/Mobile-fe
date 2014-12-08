@@ -22,3 +22,5 @@ eingeben und ausführen
 
 Im Browser öffnet sich ein neues Fenster mit aktuellen Version der Ionic-App. 
 Bei Änderungen am Coding ändert sich automatisch auch die Website.
+
+Änderungen werden NICHT im asset/www Ordner vollzogen, sondern im www Ordner!
