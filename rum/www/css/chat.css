@@ -1,3 +1,7 @@
+.msg-input {
+	resize:none;
+}
+
 .chat {
 	padding:5px;
 }

@@ -1,6 +1,12 @@
 app.controller("chatController", ["$scope", "$http", "$state", function($scope, $http, $state) {
-	
 	this.messages = msgs;
+	
+	// send message to server
+	this.sendMsg = function(){
+		console.log('Send message "' + $scope.msgText + '"');
+		// reset input field for message
+		$scope.msgText = "";
+	};
 }]);
 
 // demo data for chat
@@ -39,7 +45,7 @@ var msgs = [
 	},
 	{
 		id: 4,
-		msg_text: 'blubb.²',
+		msg_text: 'blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. blubb. ',
 		created_on: new Date(),
 		user: {
 			id: 2,
