@@ -1,12 +1,13 @@
-<ion-view title="Playlists">
+<ion-view title="Trip">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+      <ion-item ng-repeat="city in manageTripCtrl.trip.cities | orderBy: 'dateStart'">
+        	{{city.name}}
       </ion-item>
     </ion-list>
+    <input type="button" ng-click="manageTripCtrl.navToAddCity()" value="Stadt hinzuf&uuml;gen" />
   </ion-content>
 </ion-view>
