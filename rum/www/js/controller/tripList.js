@@ -16,10 +16,13 @@ app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup"
 	   });
 	   confirmPopup.then(function(res) {
 		   if(res) {
-			   // delete trip
-			   
+			   // delete trip from json
+			   delete trips[trip.id];
+			   // delete trip from server
+			   // to be done
 		   } else {
 			   // do nothing
+			   console.log('deletion of trip cancelled');
 		   }
 	   });
 	}
