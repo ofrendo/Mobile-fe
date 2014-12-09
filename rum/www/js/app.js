@@ -58,7 +58,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
           controller: 'addCityController as addCityCtrl'
         }
       }
-    });
+    })
+  
+	  .state('app.login', {
+	      url: "/login",
+	      views: {
+	        'menuContent' :{
+	          templateUrl: "partials/login.html",
+	          controller: 'loginController as loginCtrl'
+	        }
+	      }
+	    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/tripList');
 });
