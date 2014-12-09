@@ -1,10 +1,5 @@
 <ion-view title="Meine Trips">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon icon ion-chatboxes"></button>
-  </ion-nav-buttons>
+  <content-header></content-header>
   <ion-content class="has-header">
     <ion-list class="trip-list">
       <ion-item ng-repeat="trip in tripListCtrl.trips | orderBy: 'dateStart'" ng-click="tripListCtrl.navToManageTrip(trip)">
@@ -12,13 +7,13 @@
         		<div class="trip-date-start">{{trip.dateStart | date: 'dd.MM.yy'}}</div>
         		<div class="trip-date-end">{{trip.dateEnd | date: 'dd.MM.yy'}}</div>
         	</div>
-        	<button class="trip-delete button button-icon icon ion-close-round" ng-click="tripListCtrl.deleteTrip(trip)"></button>
+        	<button class="trip-delete button button-icon icon ion-close-round" ng-click="tripListCtrl.deleteTrip(trip)" stop-event></button>
         	<div class="trip-name">{{trip.name}}</div>
         	<div class="trip-participants">{{trip.noParticipants}} Teilnehmer</div>
       </ion-item>
     </ion-list>
   </ion-content>
   <ion-footer-bar class="bar bar-stable triplist-footer">
-    	<button class="button button-icon icon ion-plus-round">Reise hinzufügen</button>
+    	<button class="button button-icon icon ion-plus-round" ng-click="tripListCtrl.addTrip()">Reise hinzufügen</button>
     </ion-footer-bar>
 </ion-view>

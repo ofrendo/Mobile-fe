@@ -11,6 +11,10 @@ app.controller("tripListController", ["$scope", "$http", "$state", function($sco
 	this.deleteTrip = function(trip){
 		alert('You want to delete the trip with the id"' + trip.id + '"');
 	}
+	
+	this.addTrip = function(){
+		alert('add trip');
+	}
 }]);
 
 // fill with demo data
