@@ -7,6 +7,10 @@ app.controller("tripListController", ["$scope", "$http", "$state", function($sco
 	this.navToManageTrip = function(trip){
 		$state.go('app.manageTrip', {tripId: trip.id});
 	};
+	
+	this.deleteTrip = function(trip){
+		alert('You want to delete the trip with the id"' + trip.id + '"');
+	}
 }]);
 
 // fill with demo data

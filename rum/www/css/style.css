@@ -22,6 +22,10 @@
 	color:#656565;
 }
 
+.trip-list .trip-delete {
+	float:right;
+}
+
 .triplist-footer .button {
 	width:100%;
 }

@@ -12,6 +12,7 @@
         		<div class="trip-date-start">{{trip.dateStart | date: 'dd.MM.yy'}}</div>
         		<div class="trip-date-end">{{trip.dateEnd | date: 'dd.MM.yy'}}</div>
         	</div>
+        	<button class="trip-delete button button-icon icon ion-close-round" ng-click="tripListCtrl.deleteTrip(trip)"></button>
         	<div class="trip-name">{{trip.name}}</div>
         	<div class="trip-participants">{{trip.noParticipants}} Teilnehmer</div>
       </ion-item>
