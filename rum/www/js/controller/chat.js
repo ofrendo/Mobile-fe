@@ -1,11 +1,20 @@
-app.controller("chatController", ["$scope", "$http", "$state", function($scope, $http, $state) {
+app.controller("chatController", ["$scope", "$http", "$state", "$ionicSideMenuDelegate", "$ionicScrollDelegate", function($scope, $http, $state, $ionicSideMenuDelegate, $ionicScrollDelegate) {
 	this.messages = msgs;
+	this.userMe = user;
 	
-	// send message to server
+	// send message
 	this.sendMsg = function(){
 		console.log('Send message "' + $scope.msgText + '"');
+		var msg = {
+				msg_text: $scope.msgText,
+				created_on: new Date(),
+				user: this.userMe
+		};
+		this.messages.push(msg);
 		// reset input field for message
 		$scope.msgText = "";
+		// scroll to bottom
+		$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
 	};
 }]);
 
@@ -54,3 +63,10 @@ var msgs = [
 		}
 	}
 ];
+
+var user =  {
+	id: 1,
+	me: true,
+	username: 'Matthias',
+	avatar: 'http://www.gravatar.com/avatar/61e2363d217e04f8b83b9c02a797e3fa?d=identicon'
+};

@@ -31,9 +31,10 @@
   
   <ion-side-menu side="right" ng-controller="chatController as chatCtrl">
   	 <header class="bar bar-header bar-stable">
+      <button class="button" menu-close><i class="icon ion-ios7-arrow-back"></i></button>
       <h1 class="title">Chat</h1>
     </header>
-    <ion-content class="has-header">
+    <ion-content class="has-header" delegate-handle="chatScroll">
     	<div class="chat">
 			<div class="msg" ng-class="(msg.user.me) ? 'msg-right' : 'msg-left'" ng-repeat="msg in chatCtrl.messages">
 				<div class="icon">
@@ -52,8 +53,7 @@
     </ion-content>
     <ion-footer-bar>
     	<textarea class="msg-input" ng-model="msgText" ng-init="msgText =''" placeholder="Geben Sie eine Nachricht ein."></textarea>
-    	<button class="button" ng-click="chatCtrl.sendMsg()" ng-disabled="msgText.length == 0">
-    		&rightarrow;
+    	<button class="button icon ion-ios7-paperplane" ng-click="chatCtrl.sendMsg()" ng-disabled="msgText.length == 0">
     	</button>
     </ion-footer-bar>
   </ion-side-menu>
