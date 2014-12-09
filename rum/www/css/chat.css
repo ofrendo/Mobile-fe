@@ -1,7 +1,9 @@
+/* input formula */
 .msg-input {
 	resize:none;
 }
 
+/* chat */
 .chat {
 	padding:5px;
 }
@@ -44,6 +46,7 @@
 	min-height:40px;
 }
 
+/* chat bubble */
 .msg-bubble:after, .msg-bubble:before {
 	top: 20px;
 	border: solid transparent;
@@ -66,6 +69,7 @@
 	margin-top: -11px;
 }
 
+/* formatting chat bubble depending on left / right */
 .msg-left .msg-bubble:after, .msg-left .msg-bubble:before {
 	right: 100%;
 }

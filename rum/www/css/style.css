@@ -1,1 +1,31 @@
-/* Empty. Add your own CSS if you like */
+/* triplist */
+.trip-list .trip-date {
+	float:left;
+	padding-right:20px;
+	font-size:80%;
+}
+
+.trip-list .trip-date-start {
+	color:#00cc00;
+}
+
+.trip-list .trip-date-end {
+	color:#cc0000;
+}
+
+.trip-list .trip-name {
+	 
+}
+
+.trip-list .trip-participants {
+	font-size: 80%;
+	color:#656565;
+}
+
+.triplist-footer .button {
+	width:100%;
+}
+
+.triplist-footer .button::before {
+	margin-right:10px;
+}

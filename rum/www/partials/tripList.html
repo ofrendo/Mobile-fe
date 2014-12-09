@@ -6,10 +6,18 @@
     <button menu-toggle="right" class="button button-icon icon ion-chatboxes"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <ion-list>
+    <ion-list class="trip-list">
       <ion-item ng-repeat="trip in tripListCtrl.trips | orderBy: 'dateStart'" ng-click="tripListCtrl.navToManageTrip(trip)">
-        	{{trip.name}} vom {{trip.dateStart | date: 'dd.MM.yy'}} bis {{trip.dateEnd | date: 'dd.MM.yy'}}
+        	<div class="trip-date">
+        		<div class="trip-date-start">{{trip.dateStart | date: 'dd.MM.yy'}}</div>
+        		<div class="trip-date-end">{{trip.dateEnd | date: 'dd.MM.yy'}}</div>
+        	</div>
+        	<div class="trip-name">{{trip.name}}</div>
+        	<div class="trip-participants">{{trip.noParticipants}} Teilnehmer</div>
       </ion-item>
     </ion-list>
   </ion-content>
+  <ion-footer-bar class="bar bar-stable triplist-footer">
+    	<button class="button button-icon icon ion-plus-round">Reise hinzufügen</button>
+    </ion-footer-bar>
 </ion-view>

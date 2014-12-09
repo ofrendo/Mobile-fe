@@ -36,7 +36,7 @@
     </header>
     <ion-content class="has-header" delegate-handle="chatScroll">
     	<div class="chat">
-			<div class="msg" ng-class="(msg.user.me) ? 'msg-right' : 'msg-left'" ng-repeat="msg in chatCtrl.messages">
+			<div class="msg" ng-class="(msg.user.me) ? 'msg-right' : 'msg-left'" ng-repeat="msg in chatCtrl.messages | orderBy: msg.created_on">
 				<div class="icon">
 					<img ng-src="{{msg.user.avatar}}" />
 				</div>
