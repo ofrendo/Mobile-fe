@@ -8,8 +8,8 @@ app.controller("loginController", ["$scope", "$timeout", "$state", function($sco
 				);
 	}
 	
-	this.register = function () {
-		console.log($scope.loginData.username);
+	this.navToRegisterView = function () {
+		// to be done
 	}
 
 }]);

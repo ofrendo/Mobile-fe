@@ -1,4 +1,4 @@
-app.controller("tripListController", ["$scope", "$http", "$state", function($scope, $http, $state) {
+app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup", function($scope, $http, $state, $ionicPopup) {
 	$scope.title = "Deine Reisen";
 	
 	this.trips = trips;
@@ -9,7 +9,19 @@ app.controller("tripListController", ["$scope", "$http", "$state", function($sco
 	};
 	
 	this.deleteTrip = function(trip){
-		alert('You want to delete the trip with the id"' + trip.id + '"');
+		// show popup
+	   var confirmPopup = $ionicPopup.confirm({
+		   title: 'Reise löschen',
+		   template: 'Möchten Sie die Reise "' + trip.name + '" wirklich löschen?'
+	   });
+	   confirmPopup.then(function(res) {
+		   if(res) {
+			   // delete trip
+			   
+		   } else {
+			   // do nothing
+		   }
+	   });
 	}
 	
 	this.addTrip = function(){
