@@ -3,5 +3,6 @@ app.controller("addTripController", ["$scope", "$timeout", "$state", function($s
 	this.addTrip = function(){
 		console.log('add trip');
 		// call backend; wait for response; then call tripList or manageTrip?
+		$state.go('app.tripList');
 	}
 }]);

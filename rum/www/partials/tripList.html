@@ -1,4 +1,4 @@
-<ion-view title="Meine Trips">
+<ion-view title="Meine Reisen">
   <content-header></content-header>
   <ion-content class="has-header">
     <ion-list class="trip-list">
@@ -8,7 +8,7 @@
         		<div class="trip-date-end">{{trip.dateEnd | date: 'dd.MM.yy'}}</div>
         	</div>
         	<div class="actions">
-        		<button class="button-icon icon ion-person-add" ng-click="tripListCtrl.addPerson(trip)" stop-event></button>
+        		<button class="button button-icon icon ion-person-add" ng-click="tripListCtrl.addPerson(trip)" stop-event></button>
         		<button class="button button-icon icon ion-close-round" ng-click="tripListCtrl.deleteTrip(trip)" stop-event></button>
         	</div>
         	<div class="trip-name">{{trip.name}}</div>
