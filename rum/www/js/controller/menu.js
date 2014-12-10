@@ -6,6 +6,7 @@ app.controller("menuController", ["$ionicSideMenuDelegate", "$scope","$timeout",
 		//return:
 		//true enabled
 		//false disabled
+		return true;
 	};
 	
 	$scope.checkLeft = function(){
@@ -13,6 +14,7 @@ app.controller("menuController", ["$ionicSideMenuDelegate", "$scope","$timeout",
 		//return:
 		//true enabled
 		//false disabled
+		return true;
 	};
 	
 	
