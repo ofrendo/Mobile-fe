@@ -68,6 +68,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	          controller: 'loginController as loginCtrl'
 	        }
 	      }
+	    })
+  
+	  .state('app.register', {
+	      url: "/register",
+	      views: {
+	        'menuContent' :{
+	          templateUrl: "partials/register.html",
+	          controller: 'registerController as registerCtrl'
+	        }
+	      }
 	    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/tripList');

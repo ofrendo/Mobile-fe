@@ -9,7 +9,7 @@ app.controller("loginController", ["$scope", "$timeout", "$state", function($sco
 	}
 	
 	this.navToRegisterView = function () {
-		// to be done
+		$state.go('app.register');
 	}
 
 }]);
