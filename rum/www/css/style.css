@@ -14,7 +14,7 @@
 }
 
 .trip-list .trip-name {
-	 
+	 font-weight:bold;
 }
 
 .trip-list .trip-participants {
@@ -22,7 +22,7 @@
 	color:#656565;
 }
 
-.trip-list .trip-delete {
+.trip-list .actions {
 	float:right;
 }
 

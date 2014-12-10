@@ -8,6 +8,15 @@ app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup"
 		$state.go('app.manageTrip', {tripId: trip.id});
 	};
 	
+	this.navToAddTrip = function(){
+		$state.go('app.addTrip');
+	}
+	
+	this.addPerson = function(trip){
+		// to be done
+		console.log('add person');
+	}
+	
 	this.deleteTrip = function(trip){
 		// show popup
 	   var confirmPopup = $ionicPopup.confirm({
@@ -16,16 +25,15 @@ app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup"
 	   });
 	   confirmPopup.then(function(res) {
 		   if(res) {
-			   // delete trip
-			   
+			   // delete trip from json
+			   delete trips[trip.id];
+			   // delete trip from server
+			   // to be done
 		   } else {
 			   // do nothing
+			   console.log('deletion of trip cancelled');
 		   }
 	   });
-	}
-	
-	this.addTrip = function(){
-		alert('add trip');
 	}
 }]);
 
