@@ -43,6 +43,7 @@ var trips = {
 		id: 1,
 		name: 'Amerika - Rundreise',
 		noParticipants: 5,
+		noCities: 2,
 		dateStart: new Date(2014, 11, 30),
 		dateEnd: new Date(2014, 11, 31)
 	},
@@ -50,6 +51,7 @@ var trips = {
 		id: 2,
 		name: 'trip2',
 		noParticipants: 3,
+		noCities: 2,
 		dateStart: new Date(2015, 3, 10),
 		dateEnd: new Date(2015, 3, 15)
 	},
@@ -57,6 +59,7 @@ var trips = {
 		id: 3,
 		name: 'trip3',
 		noParticipants: 1,
+		noCities: 2,
 		dateStart: new Date(2013, 0, 1),
 		dateEnd: new Date(2013, 0, 14)
 	}

@@ -1,11 +1,21 @@
 <ion-view title="Trip">
   <content-header></content-header>
   <ion-content class="has-header">
-    <ion-list>
+    <ion-list class="trip-list city-list">
       <ion-item ng-repeat="city in manageTripCtrl.trip.cities | orderBy: 'dateStart'">
-        	{{city.name}}
+        	<div class="date">
+        		<div class="date-start">{{city.dateStart | date: 'dd.MM.yy'}}</div>
+        		<div class="date-end">{{city.dateEnd | date: 'dd.MM.yy'}}</div>
+        	</div>
+        	<div class="actions">
+        		<button class="button button-icon icon ion-close-round" ng-click="manageTripCtrl.deleteCity(city)" stop-event></button>
+        	</div>
+        	<div class="name">{{city.name}}</div>
+        	<div class="info">{{city.noLocations}} Sehenswürdigkeiten</div>
       </ion-item>
     </ion-list>
-    <input type="button" ng-click="manageTripCtrl.navToAddCity()" value="Stadt hinzuf&uuml;gen" />
   </ion-content>
+  <ion-footer-bar class="bar bar-stable triplist-footer">
+  	<button class="button button-icon icon ion-plus-round" ng-click="manageTripCtrl.navToAddCity()">Stadt hinzufügen</button>
+  </ion-footer-bar>
 </ion-view>

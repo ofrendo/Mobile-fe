@@ -3,16 +3,16 @@
   <ion-content class="has-header">
     <ion-list class="trip-list">
       <ion-item ng-repeat="trip in tripListCtrl.trips | orderBy: 'dateStart'" ng-click="tripListCtrl.navToManageTrip(trip)">
-        	<div class="trip-date">
-        		<div class="trip-date-start">{{trip.dateStart | date: 'dd.MM.yy'}}</div>
-        		<div class="trip-date-end">{{trip.dateEnd | date: 'dd.MM.yy'}}</div>
+        	<div class="date">
+        		<div class="date-start">{{trip.dateStart | date: 'dd.MM.yy'}}</div>
+        		<div class="date-end">{{trip.dateEnd | date: 'dd.MM.yy'}}</div>
         	</div>
         	<div class="actions">
         		<button class="button button-icon icon ion-person-add" ng-click="tripListCtrl.addPerson(trip)" stop-event></button>
         		<button class="button button-icon icon ion-close-round" ng-click="tripListCtrl.deleteTrip(trip)" stop-event></button>
         	</div>
-        	<div class="trip-name">{{trip.name}}</div>
-        	<div class="trip-participants">{{trip.noParticipants}} Teilnehmer</div>
+        	<div class="name">{{trip.name}}</div>
+        	<div class="info">{{trip.noParticipants}} Teilnehmer | {{trip.noCities}} Städte</div>
       </ion-item>
     </ion-list>
   </ion-content>
