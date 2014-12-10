@@ -1,8 +1,12 @@
-app.controller("manageTripController", ["$scope", "$http", "$state", function($scope, $http, $state) {
+app.controller("cityListController", ["$scope", "$http", "$state", function($scope, $http, $state) {
 	
 	// calls the addcity view
 	this.navToAddCity = function(){
 		$state.go('app.addCity', {tripId: trip.id});
+	}
+	
+	this.navToEditCity = function(city){
+		$state.go('app.editCity', {cityId: city.id})
 	}
 	
 	// get the corresponding trip
