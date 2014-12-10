@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/app",
       abstract: true,
       templateUrl: "partials/menu.html",
-      controller: ''
+      controller: 'menuController as menuCtrl'
     })
     
     .state('app.tripList', {
