@@ -42,3 +42,8 @@ ionic build android
 ```
 
 Mit diesem Befehl wird die App gebaut und kann anschließend getestet werden.
+
+Um Ionic auf dem aktuellen Stand zu halten folgenden Befehl in die Console eintippen:
+```
+npm update -g ionic
+```
