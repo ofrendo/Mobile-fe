@@ -33,3 +33,39 @@
 .triplist-footer .button::before {
 	margin-right:10px;
 }
+
+/* add city */
+.baseline-align {
+	align-items:baseline;
+}
+
+.autocompletion {
+	border:1px solid #ddd;
+	padding:2px 10px;
+}
+
+.autocompletion li {
+	border-top:1px solid #ddd;
+	padding:2px 5px;
+}
+
+.autocompletion li:first-child {
+	border:none;
+}
+
+.autocompletion .term {
+	font-size:80%;
+	color:#969696;
+	margin-right:5px;
+}
+
+.autocompletion .city {
+	margin-right:10px;
+	color:black;
+	font-size:100%;
+}
+
+.autocompletion .powered {
+	padding:0px;
+	text-align:right;
+}
