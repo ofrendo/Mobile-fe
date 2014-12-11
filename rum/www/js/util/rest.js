@@ -1,6 +1,7 @@
 app.service("restAPI", ["$http", function($http) {
 	var module = this;
 	var url = "https://thawing-stream-4939.herokuapp.com";
+	//var url = "http://localhost:5000";
 
 	var routes = [
 		new Route("/auth/login", "post"),
@@ -60,7 +61,7 @@ app.service("restAPI", ["$http", function($http) {
 						var finishedPath = "";
 						var pathParts = route.path.split("/");
 						for (var k = 1; k < pathParts.length; k++) {
-							if (pathParts.indexOf(":") !== -1) {
+							if (pathParts[k].indexOf(":") !== -1) {
 								finishedPath += "/" + arguments[argumentsIndex];
 								argumentsIndex++;
 							}
@@ -69,10 +70,14 @@ app.service("restAPI", ["$http", function($http) {
 							}
 						}
 						var data = (argumentsIndex === nextAfterFunctionIndex) ? arguments[argumentsIndex] : {};
+						console.log("Calling " + finishedPath + " with data:");
 						console.log(data);
-						$http[route.method](url + finishedPath, data)
-						.success(successFn)
-						.error(errorFn);
+						var request = $http[route.method](url + finishedPath, data)
+						.success(successFn);
+
+						if (typeof(errorFn) == "function") {
+							request.error(errorFn);
+						}
 					};
 				})(routes[i]);
 			}

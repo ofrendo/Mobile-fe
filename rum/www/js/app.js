@@ -20,6 +20,10 @@ app.run(function($ionicPlatform) {
   });
 })
 
+app.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
+}]);
+
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -90,6 +94,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	      }
 	    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/tripList');
+  $urlRouterProvider.otherwise('/app/login');
 });
 

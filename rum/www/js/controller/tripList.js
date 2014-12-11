@@ -1,7 +1,12 @@
-app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup", function($scope, $http, $state, $ionicPopup) {
+app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup", "restAPI", "globals", function($scope, $http, $state, $ionicPopup, restAPI, globals) {
+	console.log("----INIT tripListController----");
 	$scope.title = "Deine Reisen";
 	
-	this.trips = trips;
+	this.trips = [];
+	restAPI.user.readTrips(globals.user.user_id, function(trips) {
+		console.log(trips);
+		this.trips = trips;
+	});
 	
 	// calls the manageTrip view
 	this.navToManageTrip = function(trip){
@@ -37,6 +42,7 @@ app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup"
 	}
 }]);
 
+/*
 // fill with demo data
 var trips = {
 	'1': {
@@ -60,4 +66,4 @@ var trips = {
 		dateStart: new Date(2013, 0, 1),
 		dateEnd: new Date(2013, 0, 14)
 	}
-};
+};*/
