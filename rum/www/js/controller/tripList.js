@@ -1,4 +1,4 @@
-app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup", "restAPI", "globals", function($scope, $http, $state, $ionicPopup, restAPI, globals) {
+app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "globals", function($scope, $http, $state, $ionicPopup, $timeout, restAPI, globals) {
 	console.log("----INIT tripListController----");
 	$scope.title = "Deine Reisen";
 	
@@ -6,6 +6,7 @@ app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup"
 	restAPI.user.readTrips(globals.user.user_id, function(trips) {
 		console.log(trips);
 		this.trips = trips;
+		$scope.trips = trips;		
 	});
 	
 	// calls the cityList view
