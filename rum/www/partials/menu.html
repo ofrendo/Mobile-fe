@@ -1,4 +1,4 @@
-<ion-side-menus>
+<ion-side-menus ng-controller = "menuController as menuCtrl">
 
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable nav-title-slide-ios7">
@@ -7,7 +7,7 @@
     <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
+  <ion-side-menu side="left" is-enabled="checkLeft()">
     <header class="bar bar-header bar-stable">
       <h1 class="title">Menu</h1>
        <button class="button button-icon" menu-close><i class="icon ion-ios7-arrow-forward"></i></button>
@@ -30,7 +30,7 @@
     </ion-content>
   </ion-side-menu>
   
-  <ion-side-menu side="right" ng-controller="chatController as chatCtrl">
+  <ion-side-menu side="right" ng-controller="chatController as chatCtrl" is-enabled="checkRight()">
   	 <header class="bar bar-header bar-stable">
       <button class="button button-icon" menu-close><i class="icon ion-ios7-arrow-back"></i></button>
       <h1 class="title">Chat</h1>

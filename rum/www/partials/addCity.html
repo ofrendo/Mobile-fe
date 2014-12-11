@@ -1,6 +1,34 @@
 <ion-view title="Stadt hinzufügen">
   <content-header></content-header>
   <ion-content class="has-header">
-	<input type="text" id="searchText" ng-model="searchText" style="width:100%;" placeholder="Stadt hinzuf&uuml;gen"/>    
+  	<div class="list card">
+  		<label class="item item-input baseline-align">
+  			<span class="input-label">Name</span>
+  			<div class="city-name">
+  				<input type="text" id="searchText" ng-model="addCityCtrl.cityData.name" ng-init="addCityCtrl.cityData.name=''" ng-change="addCityCtrl.autocomplete()" placeholder="nach Stadt suchen"/>
+  				<ul class="autocompletion" 
+  					ng-init="addCityCtrl.autocompletionData = [];"
+  					ng-hide="addCityCtrl.autocompletionData.length == 0">
+  					<li ng-repeat="city in addCityCtrl.autocompletionData" ng-click="addCityCtrl.selectCity(city)">
+  						<span ng-class="(term.offset == 0) ? 'city' : 'term'" ng-repeat="term in city.terms">
+  							{{term.value}}
+  						</span>
+  					</li>
+  					<li class="powered"><img src="img/powered-by-google.png"></li>
+  				</ul>
+  			</div>
+  		</label>
+  		<label class="item item-input">
+  			<span class="input-label">Startdatum</span>
+  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.dateStart"/>
+  		</label>
+  		<label class="item item-input">
+  			<span class="input-label">Enddatum</span>
+  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.dateEnd"/>
+  		</label>
+  		<label class="item">
+      		<button class="button button-block" ng-disabled="addCityCtrl.cityData.name == ''" ng-click="addCityCtrl.addCity()">Stadt hinzufügen</button>
+      	</label>
+  	</div>    
   </ion-content>
 </ion-view>

@@ -1,23 +1,23 @@
-/* triplist */
-.trip-list .trip-date {
+/* trip-list (also used for city list)*/
+.trip-list .date {
 	float:left;
 	padding-right:20px;
 	font-size:80%;
 }
 
-.trip-list .trip-date-start {
+.trip-list .date-start {
 	color:#00cc00;
 }
 
-.trip-list .trip-date-end {
+.trip-list .date-end {
 	color:#cc0000;
 }
 
-.trip-list .trip-name {
+.trip-list .name {
 	 font-weight:bold;
 }
 
-.trip-list .trip-participants {
+.trip-list .info {
 	font-size: 80%;
 	color:#656565;
 }
@@ -32,4 +32,43 @@
 
 .triplist-footer .button::before {
 	margin-right:10px;
+}
+
+/* city-list */
+
+
+/* add city */
+.baseline-align {
+	align-items:baseline;
+}
+
+.autocompletion {
+	border:1px solid #ddd;
+	padding:2px 10px;
+}
+
+.autocompletion li {
+	border-top:1px solid #ddd;
+	padding:2px 5px;
+}
+
+.autocompletion li:first-child {
+	border:none;
+}
+
+.autocompletion .term {
+	font-size:80%;
+	color:#969696;
+	margin-right:5px;
+}
+
+.autocompletion .city {
+	margin-right:10px;
+	color:black;
+	font-size:100%;
+}
+
+.autocompletion .powered {
+	padding:0px;
+	text-align:right;
 }
