@@ -2,7 +2,7 @@
   <content-header></content-header>
   <ion-content class="has-header">
   	<div class="list card">
-  		<label class="item item-input baseline-align">
+  		<div class="item item-input baseline-align">
   			<span class="input-label">Name</span>
   			<div class="city-name">
   				<input type="text" id="searchText" ng-model="addCityCtrl.cityData.name" ng-init="addCityCtrl.cityData.name=''" ng-change="addCityCtrl.autocomplete()" placeholder="nach Stadt suchen"/>
@@ -17,7 +17,7 @@
   					<li class="powered"><img src="img/powered-by-google.png"></li>
   				</ul>
   			</div>
-  		</label>
+  		</div>
   		<label class="item item-input">
   			<span class="input-label">Startdatum</span>
   			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.dateStart"/>

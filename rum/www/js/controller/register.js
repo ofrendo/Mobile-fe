@@ -2,6 +2,8 @@ app.controller("registerController", ["$scope", "$timeout", "$state", function($
 
 	
 	this.register = function () {
+		
+		//build JSON for rest call
 		var user = {
 				email : $scope.loginData.email,
 				username : $scope.loginData.username,
@@ -10,21 +12,12 @@ app.controller("registerController", ["$scope", "$timeout", "$state", function($
 		
 		//simple email validation
 		var re = /\S+@\S+\.\S+/;  //regularexpression string@sting.string
-		if (re.test(user.email))
-		{
-			console.log("Richtige email");
-		}
-		else
+		if (!re.test(user.email))
 		{
 			console.log("Falsche email");
-		}
-			
+		}	
 		//password validation
-		if(user.password === $scope.loginData.password2)
-		{
-			console.log("Richtiges Passwort");
-		}
-		else
+		if(user.password !== $scope.loginData.password2)
 		{
 			console.log("Falsches passwort");
 		}
