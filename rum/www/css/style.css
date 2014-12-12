@@ -1,8 +1,15 @@
 /* trip-list (also used for city list)*/
 .trip-list .date {
 	float:left;
-	padding-right:20px;
+	width:25%;
+	min-width:90px;
 	font-size:80%;
+}
+
+/* this is a workaround to make the date div need space, even if there's no content; it's still pretty bad*/
+.trip-list .date-start::after, .trip-list .date-end::after {
+	content: '.';
+	visibility:hidden;
 }
 
 .trip-list .date-start {
