@@ -14,6 +14,13 @@ app.service("loginService", ["restAPI", "globals", function(restAPI, globals) {
 		}, errorFn);
 	}
 
+	this.logout = function(successFn, errorFn) {
+		restAPI.auth.logout(function() {
+			delete globals["user"];
+			if (typeof(successFn) == "function") successFn();
+		}, errorFn);
+	}
+
 	this.tryLogin = function(successFn, errorFn) {
 		this.login(null, null, successFn, errorFn);
 	};
