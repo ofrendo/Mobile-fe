@@ -14,7 +14,15 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip", "post", "create"),
 		new Route("/trip/:trip_id", "get", "read"),
 		new Route("/trip/:trip_id", "put", "update"),
-		new Route("/trip/:trip_id", "delete", "delete")
+		new Route("/trip/:trip_id", "delete", "delete"),
+		new Route("/trip/:trip_id/city", "post", "create"),
+		new Route("/trip/:trip_id/city/:city_id", "get", "read"),
+		new Route("/trip/:trip_id/city/:city_id", "put", "update"),
+		new Route("/trip/:trip_id/city/:city_id", "delete", "delete"),
+		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"),
+		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "get", "read"),
+		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "put", "update"),
+		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "delete", "delete")
 	];
 
 	for (var i = 0; i < routes.length; i++) {
