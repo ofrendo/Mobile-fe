@@ -4,14 +4,14 @@ app.service("restAPI", ["$http", function($http) {
 	//var url = "http://localhost:5000";
 
 	var routes = [
-		new Route("/auth/login", "post"),
-		new Route("/auth/logout", "post"),
+		new Route("/auth/login", "post", null, true), //api.auth.login()
+		new Route("/auth/logout", "post", null, true),
 		new Route("/user", "post", "create"),
 		new Route("/user/:user_id", "get", "read"),
 		new Route("/user/:user_id", "put", "update"),
 		new Route("/user/:user_id", "delete", "delete"),
-		new Route("/user/:user_id/trips", "get", "readTrips"),
-		new Route("/trip", "post", "create"),
+		new Route("/user/:user_id/trips", "get", "readTrips", true), //api.user.readTrips()
+		new Route("/trip", "post", "create"), //api.trip.create
 		new Route("/trip/:trip_id", "get", "read"),
 		new Route("/trip/:trip_id", "put", "update"),
 		new Route("/trip/:trip_id", "delete", "delete"),
@@ -25,13 +25,16 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "delete", "delete")
 	];
 
-	for (var i = 0; i < routes.length; i++) {
-		var parent = module;
-		var parts = routes[i].path.split("/");
+	for (var i = 0; i < routes.length; i++) { //for each route
+		var parent = module;				  //reset parent
+		var parts = routes[i].path.split("/"); //split path into parts divided by /
 		for (var j = 1; j < parts.length; j++) { //first part slash is empty
 
 			var part = parts[j];
-			if ((j !== parts.length-1 || parts.length === 2) && part.indexOf(":") === -1) { //Build up empty object (namespace), such as module.auth
+			if (part.indexOf(":") === -1 && (j !== parts.length-1 || routes[i].lastPathIsFunction !== true)) { 
+				//Build up empty object (namespace), such as module.auth IF
+				//not a :object_id AND
+				//there is specific function name defined (in all cases except login and logout) OR not at the end
 				if (!parent[part]) {
 					parent[part] = {};
 				}
@@ -54,12 +57,14 @@ app.service("restAPI", ["$http", function($http) {
 						var errorFn;
 						var successFn;
 						var nextAfterFunctionIndex;
-						if (typeof(arguments[l-2]) == "function") {
+						if (typeof(arguments[l-2]) == "function") { 
+							//if second to last argument is a function, there will be a successFn and errorFn
 							errorFn = arguments[l-1];
 							successFn = arguments[l-2];
 							nextAfterFunctionIndex = l-3;
 						}
 						else {
+							//Else there is only a successFn
 							successFn = arguments[l-1];
 							nextAfterFunctionIndex = l-2;
 						}
@@ -78,7 +83,7 @@ app.service("restAPI", ["$http", function($http) {
 							}
 						}
 						var data = (argumentsIndex === nextAfterFunctionIndex) ? arguments[argumentsIndex] : {};
-						console.log("Calling " + finishedPath + " with data:");
+						console.log("Calling " + route.method.toUpperCase() + " " + finishedPath + " with data:");
 						console.log(data);
 						var request = $http[route.method](url + finishedPath, data)
 						.success(successFn);
@@ -95,8 +100,9 @@ app.service("restAPI", ["$http", function($http) {
 	}
 }]);
 
-function Route(path, method, functionName) {
+function Route(path, method, functionName, lastPathIsFunction) {
 	this.path = path;
 	this.method = method;
 	this.functionName = functionName;
+	this.lastPathIsFunction = lastPathIsFunction;
 }

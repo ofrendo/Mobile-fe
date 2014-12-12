@@ -6,7 +6,7 @@ app.service("loginService", ["restAPI", "globals", function(restAPI, globals) {
 		var data = {};
 		if (username) data.username = username;
 		if (password) data.password = password;
-
+		console.log(restAPI);
 		restAPI.auth.login(data, function(data) {
 			console.log("User " + data.username + " logged in with ID " + data.user_id);
 			globals.user = data;

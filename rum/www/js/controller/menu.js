@@ -1,19 +1,15 @@
-app.controller("menuController", ["$ionicSideMenuDelegate", "$scope","$timeout", function($ionicSideMenuDelegate, $scope , $timeout){
+app.controller("menuController", 
+	["$scope", "globals",
+	function($scope, globals){
 	
 
 	$scope.checkRight = function(){
-		//überprüfe ob chat angezeigt werden soll
-		//return:
-		//true enabled
-		//false disabled
-		return true;
+		//check if chat is supposed to be shown
+		return !!globals.trip_id;
 	};
 	
 	$scope.checkLeft = function(){
-		//überprüfe ob menü angezeigt werden soll
-		//return:
-		//true enabled
-		//false disabled
+		//check if menu on left is supposed to be shown
 		return true;
 	};
 	
