@@ -72,3 +72,8 @@
 	padding:0px;
 	text-align:right;
 }
+
+/* this is just for jörn, that he knows that the autocompletion elements are clickable :-) */
+.autocompletion li:hover {
+	cursor:pointer;
+}

@@ -1,8 +1,16 @@
-app.controller("addTripController", ["$scope", "$timeout", "$state", function($scope, $timeout, $state) {
+app.controller("addTripController", ["$scope", "$timeout", "$state", "restAPI", function($scope, $timeout, $state, restAPI) {
 	
 	this.addTrip = function(){
 		console.log('add trip');
-		// call backend; wait for response; then call tripList or manageTrip?
+		console.log($scope.tripData);
+		var tripData = $scope.tripData;
+		// convert dates to iso format
+		tripData.start_date = (new Date(tripData.start_date)).toISOString();
+		tripData.end_date = (new Date(tripData.end_date)).toISOString();
+		console.log(tripData);
+		// call rest api
+		
+		// show tripList
 		$state.go('app.tripList');
 	}
 }]);

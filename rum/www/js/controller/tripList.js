@@ -18,13 +18,13 @@ app.controller("tripListController",
 	function onInit() {
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
 			console.log(trips);
-			$scope.trips = trips;		
+			$scope.trips = trips;
 		});
 	}
 	
 	// calls the cityList view
 	this.navToCityList = function(trip){
-		$state.go('app.cityList', {tripId: trip.id});
+		$state.go('app.cityList', {tripId: trip.trip_id});
 	};
 	
 	this.navToAddTrip = function(){
@@ -32,7 +32,7 @@ app.controller("tripListController",
 	}
 	
 	this.navToEditTrip = function(trip){
-		$state.go('app.editTrip', trip.id);
+		$state.go('app.editTrip', trip.trip_id);
 	}
 	
 //	this.addPerson = function(trip){

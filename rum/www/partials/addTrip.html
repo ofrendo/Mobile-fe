@@ -1,6 +1,6 @@
 <ion-view title="Reise hinzufügen">
   <content-header></content-header>
-  <ion-content class="has-header">
+  <ion-content class="has-header" ng-controller="addTripController as addTripCtrl">
     <div class="list card">
       <label class="item item-input">
      	<span class="input-label">Name</span>
@@ -8,11 +8,11 @@
       </label>
       <label class="item item-input">
      	<span class="input-label">Reisebeginn</span>
-     	<input type="date" ng-model="tripData.dateStart">
+     	<input type="date" ng-model="tripData.start_date">
       </label>
       <label class="item item-input">
      	<span class="input-label">Reiseende</span>
-     	<input type="date" ng-model="tripData.dateEnd">
+     	<input type="date" ng-model="tripData.end_date">
       </label>
       <label class="item">
       	<button class="button button-block" ng-disabled="tripData.name == ''" ng-click="addTripCtrl.addTrip()">Reise hinzufügen</button>
