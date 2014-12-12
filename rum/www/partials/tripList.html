@@ -10,8 +10,10 @@
         	<div class="actions">
         		<button class="button button-icon icon ion-edit" ng-click="tripListCtrl.navToEditTrip(trip)" stop-event></button>
         	</div>
-        	<div class="name">{{trip.name}}</div>
-        	<!-- <div class="info">{{trip.noParticipants}} Teilnehmer | {{trip.noCities}} Städte</div> -->
+        	<div class="item-center">
+        		<div class="name">{{trip.name}}</div>
+        		<div class="info">{{trip.noParticipants}} Teilnehmer | {{trip.noCities}} Städte</div>
+        	</div>
       </ion-item>
     </ion-list>
   </ion-content>
