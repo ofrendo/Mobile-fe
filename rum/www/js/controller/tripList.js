@@ -1,13 +1,26 @@
-app.controller("tripListController", ["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "globals", function($scope, $http, $state, $ionicPopup, $timeout, restAPI, globals) {
+app.controller("tripListController", 
+	["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "loginService", "globals",
+	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals) {
+	
 	console.log("----INIT tripListController----");
 	$scope.title = "Deine Reisen";
+	$scope.trips = [];
+
+	if (loginService.isLoggedIn()) {
+		onInit();
+	}
+	else {
+		loginService.tryLogin(onInit, function(data, status) {
+			$state.go("app.login");
+		});
+	}
 	
-	this.trips = [];
-	restAPI.user.readTrips(globals.user.user_id, function(trips) {
-		console.log(trips);
-		this.trips = trips;
-		$scope.trips = trips;		
-	});
+	function onInit() {
+		restAPI.user.readTrips(globals.user.user_id, function(trips) {
+			console.log(trips);
+			$scope.trips = trips;		
+		});
+	}
 	
 	// calls the cityList view
 	this.navToCityList = function(trip){
