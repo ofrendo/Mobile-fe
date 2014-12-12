@@ -12,7 +12,11 @@
         	</div>
         	<div class="item-center">
         		<div class="name">{{trip.name}}</div>
-        		<div class="info">{{trip.noParticipants}} Teilnehmer | {{trip.noCities}} Städte</div>
+        		<div class="info">
+        			{{trip.no_participants}} Teilnehmer | {{trip.no_cities}} 
+        			<ng-pluralize count="trip.no_cities" 
+        				when="{'1': 'Stadt', 'other': 'Städte'}">
+                    </ng-pluralize></div>
         	</div>
       </ion-item>
     </ion-list>
