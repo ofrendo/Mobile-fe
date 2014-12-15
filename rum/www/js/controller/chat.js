@@ -95,12 +95,20 @@ app.controller("chatController",
 	};
 
 	function pushMessage(message) {
-		$scope.$apply(function() {
-			message.avatar = "http://www.gravatar.com/avatar/" + md5(message.email) + "?d=identicon";
-			$scope.messages.push(message);	
-		});
+		if (!$scope.$$phase) {
+			$scope.$apply(function() {
+				pushMessageToScope(message);
+			});
+		}
+		else {
+			pushMessageToScope(message);
+		}
 	}
 
+	function pushMessageToScope(message) {
+		message.avatar = "http://www.gravatar.com/avatar/" + md5(message.email) + "?d=identicon";
+		$scope.messages.push(message);	
+	}
 }]);
 
 /*
