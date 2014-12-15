@@ -1,12 +1,10 @@
 app.controller("tripListController", 
-	["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "loginService", "globals", "$ionicHistory",
-	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals, $ionicHistory) {
+	["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "loginService", "globals",
+	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals) {
 	
 	console.log("----INIT tripListController----");
 	this.title = "Deine Reisen";
 	$scope.trips = [];
-	
-	$ionicHistory.clearHistory(); 
 
 	if (loginService.isLoggedIn()) {
 		onInit();
