@@ -44,7 +44,6 @@ app.controller("chatController",
 			for (var i = $scope.messages.length-1; i >= 0; i--) {
 				if ($scope.messages[i].confirmed === false && $scope.messages[i].msg_text === message.msg_text) {
 					$scope.$apply(function() {
-						setAvatar(message);
 						$scope.messages[i] = message;
 					});
 				}
