@@ -3,7 +3,7 @@ app.controller("tripListController",
 	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals) {
 	
 	console.log("----INIT tripListController----");
-	$scope.title = "Deine Reisen";
+	this.title = "Deine Reisen";
 	$scope.trips = [];
 
 	if (loginService.isLoggedIn()) {
