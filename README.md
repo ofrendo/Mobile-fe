@@ -59,3 +59,6 @@ cordova plugin add org.apache.cordova.contacts
 ```
 
 Dies muss jeder lokal in seinem Projekt durchführen, da dieses File im Gitignore nicht beachtet wird.
+
+Damit die Berechtigungen auch tatsächlich der App verleiht werden, muss im AndroidManifest.xml die Berechtigungen verschoben werden.
+Diese werden falsch hinzugefügt und müssen unter die bestehende Berechtigung INTERNET angehängt werden.
