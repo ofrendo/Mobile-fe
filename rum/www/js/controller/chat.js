@@ -108,12 +108,7 @@ app.controller("chatController",
 	}
 
 	function pushMessageToScope(message) {
-		setAvatar(message);
 		$scope.messages.push(message);	
-	}
-
-	function setAvatar(message) {
-		message.avatar = "http://www.gravatar.com/avatar/" + md5(message.email) + "?d=identicon";
 	}
 
 	function scrollToBottom() {
