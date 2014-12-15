@@ -81,7 +81,6 @@ app.controller("chatController",
 		socket.emit("msg.send", message);
 		
 		message.confirmed = false;
-		message.avatar = md5(globals.user.email);
 
 		pushMessage(message);
 
@@ -96,8 +95,10 @@ app.controller("chatController",
 	};
 
 	function pushMessage(message) {
-		message.avatar = "http://www.gravatar.com/avatar/" + md5(message.email) + "?d=identicon";
-		$scope.messages.push(message);
+		$scope.$apply(function() {
+			message.avatar = "http://www.gravatar.com/avatar/" + md5(message.email) + "?d=identicon";
+			$scope.messages.push(message);	
+		});
 	}
 
 }]);
