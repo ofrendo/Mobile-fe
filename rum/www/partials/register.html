@@ -1,29 +1,32 @@
 <ion-view title="Benutzerregistrierung">
 	  <ion-content class="has-header" ng-controller = "registerController as registerCtrl">
-	      <div class="list card">
+	      <div class="list card ">
 	        <label class="item item-input">
 	          <span class="input-label">E-Mail Adresse</span>
-	          <input type="email" ng-init="loginData.email=''" ng-model="loginData.email">
+	          <input type="email" ng-change = "registerCtrl.emailChange()" ng-class = "{invalidInput: registerCtrl.hasEmailError() }" ng-init="registerCtrl.loginData.email=''" ng-model="registerCtrl.loginData.email">
+			  <i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasEmailError()"></i>
 	        </label>
 	        <label class="item item-input">
 	          <span class="input-label">Benutzername</span>
-	          <input type="text" ng-init="loginData.username=''" ng-model="loginData.username">
+	          <input type="text" ng-init="registerCtrl.loginData.username='das'" requiered = "required" ng-model="registerCtrl.loginData.username">
 	        </label>
 	        <label class="item item-input">
 	          <span class="input-label">Name</span>
-	          <input type="text" ng-init="loginData.name=''" ng-model="loginData.name">
+	          <input type="text" ng-init="registerCtrl.loginData.name='dasd'" ng-model="registerCtrl.loginData.name">
 	        </label>
 	        <label class="item item-input">
 	          <span class="input-label">Passwort</span>
-	          <input type="password" ng-init="loginData.password=''" ng-model="loginData.password">
+	          <input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" ng-init="registerCtrl.loginData.password='dasd'" ng-model="registerCtrl.loginData.password">
+	          <i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasPasswordError()"></i>
 	        </label>
 	       	<label class="item item-input">
 	          <span class="input-label">Passwort wiederholen</span>
-	          <input type="password" ng-init="loginData.password2=''" ng-model="loginData.password2">
+	          <input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" ng-init="registerCtrl.loginData.password2='asdsad'" ng-model="registerCtrl.loginData.password2">
+	          <i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasPasswordError()"></i>
 	        </label>
 	       		<label class="item" >
 	          		<button class="button button-block button-positive" ng-click = "registerCtrl.register()"
-	          				ng-disabled = "loginData.username == '' || loginData.password == '' || loginData.email == '' || loginData.password2 == ''" >Registrieren</button>
+	          				ng-disabled = "!registerCtrl.verifyRegisterButton()" >Registrieren</button>
 	        	</label>
 	      </div>
 	      <div class="list card">

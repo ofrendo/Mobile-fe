@@ -16,6 +16,8 @@ app.controller("tripListController",
 	}
 	
 	function onInit() {
+		globals.setTripID(-1);
+
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
 			console.log(trips);
 			$scope.trips = trips;
@@ -24,16 +26,18 @@ app.controller("tripListController",
 	
 	// calls the cityList view
 	this.navToCityList = function(trip){
+		globals.setTripID(trip.trip_id);
 		$state.go('app.cityList', {trip_id: trip.trip_id});
 	};
 	
 	this.navToAddTrip = function(){
 		$state.go('app.addTrip');
-	}
+	};
 	
 	this.navToEditTrip = function(trip){
+		globals.setTripID(trip.trip_id);
 		$state.go('app.editTrip', {trip_id: trip.trip_id});
-	}
+	};
 	
 //	this.addPerson = function(trip){
 //		// to be done

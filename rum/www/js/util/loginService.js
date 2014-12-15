@@ -9,7 +9,7 @@ app.service("loginService", ["restAPI", "globals", function(restAPI, globals) {
 		console.log(restAPI);
 		restAPI.auth.login(data, function(data) {
 			console.log("User " + data.username + " logged in with ID " + data.user_id);
-			globals.user = data;
+			globals.setUser(data);
 			if (typeof(successFn) == "function") successFn(data);
 		}, errorFn);
 	}

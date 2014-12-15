@@ -37,9 +37,9 @@
     </header>
     <ion-content class="has-header" delegate-handle="chatScroll">
     	<div class="chat">
-			<div class="msg" ng-class="(msg.user.me) ? 'msg-right' : 'msg-left'" ng-repeat="msg in chatCtrl.messages | orderBy: msg.created_on">
+			<div class="msg" ng-class="(isOwnMessage(msg)) ? 'msg-right' : 'msg-left'" ng-repeat="msg in messages | orderBy: msg.created_on">
 				<div class="icon">
-					<img ng-src="{{msg.user.avatar}}" />
+					<img ng-src="{{msg.avatar}}" />
 				</div>
 				<div class="msg-bubble-wrapper">
 					<div class="msg-bubble">
@@ -54,7 +54,7 @@
     </ion-content>
     <ion-footer-bar>
     	<textarea class="msg-input" ng-model="msgText" ng-init="msgText =''" placeholder="Geben Sie eine Nachricht ein."></textarea>
-    	<button class="button icon ion-ios7-paperplane" ng-click="chatCtrl.sendMsg()" ng-disabled="msgText.length == 0">
+    	<button class="button icon ion-ios7-paperplane" ng-click="sendMsg()" ng-disabled="msgText.length == 0">
     	</button>
     </ion-footer-bar>
   </ion-side-menu>

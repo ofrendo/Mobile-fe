@@ -5,7 +5,7 @@ app.controller("menuController",
 
 	$scope.checkRight = function(){
 		//check if chat is supposed to be shown
-		return !!globals.trip_id;
+		return !!globals.trip_id && globals.trip_id >= 0;
 	};
 	
 	$scope.checkLeft = function(){
