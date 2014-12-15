@@ -47,3 +47,15 @@ Um Ionic auf dem aktuellen Stand zu halten folgenden Befehl in die Console einti
 ```
 npm update -g ionic
 ```
+
+## Ionic - Cordova Plugins hinzufügen
+
+Kalender - Plugin:
+
+Um das Kalender Plugin hinzuzufügen, den Projektpfad in der Console öffnen und folgenden Befehl eingeben:
+
+```
+cordova plugin add org.apache.cordova.contacts
+```
+
+Dies muss jeder lokal in seinem Projekt durchführen, da dieses File im Gitignore nicht beachtet wird.
