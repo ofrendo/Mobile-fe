@@ -1,10 +1,10 @@
 app.controller("loginController", ["$scope", "$timeout", "$state", "loginService", function($scope, $timeout, $state, loginService) {
 	console.log("----INIT loginController----")
-	$scope.title = "Bitte einloggen:";
+	
 	
 	this.login = function () {
-		var username = $scope.loginData.username;
-		var password = $scope.loginData.password;
+		var username = this.loginData.username;
+		var password = this.loginData.password;
 		loginService.login(username, password, function(user) {
 			$state.go("app.tripList");
 		}, function(data, status) {
@@ -14,6 +14,14 @@ app.controller("loginController", ["$scope", "$timeout", "$state", "loginService
 	
 	this.navToRegisterView = function () {
 		$state.go('app.register');
+	}
+	
+	this.verifyLoginButton = function () {
+		//verify if loginButton should be enabled
+		var username = this.loginData.username;
+		var password = this.loginData.password;
+		return !!username && !!password;
+		//return true for enabled
 	}
 
 }]);

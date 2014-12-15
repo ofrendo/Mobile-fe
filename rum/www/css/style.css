@@ -1,4 +1,11 @@
 /* trip-list (also used for city list)*/
+.errorIcon{
+	margin: 0px 10px !important;
+	color:red !important;
+}
+.invalidInput{
+	color:red !important;
+}
 .trip-list .date {
 	float:left;
 	width:25%;
