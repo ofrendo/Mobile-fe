@@ -1,7 +1,10 @@
 app.service("restAPI", ["$http", function($http) {
 	var module = this;
-	var url = "https://thawing-stream-4939.herokuapp.com";
+	/*var url = (window.location.href.indexOf("localhost") === -1)
+			  ? "https://thawing-stream-4939.herokuapp.com"
+			  : "http://localhost:5000";*/
 	//var url = "http://localhost:5000";
+	var url = "https://thawing-stream-4939.herokuapp.com";
 
 	var routes = [
 		new Route("/auth/login", "post", null, true), //api.auth.login()
