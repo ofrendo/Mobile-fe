@@ -1,5 +1,5 @@
 app.controller("cityListController", ["$scope", "$http", "$state", function($scope, $http, $state) {
-	
+	console.log("----INIT cityListController----");
 	// calls the addcity view
 	this.navToAddCity = function(){
 		$state.go('app.addCity', {tripId: trip.id});

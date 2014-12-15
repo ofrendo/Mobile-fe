@@ -86,8 +86,14 @@ app.service("restAPI", ["$http", function($http) {
 							}
 						}
 						var data = (argumentsIndex === nextAfterFunctionIndex) ? arguments[argumentsIndex] : {};
-						console.log("Calling " + route.method.toUpperCase() + " " + finishedPath + " with data:");
-						console.log(data);
+						if (Object.keys(data).length === 0) {
+							console.log("Calling " + route.method.toUpperCase() + " " + finishedPath);
+						}
+						else {
+							console.log(data);
+							console.log("Calling " + route.method.toUpperCase() + " " + finishedPath + " with data:");
+						}
+
 						var request = $http[route.method](url + finishedPath, data)
 						.success(successFn);
 

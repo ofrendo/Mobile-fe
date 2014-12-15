@@ -10,7 +10,7 @@ app.controller("editTripController",
 					console.log('GET Trip callback with data:');
 					console.log(trip);
 					// set global variable
-					globals.trip_id = trip.trip_id;
+					globals.setTripID(trip.trip_id);
 					$scope.tripData = trip;
 					// convert date
 					$scope.tripData.start_date = Date.parse($scope.tripData.start_date);
