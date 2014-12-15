@@ -45,7 +45,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
   
   	.state('app.cityList', {
-      url: "/cityList/:tripId",
+      url: "/cityList/:trip_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/cityList.html",
@@ -65,7 +65,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.editTrip', {
-      url: "/editTrip/:tripId",
+      url: "/editTrip/:trip_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/editTrip.html",
@@ -75,7 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.addCity', {
-      url: "/addCity/:tripId",
+      url: "/addCity/:city_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/addCity.html",
@@ -85,7 +85,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.editCity', {
-      url: "/editCity/:cityId",
+      url: "/editCity/:city_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/editCity.html",
