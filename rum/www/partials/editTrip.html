@@ -1,6 +1,22 @@
 <ion-view title="Reise bearbeiten">
   <content-header></content-header>
-  <ion-content class="has-header">
-  	
+  <ion-content class="has-header" ng-controller="editTripController as editTripCtrl">
+  	<div class="list card" ng-init="editTripCtrl.getTripData()">
+      <label class="item item-input">
+     	<span class="input-label">Name</span>
+     	<input type="text" ng-model="tripData.name">
+      </label>
+      <label class="item item-input">
+     	<span class="input-label">Reisebeginn</span>
+     	<input type="date" ng-model="tripData.start_date">
+      </label>
+      <label class="item item-input">
+     	<span class="input-label">Reiseende</span>
+     	<input type="date" ng-model="tripData.end_date">
+      </label>
+      <label class="item">
+      	<button class="button button-block" ng-disabled="tripData.name == ''" ng-click="editTripCtrl.saveTrip()">Änderungen speichern</button>
+      </label>
+    </div>
   </ion-content>
 </ion-view>
