@@ -3,7 +3,11 @@ app.controller("editTripController",
 		 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, globals) {
 	
 	function DateToHtmlDate(jsDate){
-		return jsDate.getFullYear() + '-' + (jsDate.getMonth() + 1) + "-" + jsDate.getDate();
+		var dateString = 
+			jsDate.getFullYear() + '-'
+			+ ('0' + (jsDate.getMonth()+1)).slice(-2) + '-'
+			+ ('0' + jsDate.getDate()).slice(-2);
+		return dateString;
 	}
 			
 	this.getTripData = function(){
@@ -15,29 +19,26 @@ app.controller("editTripController",
 					console.log(trip);
 					// set global variable
 					globals.setTripID(trip.trip_id);
-					$scope.tripData = trip;
 					// convert date
-					if($scope.tripData.start_date){
-						$scope.tripData.start_date = DateToHtmlDate(new Date($scope.tripData.start_date));
+					if(trip.start_date != null){
+						trip.start_date = DateToHtmlDate(new Date(trip.start_date));
 					}
-					if($scope.tripData.start_date){
-						$scope.tripData.end_date = DateToHtmlDate(new Date($scope.tripData.end_date));
+					if(trip.end_date != null){
+						trip.end_date = DateToHtmlDate(new Date(trip.end_date));
 					}
-					console.log($scope.tripData.start_date);
+					$scope.tripData = trip;
 				}
 			);
 		});
 	};
 	
 	this.saveTrip = function(){
-		var tripData = $scope.tripData;
+		var trip = $scope.tripData;
 		// convert dates to iso format
-		if (tripData.start_date) tripData.start_date = (new Date(tripData.start_date)).toISOString();
-		if (tripData.end_date) tripData.end_date = (new Date(tripData.end_date)).toISOString();
+		if (trip.start_date != null) trip.start_date = (new Date(trip.start_date)).toISOString();
+		if (trip.end_date != null) trip.end_date = (new Date(trip.end_date)).toISOString();
 		// save trip
-		console.log("UPDATE trip with data:");
-		console.log(tripData);
-		restAPI.trip.update(tripData.trip_id, {trip: tripData}, function(trip){
+		restAPI.trip.update(trip.trip_id, {trip: trip}, function(trip){
 			console.log('-> update trip successful!');
 			// navigate to tripList
 			$state.go('app.tripList');

@@ -2,6 +2,7 @@
 .contact-icon {
 	width: 47px;
 	height: 47px; /* the minimum size used by a button */
+	border-radius:8px;
 }
 
 .contact-name {
