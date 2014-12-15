@@ -2,6 +2,7 @@
   <content-header></content-header>
   <ion-content class="has-header" ng-controller="editTripController as editTripCtrl">
   	<div class="list card" ng-init="editTripCtrl.getTripData()">
+      <div class="item item-divider">Allgemeine Reisedaten</div>
       <label class="item item-input">
      	<span class="input-label">Name</span>
      	<input type="text" ng-model="tripData.name">
@@ -14,9 +15,21 @@
      	<span class="input-label">Reiseende</span>
      	<input type="date" ng-model="tripData.end_date">
       </label>
-      <label class="item">
+      <div class="item">
       	<button class="button button-block" ng-disabled="tripData.name == ''" ng-click="editTripCtrl.saveTrip()">Änderungen speichern</button>
-      </label>
+      </div>
+    </div>
+    
+    <div class="list card contact-list">
+    	<div class="item item-divider">Teilnehmer</div>
+    	<div class="item row">
+    		<div class="col-25"><img class="contact-icon" src="http://www.gravatar.com/avatar/61e2363d217e04f8b83b9c02a797e3fa?d=identicon"></div>
+    		<div class="col-50"><div class="contact-name col">Matthias</div></div>
+    		<button class="col col-25 button button-icon icon ion-close-round"></button>
+    	</div>
+    	<div class="item">
+      		<button class="button button-block" ng-click="">Teilnehmer hinzufügen</button>
+      	</div>
     </div>
   </ion-content>
 </ion-view>

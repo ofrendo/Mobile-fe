@@ -17,8 +17,12 @@ app.controller("editTripController",
 					globals.trip_id = trip.trip_id;
 					$scope.tripData = trip;
 					// convert date
-					$scope.tripData.start_date = DateToHtmlDate(new Date($scope.tripData.start_date));
-					$scope.tripData.end_date = DateToHtmlDate(new Date($scope.tripData.end_date));
+					if($scope.tripData.start_date){
+						$scope.tripData.start_date = DateToHtmlDate(new Date($scope.tripData.start_date));
+					}
+					if($scope.tripData.start_date){
+						$scope.tripData.end_date = DateToHtmlDate(new Date($scope.tripData.end_date));
+					}
 					console.log($scope.tripData.start_date);
 				}
 			);

@@ -1,3 +1,9 @@
+/* contact list */
+.contact-icon {
+	width: 40px;
+	height: 40px;
+}
+
 /* trip-list (also used for city list)*/
 .trip-list .date {
 	float:left;
