@@ -10,17 +10,24 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	
 	// the tabbing functions
 	this.setTab = function(index){
-		this.tab = index;
+		me.tab = index;
 		// workaround to width height problems with google maps when hiding the map and showing it again
 		$timeout(function(){
 			google.maps.event.trigger(me.map, 'resize');
 			me.map.setZoom( me.map.getZoom() );
 		});
-	}
+		// center map on trip's starting point if first time
+		if(me.first){
+			$timeout(function(){
+				me.map.setCenter(new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude));
+				me.first = false;
+			}, 0);
+		}
+	};
 	
 	this.isActiveTab = function(index){
 		return this.tab === index;
-	}
+	};
 	
 	// map functions
 	this.initMap = function() {
@@ -33,19 +40,23 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 				zoomControl: false,
 				panControl: false,
 				mapTypeControl: false,
-				center: posCenter
+				center: posCenter // the center positioning won't really work because the div size is not speicified (the tab is not shown at initialization)
 		};
 		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	}
+	};
 	
 	// navigation functions
 	this.navToAddCity = function(){
 		$state.go('app.addCity', {trip_id: me.trip.trip_id});
-	}
+	};
 	
 	this.navToEditCity = function(city){
 		$state.go('app.editCity', {city_id: city.city_id})
-	}
+	};
+	
+	this.navToLocationList = function(city){
+		$state.go('app.locationList', {city_id: city.city_id})
+	};
 	
 	// get the trip
 	this.loadTripData = function(trip_id){

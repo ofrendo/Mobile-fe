@@ -5,14 +5,14 @@
   		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('list')}" ng-click="cityListCtrl.setTab('list')">
   			Liste
   		</button>
-  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('map')}" ng-click="cityListCtrl.setTab('map')">
+  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('map')}" ng-click="cityListCtrl.setTab('map')" ng-disabled="cityListCtrl.cities.length < 1">
   			Karte
   		</button>
   	</div>
   	<!-- city List -->
   	<ion-scroll class="city-list-scroll" ng-show="cityListCtrl.isActiveTab('list')">
 	    <ion-list class="trip-list city-list">
-	      <ion-item ng-repeat="city in cityListCtrl.cities | orderBy: 'start_date'">
+	      <ion-item ng-repeat="city in cityListCtrl.cities | orderBy: 'start_date'" ng-click="cityListCtrl.navToLocationList(city)">
 	        	<div class="date">
 	        		<div class="date-start">{{city.start_date | date: 'dd.MM.yy'}}</div>
 	        		<div class="date-end">{{city.end_date | date: 'dd.MM.yy'}}</div>
