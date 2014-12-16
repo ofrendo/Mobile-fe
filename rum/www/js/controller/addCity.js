@@ -83,6 +83,7 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 					var city = {
 							name: place.name, 			// the name of the city (without country etc.)
 							place_id: place.place_id,	// the unique placeid
+							trip_id: parseInt($stateParams.trip_id),
 							longitude: place.geometry.location.lng(),
 							latitude: place.geometry.location.lat(),
 							//ranking: ,
@@ -91,7 +92,7 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 					};
 					console.log(city);
 					// call rest service
-					restAPI.trip.city.create($stateParams.trip_id, {city: city}, function(city){
+					restAPI.trip.city.create(null, {city: city}, function(city){
 						console.log('city created. Data returned:');
 						console.log(city);
 						$state.go('app.locationList', {city_id: city.city_id});
