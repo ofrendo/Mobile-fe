@@ -1,3 +1,19 @@
+/* contact list */
+.contact-icon {
+	width: 47px;
+	height: 47px; /* the minimum size used by a button */
+	border-radius:8px;
+}
+
+.contact-name {
+	margin-left:20px;
+	line-height:42px;
+}
+
+.contact-list .action .button {
+	float:right;
+}
+
 /* trip-list (also used for city list)*/
 .errorIcon{
 	margin: 0px 10px !important;

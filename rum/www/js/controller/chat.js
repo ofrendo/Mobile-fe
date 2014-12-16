@@ -28,7 +28,7 @@ app.controller("chatController",
 				var msg = previousMessages[i];
 				pushMessage(msg);
 			}
-			$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
+			scrollToBottom();
 		});
 
 		//This is called when a new user joins the room
@@ -53,6 +53,7 @@ app.controller("chatController",
 		//This is called when a new message was sent by a different user
 		socket.on("msg.new", function(message) {
 			pushMessage(message);
+			scrollToBottom();
 		});
 	};
 
@@ -81,14 +82,13 @@ app.controller("chatController",
 		socket.emit("msg.send", message);
 		
 		message.confirmed = false;
-		message.avatar = md5(globals.user.email);
 
 		pushMessage(message);
 
 		// reset input field for message
 		$scope.msgText = "";
 		// scroll to bottom
-		$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
+		scrollToBottom();
 	};
 
 	$scope.isOwnMessage = function(user) {
@@ -96,10 +96,23 @@ app.controller("chatController",
 	};
 
 	function pushMessage(message) {
-		message.avatar = "http://www.gravatar.com/avatar/" + md5(message.email) + "?d=identicon";
-		$scope.messages.push(message);
+		if (!$scope.$$phase) {
+			$scope.$apply(function() {
+				pushMessageToScope(message);
+			});
+		}
+		else {
+			pushMessageToScope(message);
+		}
 	}
 
+	function pushMessageToScope(message) {
+		$scope.messages.push(message);	
+	}
+
+	function scrollToBottom() {
+		$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
+	}
 }]);
 
 /*

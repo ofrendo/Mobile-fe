@@ -2,7 +2,7 @@
   <content-header></content-header>
   <ion-content class="has-header">
     <ion-list class="trip-list">
-      <ion-item ng-repeat="trip in trips | orderBy: 'dateStart'" ng-click="tripListCtrl.navToCityList(trip)">
+      <ion-item ng-repeat="trip in trips | orderBy: 'start_date'" ng-click="tripListCtrl.navToCityList(trip)">
         	<div class="date">
         		<div class="date-start">{{trip.start_date | date: 'dd.MM.yy'}}</div>
         		<div class="date-end">{{trip.end_date | date: 'dd.MM.yy'}}</div>
