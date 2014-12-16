@@ -1,6 +1,6 @@
 app.controller("registerController", 
-	[ "$timeout", "$state", "restAPI", "globals",
-	 function($timeout, $state, restAPI, globals) {
+	[ "$timeout", "$state", "restAPI", "globals", "$ionicPopup",
+	 function($timeout, $state, restAPI, globals, $ionicPopup) {
 	
 	//EmailError; set to True if Error occured
 	var emailError = false;
@@ -45,13 +45,30 @@ app.controller("registerController",
 			passwordError=true;
 		}
 		if (!passwordError && !emailError) {
+			//call rest api
 			restAPI.user.create({user: user}, function(user) {
 				globals.user = user;
 				$state.go("app.tripList");
 			}, function(data, status) {
-				console.log("Error registering user:");
-				console.log(data);
-				//Error, zb user already exists
+				var message;
+				if(!status){
+					message = "An Error ocurred."
+				}
+				else if (status == 500){
+					message = "Internal Server Error."
+				}
+				else if (status == 400){
+					message = "Bad request. Please correct the input."
+				}
+				
+				
+				   var alertPopup = $ionicPopup.alert({
+				     title: 'Error',
+				     template: message
+				   });
+
+				
+				
 			});
 		}
 	}

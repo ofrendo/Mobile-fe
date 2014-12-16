@@ -3,25 +3,25 @@
 	      <div class="list card ">
 	        <label class="item item-input">
 	          <span class="input-label">E-Mail Adresse</span>
-	          <input type="email" ng-change = "registerCtrl.emailChange()" ng-class = "{invalidInput: registerCtrl.hasEmailError() }" ng-init="registerCtrl.loginData.email=''" ng-model="registerCtrl.loginData.email">
+	          <input type="email" ng-change = "registerCtrl.emailChange()" ng-class = "{invalidInput: registerCtrl.hasEmailError() }" ng-init="registerCtrl.loginData.email='Hallo@web.de'" ng-model="registerCtrl.loginData.email">
 			  <i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasEmailError()"></i>
 	        </label>
 	        <label class="item item-input">
 	          <span class="input-label">Benutzername</span>
-	          <input type="text" ng-init="registerCtrl.loginData.username='das'" requiered = "required" ng-model="registerCtrl.loginData.username">
+	          <input type="text" ng-init="registerCtrl.loginData.username='HalloWelt'" requiered = "required" ng-model="registerCtrl.loginData.username">
 	        </label>
 	        <label class="item item-input">
 	          <span class="input-label">Name</span>
-	          <input type="text" ng-init="registerCtrl.loginData.name='dasd'" ng-model="registerCtrl.loginData.name">
+	          <input type="text" ng-init="registerCtrl.loginData.name='Hallo'" ng-model="registerCtrl.loginData.name">
 	        </label>
 	        <label class="item item-input">
 	          <span class="input-label">Passwort</span>
-	          <input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" ng-init="registerCtrl.loginData.password='dasd'" ng-model="registerCtrl.loginData.password">
+	          <input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" ng-init="registerCtrl.loginData.password='Passwort'" ng-model="registerCtrl.loginData.password">
 	          <i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasPasswordError()"></i>
 	        </label>
 	       	<label class="item item-input">
 	          <span class="input-label">Passwort wiederholen</span>
-	          <input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" ng-init="registerCtrl.loginData.password2='asdsad'" ng-model="registerCtrl.loginData.password2">
+	          <input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" ng-init="registerCtrl.loginData.password2='Passwort'" ng-model="registerCtrl.loginData.password2">
 	          <i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasPasswordError()"></i>
 	        </label>
 	       		<label class="item" >
