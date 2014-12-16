@@ -14,7 +14,7 @@ app.controller("menuController",
 	};
 	
 	this.logout = function(){
-		console.log("Dialog open");
+		console.log("Logout Dialog open");
 		   var confirmPopup = $ionicPopup.confirm({
 		     title: 'Logout',
 		     template: 'Wollen Sie sich wirklich ausloggen?',
@@ -32,7 +32,6 @@ app.controller("menuController",
 		       console.log("Logout Canceled");
 		     }
 		   });
-		 
 
 	};
 	

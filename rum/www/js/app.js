@@ -74,6 +74,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     
+    .state('app.addParticipants', {
+    	url: "/addParticipants",
+    	views: {
+    		'menuContent' :{
+    			templateUrl: "partials/addParticipants.html",
+    			controller: 'addParticipantController as addParticipantCtrl'
+    		}
+    	}
+    })
+    
     .state('app.addCity', {
       url: "/addCity/:trip_id",
       views: {

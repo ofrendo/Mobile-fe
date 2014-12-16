@@ -25,10 +25,10 @@
     	<div class="item row" ng-repeat="participant in participants">
     		<img class="contact-icon" ng-src="{{ participant.avatar }}">
     		<div class="contact-name col">{{ participant.name }}</div>
-    		<button class="button button-icon icon ion-close-round"></button>
+    		<button class="button button-icon icon ion-close-round" ng-click="editTripCtrl.deletPaticipant(participant)"></button>
     	</div>
     	<div class="item">
-      		<button class="button button-block item-button-right" ng-click="">Teilnehmer hinzufügen</button>
+      		<button class="button button-block item-button-right" ng-click="editTripCtrl.addParticipant()">Teilnehmer hinzufügen</button>
       	</div>
     </div>
   </ion-content>

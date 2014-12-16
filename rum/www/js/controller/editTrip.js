@@ -1,7 +1,16 @@
 app.controller("editTripController", 
-		["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "globals", 
-		 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, globals) {
-	
+		["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "globals", "$ionicModal", 
+		 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, globals, $ionicModal) {
+			
+	var me = this;
+	//set ionicModal for popup
+	$ionicModal.fromTemplateUrl('partials/addParticipants.html', {
+	    scope: $scope,
+	    animation: 'slide-in-up'
+	  }).then(function(modal) {
+	    $scope.modal = modal;
+	  });
+			
 	function DateToHtmlDate(jsDate){
 		var dateString = 
 			jsDate.getFullYear() + '-'
@@ -57,4 +66,48 @@ app.controller("editTripController",
 			$state.go('app.tripList');
 		});
 	};
+	
+	this.deletPaticipant = function(participant){
+		console.log("Delet Participant Dialog open");
+		   var confirmPopup = $ionicPopup.confirm({
+		     title: 'Teilnehmer entfernen',
+		     template: 'Wollen Sie diesen Teilnehmer von Reise entfernen?',
+		     cancelText: 'Abbrechen',
+		   });
+		   confirmPopup.then(function(res) {
+		     if(res) {
+		    	 // remove user from trip
+		    	 console.log(participant);
+		    	 // reload participant list
+		    	 me.getParticipants();
+		     } else {
+		       console.log("Logout Canceled");
+		     }
+		   });
+	};
+	
+	this.addParticipant = function() {
+		//open modal dialog to add participants
+			 $scope.modal.show();
+			 
+			 $scope.closeModal = function() {
+			  $scope.modal.hide();
+			 };
+			 
+			 //Cleanup the modal when we're done with it!
+			 $scope.$on('$destroy', function() {
+			 $scope.modal.remove();
+			 });
+			 
+			 // Execute action on hide modal
+			 $scope.$on('modal.hidden', function() {
+			 // Execute action
+			 });
+			 
+			 // Execute action on remove modal
+			 $scope.$on('modal.removed', function() {
+			 // Execute action
+			 });
+	}
+	
 }]);
