@@ -65,9 +65,27 @@
 }
 
 /* city-list */
+.city-list-scroll {
+	height:100%;
+}
+
 #map-canvas {
 	width:100%;
 	height:100%;
+	margin-top:-47px; /* the height of the toolbar */
+}
+
+.tabbar {
+	z-index:2;
+}
+
+.tabbar .button {
+	z-index:2;
+}
+
+.tabbar .selected {
+	background:#dedede;
+	color:#ffffff;
 }
 
 /* add city */

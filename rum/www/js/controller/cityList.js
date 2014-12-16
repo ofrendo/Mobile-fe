@@ -4,11 +4,35 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	var me = this;
 	this.trip = {};
 	this.cities = [];
+	this.tab = 'list'; // can be "map" or "list"
+	this.map = {};
 	
+	// the tabbing functions
+	this.setTab = function(index){
+		this.tab = index;
+	}
 	
-	// calls the addcity view
+	this.isActiveTab = function(index){
+		return this.tab === index;
+	}
+	
+	// map functions
+	this.initMap = function() {
+		var mapOptions = {
+				zoom: 8,
+				streetViewControl: false,
+				zoomControl: false,
+				panControl: false,
+				mapTypeControl: false,
+				center: new google.maps.LatLng(-34.397, 150.644)
+		};
+		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	}
+	this.initMap();
+	
+	// navigation functions
 	this.navToAddCity = function(){
-		$state.go('app.addCity', {trip_id: trip.trip_id});
+		$state.go('app.addCity', {trip_id: me.trip.trip_id});
 	}
 	
 	this.navToEditCity = function(city){

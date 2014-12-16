@@ -1,28 +1,34 @@
 <ion-view title="{{cityListCtrl.trip.name}}">
   <content-header></content-header>
-  <ion-content class="has-header">
-  	<div class="button-bar">
-  		<button class="button">Karte</button>
-  		<button class="button">Liste</button>
+  <ion-content class="has-header" scroll="false">
+  	<div class="button-bar tabbar">
+  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('list')}" ng-click="cityListCtrl.setTab('list')">
+  			Liste
+  		</button>
+  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('map')}" ng-click="cityListCtrl.setTab('map')">
+  			Karte
+  		</button>
   	</div>
   	<!-- city List -->
-    <ion-list class="trip-list city-list">
-      <ion-item ng-repeat="city in cityListCtrl.cities | orderBy: 'start_date'">
-        	<div class="date">
-        		<div class="date-start">{{city.start_date | date: 'dd.MM.yy'}}</div>
-        		<div class="date-end">{{city.end_date | date: 'dd.MM.yy'}}</div>
-        	</div>
-        	<div class="actions">
-        		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
-        	</div>
-        	<div class="name">{{city.name}}</div>
-        	<div class="info">{{city.no_locations}} Sehenswürdigkeiten</div>
-      </ion-item>
-    </ion-list>
+  	<ion-scroll class="city-list-scroll" ng-show="cityListCtrl.isActiveTab('list')">
+	    <ion-list class="trip-list city-list">
+	      <ion-item ng-repeat="city in cityListCtrl.cities | orderBy: 'start_date'">
+	        	<div class="date">
+	        		<div class="date-start">{{city.start_date | date: 'dd.MM.yy'}}</div>
+	        		<div class="date-end">{{city.end_date | date: 'dd.MM.yy'}}</div>
+	        	</div>
+	        	<div class="actions">
+	        		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
+	        	</div>
+	        	<div class="name">{{city.name}}</div>
+	        	<div class="info">{{city.no_locations}} Sehenswürdigkeiten</div>
+	      </ion-item>
+	    </ion-list>
+    </ion-scroll>
     <!-- map -->
-    <div id="map-canvas"></div>
+    <div id="map-canvas" ng-show="cityListCtrl.isActiveTab('map')"></div>
   </ion-content>
-  <ion-footer-bar class="bar bar-stable triplist-footer">
+  <ion-footer-bar ng-hide="cityListCtrl.isActiveTab('map')" class="bar bar-stable triplist-footer">
   	<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">Stadt hinzufügen</button>
   </ion-footer-bar>
 </ion-view>
