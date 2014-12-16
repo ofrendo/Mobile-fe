@@ -1,19 +1,26 @@
-<ion-view title="Trip">
+<ion-view title="{{cityListCtrl.trip.name}}">
   <content-header></content-header>
   <ion-content class="has-header">
+  	<div class="button-bar">
+  		<button class="button">Karte</button>
+  		<button class="button">Liste</button>
+  	</div>
+  	<!-- city List -->
     <ion-list class="trip-list city-list">
-      <ion-item ng-repeat="city in cityListCtrl.trip.cities | orderBy: 'dateStart'">
+      <ion-item ng-repeat="city in cityListCtrl.cities | orderBy: 'start_date'">
         	<div class="date">
-        		<div class="date-start">{{city.dateStart | date: 'dd.MM.yy'}}</div>
-        		<div class="date-end">{{city.dateEnd | date: 'dd.MM.yy'}}</div>
+        		<div class="date-start">{{city.start_date | date: 'dd.MM.yy'}}</div>
+        		<div class="date-end">{{city.end_date | date: 'dd.MM.yy'}}</div>
         	</div>
         	<div class="actions">
         		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
         	</div>
         	<div class="name">{{city.name}}</div>
-        	<div class="info">{{city.noLocations}} Sehenswürdigkeiten</div>
+        	<div class="info">{{city.no_locations}} Sehenswürdigkeiten</div>
       </ion-item>
     </ion-list>
+    <!-- map -->
+    <div id="map-canvas"></div>
   </ion-content>
   <ion-footer-bar class="bar bar-stable triplist-footer">
   	<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">Stadt hinzufügen</button>

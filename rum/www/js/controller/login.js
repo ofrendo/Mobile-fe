@@ -1,4 +1,4 @@
-app.controller("loginController", ["$scope", "$timeout", "$state", "loginService", function($scope, $timeout, $state, loginService) {
+app.controller("loginController", [ "$state", "loginService", "$ionicPopup", function(  $state, loginService, $ionicPopup) {
 	console.log("----INIT loginController----")
 	
 	
@@ -8,7 +8,20 @@ app.controller("loginController", ["$scope", "$timeout", "$state", "loginService
 		loginService.login(username, password, function(user) {
 			$state.go("app.tripList");
 		}, function(data, status) {
-			console.log("User could not be logged in:" + status);
+			var message;
+			if(!status){
+				message = "An Error ocurred."
+			}
+			else if (status == 400){
+				message = "Error during login."
+			}
+
+			
+			
+			   var alertPopup = $ionicPopup.alert({
+			     title: 'Error',
+			     template: message
+			   });
 		});
 	}
 	
