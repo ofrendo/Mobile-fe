@@ -9,7 +9,20 @@ app.controller("editTripController",
 			+ ('0' + jsDate.getDate()).slice(-2);
 		return dateString;
 	}
-			
+	
+	this.getParticipants = function(){
+		console.log('INIT getParticipants with id = ' + $stateParams.trip_id);
+			restAPI.trip.readUsers($stateParams.trip_id, 
+				function(participants){
+				$timeout(function(){
+					console.log('GET participants callback with data:');
+					console.log(participants);
+					$scope.participants = participants;
+				});
+				}
+			);
+	};
+	
 	this.getTripData = function(){
 		console.log('INIT getTripData with id = ' + $stateParams.trip_id);
 		$timeout(function(){
