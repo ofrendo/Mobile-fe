@@ -75,7 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.addCity', {
-      url: "/addCity/:city_id",
+      url: "/addCity/:trip_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/addCity.html",
