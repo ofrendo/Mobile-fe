@@ -1,4 +1,5 @@
 app.service("restAPI", ["$http", function($http) {
+	console.log("----INIT restAPI----");
 	var module = this;
 	/*var url = (window.location.href.indexOf("localhost") === -1)
 			  ? "https://thawing-stream-4939.herokuapp.com"
@@ -18,7 +19,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id", "get", "read"),
 		new Route("/trip/:trip_id", "put", "update"),
 		new Route("/trip/:trip_id", "delete", "delete"),
-		new Route("/trip/:trip_id", "get", "readUsers", true),
+		new Route("/trip/:trip_id/users", "get", "readUsers", true),
 		new Route("/trip/:trip_id/cities", "get", "readCities", true), //api.trip.readCities(trip_id)
 		new Route("/trip/:trip_id/city", "post", "create"),
 		new Route("/trip/:trip_id/city/:city_id", "get", "read"),
@@ -110,6 +111,8 @@ app.service("restAPI", ["$http", function($http) {
 
 		}
 	}
+	console.log(module);
+	window.restAPI = module;
 }]);
 
 function Route(path, method, functionName, lastPathIsFunction) {
