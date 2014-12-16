@@ -26,7 +26,9 @@
 	    </ion-list>
     </ion-scroll>
     <!-- map -->
-    <div id="map-canvas" ng-show="cityListCtrl.isActiveTab('map')"></div>
+    <div class="map-wrapper" ng-show="cityListCtrl.isActiveTab('map')">
+    <div id="map-canvas"></div>
+    </div>
   </ion-content>
   <ion-footer-bar ng-hide="cityListCtrl.isActiveTab('map')" class="bar bar-stable triplist-footer">
   	<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">Stadt hinzufügen</button>

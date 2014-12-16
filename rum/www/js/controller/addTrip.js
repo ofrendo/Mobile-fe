@@ -7,8 +7,8 @@ app.controller("addTripController", ["$scope", "$timeout", "$state", "restAPI", 
 		console.log($scope.tripData);
 		var tripData = $scope.tripData;
 		// convert dates to iso format
-		if (tripData.start_date) tripData.start_date = (new Date(tripData.start_date)).toISOString();
-		if (tripData.end_date) tripData.end_date = (new Date(tripData.end_date)).toISOString();
+		if (tripData.start_date != null) tripData.start_date = (new Date(tripData.start_date)).toISOString();
+		if (tripData.end_date != null) tripData.end_date = (new Date(tripData.end_date)).toISOString();
 
 		// call rest api
 		console.log(restAPI);

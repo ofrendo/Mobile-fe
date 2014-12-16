@@ -20,15 +20,16 @@
   		</div>
   		<label class="item item-input">
   			<span class="input-label">Startdatum</span>
-  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.dateStart"/>
+  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.start_date"/>
   		</label>
   		<label class="item item-input">
   			<span class="input-label">Enddatum</span>
-  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.dateEnd"/>
+  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.end_date"/>
   		</label>
-  		<label class="item">
+  		<div class="item">
       		<button class="button button-block" ng-disabled="addCityCtrl.cityData.name == ''" ng-click="addCityCtrl.addCity()">Stadt hinzufügen</button>
-      	</label>
+      		<div id="google_attr"></div>
+      	</div>
   	</div>    
   </ion-content>
 </ion-view>

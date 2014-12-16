@@ -6,10 +6,16 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	this.cities = [];
 	this.tab = 'list'; // can be "map" or "list"
 	this.map = {};
+	this.first = true;
 	
 	// the tabbing functions
 	this.setTab = function(index){
 		this.tab = index;
+		// workaround to width height problems with google maps when hiding the map and showing it again
+		$timeout(function(){
+			google.maps.event.trigger(me.map, 'resize');
+			me.map.setZoom( me.map.getZoom() );
+		});
 	}
 	
 	this.isActiveTab = function(index){
@@ -18,17 +24,19 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	
 	// map functions
 	this.initMap = function() {
+		console.log('INIT google maps object');
+		var posCenter = new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude);
+		console.log(posCenter.toString());
 		var mapOptions = {
-				zoom: 8,
+				zoom: 10,
 				streetViewControl: false,
 				zoomControl: false,
 				panControl: false,
 				mapTypeControl: false,
-				center: new google.maps.LatLng(-34.397, 150.644)
+				center: posCenter
 		};
 		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	}
-	this.initMap();
 	
 	// navigation functions
 	this.navToAddCity = function(){
@@ -65,6 +73,8 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 					console.log('GET cities callback with data:');
 					console.log(cities);
 					me.cities = cities;
+					// initialize map
+					me.initMap();
 				}
 			);
 		});
