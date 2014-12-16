@@ -93,6 +93,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    
+    .state('app.locationList', {
+      url: "/locationList/:city_id",
+      views: {
+        'menuContent' :{
+          templateUrl: "partials/locationList.html",
+          controller: 'locationListController as locationListCtrl'
+        }
+      }
+    })
   
 	  .state('app.login', {
 	      url: "/login",

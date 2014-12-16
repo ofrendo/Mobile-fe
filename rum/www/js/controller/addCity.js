@@ -43,6 +43,8 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 			$timeout(function(){
 				if (status != google.maps.places.PlacesServiceStatus.OK) {
 				    console.error(status);
+				    // don't show any data if an error occurred (for example ZERO_RESULTS)!
+				    me.autocompletionData = [];
 				    return;
 				}
 					// if everything is fine
@@ -90,7 +92,9 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 					console.log(city);
 					// call rest service
 					restAPI.trip.city.create($stateParams.trip_id, {city: city}, function(city){
-						$state.go('app.cityList', {trip_id: $stateParams.trip_id});
+						console.log('city created. Data returned:');
+						console.log(city);
+						$state.go('app.locationList', {city_id: city.city_id});
 					});	
 				});
 
