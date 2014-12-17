@@ -77,7 +77,6 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		// add markers for each city
 		for(var i = 0; i < me.cities.length; i++){
-			console.log('add marker');
 			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
 			var marker = new google.maps.Marker({
 			    position: pos,
@@ -112,11 +111,15 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 			travelMode: google.maps.TravelMode.DRIVING,
 			unitSystem: google.maps.UnitSystem.METRIC
 		};
-		console.log(request);
 		directionsService.route(request, function(result, status) {
 			if (status != google.maps.DirectionsStatus.OK) {
 				console.error('Fehler beim Berechnen der Route: ' + status);
-				toast.showLong('Route konte nicht berechnet werden!');
+				try {
+					toast.showLong('Route konte nicht berechnet werden!');
+				} catch (e) {
+					// it would be nice to show a javascript toast-like message
+					// not implemented yet
+				}
 				return;
 			}
 			$timeout(function(){
