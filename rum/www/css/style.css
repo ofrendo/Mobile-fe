@@ -1,3 +1,8 @@
+/* general styling */
+.italic {
+	font-style: italic;
+}
+
 .toast {
 	position:absolute;
 	z-index:99;
