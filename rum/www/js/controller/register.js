@@ -10,7 +10,7 @@ app.controller("registerController",
 		return emailError;
 	}
 	this.emailChange = function () {
-		//if user enters input the Error should go away
+		//if user enters input the Error-marker should go away
 		emailError = false;
 	}
 	
@@ -20,7 +20,7 @@ app.controller("registerController",
 		return passwordError;
 	}
 	this.passwordChange = function () {
-		//if user enters input the Error should go away
+		//if user enters input the Error-marker should go away
 		passwordError = false;
 	}
 	this.register = function () {
@@ -54,13 +54,13 @@ app.controller("registerController",
 			}, function(data, status) {
 				var message;
 				if(!status){
-					message = "An Error ocurred."
+					message = "Ein Error ist aufgetreten."
 				}
 				else if (status == 500){
-					message = "Internal Server Error."
+					message = "Ein Interner Server Fehler ist aufgetreten."
 				}
 				else if (status == 400){
-					message = "Bad request. Please correct the input."
+					message = "Bitte korrigiere die Eingabe."
 				}
 				
 				

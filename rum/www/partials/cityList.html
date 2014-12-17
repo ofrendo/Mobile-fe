@@ -27,6 +27,18 @@
     </ion-scroll>
     <!-- map -->
     <div class="map-wrapper" ng-show="cityListCtrl.isActiveTab('map')">
+    <div class="overlay">
+    	<table>
+	    	<tr>
+	    		<td>Gesamtstrecke:</td>
+	    		<td>{{cityListCtrl.distance}} km</td>
+	    	</tr>
+	    	<tr>
+	    		<td>Gesamtreisedauer:</td>
+	    		<td>{{ Math.floor(cityListCtrl.travelTime / 60) }} h {{cityListCtrl.travelTime % 60}} min</td>
+	    	</tr>
+    	</table>
+    </div>
     <div id="map-canvas"></div>
     </div>
   </ion-content>
