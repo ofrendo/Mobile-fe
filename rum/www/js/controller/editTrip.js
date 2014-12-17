@@ -79,6 +79,29 @@ app.controller("editTripController",
 	};
 	
 	this.deletPaticipant = function(participant){
+		// check user
+		// if you want to remove yourself
+		if (globals.user.user_id == participant.user_id) {
+			var confirmPopup = $ionicPopup.confirm({
+			     title: 'Reise verlassen',
+			     template: 'Möchten Sie diese Reise verlassen?',
+			     cancelText: 'Abbrechen',
+			   });
+			   confirmPopup.then(function(res) {
+			     if(res) {
+			    	 // remove user from trip
+			    	 var trip = $scope.tripData;
+				 		$timeout(function(){
+				    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
+				    		 console.log("Delete success");
+							     $state.go("app.tripList");
+				    	 });
+				 		});
+			     } else {
+			       console.log("Delete Canceled");
+			     }
+			   });
+		}else{
 		console.log("Delete Participant Dialog open");
 		   var confirmPopup = $ionicPopup.confirm({
 		     title: 'Teilnehmer entfernen',
@@ -100,6 +123,7 @@ app.controller("editTripController",
 		       console.log("Delete Canceled");
 		     }
 		   });
+		}
 
 	};
 	

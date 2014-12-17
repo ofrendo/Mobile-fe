@@ -12,7 +12,7 @@
 	<div class="item">
 	    <input type="text" placeholder="Name eingeben" ng-model="searchName">
 	</div>
-	<div class="item row" ng-repeat="contact in contacts | filter:searchName">
+	<div class="item row" ng-repeat="contact in contacts | orderBy: 'displayName' | filter:searchName">
 		<img class="contact-icon" ng-src="{{ contact.photos }}">
 		<div class="contact-name col">{{ contact.displayName }}</div>
 		 <label class="checkbox">
