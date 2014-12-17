@@ -1,7 +1,9 @@
 app.controller("registerController", 
-	[ "$timeout", "$state", "restAPI", "globals", "$ionicPopup",
-	 function($timeout, $state, restAPI, globals, $ionicPopup) {
+	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService",
+	function($timeout, $state, $ionicPopup, restAPI, globals, loginService) {
 	
+	globals.removeTripID();
+
 	//EmailError; set to True if Error occured
 	var emailError = false;
 	this.hasEmailError = function () {
@@ -47,7 +49,7 @@ app.controller("registerController",
 		if (!passwordError && !emailError) {
 			//call rest api
 			restAPI.user.create({user: user}, function(user) {
-				globals.user = user;
+				globals.setUser(user);
 				$state.go("app.tripList");
 			}, function(data, status) {
 				var message;

@@ -1,4 +1,4 @@
-app.service("loginService", ["restAPI", "globals", function(restAPI, globals) {
+app.service("loginService", ["$state", "restAPI", "globals", function($state, restAPI, globals) {
 
 	//Tries to log the user in. If there is still a session available that will be used, 
 	//else user will be redirected to login page
@@ -27,6 +27,21 @@ app.service("loginService", ["restAPI", "globals", function(restAPI, globals) {
 
 	this.isLoggedIn = function() {
 		return !!globals.user;
-	}
+	
+	};
+
+	//If logged in, do callback
+	//If not logged in, try logging in with no data - will be succesful if session still there, then do callback
+	//else go to login page
+	this.onInit = function(callback) {
+		if (this.isLoggedIn() === true) {
+			if (typeof(callback) === "function") callback();
+		}
+		else {
+			this.tryLogin(callback, function(data, status) {
+				$state.go("app.login");
+			});
+		}
+	};
 
 }]);

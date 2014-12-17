@@ -1,6 +1,9 @@
-app.controller("loginController", [ "$state", "loginService", "$ionicPopup", function(  $state, loginService, $ionicPopup) {
-	console.log("----INIT loginController----")
+app.controller("loginController", 
+	[ "$state", "loginService", "$ionicPopup", "globals", 
+	function(  $state, loginService, $ionicPopup, globals) {
 	
+	console.log("----INIT loginController----")
+	globals.removeTripID();
 	
 	this.login = function () {
 		var username = this.loginData.username;
