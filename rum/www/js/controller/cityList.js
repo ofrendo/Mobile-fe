@@ -7,6 +7,11 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	this.tab = 'list'; // can be "map" or "list"
 	this.map = {};
 	this.first = true;
+	this.distance = 0;		// distance in km
+	this.travelTime = 0;	// travel time in min
+	
+	// be able to use Math object in angular bindings
+	$scope.Math = window.Math;
 	
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -34,6 +39,29 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	};
 	
 	// map functions
+	// returns distance in km
+	this.calculateOverallDistance = function(route){
+		var distance = 0;
+		for(var i = 0; i < route.legs.length; i++){
+			distance += route.legs[i].distance.value;
+		}
+		distance /= 1000;
+		console.log('Distance: ' + distance + " km");
+		return distance;
+	}
+	
+	// returns travel time in min
+	this.calculateOverallTravelTime = function(route){
+		var time = 0;
+		for(var i = 0; i < route.legs.length; i++){
+			time += route.legs[i].duration.value;
+		}
+		time = Math.round(time / 60)	// from seconds to minutes
+		console.log('Travel time: ' + time + " min");
+		return time;
+		
+	}
+	
 	this.initMap = function() {
 		console.log('INIT google maps object');
 		var posCenter = new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude);
@@ -86,11 +114,17 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 		};
 		console.log(request);
 		directionsService.route(request, function(result, status) {
-			if (status == google.maps.DirectionsStatus.OK) {
-				$timeout(function(){
-					directionsDisplay.setDirections(result)
-				});
+			if (status != google.maps.DirectionsStatus.OK) {
+				console.error('Fehler beim Berechnen der Route: ' + status);
+				toast.showLong('Route konte nicht berechnet werden!');
+				return;
 			}
+			$timeout(function(){
+				console.log(result);
+				directionsDisplay.setDirections(result);
+				me.distance = me.calculateOverallDistance(result.routes[0]);
+				me.travelTime = me.calculateOverallTravelTime(result.routes[0]);
+			});
 		});
 	};
 	

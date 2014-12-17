@@ -24,6 +24,7 @@ app.controller("chatController",
 		socket.on("room.previousMessages", function(previousMessages) {
 			console.log("Joined room for trip " + globals.trip_id + ":");
 			console.log(previousMessages);
+			$scope.messages = [];
 			for (var i = 0; i < previousMessages.length; i++) {
 				var msg = previousMessages[i];
 				pushMessage(msg);
