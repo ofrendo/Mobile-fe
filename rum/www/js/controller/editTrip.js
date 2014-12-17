@@ -26,6 +26,14 @@ app.controller("editTripController",
 				$timeout(function(){
 					console.log('GET participants callback with data:');
 					console.log(participants);
+					for ( var i = 0; i < participants.length; i++) {
+						//check if name is null
+						if (participants[i].name) {
+							if (participants[i].email) {
+								participants[i].name = participants[i].email;
+							}
+						}
+					}
 					$scope.participants = participants;
 				});
 				}
@@ -68,20 +76,25 @@ app.controller("editTripController",
 	};
 	
 	this.deletPaticipant = function(participant){
-		console.log("Delet Participant Dialog open");
+		console.log("Delete Participant Dialog open");
 		   var confirmPopup = $ionicPopup.confirm({
 		     title: 'Teilnehmer entfernen',
-		     template: 'Wollen Sie diesen Teilnehmer von Reise entfernen?',
+		     template: 'Möchten Sie diesen Teilnehmer von der Reise entfernen?',
 		     cancelText: 'Abbrechen',
 		   });
 		   confirmPopup.then(function(res) {
 		     if(res) {
 		    	 // remove user from trip
-		    	 console.log(participant);
+		    	 var trip = $scope.tripData;
+			 		$timeout(function(){
+			    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
+			    		 console.log("Delete success");
+			    	 });
+			 		});
 		    	 // reload participant list
 		    	 me.getParticipants();
 		     } else {
-		       console.log("Logout Canceled");
+		       console.log("Delete Canceled");
 		     }
 		   });
 	};

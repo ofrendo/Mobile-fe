@@ -1,3 +1,8 @@
+/* general styling */
+.italic {
+	font-style: italic;
+}
+
 /* contact list */
 .contact-icon {
 	width: 47px;

@@ -1,19 +1,23 @@
 <ion-modal-view ng-controller="addParticipantsController as addParticipantsCtrl"> 
  <ion-header-bar>
-  <h1 class="title">Teilnehmer hinzufügen</h1>
+  <h1 class="title">Teilnehmer hinzufÃ¼gen</h1>
      <div class="buttons">
-      <button class="button button-clear" ng-click="addParticipantsCtrl.closeDialog()">Schließen</button>
+      <button class="button button-clear" ng-click="addParticipantsCtrl.closeDialog()">SchlieÃŸen</button>
     </div>
  </ion-header-bar>
 <ion-content>
 <div class="list card contact-list"
 	ng-init="addParticipantsCtrl.getContactList()">
 	<div class="item item-divider">Kontaktliste</div>
-	<div class="item row" ng-repeat="contact in contacts">
+	<div class="item">
+	    <input type="text" placeholder="Name eingeben" ng-model="searchName">
+	</div>
+	<div class="item row" ng-repeat="contact in contacts | filter:searchName">
 		<img class="contact-icon" ng-src="{{ contact.photos }}">
 		<div class="contact-name col">{{ contact.displayName }}</div>
-		<button class="button button-icon icon ion-close-round"
-			ng-click="editTripCtrl.deletPaticipant(contact)"></button>
+		 <label class="checkbox">
+		 <input type="checkbox" checked ng-click="addParticipantsCtrl.addUser(contact)">
+		 </label>
 	</div>
 </div>
 </ion-content> </ion-modal-view>
