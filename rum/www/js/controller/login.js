@@ -10,10 +10,10 @@ app.controller("loginController", [ "$state", "loginService", "$ionicPopup", fun
 		}, function(data, status) {
 			var message;
 			if(!status){
-				message = "An Error ocurred."
+				message = "Ein Error ist aufgetreten."
 			}
 			else if (status == 400){
-				message = "Error during login."
+				message = "Ein Error beim Login ist aufgetreten."
 			}
 
 			
