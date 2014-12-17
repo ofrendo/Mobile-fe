@@ -1,6 +1,18 @@
-<ion-view title="Stadt bearbeiten">
+<ion-view title="{{editCityCtrl.title}}">
   <content-header></content-header>
-  <ion-content class="has-header">
-  	
+  <ion-content class="has-header" ng-controller="editCityController as editCityCtrl">
+  	<div class="list card" ng-init="editCityCtrl.getCityData()">
+      <label class="item item-input">
+     	<span class="input-label">Reisebeginn</span>
+     	<input type="date" ng-model="tripData.start_date">
+      </label>
+      <label class="item item-input">
+     	<span class="input-label">Reiseende</span>
+     	<input type="date" ng-model="tripData.end_date">
+      </label> 
+      <div class="item">
+      	<button class="button button-block" ng-disabled="tripData.name == ''" ng-click="editTripCtrl.saveTrip()">Änderungen speichern</button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
