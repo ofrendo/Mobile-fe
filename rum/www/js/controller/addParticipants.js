@@ -45,6 +45,7 @@ app.controller("addParticipantsController",
 	};
 	
 	this.closeDialog = function(){
+		$scope.editTripCtrl.getParticipants()
 		$scope.modal.hide();
 	};
 
@@ -97,6 +98,7 @@ app.controller("addParticipantsController",
 			
 		restAPI.trip.addUserToTrip($stateParams.trip_id, {user: userData}, function() {
 			console.log("add User successful");
+			
 		});
 	};
 

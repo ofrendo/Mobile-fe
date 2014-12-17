@@ -92,14 +92,15 @@ app.controller("editTripController",
 			 		$timeout(function(){
 			    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
 			    		 console.log("Delete success");
+						     // reload participant list
+						     me.getParticipants();
 			    	 });
 			 		});
-		    	 // reload participant list
-		    	 me.getParticipants();
 		     } else {
 		       console.log("Delete Canceled");
 		     }
 		   });
+
 	};
 	
 	this.addParticipant = function() {
