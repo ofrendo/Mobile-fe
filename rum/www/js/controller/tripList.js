@@ -6,23 +6,14 @@ app.controller("tripListController",
 	this.title = "Deine Reisen";
 	$scope.trips = [];
 
-	if (loginService.isLoggedIn()) {
-		onInit();
-	}
-	else {
-		loginService.tryLogin(onInit, function(data, status) {
-			$state.go("app.login");
-		});
-	}
-	
-	function onInit() {
-		globals.setTripID(-1);
-
+	loginService.onInit(function() {
+		globals.setTripID(-1); //also connects chat WS to server
+		
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
 			console.log(trips);
 			$scope.trips = trips;
 		});
-	}
+	});
 	
 	// calls the cityList view
 	this.navToCityList = function(trip){

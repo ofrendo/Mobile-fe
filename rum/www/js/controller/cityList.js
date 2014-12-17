@@ -1,6 +1,12 @@
-app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI",
-                             function($scope, $http, $state, $stateParams, $timeout, restAPI) {
+app.controller("cityListController", 
+	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals",
+    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals) {
+	
 	console.log("----INIT cityListController----");
+	loginService.onInit(function() {
+		globals.setTripID($stateParams.trip_id);
+	});
+
 	var me = this;
 	this.trip = {};
 	this.cities = [];

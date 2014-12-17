@@ -1,7 +1,12 @@
 app.controller("addParticipantsController",
-		["$scope", "restAPI", "$timeout", "$stateParams",
-        function($scope, restAPI, $timeout, $stateParams){
+		["$scope", "restAPI", "$timeout", "$stateParams", "loginService", "globals",
+        function($scope, restAPI, $timeout, $stateParams, loginService, globals){
 	
+    console.log("----INIT addParticipantsController----");
+    loginService.onInit(function() {
+    	globals.checkTripID();
+    });
+
 	this.getContactList = function(){
 			console.log("Kontaktliste wird geladen");
 			function onSuccess(contacts) {

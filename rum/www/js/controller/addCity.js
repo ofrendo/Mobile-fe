@@ -1,6 +1,10 @@
-app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$stateParams", "restAPI", 
-                    function($scope, $timeout, $state, $http, $stateParams, restAPI) {
+app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$stateParams", "restAPI", "loginService", "globals",
+                    function($scope, $timeout, $state, $http, $stateParams, restAPI, loginService, globals) {
 	
+    loginService.onInit(function() {
+    	globals.checkTripID();
+    });
+
 	this.autocompletionData;
 	this.cityData;
 	var me = this;
