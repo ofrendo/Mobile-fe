@@ -1,7 +1,12 @@
-Mobile-fe
+ï»¿Mobile-fe
 =========
 
 Frontend repo for mobile project
+
+## Unit Testing Information
+
+http://www.ng-newsletter.com/advent2013/#!/day/19
+
 
 ## Backend Github repo
 https://github.com/ofrendo/Mobile
@@ -10,55 +15,66 @@ https://github.com/ofrendo/Mobile
 ## Ionic - Grundeinstellungen:
 
 Ionic installieren:
-Console öffnen
+Console Ã¶ffnen
 ```
 npm install -g ionic
 ```
-eingeben und ausführen
+eingeben und ausfÃ¼hren
 
-Anschließend Projekt aus dem Git clonen.
-Jetzt kann bereits eine Webversion angezeigt werden. Hierzu wird der Projektpfad in der Console geöffnet.
+AnschlieÃŸend Projekt aus dem Git clonen.
+Jetzt kann bereits eine Webversion angezeigt werden. Hierzu wird der Projektpfad in der Console geÃ¶ffnet.
 ```
 ionic serve 
 ```
 Beim ersten Starten muss festegelegt werden, wo der Server laufen soll. Die Option "2" als lokaler Server ist zu empfehlen.
 
-Anschließend wird die App als WebSite im Standardbrowser geöffnet.
+AnschlieÃŸend wird die App als WebSite im Standardbrowser geÃ¶ffnet.
 
-Um das Projekt in Eclipse importieren zu können muss einmalig die Android platform hinzugefügt werden.
-Dazu den Projektordnerpfad in der Console öffnen und anschließenden Befehl ausführen.
+Um das Projekt in Eclipse importieren zu kÃ¶nnen muss einmalig die Android platform hinzugefÃ¼gt werden.
+Dazu den Projektordnerpfad in der Console Ã¶ffnen und anschlieÃŸenden Befehl ausfÃ¼hren.
 ```
 ionic platform add android
 ```
 Jetzt kann das Projekt in eclipse importiert werden.
 
-Änderungen werden NICHT im asset/www Ordner vollzogen, sondern im www Ordner!
-Bei Änderungen am Coding ändert sich automatisch auch die Website, wenn die App im Browser geöffnet wurde.
+Ã„nderungen werden NICHT im asset/www Ordner vollzogen, sondern im www Ordner!
+Bei Ã„nderungen am Coding Ã¤ndert sich automatisch auch die Website, wenn die App im Browser geÃ¶ffnet wurde.
 
-Um eine lauffähige Android-App zu erstellen, sollte zunächst eclipse geschlossen werden um Zugriffskonflikte zu vermeiden.
-Anschließend wird der Projektordnerpfad in der Console geöffnet. 
+Um eine lauffÃ¤hige Android-App zu erstellen, sollte zunÃ¤chst eclipse geschlossen werden um Zugriffskonflikte zu vermeiden.
+AnschlieÃŸend wird der Projektordnerpfad in der Console geÃ¶ffnet. 
 ```
 ionic build android
 ```
 
-Mit diesem Befehl wird die App gebaut und kann anschließend getestet werden.
+Mit diesem Befehl wird die App gebaut und kann anschlieÃŸend getestet werden.
 
 Um Ionic auf dem aktuellen Stand zu halten folgenden Befehl in die Console eintippen:
 ```
 npm update -g ionic
 ```
 
-## Ionic - Cordova Plugins hinzufügen
+## Ionic - Cordova Plugins hinzufÃ¼gen
 
-Kalender - Plugin:
-
-Um das Kalender Plugin hinzuzufügen, den Projektpfad in der Console öffnen und folgenden Befehl eingeben:
+Um die notwendigen Plugins hinzuzufÃ¼gen, den Projektpfad in der Console Ã¶ffnen und die folgenden Befehle eingeben:
 
 ```
 cordova plugin add org.apache.cordova.contacts
+cordova plugin add com.chariotsolutions.toast.plugin
+
 ```
 
-Dies muss jeder lokal in seinem Projekt durchführen, da dieses File im Gitignore nicht beachtet wird.
+Dies muss jeder lokal in seinem Projekt durchfÃ¼hren, da dieses File im Gitignore nicht beachtet wird.
 
-Damit die Berechtigungen auch tatsächlich der App verleiht werden, muss im AndroidManifest.xml die Berechtigungen verschoben werden.
-Diese werden falsch hinzugefügt und müssen unter die bestehende Berechtigung INTERNET angehängt werden.
+Damit die Berechtigungen auch tatsÃ¤chlich der App verliehen werden, mÃ¼ssen im AndroidManifest.xml die Berechtigungen verschoben werden.
+Diese werden falsch hinzugefÃ¼gt und mÃ¼ssen unter die bestehende Berechtigung INTERNET angehÃ¤ngt werden.
+
+## Show Toast
+Shows an Android Toast Notification
+```
+toast.showShort(message);
+toast.showLong(message);
+```
+Cancel an Android Toast Notification
+```
+toast.cancel();
+```

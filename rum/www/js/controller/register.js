@@ -1,14 +1,16 @@
 app.controller("registerController", 
-	[ "$timeout", "$state", "restAPI", "globals", "$ionicPopup",
-	 function($timeout, $state, restAPI, globals, $ionicPopup) {
+	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService",
+	function($timeout, $state, $ionicPopup, restAPI, globals, loginService) {
 	
+	globals.removeTripID();
+
 	//EmailError; set to True if Error occured
 	var emailError = false;
 	this.hasEmailError = function () {
 		return emailError;
 	}
 	this.emailChange = function () {
-		//if user enters input the Error should go away
+		//if user enters input the Error-marker should go away
 		emailError = false;
 	}
 	
@@ -18,7 +20,7 @@ app.controller("registerController",
 		return passwordError;
 	}
 	this.passwordChange = function () {
-		//if user enters input the Error should go away
+		//if user enters input the Error-marker should go away
 		passwordError = false;
 	}
 	this.register = function () {
@@ -47,18 +49,18 @@ app.controller("registerController",
 		if (!passwordError && !emailError) {
 			//call rest api
 			restAPI.user.create({user: user}, function(user) {
-				globals.user = user;
+				globals.setUser(user);
 				$state.go("app.tripList");
 			}, function(data, status) {
 				var message;
 				if(!status){
-					message = "An Error ocurred."
+					message = "Ein Error ist aufgetreten."
 				}
 				else if (status == 500){
-					message = "Internal Server Error."
+					message = "Ein Interner Server Fehler ist aufgetreten."
 				}
 				else if (status == 400){
-					message = "Bad request. Please correct the input."
+					message = "Bitte korrigiere die Eingabe."
 				}
 				
 				

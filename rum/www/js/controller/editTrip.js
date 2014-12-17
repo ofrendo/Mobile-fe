@@ -1,7 +1,11 @@
 app.controller("editTripController", 
-		["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "globals", "$ionicModal", 
-		 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, globals, $ionicModal) {
-			
+	["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", "globals", "$ionicModal", 
+	 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, globals, $ionicModal) {
+	
+	loginService.onInit(function() {
+		globals.setTripID($stateParams.trip_id);
+	});
+
 	var me = this;
 	//set ionicModal for popup
 	$ionicModal.fromTemplateUrl('partials/addParticipants.html', {
@@ -47,8 +51,7 @@ app.controller("editTripController",
 				function(trip){
 					console.log('GET Trip callback with data:');
 					console.log(trip);
-					// set global variable
-					globals.setTripID(trip.trip_id);
+
 					// convert date
 					if(trip.start_date != null){
 						trip.start_date = DateToHtmlDate(new Date(trip.start_date));

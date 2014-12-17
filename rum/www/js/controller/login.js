@@ -1,6 +1,9 @@
-app.controller("loginController", [ "$state", "loginService", "$ionicPopup", function(  $state, loginService, $ionicPopup) {
-	console.log("----INIT loginController----")
+app.controller("loginController", 
+	[ "$state", "loginService", "$ionicPopup", "globals", 
+	function(  $state, loginService, $ionicPopup, globals) {
 	
+	console.log("----INIT loginController----")
+	globals.removeTripID();
 	
 	this.login = function () {
 		var username = this.loginData.username;
@@ -10,10 +13,10 @@ app.controller("loginController", [ "$state", "loginService", "$ionicPopup", fun
 		}, function(data, status) {
 			var message;
 			if(!status){
-				message = "An Error ocurred."
+				message = "Ein Error ist aufgetreten."
 			}
 			else if (status == 400){
-				message = "Error during login."
+				message = "Ein Error beim Login ist aufgetreten."
 			}
 
 			
