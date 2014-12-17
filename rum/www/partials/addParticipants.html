@@ -10,8 +10,8 @@
 	ng-init="addParticipantsCtrl.getContactList()">
 	<div class="item item-divider">Kontaktliste</div>
 	<div class="item row" ng-repeat="contact in contacts">
-		<img class="contact-icon" ng-src="{{ contact.avatar }}">
-		<div class="contact-name col">{{ contact.name }}</div>
+		<img class="contact-icon" ng-src="{{ contact.photos }}">
+		<div class="contact-name col">{{ contact.displayName }}</div>
 		<button class="button button-icon icon ion-close-round"
 			ng-click="editTripCtrl.deletPaticipant(contact)"></button>
 	</div>
