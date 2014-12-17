@@ -1,12 +1,6 @@
 app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$stateParams", "restAPI", 
                     function($scope, $timeout, $state, $http, $stateParams, restAPI) {
 	
-//	var geocoder = new google.maps.Geocoder();
-//	
-//	 var autocomplete = new google.maps.places.Autocomplete(
-//			 (document.getElementById('searchText')),
-//			{ types: ['(cities)'] });
-	
 	this.autocompletionData;
 	this.cityData;
 	var me = this;

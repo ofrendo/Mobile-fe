@@ -8,6 +8,10 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 	this.map = {};
 	this.first = true;
 	
+	var directionsService = new google.maps.DirectionsService();
+	var directionsDisplay = new google.maps.DirectionsRenderer();
+
+	
 	// the tabbing functions
 	this.setTab = function(index){
 		me.tab = index;
@@ -35,7 +39,7 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 		var posCenter = new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude);
 		console.log(posCenter.toString());
 		var mapOptions = {
-				zoom: 10,
+				zoom: 8,
 				streetViewControl: false,
 				zoomControl: false,
 				panControl: false,
@@ -43,6 +47,51 @@ app.controller("cityListController", ["$scope", "$http", "$state", "$stateParams
 				center: posCenter // the center positioning won't really work because the div size is not speicified (the tab is not shown at initialization)
 		};
 		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		// add markers for each city
+		for(var i = 0; i < me.cities.length; i++){
+			console.log('add marker');
+			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
+			var marker = new google.maps.Marker({
+			    position: pos,
+			    map: me.map,
+			    title: me.cities[i].name
+			});
+		}
+		// init directions
+		directionsDisplay.setMap(me.map);
+		// don't show the standard markers (A, B, C, ...)
+		directionsDisplay.setOptions({ 
+			suppressMarkers: true
+		});
+		// create waypoints
+		var waypoints = [];
+		for(var i = 1; i < me.cities.length - 1; i++){
+			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
+			var waypoint = {
+				location: pos,
+				stopover: true
+			};
+			waypoints.push(waypoint);
+		}
+		// send maps request
+		var request = {
+			origin: new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude),
+			destination: new google.maps.LatLng(
+							me.cities[me.cities.length - 1].latitude, 
+							me.cities[me.cities.length - 1].longitude),
+			waypoints: waypoints,
+			provideRouteAlternatives: false,
+			travelMode: google.maps.TravelMode.DRIVING,
+			unitSystem: google.maps.UnitSystem.METRIC
+		};
+		console.log(request);
+		directionsService.route(request, function(result, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				$timeout(function(){
+					directionsDisplay.setDirections(result)
+				});
+			}
+		});
 	};
 	
 	// navigation functions
