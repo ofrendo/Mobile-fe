@@ -35,6 +35,7 @@ app.controller("cityListController",
 		if(me.first){
 			$timeout(function(){
 				me.map.setCenter(new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude));
+				me.showRouting();
 				me.first = false;
 			}, 0);
 		}
@@ -54,7 +55,7 @@ app.controller("cityListController",
 		distance /= 1000;
 		console.log('Distance: ' + distance + " km");
 		return distance;
-	}
+	};
 	
 	// returns travel time in min
 	this.calculateOverallTravelTime = function(route){
@@ -65,38 +66,9 @@ app.controller("cityListController",
 		time = Math.round(time / 60)	// from seconds to minutes
 		console.log('Travel time: ' + time + " min");
 		return time;
-		
-	}
+	};
 	
-	this.initMap = function() {
-		console.log('INIT google maps object');
-		var posCenter = new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude);
-		console.log(posCenter.toString());
-		var mapOptions = {
-				zoom: 8,
-				streetViewControl: false,
-				zoomControl: false,
-				panControl: false,
-				mapTypeControl: false,
-				center: posCenter // the center positioning won't really work because the div size is not speicified (the tab is not shown at initialization)
-		};
-		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		// add markers for each city
-		for(var i = 0; i < me.cities.length; i++){
-			console.log('add marker');
-			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
-			var marker = new google.maps.Marker({
-			    position: pos,
-			    map: me.map,
-			    title: me.cities[i].name
-			});
-		}
-		// init directions
-		directionsDisplay.setMap(me.map);
-		// don't show the standard markers (A, B, C, ...)
-		directionsDisplay.setOptions({ 
-			suppressMarkers: true
-		});
+	this.showRouting = function(){
 		// create waypoints
 		var waypoints = [];
 		for(var i = 1; i < me.cities.length - 1; i++){
@@ -118,11 +90,15 @@ app.controller("cityListController",
 			travelMode: google.maps.TravelMode.DRIVING,
 			unitSystem: google.maps.UnitSystem.METRIC
 		};
-		console.log(request);
 		directionsService.route(request, function(result, status) {
 			if (status != google.maps.DirectionsStatus.OK) {
 				console.error('Fehler beim Berechnen der Route: ' + status);
-				toast.showLong('Route konte nicht berechnet werden!');
+				try {
+					toast.showLong('Route konte nicht berechnet werden!');
+				} catch (e) {
+					// it would be nice to show a javascript toast-like message
+					// not implemented yet
+				}
 				return;
 			}
 			$timeout(function(){
@@ -131,6 +107,36 @@ app.controller("cityListController",
 				me.distance = me.calculateOverallDistance(result.routes[0]);
 				me.travelTime = me.calculateOverallTravelTime(result.routes[0]);
 			});
+		});
+	}
+	
+	this.initMap = function() {
+		console.log('INIT google maps object');
+		var posCenter = new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude);
+		console.log(posCenter.toString());
+		var mapOptions = {
+				zoom: 8,
+				streetViewControl: false,
+				zoomControl: false,
+				panControl: false,
+				mapTypeControl: false,
+				center: posCenter // the center positioning won't really work because the div size is not speicified (the tab is not shown at initialization)
+		};
+		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		// add markers for each city
+		for(var i = 0; i < me.cities.length; i++){
+			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
+			var marker = new google.maps.Marker({
+			    position: pos,
+			    map: me.map,
+			    title: me.cities[i].name
+			});
+		}
+		// init directions
+		directionsDisplay.setMap(me.map);
+		// don't show the standard markers (A, B, C, ...)
+		directionsDisplay.setOptions({ 
+			suppressMarkers: true
 		});
 	};
 	
@@ -179,23 +185,4 @@ app.controller("cityListController",
 			);
 		});
 	};
-	
 }]);
-
-// demo data to manage trip
-var cities = [
-    {
-		id: 1,
-		name: 'New York',
-		no_locations: 5,
-		start_date: new Date(2014, 0, 2),
-		end_date: new Date(2014, 0, 3)
-	},
-	{
-		id: 2,
-		name: 'Boston',
-		no_locations: 3,
-		start_date: new Date(2014, 0, 5),
-		end_date: new Date(2014, 0, 5)
-	}
-];
