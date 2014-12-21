@@ -11,17 +11,36 @@ app.controller("addParticipantsController",
 
 	this.getContactList = function(){
 			console.log("Kontaktliste wird geladen");
+			console.log($scope.participants);
 			function onSuccess(contacts) {
 			    console.log('Found ' + contacts.length + ' contacts.');
 			    console.log(contacts);
-			    //modify contacts to display photos
-			    for ( var i = 0; i < contacts.length; i++) {
-					if (contacts[i].photos != null) {
-						var imageURI = contacts[i].photos[0].value;
-						contacts[i].photos[0].value = me.modifyPhotoURL(imageURI);
+			    
+			    $timeout(function(){
+			    	$scope.contacts = contacts;
+			    	//modify contacts to display photos
+				    for ( var i = 0; i < $scope.contacts.length; i++) {
+						if ($scope.contacts[i].photos != null) {
+							var imageURI = $scope.contacts[i].photos[0].value;
+							$scope.contacts[i].photos[0].value = me.modifyPhotoURL(imageURI);
+						}
 					}
-				}
-				$scope.contacts = contacts;
+			    	// check whether a contact already is a participant
+				    for(var i = 0; i < $scope.contacts.length; i++){
+				    	console.log('contact');
+				    	var isParticipant = false;
+				    	// check the participants list
+				    	for(var j = 0; j < $scope.participants.length; j++){
+				    		// here it would be necessary to compare the phone numbers / mail addresses
+				    		// unfortunately the phone numbers are NOT in the participants data
+				    		if(false){
+				    			$scope.contacts[i].is_participant = true;
+				    			break;
+				    		}
+				    	}
+				    }
+				    console.log('check completed');
+			    });
 			};
 
 			function onError(contactError) {
@@ -36,11 +55,11 @@ app.controller("addParticipantsController",
 			navigator.contacts.find(fields, onSuccess, onError, options);
 			
 			
-			document.addEventListener("deviceready", onDeviceReady, false);
-			function onDeviceReady() {
-				console.log("Kontakte werden geladen:");
-			    console.log(navigator.contacts);
-			};
+//			document.addEventListener("deviceready", onDeviceReady, false);
+//			function onDeviceReady() {
+//				console.log("Kontakte werden geladen:");
+//			    console.log(navigator.contacts);
+//			};
 
 	};
 	
@@ -90,12 +109,17 @@ app.controller("addParticipantsController",
 		}
 		if (contact.emails){ 
 			userData.email = contact.emails[0];
-		}else if (contact.phoneNumbers){
+		}
+		if (contact.phoneNumbers){
 			userData.phone = contact.phoneNumbers[0].value;
-		}else{
+		}
+		if(userData.email == null && userData.phone == null){
+			console.log('The contact doesn\'t have a phone number or mail address!');
 			return;
-		}; 
-			
+		}
+		// if all data are specified, set isParticipant variable to show that this contact has already been added
+		contact.is_participant = true;
+		// perform backend call to add the user
 		restAPI.trip.addUserToTrip($stateParams.trip_id, {user: userData}, function() {
 			console.log("add User successful");
 			

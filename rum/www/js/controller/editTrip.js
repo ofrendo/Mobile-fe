@@ -7,13 +7,6 @@ app.controller("editTripController",
 	});
 
 	var me = this;
-	//set ionicModal for popup
-	$ionicModal.fromTemplateUrl('partials/addParticipants.html', {
-	    scope: $scope,
-	    animation: 'slide-in-up'
-	  }).then(function(modal) {
-	    $scope.modal = modal;
-	  });
 			
 	function DateToHtmlDate(jsDate){
 		var dateString = 
@@ -128,7 +121,13 @@ app.controller("editTripController",
 	};
 	
 	this.addParticipant = function() {
-		//open modal dialog to add participants
+		//set ionicModal for popup
+		$ionicModal.fromTemplateUrl('partials/addParticipants.html', {
+		    scope: $scope,
+		    animation: 'slide-in-up'
+		  }).then(function(modal) {
+		    $scope.modal = modal;
+		    //open modal dialog to add participants
 			 $scope.modal.show();
 			 
 			 $scope.closeModal = function() {
@@ -149,6 +148,7 @@ app.controller("editTripController",
 			 $scope.$on('modal.removed', function() {
 			 // Execute action
 			 });
+		  });
 	}
 	
 }]);

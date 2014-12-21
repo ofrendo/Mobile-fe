@@ -1,6 +1,6 @@
 app.controller("editCityController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", 
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams) {
+	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI",
+	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI) {
 	
 	this.title = '';
 		
