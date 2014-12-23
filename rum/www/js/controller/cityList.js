@@ -146,11 +146,11 @@ app.controller("cityListController",
 	};
 	
 	this.navToEditCity = function(city){
-		$state.go('app.editCity', {city_id: city.city_id})
+		$state.go('app.editCity', {trip_id: me.trip.trip_id, city_id: city.city_id})
 	};
 	
 	this.navToLocationList = function(city){
-		$state.go('app.locationList', {city_id: city.city_id})
+		$state.go('app.locationList', {trip_id: me.trip.trip_id, city_id: city.city_id})
 	};
 	
 	// get the trip

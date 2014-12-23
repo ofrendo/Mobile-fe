@@ -95,7 +95,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.editCity', {
-      url: "/editCity/:city_id",
+      url: "/editCity/:trip_id/:city_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/editCity.html",
@@ -105,7 +105,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     })
     
     .state('app.locationList', {
-      url: "/locationList/:city_id",
+      url: "/locationList/:trip_id/:city_id",
       views: {
         'menuContent' :{
           templateUrl: "partials/locationList.html",

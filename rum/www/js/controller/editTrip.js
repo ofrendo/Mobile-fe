@@ -1,20 +1,12 @@
 app.controller("editTripController", 
-	["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", "globals", "$ionicModal", 
-	 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, globals, $ionicModal) {
+	["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", "globals", "$ionicModal", "utils", 
+	 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, globals, $ionicModal, utils) {
 	
 	loginService.onInit(function() {
 		globals.setTripID($stateParams.trip_id);
 	});
 
 	var me = this;
-			
-	function DateToHtmlDate(jsDate){
-		var dateString = 
-			jsDate.getFullYear() + '-'
-			+ ('0' + (jsDate.getMonth()+1)).slice(-2) + '-'
-			+ ('0' + jsDate.getDate()).slice(-2);
-		return dateString;
-	}
 	
 	this.getParticipants = function(){
 		console.log('INIT getParticipants with id = ' + $stateParams.trip_id);
@@ -47,10 +39,10 @@ app.controller("editTripController",
 
 					// convert date
 					if(trip.start_date != null){
-						trip.start_date = DateToHtmlDate(new Date(trip.start_date));
+						trip.start_date = utils.DateToHtmlDate(new Date(trip.start_date));
 					}
 					if(trip.end_date != null){
-						trip.end_date = DateToHtmlDate(new Date(trip.end_date));
+						trip.end_date = utils.DateToHtmlDate(new Date(trip.end_date));
 					}
 					$scope.tripData = trip;
 				}
@@ -117,7 +109,6 @@ app.controller("editTripController",
 		     }
 		   });
 		}
-
 	};
 	
 	this.addParticipant = function() {
