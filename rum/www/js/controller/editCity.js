@@ -24,7 +24,7 @@ app.controller("editCityController",
 			}
 			$scope.city = city;
 		});
-	}
+	};
 	
 	this.saveCity = function(){
 		// copy JSON so the date conversion doesn't break the visualization
@@ -35,7 +35,7 @@ app.controller("editCityController",
 		restAPI.trip.city.update($stateParams.trip_id, city.city_id, city, function(){
 			$state.go('app.cityList', {trip_id: $stateParams.trip_id});
 		});
-	}
+	};
 	
 	this.deleteCity = function(){
 		// show popup to confirm deletion
@@ -56,5 +56,5 @@ app.controller("editCityController",
 				console.log('city deletion canceled.');
 			}
 		});
-	}
+	};
 }]);
