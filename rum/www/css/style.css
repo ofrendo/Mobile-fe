@@ -22,6 +22,32 @@
 	color:#ffffff;
 }
 
+/* side menus */
+ion-side-menu ion-content {
+	background-color:#fafafa;
+}
+
+ion-side-menu ion-item {
+	background-color:#fafafa !important;
+}
+
+/* tabbar */
+.tabbar {
+	z-index:5;
+}
+
+.tabbar .button {
+	z-index:2;
+	color:#ffffff;
+	border-color:##8b8b8b;
+	background-color:#ababab;
+}
+
+.tabbar .selected {
+	background-color:#dedede;
+	color:#000000;
+}
+
 /* contact list */
 .contact-icon {
 	width: 47px;
@@ -115,19 +141,6 @@
 }
 .map-wrapper .overlay td {
 	padding:0px 2px;
-}
-
-.tabbar {
-	z-index:5;
-}
-
-.tabbar .button {
-	z-index:2;
-}
-
-.tabbar .selected {
-	background:#dedede;
-	color:#ffffff;
 }
 
 /* add city */

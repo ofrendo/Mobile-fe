@@ -83,7 +83,15 @@ app.controller("chatController",
 		socket.emit("msg.send", message);
 		
 		message.confirmed = false;
-
+		
+		// add user data for the offline message
+		message.user_id = globals.user.user_id;
+		message.name = globals.user.name;
+		message.username = globals.user.username;
+		message.avatar = globals.user.avatar;
+		console.log(globals.user);
+		message.created_on = 'sending...';
+		
 		pushMessage(message);
 
 		// reset input field for message

@@ -16,7 +16,11 @@
      	<input type="date" ng-model="tripData.end_date">
       </label> 
       <div class="item">
-      	<button class="button button-block" ng-disabled="tripData.name == ''" ng-click="editTripCtrl.saveTrip()">Änderungen speichern</button>
+      	<button class="button button-positive button-block" 
+      			ng-disabled="tripData.name == ''" 
+      			ng-click="editTripCtrl.saveTrip()">
+      		Änderungen speichern
+      	</button>
       </div>
     </div>
     
