@@ -51,7 +51,8 @@ app.controller("editTripController",
 	};
 	
 	this.saveTrip = function(){
-		var trip = $scope.tripData;
+		// copy JSON so the date conversion doesn't break the visualization
+		var trip = JSON.parse(JSON.stringify($scope.tripData));
 		// convert dates to iso format
 		if (trip.start_date != null) trip.start_date = (new Date(trip.start_date)).toISOString();
 		if (trip.end_date != null) trip.end_date = (new Date(trip.end_date)).toISOString();

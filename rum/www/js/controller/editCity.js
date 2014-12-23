@@ -27,7 +27,8 @@ app.controller("editCityController",
 	}
 	
 	this.saveCity = function(){
-		var city = $scope.city;
+		// copy JSON so the date conversion doesn't break the visualization
+		var city = JSON.parse(JSON.stringify($scope.city));
 		// convert dates to iso format
 		if (city.start_date != null) city.start_date = (new Date(city.start_date)).toISOString();
 		if (city.end_date != null) city.end_date = (new Date(city.end_date)).toISOString();
