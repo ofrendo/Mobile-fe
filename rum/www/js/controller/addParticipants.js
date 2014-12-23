@@ -2,7 +2,7 @@ app.controller("addParticipantsController",
 		["$scope", "restAPI", "$timeout", "$stateParams", "loginService", "globals",
         function($scope, restAPI, $timeout, $stateParams, loginService, globals){
 	
-			var me = this;
+	var me = this;
 	
     console.log("----INIT addParticipantsController----");
     loginService.onInit(function() {
@@ -53,14 +53,6 @@ app.controller("addParticipantsController",
 			options.multiple = true;
 			var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
 			navigator.contacts.find(fields, onSuccess, onError, options);
-			
-			
-//			document.addEventListener("deviceready", onDeviceReady, false);
-//			function onDeviceReady() {
-//				console.log("Kontakte werden geladen:");
-//			    console.log(navigator.contacts);
-//			};
-
 	};
 	
 	this.closeDialog = function(){
@@ -121,13 +113,8 @@ app.controller("addParticipantsController",
 		contact.is_participant = true;
 		// perform backend call to add the user
 		restAPI.trip.addUserToTrip($stateParams.trip_id, {user: userData}, function() {
-			console.log("add User successful");
-			
+			console.log("add User successful");			
 		});
 	};
 
-	
 }]);
-
-
-
