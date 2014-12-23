@@ -36,4 +36,25 @@ app.controller("editCityController",
 			$state.go('app.cityList', {trip_id: $stateParams.trip_id});
 		});
 	}
+	
+	this.deleteCity = function(){
+		// show popup to confirm deletion
+		var confirmPopup = $ionicPopup.confirm({
+		     title: 'Stadt "' + $scope.city.name + '" entfernen',
+		     template: 'Sind Sie sicher, dass Sie die Stadt und alle ihr zugeordneten Sehenswürdigkeiten aus der Reise entfernen möchten?',
+		     okText: 'OK',
+		     cancelText: 'Abbrechen'
+		   });
+		confirmPopup.then(function(res){
+			if(res){
+			   // delete the city
+			   restAPI.trip.city.delete($stateParams.trip_id, $stateParams.city_id, function(){
+				   console.log('city deleted!');
+				   $state.go('app.cityList', {trip_id: $stateParams.trip_id});
+			   });
+			} else {
+				console.log('city deletion canceled.');
+			}
+		});
+	}
 }]);
