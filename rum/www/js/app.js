@@ -123,6 +123,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    
+    .state('app.locationDetail', {
+      url: "/LocationDetail/:trip_id/:city_id/:location_id",
+      views: {
+        'menuContent' :{
+          templateUrl: "partials/locationDetail.html",
+          controller: 'locationDetailController as locationDetailCtrl'
+        }
+      }
+    })
   
 	  .state('app.login', {
 	      url: "/login",

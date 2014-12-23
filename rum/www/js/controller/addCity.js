@@ -14,7 +14,6 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 	// initialize places service
 	var html_attr = document.getElementById('google_attr');
 	var placesService = new google.maps.places.PlacesService(html_attr);
-
 	
 	this.selectCity = function(city){
 		me.cityData.name = city.description;

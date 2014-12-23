@@ -30,5 +30,13 @@ app.controller("locationListController",
 	this.navToAddLocation = function(){
 		$state.go('app.addLocation', {trip_id: $stateParams.trip_id, city_id: $stateParams.city_id});
 	};
+	
+	this.navToLocationDetail = function(location){
+		$state.go('app.locationDetail', {
+			trip_id: $stateParams.trip_id, 
+			city_id: $stateParams.city_id, 
+			location_id: location.location_id});
+	}
+	
 
 }]);

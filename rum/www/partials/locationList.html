@@ -2,7 +2,7 @@
   <content-header></content-header>
   <ion-content class="has-header">
   	<ion-list class="location-list">
-      <ion-item ng-repeat="location in locations" ng-click="">
+      <ion-item ng-repeat="location in locations" ng-click="locationListCtrl.navToLocationDetail(location)">
         	{{location.name}}
       </ion-item>
     </ion-list>
