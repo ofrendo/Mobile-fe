@@ -3,10 +3,10 @@
   <ion-content class="has-header" scroll="false">
   	<div class="button-bar tabbar">
   		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('list')}" ng-click="cityListCtrl.setTab('list')">
-  			Liste
+  			{{'CITY_LIST.LIST_TAB' | translate}}
   		</button>
   		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('map')}" ng-click="cityListCtrl.setTab('map')" ng-disabled="cityListCtrl.cities.length < 1">
-  			Karte
+  			{{'CITY_LIST.MAP_TAB' | translate}}
   		</button>
   	</div>
   	<!-- city List -->
@@ -21,7 +21,7 @@
 	        		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
 	        	</div>
 	        	<div class="name">{{city.name}}</div>
-	        	<div class="info">{{city.no_locations}} Sehenswürdigkeiten</div>
+	        	<div class="info">{{city.no_locations}} {{'CITY_LIST.SIGHTS' | translate}}</div>
 	      </ion-item>
 	    </ion-list>
     </ion-scroll>
@@ -30,11 +30,11 @@
     <div class="overlay">
     	<table>
 	    	<tr>
-	    		<td>Gesamtstrecke:</td>
+	    		<td>{{'CITY_LIST.ROAD_DISTANCE' | translate}}:</td>
 	    		<td>{{Math.round(cityListCtrl.distance)}} km</td>
 	    	</tr>
 	    	<tr>
-	    		<td>Gesamtreisedauer:</td>
+	    		<td>{{'CITY_LIST.TRAVEL_TIME' | translate}}:</td>
 	    		<td>{{ Math.floor(cityListCtrl.travelTime / 60) }} h {{cityListCtrl.travelTime % 60}} min</td>
 	    	</tr>
     	</table>
@@ -43,6 +43,6 @@
     </div>
   </ion-content>
   <ion-footer-bar ng-hide="cityListCtrl.isActiveTab('map')" class="bar bar-positive triplist-footer">
-  	<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">Stadt hinzufügen</button>
+  	<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">{{'CITY_LIST.ADD_CITY_BTN' | translate}}</button>
   </ion-footer-bar>
 </ion-view>

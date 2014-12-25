@@ -29,6 +29,7 @@ app.config(['$translateProvider', function ($translateProvider) {
         prefix: 'lang/',
         suffix: '.json'
         });
+    $translateProvider.useMessageFormatInterpolation();
     $translateProvider.preferredLanguage('de');
 }]);
 

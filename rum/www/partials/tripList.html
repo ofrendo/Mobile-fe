@@ -1,4 +1,4 @@
-<ion-view title="{{tripListCtrl.title}}">
+<ion-view title="{{'TRIP_LIST.TITLE' | translate}}">
   <content-header></content-header>
   <ion-content class="has-header">
     <ion-list class="trip-list">
@@ -13,15 +13,13 @@
         	<div class="item-center">
         		<div class="name">{{trip.name}}</div>
         		<div class="info">
-        			{{trip.no_participants}} Teilnehmer | {{trip.no_cities}} 
-        			<ng-pluralize count="trip.no_cities" 
-        				when="{'1': 'Stadt', 'other': 'Städte'}">
-                    </ng-pluralize></div>
+        			{{'TRIP_LIST.TRIP_INFO' | translate: '{no_participants: trip.no_participants, no_cities: trip.no_cities}'}}	
+        		</div>
         	</div>
       </ion-item>
     </ion-list>
   </ion-content>
   <ion-footer-bar class="bar bar-positive triplist-footer">
-    	<button class="button button-icon icon ion-plus-round" ng-click="tripListCtrl.navToAddTrip()">Reise hinzufügen</button>
+    	<button class="button button-icon icon ion-plus-round" ng-click="tripListCtrl.navToAddTrip()">{{'TRIP_LIST.ADD_TRIP_BTN' | translate}}</button>
     </ion-footer-bar>
 </ion-view>

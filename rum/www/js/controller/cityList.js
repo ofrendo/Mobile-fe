@@ -1,6 +1,6 @@
 app.controller("cityListController", 
-	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals",
-    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals) {
+	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "$translate",
+    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, $translate) {
 	
 	console.log("----INIT cityListController----");
 	loginService.onInit(function() {
@@ -93,13 +93,10 @@ app.controller("cityListController",
 		directionsService.route(request, function(result, status) {
 			if (status != google.maps.DirectionsStatus.OK) {
 				console.error('Fehler beim Berechnen der Route: ' + status);
-				try {
-					toast.showLong('Route konte nicht berechnet werden!');
-				} catch (e) {
-					// it would be nice to show a javascript toast-like message
-					// not implemented yet
-				}
-				return;
+				$translate('CITY_LIST.ROUTING_NOT_POSSIBLE').then(function(text){
+					toast.showLong(text);
+				});
+				return
 			}
 			$timeout(function(){
 				console.log(result);

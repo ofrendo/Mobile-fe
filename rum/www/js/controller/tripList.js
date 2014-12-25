@@ -3,7 +3,6 @@ app.controller("tripListController",
 	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals) {
 	
 	console.log("----INIT tripListController----");
-	this.title = "Deine Reisen";
 	$scope.trips = [];
 
 	loginService.onInit(function() {

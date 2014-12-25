@@ -1,21 +1,21 @@
-<ion-view title="Stadt {{city.name}}">
+<ion-view title="{{'EDIT_CITY.TITLE' | translate:'{name: city.name}'}}">
   <content-header></content-header>
   <ion-content class="has-header">
   	<div class="list card" ng-init="editCityCtrl.getCityData()">
       <label class="item item-input">
-     	<span class="input-label">Reisebeginn</span>
+     	<span class="input-label">{{'FORMS.TRIP_START_DATE' | translate}}</span>
      	<input type="date" ng-model="city.start_date">
       </label>
       <label class="item item-input">
-     	<span class="input-label">Reiseende</span>
+     	<span class="input-label">{{'FORMS.TRIP_END_DATE' | translate}}</span>
      	<input type="date" ng-model="city.end_date">
       </label> 
       <div class="item">
-      	<button class="button button-positive button-block" ng-click="editCityCtrl.saveCity()">Änderungen speichern</button>
+      	<button class="button button-positive button-block" ng-click="editCityCtrl.saveCity()">{{'EDIT_CITY.SAVE_BTN' | translate}}</button>
       </div>
     </div>
     <div class="card">
-    	<button class="button button-positive button-block" ng-click="editCityCtrl.deleteCity()">Stadt entfernen</button>
+    	<button class="button button-positive button-block" ng-click="editCityCtrl.deleteCity()">{{'EDIT_CITY.DELETE_BTN' | translate}}</button>
     </div>
   </ion-content>
 </ion-view>

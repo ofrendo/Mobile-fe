@@ -1,6 +1,6 @@
 app.controller("editCityController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", "$timeout",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI, $timeout) {
+	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", "$timeout", "$translate",
+	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI, $timeout, $translate) {
 	
 	var me = this;
 		
@@ -39,22 +39,24 @@ app.controller("editCityController",
 	
 	this.deleteCity = function(){
 		// show popup to confirm deletion
-		var confirmPopup = $ionicPopup.confirm({
-		     title: 'Stadt "' + $scope.city.name + '" entfernen',
-		     template: 'Sind Sie sicher, dass Sie die Stadt und alle ihr zugeordneten Sehenswürdigkeiten aus der Reise entfernen möchten?',
-		     okText: 'OK',
-		     cancelText: 'Abbrechen'
-		   });
-		confirmPopup.then(function(res){
-			if(res){
-			   // delete the city
-			   restAPI.trip.city.delete($stateParams.trip_id, $stateParams.city_id, function(){
-				   console.log('city deleted!');
-				   $state.go('app.cityList', {trip_id: $stateParams.trip_id});
+		$translate(['EDIT_CITY.CONFIRM_DELETE_TITLE', 'EDIT_CITY.CONFIRM_DELETE_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
+			var confirmPopup = $ionicPopup.confirm({
+			     title: translations['EDIT_CITY.CONFIRM_DELETE_TITLE'],
+			     template: translations['EDIT_CITY.CONFIRM_DELETE_TEXT'],
+			     okText: translations['DIALOG.OK_BTN'],
+			     cancelText: translations['DIALOG.CANCEL_BTN']
 			   });
-			} else {
-				console.log('city deletion canceled.');
-			}
+			confirmPopup.then(function(res){
+				if(res){
+				   // delete the city
+				   restAPI.trip.city.delete($stateParams.trip_id, $stateParams.city_id, function(){
+					   console.log('city deleted!');
+					   $state.go('app.cityList', {trip_id: $stateParams.trip_id});
+				   });
+				} else {
+					console.log('city deletion canceled.');
+				}
+			});
 		});
 	};
 }]);

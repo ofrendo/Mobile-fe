@@ -1,3 +1,82 @@
 {
-	"LOGIN_BTN": "Einloggen"
+	"MENU": {
+		"BACK_BTN": "Zurück",
+		"TITLE": "Menü",
+		"LOGOUT": "Ausloggen"
+	},
+	"CHAT": {
+		"TITLE": "Chat",
+		"INSERT_MSG": "Geben Sie eine Nachricht ein."
+	},
+	"LOGIN": {
+		"TITLE": "Login",
+		"LOGIN_BTN": "Einloggen",
+		"TO_REGISTRATION": "Zur Registrierung",
+		"NOT_REGISTERED_YET": "Noch nicht registriert? Jetzt Anmelden."
+	},
+	"REGISTER": {
+		"TITLE": "Registrierung",
+		"REGISTER_BTN": "Registrieren",
+		"ALREADY_REGISTERED": "Bereits registriert? Jetzt einloggen.",
+		"TO_LOGIN": "Zum Login"
+	},
+	"ADD_CITY": {
+		"TITLE": "Stadt hinzufügen",
+		"CITY_SEARCH": "nach Stadt suchen",
+		"ADD_CITY_BTN": "Stadt hinzufügen"
+	},
+	"ADD_PARTICIPANTS": {
+		"TITLE": "Teilnehmer hinzufügen",
+		"CONTACT_LIST": "Kontaktliste",
+		"FILTER_NAME": "Namen eingeben"
+	},
+	"ADD_TRIP": {
+		"TITLE": "Reise hinzufügen",
+		"ADD_TRIP_BTN": "Reise hinzufügen"
+	},
+	"CITY_LIST": {
+		"LIST_TAB": "Liste",
+		"MAP_TAB": "Karte",
+		"SIGHTS": "Sehenswürdigkeiten",
+		"ROAD_DISTANCE": "Gesamtstrecke",
+		"TRAVEL_TIME": "Gesamtreisedauer",
+		"ADD_CITY_BTN": "Stadt hinzufügen",
+		"ROUTING_NOT_POSSIBLE": "Route konte nicht berechnet werden!"
+	},
+	"EDIT_CITY": {
+		"TITLE": "Stadt {name}",
+		"SAVE_BTN": "Änderungen speichern",
+		"DELETE_BTN": "Stadt entfernen",
+		"CONFIRM_DELETE_TITLE": "Stadt entfernen",
+		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie die Stadt und alle ihr zugeordneten Sehenswürdigkeiten aus der Reise entfernen möchten?"
+	},
+	"EDIT_TRIP": {
+		"TITLE": "Reise bearbeiten",
+		"GENERAL_DATA": "Allgemeine Reisedaten",
+		"SAVE_BTN": "Änderungen speichern",
+		"PARTICIPANTS": "{participants} {participants, plural, one{Teilnehmer} other{Teilnehmer}}",
+		"ADD_PARTICIPANTS": "Teilnehmer hinzufügen"
+	},
+	"TRIP_LIST": {
+		"TITLE": "Reisen",
+		"ADD_TRIP_BTN": "Reise hinzufügen",
+		"TRIP_INFO": "{no_participants} {no_participants, plural, one{Teilnehmer} other{Teilnehmer}} | {no_cities} {no_cities, plural, one{Stadt} other{Städte}}"
+	},
+	"FORMS": {
+		"NAME": "Name",
+		"USERNAME": "Benutzername",
+		"PASSWORD": "Passwort",
+		"PASSWORD_REPEAT": "Passwort wiederholen",
+		"MAIL": "E-Mail",
+		"START_DATE": "Startdatum",
+		"END_DATE": "Enddatum",
+		"TRIP_START_DATE": "Reisebeginn",
+		"TRIP_END_DATE": "Reiseende"
+	},
+	"DIALOG": {
+		"CLOSE_BTN": "Schließen",
+		"OK_BTN": "OK",
+		"CANCEL_BTN": "Abbrechen"
+	}
+		
 }
