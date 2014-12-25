@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic']);
+var app = angular.module('starter', ['ionic', 'pascalprecht.translate']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,6 +22,14 @@ app.run(function($ionicPlatform) {
 
 app.config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.withCredentials = true;
+}]);
+
+app.config(['$translateProvider', function ($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'lang/',
+        suffix: '.json'
+        });
+    $translateProvider.preferredLanguage('de');
 }]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
