@@ -1,30 +1,40 @@
 {
-	"MENU": {
-		"BACK_BTN": "Zurück",
-		"TITLE": "Menü",
-		"LOGOUT": "Ausloggen",
-		"CONFIRM_LOGOUT_TITLE": "Ausloggen",
-		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?"
-	},
 	"CHAT": {
 		"TITLE": "Chat",
 		"INSERT_MSG": "Geben Sie eine Nachricht ein."
 	},
-	"LOGIN": {
-		"TITLE": "Login",
-		"LOGIN_BTN": "Einloggen",
-		"TO_REGISTRATION": "Zur Registrierung",
-		"NOT_REGISTERED_YET": "Noch nicht registriert? Jetzt Anmelden.",
-		"ERROR_OCCURRED": "Es ist ein Fehler aufgetreten!",
-		"ERROR_LOGIN": "Es ist ein Fehler beim Login aufgetreten!",
-		"ERROR_TITLE": "Fehler"
+	"DIALOG": {
+		"CLOSE_BTN": "Schließen",
+		"OK_BTN": "OK",
+		"CANCEL_BTN": "Abbrechen"
 	},
-	"REGISTER": {
-		"TITLE": "Registrierung",
-		"REGISTER_BTN": "Registrieren",
-		"ALREADY_REGISTERED": "Bereits registriert? Jetzt einloggen.",
-		"TO_LOGIN": "Zum Login"
+	"FORMS": {
+		"NAME": "Name",
+		"USERNAME": "Benutzername",
+		"PASSWORD": "Passwort",
+		"PASSWORD_REPEAT": "Passwort wiederholen",
+		"MAIL": "E-Mail",
+		"START_DATE": "Startdatum",
+		"END_DATE": "Enddatum",
+		"TRIP_START_DATE": "Reisebeginn",
+		"TRIP_END_DATE": "Reiseende",
+		"LANGUAGE": "Sprache"
 	},
+	"LANGUAGES": {
+		"GERMAN": "Deutsch",
+		"ENGLISH": "Englisch"
+	},
+	"MENU": {
+		"BACK_BTN": "Zurück",
+		"TITLE": "Menü",
+		"TRIP_LIST": "Meine Reisen",
+		"SETTINGS": "Einstellungen",
+		"LOGOUT": "Ausloggen",
+		"CONFIRM_LOGOUT_TITLE": "Ausloggen",
+		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?"
+	},
+
+
 	"ADD_CITY": {
 		"TITLE": "Stadt hinzufügen",
 		"CITY_SEARCH": "nach Stadt suchen",
@@ -66,26 +76,32 @@
 		"DELETE_PARTICIPANT_TITLE": "Teilnehmer entfernen",
 		"DELETE_PARTICIPANT_TEXT": "Möchten Sie diesen Teilnehmer von der Reise entfernen?"
 	},
+	"LOCATION_LIST": {
+		"TITLE": "Deine Ziele in {city_name}",
+		"ADD_LOCATION_BTN": "Ziel hinzufügen"
+	},
+	"LOGIN": {
+		"TITLE": "Login",
+		"LOGIN_BTN": "Einloggen",
+		"TO_REGISTRATION": "Zur Registrierung",
+		"NOT_REGISTERED_YET": "Noch nicht registriert? Jetzt Anmelden.",
+		"ERROR_OCCURRED": "Es ist ein Fehler aufgetreten!",
+		"ERROR_LOGIN": "Es ist ein Fehler beim Login aufgetreten!",
+		"ERROR_TITLE": "Fehler"
+	},
+	"REGISTER": {
+		"TITLE": "Registrierung",
+		"REGISTER_BTN": "Registrieren",
+		"ALREADY_REGISTERED": "Bereits registriert? Jetzt einloggen.",
+		"TO_LOGIN": "Zum Login"
+	},
+	"SETTINGS": {
+		"TITLE": "Einstellungen"
+	},
 	"TRIP_LIST": {
-		"TITLE": "Reisen",
+		"TITLE": "Meine Reisen",
 		"ADD_TRIP_BTN": "Reise hinzufügen",
 		"TRIP_INFO": "{no_participants} {no_participants, plural, one{Teilnehmer} other{Teilnehmer}} | {no_cities} {no_cities, plural, one{Stadt} other{Städte}}"
-	},
-	"FORMS": {
-		"NAME": "Name",
-		"USERNAME": "Benutzername",
-		"PASSWORD": "Passwort",
-		"PASSWORD_REPEAT": "Passwort wiederholen",
-		"MAIL": "E-Mail",
-		"START_DATE": "Startdatum",
-		"END_DATE": "Enddatum",
-		"TRIP_START_DATE": "Reisebeginn",
-		"TRIP_END_DATE": "Reiseende"
-	},
-	"DIALOG": {
-		"CLOSE_BTN": "Schließen",
-		"OK_BTN": "OK",
-		"CANCEL_BTN": "Abbrechen"
 	}
-		
+
 }

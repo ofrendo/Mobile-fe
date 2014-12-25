@@ -14,6 +14,12 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
+      	<ion-item nav-clear menu-close ng-click="menuCtrl.navToTripList()">
+          {{'MENU.TRIP_LIST' | translate}}
+        </ion-item>
+         <ion-item nav-clear menu-close ng-click="menuCtrl.navToSettings()">
+          {{'MENU.SETTINGS' | translate}}
+        </ion-item>
         <ion-item nav-clear menu-close ng-click="menuCtrl.logout()">
           {{'MENU.LOGOUT' | translate}}
         </ion-item>

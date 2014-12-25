@@ -13,6 +13,14 @@ app.controller("menuController",
 		return true;
 	};
 	
+	this.navToSettings = function(){
+		$state.go('app.settings');
+	}
+	
+	this.navToTripList = function(){
+		$state.go('app.tripList');
+	}
+	
 	this.logout = function(){
 		console.log("Logout Dialog open");
 		$translate(['MENU.CONFIRM_LOGOUT_TITLE', 'MENU.CONFIRM_LOGOUT_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){

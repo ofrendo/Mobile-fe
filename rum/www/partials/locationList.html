@@ -1,4 +1,4 @@
-<ion-view title="{{city.name}} | Ziele">
+<ion-view title="{{'LOCATION_LIST.TITLE' | translate: '{city_name: city.name}'}}">
   <content-header></content-header>
   <ion-content class="has-header">
   	<ion-list class="location-list">
@@ -8,6 +8,8 @@
     </ion-list>
   </ion-content>
   <ion-footer-bar class="bar bar-positive triplist-footer">
-  	<button class="button button-icon icon ion-plus-round" ng-click="locationListCtrl.navToAddLocation()">Ziel hinzufügen</button>
+  	<button class="button button-icon icon ion-plus-round" ng-click="locationListCtrl.navToAddLocation()">
+  		{{'LOCATION_LIST.ADD_LOCATION_BTN' | translate}}
+  	</button>
   </ion-footer-bar>
 </ion-view>
