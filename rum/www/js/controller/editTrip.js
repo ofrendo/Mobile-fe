@@ -1,6 +1,8 @@
 app.controller("editTripController", 
-	["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", "globals", "$ionicModal", "utils", 
-	 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, globals, $ionicModal, utils) {
+	["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", 
+	 "globals", "$ionicModal", "utils", "$translate",
+	 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, 
+	 globals, $ionicModal, utils, $translate) {
 	
 	loginService.onInit(function() {
 		globals.setTripID($stateParams.trip_id);
@@ -68,47 +70,54 @@ app.controller("editTripController",
 		// check user
 		// if you want to remove yourself
 		if (globals.user.user_id == participant.user_id) {
-			var confirmPopup = $ionicPopup.confirm({
-			     title: 'Reise verlassen',
-			     template: 'Möchten Sie diese Reise verlassen?',
-			     cancelText: 'Abbrechen',
-			   });
-			   confirmPopup.then(function(res) {
-			     if(res) {
-			    	 // remove user from trip
-			    	 var trip = $scope.tripData;
-				 		$timeout(function(){
-				    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
-				    		 console.log("Delete success");
-							     $state.go("app.tripList");
-				    	 });
-				 		});
-			     } else {
-			       console.log("Delete Canceled");
-			     }
-			   });
+			$translate(['EDIT_TRIP.LEAVE_TRIP_TITLE', 'EDIT_TRIP.LEAVE_TRIP_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
+				var confirmPopup = $ionicPopup.confirm({
+				     title: translations['EDIT_TRIP.LEAVE_TRIP_TITLE'],
+				     template: translations['EDIT_TRIP.LEAVE_TRIP_TEXT'],
+				     okText: translations['DIALOG.OK_BTN'],
+				     cancelText: translations['DIALOG.CANCEL_BTN']
+				   });
+				   confirmPopup.then(function(res) {
+				     if(res) {
+				    	 // remove user from trip
+				    	 var trip = $scope.tripData;
+					 		$timeout(function(){
+					    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
+					    		 console.log("Delete success");
+								     $state.go("app.tripList");
+					    	 });
+					 		});
+				     } else {
+				       console.log("Delete Canceled");
+				     }
+				   });
+			});
 		}else{
-		console.log("Delete Participant Dialog open");
-		   var confirmPopup = $ionicPopup.confirm({
-		     title: 'Teilnehmer entfernen',
-		     template: 'Möchten Sie diesen Teilnehmer von der Reise entfernen?',
-		     cancelText: 'Abbrechen',
-		   });
-		   confirmPopup.then(function(res) {
-		     if(res) {
-		    	 // remove user from trip
-		    	 var trip = $scope.tripData;
-			 		$timeout(function(){
-			    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
-			    		 console.log("Delete success");
-						     // reload participant list
-						     me.getParticipants();
-			    	 });
-			 		});
-		     } else {
-		       console.log("Delete Canceled");
-		     }
-		   });
+			console.log("Delete Participant Dialog open");
+			$translate(['EDIT_TRIP.DELETE_PARTICIPANT_TITLE', 'EDIT_TRIP.DELETE_PARTICIPANT_TEXT', 'DIALOG.OK_BTN', 
+						'DIALOG.CANCEL_BTN']).then(function(translations){
+				var confirmPopup = $ionicPopup.confirm({
+				     title: translations['EDIT_TRIP.DELETE_PARTICIPANT_TITLE'],
+				     template: translations['EDIT_TRIP.DELETE_PARTICIPANT_TEXT'],
+				     okText: translations['DIALOG.OK_BTN'],
+				     cancelText: translations['DIALOG.CANCEL_BTN'],
+				   });
+				   confirmPopup.then(function(res) {
+				     if(res) {
+				    	 // remove user from trip
+				    	 var trip = $scope.tripData;
+					 		$timeout(function(){
+					    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: participant.user_id}}, function(){
+					    		 console.log("Delete success");
+								     // reload participant list
+								     me.getParticipants();
+					    	 });
+					 		});
+				     } else {
+				       console.log("Delete Canceled");
+				     }
+				   });
+			});
 		}
 	};
 	

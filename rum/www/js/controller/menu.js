@@ -1,6 +1,6 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI",
-	function($scope, globals, $ionicPopup, $state, restAPI){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate){
 	
 
 	$scope.checkRight = function(){
@@ -15,24 +15,26 @@ app.controller("menuController",
 	
 	this.logout = function(){
 		console.log("Logout Dialog open");
-		   var confirmPopup = $ionicPopup.confirm({
-		     title: 'Logout',
-		     template: 'Wollen Sie sich wirklich ausloggen?',
-		     cancelText: 'Abbrechen',
-		   });
-		   confirmPopup.then(function(res) {
-		     if(res) {
-		    	 // logout
-		    	 restAPI.auth.logout(function() {
-		    		 console.log("Logout success");
-		    		 // nav to login-screen
-			    	 $state.go('app.login');
-		    	 });
-		     } else {
-		       console.log("Logout Canceled");
-		     }
-		   });
-
+		$translate(['MENU.CONFIRM_LOGOUT_TITLE', 'MENU.CONFIRM_LOGOUT_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
+			var confirmPopup = $ionicPopup.confirm({
+			     title: translations['MENU.CONFIRM_LOGOUT_TITLE'],
+			     template: translations['MENU.CONFIRM_LOGOUT_TEXT'],
+			     okText: translations['DIALOG.OK_BTN'],
+			     cancelText: translations['DIALOG.CANCEL_BTN']
+			   });
+			   confirmPopup.then(function(res) {
+			     if(res) {
+			    	 // logout
+			    	 restAPI.auth.logout(function() {
+			    		 console.log("Logout success");
+			    		 // nav to login-screen
+				    	 $state.go('app.login');
+			    	 });
+			     } else {
+			       console.log("Logout Canceled");
+			     }
+			   });
+		});
 	};
 	
 	

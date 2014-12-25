@@ -1,6 +1,6 @@
 app.controller("loginController", 
-	[ "$state", "loginService", "$ionicPopup", "globals", 
-	function(  $state, loginService, $ionicPopup, globals) {
+	[ "$state", "loginService", "$ionicPopup", "globals", "$translate", 
+	function(  $state, loginService, $ionicPopup, globals, $translate) {
 	
 	console.log("----INIT loginController----")
 	globals.removeTripID();
@@ -11,20 +11,19 @@ app.controller("loginController",
 		loginService.login(username, password, function(user) {
 			$state.go("app.tripList");
 		}, function(data, status) {
-			var message;
-			if(!status){
-				message = "Ein Error ist aufgetreten."
-			}
-			else if (status == 400){
-				message = "Ein Error beim Login ist aufgetreten."
-			}
-
-			
-			
-			   var alertPopup = $ionicPopup.alert({
-			     title: 'Error',
-			     template: message
-			   });
+			$translate(['LOGIN.ERROR_OCCURRED', 'LOGIN.ERROR_LOGIN', 'LOGIN.ERROR_TITLE']).then(function(translations){
+				var message;
+				if(!status){
+					message = translations['LOGIN.ERROR_OCCURRED']
+				}
+				else if (status == 400){
+					message = translations["LOGIN.ERROR_LOGIN"]
+				}
+				var alertPopup = $ionicPopup.alert({
+					title: translations['LOGIN.ERROR_TITLE'],
+					template: message
+				});
+			});
 		});
 	}
 	

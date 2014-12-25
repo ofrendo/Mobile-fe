@@ -2,7 +2,9 @@
 	"MENU": {
 		"BACK_BTN": "Zurück",
 		"TITLE": "Menü",
-		"LOGOUT": "Ausloggen"
+		"LOGOUT": "Ausloggen",
+		"CONFIRM_LOGOUT_TITLE": "Ausloggen",
+		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?"
 	},
 	"CHAT": {
 		"TITLE": "Chat",
@@ -12,7 +14,10 @@
 		"TITLE": "Login",
 		"LOGIN_BTN": "Einloggen",
 		"TO_REGISTRATION": "Zur Registrierung",
-		"NOT_REGISTERED_YET": "Noch nicht registriert? Jetzt Anmelden."
+		"NOT_REGISTERED_YET": "Noch nicht registriert? Jetzt Anmelden.",
+		"ERROR_OCCURRED": "Es ist ein Fehler aufgetreten!",
+		"ERROR_LOGIN": "Es ist ein Fehler beim Login aufgetreten!",
+		"ERROR_TITLE": "Fehler"
 	},
 	"REGISTER": {
 		"TITLE": "Registrierung",
@@ -55,7 +60,11 @@
 		"GENERAL_DATA": "Allgemeine Reisedaten",
 		"SAVE_BTN": "Änderungen speichern",
 		"PARTICIPANTS": "{participants} {participants, plural, one{Teilnehmer} other{Teilnehmer}}",
-		"ADD_PARTICIPANTS": "Teilnehmer hinzufügen"
+		"ADD_PARTICIPANTS": "Teilnehmer hinzufügen",
+		"LEAVE_TRIP_TITLE": "Reise verlassen",
+		"LEAVE_TRIP_TEXT": "Möchten Sie diese Reise verlassen?",
+		"DELETE_PARTICIPANT_TITLE": "Teilnehmer entfernen",
+		"DELETE_PARTICIPANT_TEXT": "Möchten Sie diesen Teilnehmer von der Reise entfernen?"
 	},
 	"TRIP_LIST": {
 		"TITLE": "Reisen",
