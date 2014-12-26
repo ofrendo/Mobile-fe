@@ -31,7 +31,7 @@ app.config(['$translateProvider', function ($translateProvider) {
 	});
 	$translateProvider.useMessageFormatInterpolation();
     $translateProvider.useCookieStorage();
-	$translateProvider.preferredLanguage('de');
+	$translateProvider.preferredLanguage('en');
 }]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
