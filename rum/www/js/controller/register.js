@@ -1,14 +1,16 @@
 app.controller("registerController", 
-	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService",
-	function($timeout, $state, $ionicPopup, restAPI, globals, loginService) {
+	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService", "$translate",
+	function($timeout, $state, $ionicPopup, restAPI, globals, loginService, $translate) {
 	
 	globals.removeTripID();
 
 	//EmailError; set to True if Error occured
 	var emailError = false;
+	
 	this.hasEmailError = function () {
 		return emailError;
 	}
+	
 	this.emailChange = function () {
 		//if user enters input the Error-marker should go away
 		emailError = false;
@@ -16,15 +18,17 @@ app.controller("registerController",
 	
 	//Password Error; set to true if Error occured
 	var passwordError = false;
+	
 	this.hasPasswordError = function () {
 		return passwordError;
 	}
+	
 	this.passwordChange = function () {
 		//if user enters input the Error-marker should go away
 		passwordError = false;
 	}
+	
 	this.register = function () {
-		
 		//build JSON for rest call
 		var user = {
 				email : this.loginData.email,
@@ -32,17 +36,12 @@ app.controller("registerController",
 				password : this.loginData.password,
 				name: this.loginData.name
 		};
-		
 		//simple email validation
 		var re = /\S+@\S+\.\S+/;  //regularexpression string@sting.string
-		if (!re.test(user.email))
-		{
-			
+		if (!re.test(user.email)){
 			emailError = true;
-
 		}	
-		if(user.password !== this.loginData.password2)
-		{
+		if(user.password !== this.loginData.password2){
 			//password validation
 			passwordError=true;
 		}
@@ -52,25 +51,22 @@ app.controller("registerController",
 				globals.setUser(user);
 				$state.go("app.tripList");
 			}, function(data, status) {
-				var message;
-				if(!status){
-					message = "Ein Error ist aufgetreten."
-				}
-				else if (status == 500){
-					message = "Ein Interner Server Fehler ist aufgetreten."
-				}
-				else if (status == 400){
-					message = "Bitte korrigiere die Eingabe."
-				}
-				
-				
-				   var alertPopup = $ionicPopup.alert({
-				     title: 'Error',
-				     template: message
-				   });
-
-				
-				
+				$translate(['REGISTER.ERROR_TITLE', 'REGISTER.ERROR_MESSAGE', 'REGISTER.ERROR_SERVER_MESSAGE', 'REGISTER.ERROR_INPUT_MESSAGE']).then(function(translations){
+					var message;
+					if(!status){
+						message = translations['REGISTER.ERROR_MESSAGE']
+					}
+					else if (status == 500){
+						message = translations['REGISTER.ERROR_SERVER_MESSAGE']
+					}
+					else if (status == 400){
+						message = translations['REGISTER.ERROR_INPUT_MESSAGE']
+					}					
+					var alertPopup = $ionicPopup.alert({
+						title: translations['REGISTER.ERROR_TITLE'],
+						template: message
+					});
+				});	
 			});
 		}
 	}

@@ -93,7 +93,11 @@
 		"TITLE": "Registrierung",
 		"REGISTER_BTN": "Registrieren",
 		"ALREADY_REGISTERED": "Bereits registriert? Jetzt einloggen.",
-		"TO_LOGIN": "Zum Login"
+		"TO_LOGIN": "Zum Login",
+		"ERROR_TITLE": "Fehler",
+		"ERROR_MESSAGE": "Es ist ein Fehler aufgetreten!",
+		"ERROR_SERVER_MESSAGE": "Ein interner Server-Fehler ist aufgetreten!",
+		"ERROR_INPUT_MESSAGE": "Bitte korrigiere die Eingabe"
 	},
 	"SETTINGS": {
 		"TITLE": "Einstellungen"
