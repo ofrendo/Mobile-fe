@@ -1,6 +1,6 @@
 app.controller("settingsController", 
-	["$scope", "$http", "$state", "restAPI", "$translate",
-	function($scope, $http, $state, restAPI, $translate) {
+	["$scope", "$http", "$state", "restAPI", "$translate", "$timeout",
+	function($scope, $http, $state, restAPI, $translate, $timeout) {
 		
 		var me = this;
 		this.languages = 
@@ -23,8 +23,10 @@ app.controller("settingsController",
 		}
 		
 		this.initLanguage = function(){
-			console.log('Active Language on load: ' + $translate.use())
-			// set active language
-			$scope.language = $translate.use();
+			$timeout(function(){
+				console.log('Active Language on load: ' + $translate.use())
+				// set active language
+				$scope.language = $translate.use();
+			});
 		}
 }]);
