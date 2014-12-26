@@ -1,6 +1,6 @@
 app.controller("editCityController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", "$timeout", "$translate",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI, $timeout, $translate) {
+	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", "$timeout", "$translate", "utils",
+	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI, $timeout, $translate, utils) {
 	
 	var me = this;
 		
@@ -32,7 +32,7 @@ app.controller("editCityController",
 		// convert dates to iso format
 		if (city.start_date != null) city.start_date = (new Date(city.start_date)).toISOString();
 		if (city.end_date != null) city.end_date = (new Date(city.end_date)).toISOString();
-		restAPI.trip.city.update($stateParams.trip_id, city.city_id, city, function(){
+		restAPI.trip.city.update($stateParams.trip_id, city.city_id, {city: city}, function(){
 			$state.go('app.cityList', {trip_id: $stateParams.trip_id});
 		});
 	};
