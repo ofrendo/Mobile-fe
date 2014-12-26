@@ -9,8 +9,8 @@ app.controller("chatController",
 	//Call this to connect to server - only AFTER log in
 	var chat = {};
 	chat.connect = function() {
-		//var url = "https://thawing-stream-4939.herokuapp.com:443";
-		var url = "http://localhost:5000";
+		var url = "https://thawing-stream-4939.herokuapp.com:443";
+		//var url = "http://localhost:5000";
 		socket = io.connect(url, {
 			reconnection: false
 		});	
