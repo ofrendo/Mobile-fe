@@ -1,0 +1,111 @@
+{
+	"CHAT": {
+		"TITLE": "Chat",
+		"INSERT_MSG": "Insert your message."
+	},
+	"DIALOG": {
+		"CLOSE_BTN": "Close",
+		"OK_BTN": "OK",
+		"CANCEL_BTN": "Cancel"
+	},
+	"FORMS": {
+		"NAME": "Name",
+		"USERNAME": "user name",
+		"PASSWORD": "password",
+		"PASSWORD_REPEAT": "repeat password",
+		"MAIL": "Mail",
+		"START_DATE": "Start date",
+		"END_DATE": "End date",
+		"TRIP_START_DATE": "Start date",
+		"TRIP_END_DATE": "End date",
+		"LANGUAGE": "Language"
+	},
+	"LANGUAGES": {
+		"GERMAN": "German",
+		"ENGLISH": "English"
+	},
+	"MENU": {
+		"BACK_BTN": "Back",
+		"TITLE": "Menu",
+		"TRIP_LIST": "My trips",
+		"SETTINGS": "Settings",
+		"LOGOUT": "Logout",
+		"CONFIRM_LOGOUT_TITLE": "Logout",
+		"CONFIRM_LOGOUT_TEXT": "Do you really want to logout?"
+	},
+
+
+	"ADD_CITY": {
+		"TITLE": "Add city",
+		"CITY_SEARCH": "search for city",
+		"ADD_CITY_BTN": "Add city"
+	},
+	"ADD_PARTICIPANTS": {
+		"TITLE": "Add participants",
+		"CONTACT_LIST": "Contact list",
+		"FILTER_NAME": "filter contacts"
+	},
+	"ADD_TRIP": {
+		"TITLE": "Add trip",
+		"ADD_TRIP_BTN": "Add trip"
+	},
+	"CITY_LIST": {
+		"LIST_TAB": "List",
+		"MAP_TAB": "Map",
+		"SIGHTS": "Locations",
+		"ROAD_DISTANCE": "Road distance",
+		"TRAVEL_TIME": "Travel time",
+		"ADD_CITY_BTN": "Add city",
+		"ROUTING_NOT_POSSIBLE": "No routing possible!"
+	},
+	"EDIT_CITY": {
+		"TITLE": "City {name}",
+		"SAVE_BTN": "Save changes",
+		"DELETE_BTN": "Remove city",
+		"CONFIRM_DELETE_TITLE": "Remove city",
+		"CONFIRM_DELETE_TEXT": "Do you really want to remove the city and all its locations from your trip?"
+	},
+	"EDIT_TRIP": {
+		"TITLE": "Edit trip",
+		"GENERAL_DATA": "General trip data",
+		"SAVE_BTN": "Save changes",
+		"PARTICIPANTS": "{participants} {participants, plural, one{participant} other{participants}}",
+		"ADD_PARTICIPANTS": "Add participants",
+		"LEAVE_TRIP_TITLE": "Leave trip",
+		"LEAVE_TRIP_TEXT": "Do you want to leave this trip?",
+		"DELETE_PARTICIPANT_TITLE": "Remove participant",
+		"DELETE_PARTICIPANT_TEXT": "Do you want to remove this participant from the trip?"
+	},
+	"LOCATION_LIST": {
+		"TITLE": "Your locations in {city_name}",
+		"ADD_LOCATION_BTN": "Add locations"
+	},
+	"LOGIN": {
+		"TITLE": "Login",
+		"LOGIN_BTN": "Login",
+		"TO_REGISTRATION": "Go to registration",
+		"NOT_REGISTERED_YET": "Not registered yet?",
+		"ERROR_OCCURRED": "An error occurred!",
+		"ERROR_LOGIN": "An error occurred while logging in!",
+		"ERROR_TITLE": "Error"
+	},
+	"REGISTER": {
+		"TITLE": "Registration",
+		"REGISTER_BTN": "Register",
+		"ALREADY_REGISTERED": "Already registered?",
+		"TO_LOGIN": "Go to login",
+		"ERROR_TITLE": "Error",
+		"ERROR_MESSAGE": "An error occurred!",
+		"ERROR_SERVER_MESSAGE": "An internal server error occurred!",
+		"ERROR_INPUT_MESSAGE": "Please correct the inserted data."
+	},
+	"SETTINGS": {
+		"TITLE": "Settings"
+	},
+	"TRIP_LIST": {
+		"TITLE": "My trips",
+		"ADD_TRIP_BTN": "Add trip",
+		"TRIP_INFO": "{no_participants} {no_participants, plural, one{participant} other{participants}} | {no_cities} {no_cities, plural, one{city} other{cities}}"
+	}
+
+}

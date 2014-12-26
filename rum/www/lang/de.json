@@ -52,7 +52,7 @@
 	"CITY_LIST": {
 		"LIST_TAB": "Liste",
 		"MAP_TAB": "Karte",
-		"SIGHTS": "Sehenswürdigkeiten",
+		"SIGHTS": "Ziele",
 		"ROAD_DISTANCE": "Gesamtstrecke",
 		"TRAVEL_TIME": "Gesamtreisedauer",
 		"ADD_CITY_BTN": "Stadt hinzufügen",
@@ -97,7 +97,7 @@
 		"ERROR_TITLE": "Fehler",
 		"ERROR_MESSAGE": "Es ist ein Fehler aufgetreten!",
 		"ERROR_SERVER_MESSAGE": "Ein interner Server-Fehler ist aufgetreten!",
-		"ERROR_INPUT_MESSAGE": "Bitte korrigiere die Eingabe"
+		"ERROR_INPUT_MESSAGE": "Bitte korrigiere die Eingabe."
 	},
 	"SETTINGS": {
 		"TITLE": "Einstellungen"
