@@ -13,6 +13,7 @@
 		"USERNAME": "Benutzername",
 		"PASSWORD": "Passwort",
 		"PASSWORD_REPEAT": "Passwort wiederholen",
+		"PHONE": "Telefonnummer",
 		"MAIL": "E-Mail",
 		"START_DATE": "Startdatum",
 		"END_DATE": "Enddatum",
@@ -105,7 +106,11 @@
 		"ERROR_TITLE": "Fehler",
 		"ERROR_MESSAGE": "Es ist ein Fehler aufgetreten!",
 		"ERROR_SERVER_MESSAGE": "Ein interner Server-Fehler ist aufgetreten!",
-		"ERROR_INPUT_MESSAGE": "Bitte korrigiere die Eingabe."
+		"ERROR_INPUT_MESSAGE": "Bitte korrigiere die Eingabe.",
+		"CONFIRM_REGISTER_TEXT": "Du hast keine Telefonnummer eingegeben. Deine Freunde werden möglicherweise nicht in der Lage sein dich zu finden.",
+		"CONFIRM_REGISTER_TITLE": "Achtung",
+		"CHANGE_PHONE": "Ändern",
+		"REGISTER_WITHOUT_PHONE": "Ignorieren"
 	},
 	"SETTINGS": {
 		"TITLE": "Einstellungen"

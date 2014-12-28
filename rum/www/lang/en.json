@@ -13,6 +13,7 @@
 		"USERNAME": "user name",
 		"PASSWORD": "password",
 		"PASSWORD_REPEAT": "repeat password",
+		"PHONE": "telephone number",
 		"MAIL": "Mail",
 		"START_DATE": "Start date",
 		"END_DATE": "End date",
@@ -105,7 +106,11 @@
 		"ERROR_TITLE": "Error",
 		"ERROR_MESSAGE": "An error occurred!",
 		"ERROR_SERVER_MESSAGE": "An internal server error occurred!",
-		"ERROR_INPUT_MESSAGE": "Please correct the inserted data."
+		"ERROR_INPUT_MESSAGE": "Please correct the inserted data.",
+		"CONFIRM_REGISTER_TEXT": "You didn't enter a phone number. Your friends may not be able to find you in the application.",
+		"CONFIRM_REGISTER_TITLE": "Warning",
+		"CHANGE_PHONE": "Change",
+		"REGISTER_WITHOUT_PHONE": "Ignore"
 	},
 	"SETTINGS": {
 		"TITLE": "Settings"

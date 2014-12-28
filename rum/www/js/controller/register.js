@@ -1,11 +1,16 @@
 app.controller("registerController", 
 	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService", "$translate",
 	function($timeout, $state, $ionicPopup, restAPI, globals, loginService, $translate) {
+	//variables	
+	var emailError = false;
+	var passwordError = false;
+	var user = {};
+	var password2 = "";
 	
 	globals.removeTripID();
 
 	//EmailError; set to True if Error occured
-	var emailError = false;
+	
 	
 	this.hasEmailError = function () {
 		return emailError;
@@ -17,7 +22,7 @@ app.controller("registerController",
 	}
 	
 	//Password Error; set to true if Error occured
-	var passwordError = false;
+	
 	
 	this.hasPasswordError = function () {
 		return passwordError;
@@ -28,20 +33,55 @@ app.controller("registerController",
 		passwordError = false;
 	}
 	
-	this.register = function () {
-		//build JSON for rest call
-		var user = {
+	this.register = function (){	
+		
+		user = {
 				email : this.loginData.email,
 				username : this.loginData.username,
 				password : this.loginData.password,
-				name: this.loginData.name
+				name: this.loginData.name,
+				phone: this.loginData.phone
 		};
+		password2 = this.loginData.password2;
+		//test if phone number is given
+		if(this.loginData.phone != ""){
+			sendRegistration();
+		}
+		else{
+			$translate(['REGISTER.CONFIRM_REGISTER_TITLE', 'REGISTER.CONFIRM_REGISTER_TEXT', 'REGISTER.CHANGE_PHONE', 'REGISTER.REGISTER_WITHOUT_PHONE']).then(function(translations){
+				var confirmPopup = $ionicPopup.confirm({
+				     title: translations['REGISTER.CONFIRM_REGISTER_TITLE'],
+				     template: translations['REGISTER.CONFIRM_REGISTER_TEXT'],
+				     okText: translations['REGISTER.CHANGE_PHONE'],
+				     cancelText: translations['REGISTER.REGISTER_WITHOUT_PHONE']
+				   });
+				   confirmPopup.then(function(res) {
+				     if(res) {
+				    	 // logout
+				    	 console.log("Register canceled")
+				     } else {
+				    	  console.log("Registering...");
+				    	  sendRegistration();
+				     
+				     }
+				   });
+			});
+			
+			
+		}
+			
+		
+	}
+	
+	var sendRegistration = function () {
+
+		
 		//simple email validation
 		var re = /\S+@\S+\.\S+/;  //regularexpression string@sting.string
 		if (!re.test(user.email)){
 			emailError = true;
 		}	
-		if(user.password !== this.loginData.password2){
+		if(user.password !== password2){
 			//password validation
 			passwordError=true;
 		}
