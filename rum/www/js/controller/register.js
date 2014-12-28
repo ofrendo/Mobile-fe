@@ -45,7 +45,7 @@ app.controller("registerController",
 		password2 = this.loginData.password2;
 		//test if phone number is given
 		if(this.loginData.phone != ""){
-			this.sendRegistration();
+			sendRegistration();
 		}
 		else{
 			$translate(['REGISTER.CONFIRM_REGISTER_TITLE', 'REGISTER.CONFIRM_REGISTER_TEXT', 'REGISTER.CHANGE_PHONE', 'REGISTER.REGISTER_WITHOUT_PHONE']).then(function(translations){
