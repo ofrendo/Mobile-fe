@@ -16,6 +16,8 @@
 		"MAIL": "E-Mail",
 		"START_DATE": "Startdatum",
 		"END_DATE": "Enddatum",
+		"START_TIME": "Beginn",
+		"END_TIME": "Ende",
 		"TRIP_START_DATE": "Reisebeginn",
 		"TRIP_END_DATE": "Reiseende",
 		"LANGUAGE": "Sprache"
@@ -39,6 +41,12 @@
 		"TITLE": "Stadt hinzufügen",
 		"CITY_SEARCH": "nach Stadt suchen",
 		"ADD_CITY_BTN": "Stadt hinzufügen"
+	},
+	"ADD_LOCATION":{
+		"TITLE": "Ziel in {city_name} hinzufügen",
+		"LOCATION": "Ziel",
+		"LOC_SEARCH": "nach Ziel suchen",
+		"ADD_LOCATION_BTN": "Ziel hinzufügen"
 	},
 	"ADD_PARTICIPANTS": {
 		"TITLE": "Teilnehmer hinzufügen",

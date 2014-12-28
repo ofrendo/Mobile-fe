@@ -1,6 +1,45 @@
-<ion-view title="">
+<ion-view title="{{'ADD_LOCATION.TITLE' | translate: '{city_name: city.name}'}}">
   <content-header></content-header>
   <ion-content class="has-header">
-  	TEST
+  	<div class="list card">
+  		<div class="item item-input baseline-align">
+  			<span class="input-label">{{'ADD_LOCATION.LOCATION' | translate}}</span>
+  			<div class="location-name">
+  				<input type="text" id="searchText" 
+  					ng-model="location.name" 
+  					ng-init="location.name=''" 
+  					ng-change="addLocationCtrl.autocomplete()" 
+  					placeholder="{{'ADD_LOCATION.LOC_SEARCH' | translate}}"/>
+  				<ul class="autocompletion" 
+  					ng-init="autocompletionData = [];"
+  					ng-hide="autocompletionData.length == 0">
+  					<li ng-repeat="ac_location in autocompletionData" ng-click="addCityCtrl.selectLocation(ac_location)">
+  						Test
+  					</li>
+  					<li class="powered"><img src="img/powered-by-google.png"></li>
+  				</ul>
+  			</div>
+  		</div>
+  		<label class="item item-input">
+  			<span class="input-label">{{'FORMS.START_DATE' | translate}}</span>
+  			<input type="date" id="searchText" ng-model="location.start_date"/>
+  		</label>
+  		<label class="item item-input">
+  			<span class="input-label">{{'FORMS.START_TIME' | translate}}</span>
+  			<input type="time" id="searchText" ng-model="location.start_time"/>
+  		</label>
+  		<label class="item item-input">
+  			<span class="input-label">{{'FORMS.END_DATE' | translate}}</span>
+  			<input type="date" id="searchText" ng-model="location.end_date"/>
+  		</label>
+  		<label class="item item-input">
+  			<span class="input-label">{{'FORMS.END_TIME' | translate}}</span>
+  			<input type="time" id="searchText" ng-model="location.end_time"/>
+  		</label>
+  		<div class="item">
+      		<button class="button button-block button-positive" ng-disabled="location.name == ''" ng-click="addLocationCtrl.addLocation()">{{'ADD_LOCATION.ADD_LOCATION_BTN' | translate}}</button>
+      		<div id="google_attr"></div>
+      	</div>
+  	</div>    
   </ion-content>
 </ion-view>

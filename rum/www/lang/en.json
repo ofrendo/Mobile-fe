@@ -16,6 +16,8 @@
 		"MAIL": "Mail",
 		"START_DATE": "Start date",
 		"END_DATE": "End date",
+		"START_TIME": "Start time",
+		"END_TIME": "End time",
 		"TRIP_START_DATE": "Start date",
 		"TRIP_END_DATE": "End date",
 		"LANGUAGE": "Language"
@@ -39,6 +41,12 @@
 		"TITLE": "Add city",
 		"CITY_SEARCH": "search for city",
 		"ADD_CITY_BTN": "Add city"
+	},
+	"ADD_LOCATION":{
+		"TITLE": "add location in {city_name}",
+		"LOCATION": "Location",
+		"LOC_SEARCH": "search for location",
+		"ADD_LOCATION_BTN": "Add location"
 	},
 	"ADD_PARTICIPANTS": {
 		"TITLE": "Add participants",
@@ -78,7 +86,7 @@
 	},
 	"LOCATION_LIST": {
 		"TITLE": "Your locations in {city_name}",
-		"ADD_LOCATION_BTN": "Add locations"
+		"ADD_LOCATION_BTN": "Add location"
 	},
 	"LOGIN": {
 		"TITLE": "Login",

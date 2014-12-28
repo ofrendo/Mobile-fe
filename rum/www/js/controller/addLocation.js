@@ -17,4 +17,17 @@ app.controller("addLocationController",
 	};
 	this.getCityData();
 	
+	this.autocomplete = function(){
+		console.log('autocomplete');
+	};
+	
+	this.selectLocation = function(location){
+		console.log('Location selected: ');
+		console.log(location);
+	};
+	
+	this.addLocation = function(){
+		console.log('add location');
+	}
+	
 }]);
