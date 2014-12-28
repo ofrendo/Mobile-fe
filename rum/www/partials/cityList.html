@@ -21,7 +21,7 @@
 	        		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
 	        	</div>
 	        	<div class="name">{{city.name}}</div>
-	        	<div class="info">{{city.no_locations}} {{'CITY_LIST.SIGHTS' | translate}}</div>
+	        	<div class="info">{{'CITY_LIST.CITY_INFO' | translate: '{no_locations: city.no_locations}'}}</div>
 	      </ion-item>
 	    </ion-list>
     </ion-scroll>

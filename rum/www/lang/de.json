@@ -52,7 +52,7 @@
 	"CITY_LIST": {
 		"LIST_TAB": "Liste",
 		"MAP_TAB": "Karte",
-		"SIGHTS": "Ziele",
+		"CITY_INFO": "{no_locations} {no_locations, plural, one{Ziel} other{Ziele}}",
 		"ROAD_DISTANCE": "Gesamtstrecke",
 		"TRAVEL_TIME": "Gesamtreisedauer",
 		"ADD_CITY_BTN": "Stadt hinzufügen",
