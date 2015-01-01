@@ -18,6 +18,10 @@ app.controller("cityListController",
 	
 	// be able to use Math object in angular bindings
 	$scope.Math = window.Math;
+	//be able to reorder list
+	this.data = {
+			showReordering: false
+	};
 	
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -43,6 +47,16 @@ app.controller("cityListController",
 	
 	this.isActiveTab = function(index){
 		return this.tab === index;
+	};
+	
+	//reorder Items
+	this.reorderCity = function(city, fromIndex, toIndex){
+		me.cities.splice(fromIndex, 1);
+		me.cities.splice(toIndex, 0, city);
+		console.log(me.cities);
+		//$scope.items.splice(fromIndex, 1);
+		//$scope.items.splice(toIndex, 0, item);
+		//update backend
 	};
 	
 	// map functions
