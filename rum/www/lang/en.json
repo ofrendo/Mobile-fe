@@ -105,6 +105,7 @@
 		"TO_LOGIN": "Go to login",
 		"ERROR_TITLE": "Error",
 		"ERROR_MESSAGE": "An error occurred!",
+		"ERROR_ALREADY_EXISTS_MESSAGE": "User already exists!",
 		"ERROR_SERVER_MESSAGE": "An internal server error occurred!",
 		"ERROR_INPUT_MESSAGE": "Please correct the inserted data.",
 		"CONFIRM_REGISTER_TEXT": "You didn't enter a phone number. Your friends may not be able to find you in the application.",

@@ -1,6 +1,6 @@
 app.controller("registerController", 
-	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService", "$translate",
-	function($timeout, $state, $ionicPopup, restAPI, globals, loginService, $translate) {
+	[ "$timeout", "$state", "$ionicPopup", "restAPI", "globals", "loginService", "$translate","$ionicViewService",
+	function($timeout, $state, $ionicPopup, restAPI, globals, loginService, $translate,$ionicViewService) {
 	//variables	
 	var emailError = false;
 	var passwordError = false;
@@ -8,6 +8,11 @@ app.controller("registerController",
 	var password2 = "";
 	
 	globals.removeTripID();
+	
+	$ionicViewService.clearHistory();
+	$ionicViewService.nextViewOptions({
+		   disableBack: true
+		});
 
 	//EmailError; set to True if Error occured
 	
@@ -101,7 +106,10 @@ app.controller("registerController",
 					}
 					else if (status == 400){
 						message = translations['REGISTER.ERROR_INPUT_MESSAGE']
-					}					
+					}			
+					else if (status == 403){
+						message = translations['REGISTER.ERROR_ALREADY_EXISTS_MESSAGE']
+					}
 					var alertPopup = $ionicPopup.alert({
 						title: translations['REGISTER.ERROR_TITLE'],
 						template: message
