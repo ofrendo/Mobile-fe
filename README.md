@@ -3,6 +3,16 @@
 
 Frontend repo for mobile project
 
+## TODO
+
+Unit Testing / Testing?
+
+Kalenderexport
+Back/Menu Button (Jörn)
+Sortieren     (Max)
+location views (Mathias)
+Sehenswürdigkeiten in der Nähe
+
 ## Unit Testing Information
 
 http://www.ng-newsletter.com/advent2013/#!/day/19
