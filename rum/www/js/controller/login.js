@@ -1,6 +1,6 @@
 app.controller("loginController", 
-	[ "$state", "loginService", "$ionicPopup", "globals", "$translate","$ionicViewService", 
-	function(  $state, loginService, $ionicPopup, globals, $translate, $ionicViewService) {
+	[ "$state", "loginService", "$ionicPopup", "globals", "$translate","$ionicViewService","$ionicPlatform" ,
+	function(  $state, loginService, $ionicPopup, globals, $translate, $ionicViewService,$ionicPlatform) {
 		
 		
 	
@@ -12,6 +12,11 @@ app.controller("loginController",
 	$ionicViewService.nextViewOptions({
 		   disableBack: true
 		});
+	$ionicPlatform.onHardwareBackButton(function (event){
+		event.preventDefault();
+		 event.stopPropagation();
+		alert("back");
+	});
 	
 	this.login = function () {
 		var username = this.loginData.username;

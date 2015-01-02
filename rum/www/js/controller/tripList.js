@@ -5,6 +5,7 @@ app.controller("tripListController",
 	console.log("----INIT tripListController----");
 	$scope.trips = [];
 
+	
 	loginService.onInit(function() {
 		globals.setTripID(-1); //also connects chat WS to server
 		
