@@ -27,6 +27,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id/city/:city_id", "get", "read"),
 		new Route("/trip/:trip_id/city/:city_id", "put", "update"),
 		new Route("/trip/:trip_id/city/:city_id", "delete", "delete"),
+		new Route("/trip/:trip_id/city/:city_id/move", "put", "move", true), //api.trip.city.move(trip_id, city_id, {fromIndex: x, toIndex: y})
 		new Route("/trip/:trip_id/city/:city_id/locations", "get", "readLocations", true), //api.trip.city.readLocations(trip_id, city_id)
 		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "get", "read"),
