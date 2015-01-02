@@ -1,12 +1,11 @@
 app.service("restAPI", ["$http", function($http) {
 	console.log("----INIT restAPI----");
 	var module = this;
-	/*var url = (window.location.href.indexOf("localhost") === -1)
+	var url = (localStorage.getItem("useLocalServer") !== "true")
 			  ? "https://thawing-stream-4939.herokuapp.com"
-			  : "http://localhost:5000";*/
-	//var url = "http://localhost:5000";
-	var url = "https://thawing-stream-4939.herokuapp.com";
+			  : "http://localhost:5000";
 	module.url = url;
+	console.log("Using backend: " + url);
 
 	var routes = [
 		new Route("/auth/login", "post", null, true), //api.auth.login()

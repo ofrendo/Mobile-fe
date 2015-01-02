@@ -1,6 +1,6 @@
 app.controller("chatController", 
-	["$scope", "$http", "$state", "$timeout", "$ionicScrollDelegate", "globals",
-	function($scope, $http, $state, $timeout, $ionicScrollDelegate, globals) {
+	["$scope", "$http", "$state", "$timeout", "$ionicScrollDelegate", "globals", "restAPI",
+	function($scope, $http, $state, $timeout, $ionicScrollDelegate, globals, restAPI) {
 
 	console.log("----INIT chat.js controller----");
 	$scope.messages = [];
@@ -9,8 +9,9 @@ app.controller("chatController",
 	//Call this to connect to server - only AFTER log in
 	var chat = {};
 	chat.connect = function() {
-		var url = "https://thawing-stream-4939.herokuapp.com:443";
-		//var url = "http://localhost:5000";
+		var url = (restAPI.url.indexOf("https") !== -1) 
+				  ? restAPI.url + ":443"
+				  : restAPI.url;
 		socket = io.connect(url, {
 			reconnection: false
 		});	
