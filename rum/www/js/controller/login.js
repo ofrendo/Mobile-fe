@@ -1,5 +1,5 @@
 app.controller("loginController", 
-	[ "$state", "loginService", "$ionicPopup", "globals", "$translate","$ionicViewService", 
+	[ "$state", "loginService", "$ionicPopup", "globals", "$translate","$ionicViewService",
 	function(  $state, loginService, $ionicPopup, globals, $translate, $ionicViewService) {
 		
 		
@@ -7,11 +7,13 @@ app.controller("loginController",
 	console.log("----INIT loginController----")
 	globals.removeTripID();
 	
-	//disables back button after navigation
+	//disables back button after login
 	$ionicViewService.clearHistory();
 	$ionicViewService.nextViewOptions({
 		   disableBack: true
 		});
+	
+
 	
 	this.login = function () {
 		var username = this.loginData.username;
