@@ -1,7 +1,17 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform",
-	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate){
 	
+		//disable hardware back button
+		$ionicPlatform.onHardwareBackButton(function (event){
+			if($ionicViewService._getHistory().cursor <= 1){
+				event.stopPropagation();
+			}
+			else{
+				 $ionicNavBarDelegate.back();
+			}
+		});	
+		
 		
 	$scope.checkRight = function(){
 		//check if chat is supposed to be shown
