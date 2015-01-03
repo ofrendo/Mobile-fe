@@ -50,15 +50,20 @@ app.controller("cityListController",
 	};
 	
 	//reorder Items
-	this.reorderCity = function(city, fromIndex, toIndex){
-		var test = me.cities.splice(fromIndex, 1);
-		me.cities.splice(toIndex, 0, city);
-		// new city order
-		console.log(me.cities);
+	this.reorderCity = function(city, fromLocalIndex, toLocalIndex) {
+		//fromLocalIndex and toLocalIndex are positions in list BEFORE reorder, AND also in sorted me.cities array
+		//var test = me.cities.splice(fromLocalIndex, 1);
+		//me.cities.splice(toLocalIndex, 0, city);
 		//update backend
-		me.moveCity(city, me.cities[fromIndex].index, me.cities[toIndex].index);
+		me.moveCity(city, me.cities[fromLocalIndex].index, me.cities[toLocalIndex].index);
 	};
 	
+	function sortCitiesByIndex() {
+		me.cities.sort(function(a, b) {
+			return a.index - b.index;
+		});
+	}
+
 	// map functions
 	// returns distance in km
 	this.calculateOverallDistance = function(route){
@@ -182,12 +187,14 @@ app.controller("cityListController",
 	this.loadTripData($stateParams.trip_id);
 	
 	//move city
-	this.moveCity = function(city, x, y){
-		console.log('Move City ' + city.city_id + ' from = ' + x + ' to ' + y);
+	this.moveCity = function(city, fromIndex, toIndex) {
+		console.log('Move City ' + city.city_id + ' from = ' + fromIndex + ' to ' + toIndex);
 		$timeout(function(){
-			restAPI.trip.city.move($stateParams.trip_id, city.city_id, {fromIndex: x , toIndex: y},  
+			restAPI.trip.city.move($stateParams.trip_id, city.city_id, {fromIndex: fromIndex , toIndex: toIndex},  
 				function(){
-					console.log('Move City ' + city.city_id + ' from ' + x + ' to ' + y + " success");
+					//Update frontend on success
+					console.log('Move City ' + city.city_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
+					me.getCityList({trip_id: $stateParams.trip_id});
 				}
 			);
 		});
@@ -202,6 +209,7 @@ app.controller("cityListController",
 					console.log('GET cities callback with data:');
 					console.log(cities);
 					me.cities = cities;
+					sortCitiesByIndex();
 					// initialize map
 					me.initMap();
 				}
