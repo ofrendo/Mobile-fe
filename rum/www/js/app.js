@@ -153,6 +153,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			}
 		}
 	})
+	
+	.state('app.export', {
+		url: "/export/:trip_id",
+		views: {
+			'menuContent' :{
+				templateUrl: "partials/export.html",
+				controller: 'exportController as exportCtrl'
+			}
+		}
+	})
 
 	.state('app.login', {
 		url: "/login",

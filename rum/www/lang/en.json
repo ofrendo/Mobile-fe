@@ -34,7 +34,8 @@
 		"SETTINGS": "Settings",
 		"LOGOUT": "Logout",
 		"CONFIRM_LOGOUT_TITLE": "Logout",
-		"CONFIRM_LOGOUT_TEXT": "Do you really want to logout?"
+		"CONFIRM_LOGOUT_TEXT": "Do you really want to logout?",
+		"EXPORT":"Export to Calendar"
 	},
 
 
@@ -120,6 +121,13 @@
 		"TITLE": "My trips",
 		"ADD_TRIP_BTN": "Add trip",
 		"TRIP_INFO": "{no_participants} {no_participants, plural, one{participant} other{participants}} | {no_cities} {no_cities, plural, one{city} other{cities}}"
+	},
+	"EXPORT": {
+		"TITLE": "Export to Calendar",
+		"NAME" : "Trip name",
+		"STARTDATE" :"Start date",
+		"ENDDATE" : "End date",
+		"EXPORTBTN" : "Export"
 	}
 
 }

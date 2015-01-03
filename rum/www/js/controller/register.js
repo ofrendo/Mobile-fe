@@ -96,7 +96,7 @@ app.controller("registerController",
 				globals.setUser(user);
 				$state.go("app.tripList");
 			}, function(data, status) {
-				$translate(['REGISTER.ERROR_TITLE', 'REGISTER.ERROR_MESSAGE', 'REGISTER.ERROR_SERVER_MESSAGE', 'REGISTER.ERROR_INPUT_MESSAGE']).then(function(translations){
+				$translate(['REGISTER.ERROR_TITLE', 'REGISTER.ERROR_MESSAGE', 'REGISTER.ERROR_SERVER_MESSAGE', 'REGISTER.ERROR_INPUT_MESSAGE','REGISTER.ERROR_ALREADY_EXISTS_MESSAGE']).then(function(translations){
 					var message;
 					if(!status){
 						message = translations['REGISTER.ERROR_MESSAGE']

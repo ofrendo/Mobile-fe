@@ -1,6 +1,6 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate",
-	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams){
 	
 		//disable hardware back button
 		$ionicPlatform.onHardwareBackButton(function (event){
@@ -28,11 +28,35 @@ app.controller("menuController",
 		//check if menu on left is supposed to be shown
 		return true;
 	};
+	$scope.checkExport = function (){
+		//check if Export should be enabled
+		//enabled only when trip id is given
+		console.log($stateParams.trip_id + "export")
+		if($stateParams.trip_id < 0 || $stateParams.trip_id === undefined){
+			console.log ("no export");
+			return true;
+		}
+		else{
+			console.log("do export");
+			return false;
+		}
+	}
 	
 	this.navToSettings = function(){
 		$state.go('app.settings');
 	}
-	
+	this.navToExport = function(){
+		//check if trip_id is given
+		if($stateParams.trip_id < 0 || $stateParams.trip_id === undefined){
+			//show alert
+			console.log("kein export möglich");
+		}
+		else{
+			//go to export
+			$state.go('app.export', { trip_id : $stateParams.trip_id } );
+		}
+		
+	}
 	this.navToTripList = function(){
 		$state.go('app.tripList');
 	}
