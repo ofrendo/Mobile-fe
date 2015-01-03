@@ -76,6 +76,16 @@ app.controller("exportController",
 		}
 		
 		this.doExport = function (){
+			// prep some variables
+			  var startDate = new Date((new Date(me.start)).toISOString());
+			  var endDate = new Date((new Date(me.end)).toISOString());
+			  var title = me.name;
+			  var location = "On the Road";
+			  var notes = "Some notes about this event.";
+			  var success = function(message) { alert("Success: " + JSON.stringify(message)); };
+			  var error = function(message) { alert("Error: " + message); };
+			console.log("Export to Calendar");
+			  window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
 			console.log("exportieren");
 		}
 }]);

@@ -88,3 +88,15 @@ Cancel an Android Toast Notification
 ```
 toast.cancel();
 ```
+
+## Kalender Plugin einbinden
+
+Zunächst den Projektpfad in der Console öffnen und folgenden Befehle eingeben:
+
+```
+ionic plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
+```
+
+Dann wird das Plugin installiert.
+Damit die Berechtigungen auch tatsächlich der App verliehen werden, müssen im AndroidManifest.xml die Berechtigungen verschoben werden.
+Diese werden falsch hinzugefügt und müssen unter die bestehende Berechtigung INTERNET angehängt werden. 
