@@ -51,12 +51,12 @@ app.controller("cityListController",
 	
 	//reorder Items
 	this.reorderCity = function(city, fromIndex, toIndex){
-		me.cities.splice(fromIndex, 1);
+		var test = me.cities.splice(fromIndex, 1);
 		me.cities.splice(toIndex, 0, city);
+		// new city order
 		console.log(me.cities);
-		//$scope.items.splice(fromIndex, 1);
-		//$scope.items.splice(toIndex, 0, item);
 		//update backend
+		me.moveCity(city, me.cities[fromIndex].index, me.cities[toIndex].index);
 	};
 	
 	// map functions
@@ -180,6 +180,18 @@ app.controller("cityListController",
 		});
 	};
 	this.loadTripData($stateParams.trip_id);
+	
+	//move city
+	this.moveCity = function(city, x, y){
+		console.log('Move City ' + city.city_id + ' from = ' + x + ' to ' + y);
+		$timeout(function(){
+			restAPI.trip.city.move($stateParams.trip_id, city.city_id, {fromIndex: x , toIndex: y},  
+				function(){
+					console.log('Move City ' + city.city_id + ' from ' + x + ' to ' + y + " success");
+				}
+			);
+		});
+	};
 	
 	// get the corresponding cities
 	this.getCityList = function(trip){
