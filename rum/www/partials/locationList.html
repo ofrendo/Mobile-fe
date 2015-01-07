@@ -1,9 +1,14 @@
 <ion-view title="{{'LOCATION_LIST.TITLE' | translate: '{city_name: city.name}'}}">
   <content-header></content-header>
   <ion-content class="has-header">
-  	<ion-list class="location-list">
-      <ion-item ng-repeat="location in locations" ng-click="locationListCtrl.navToLocationDetail(location)">
+  <button class="button" ng-click="locationListCtrl.data.showReordering = !locationListCtrl.data.showReordering">Reorder</button>
+  	<ion-list class="location-list" show-reorder="locationListCtrl.data.showReordering">
+  	<ion-item ng-repeat="location in locations" ng-click="locationListCtrl.navToLocationDetail(location)">
         	{{location.name}}
+        	<ion-reorder-button class="ion-navicon"
+	        						on-reorder="locationListCtrl.reorderLocation(location, $fromIndex, $toIndex)">
+	        </ion-reorder-button>
+	        <ion-option-button class="button-assertive" ng-click="locationListCtrl.deleteLocation(location)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
