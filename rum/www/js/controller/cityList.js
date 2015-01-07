@@ -1,6 +1,6 @@
 app.controller("cityListController", 
-	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "$translate",
-    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, $translate) {
+	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "$translate", "$ionicPopup",
+    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, $translate, $ionicPopup) {
 	
 	console.log("----INIT cityListController----");
 	loginService.onInit(function() {
@@ -199,6 +199,31 @@ app.controller("cityListController",
 					me.first = true;
 				}
 			);
+		});
+	};
+	
+	//remove city
+	this.deleteCity = function(city){
+		// show popup to confirm deletion
+		$translate(['EDIT_CITY.CONFIRM_DELETE_TITLE', 'EDIT_CITY.CONFIRM_DELETE_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
+			var confirmPopup = $ionicPopup.confirm({
+			     title: translations['EDIT_CITY.CONFIRM_DELETE_TITLE'],
+			     template: translations['EDIT_CITY.CONFIRM_DELETE_TEXT'],
+			     okText: translations['DIALOG.OK_BTN'],
+			     cancelText: translations['DIALOG.CANCEL_BTN']
+			   });
+			confirmPopup.then(function(res){
+				if(res){
+				   // delete the city
+				   restAPI.trip.city.delete($stateParams.trip_id, city.city_id, function(){
+					   console.log('city deleted!');
+					   $state.go('app.cityList', {trip_id: $stateParams.trip_id});
+					   me.loadTripData($stateParams.trip_id);
+				   });
+				} else {
+					console.log('city deletion canceled.');
+				}
+			});
 		});
 	};
 	

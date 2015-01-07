@@ -20,6 +20,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id", "get", "read"),
 		new Route("/trip/:trip_id", "put", "update"),
 		new Route("/trip/:trip_id", "delete", "delete"),
+		new Route("/trip/:trip_id/move", "put", "move", true),
 		new Route("/trip/:trip_id/users", "get", "readUsers", true),
 		new Route("/trip/:trip_id/addUser", "put", "addUserToTrip", true), //api.trip.addUserToTrip(trip_id, {user: {user_id}})
 		new Route("/trip/:trip_id/removeUser", "put", "removeUserFromTrip", true), //api.trip.removeUserFromTrip(trip_id, {user: {user_id}})
