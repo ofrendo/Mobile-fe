@@ -1,11 +1,13 @@
 app.controller("locationListController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams) {
+	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "$timeout",
+	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, $timeout) {
 	
 	console.log("---INIT locationListController----");
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});
+	
+	var me = this;
 	
 	//be able to reorder list
 	this.data = {
@@ -43,13 +45,14 @@ app.controller("locationListController",
 			location_id: location.location_id});
 	};
 	
-	this.reorderLocation = function(location, $fromIndex, $toIndex){
-		console.log('Move Location ' + location.location_id + ' from = ' + fromIndex + ' to ' + toIndex);
+	this.reorderLocation = function(location, fromLocalIndex, toLocalIndex){
+		console.log('Move Location ' + location.location_id + ' from = ' + $scope.locations[fromLocalIndex].index + ' to ' + $scope.locations[toLocalIndex].index);
 		$timeout(function(){
-			restAPI.trip.city.location.move($stateParams.trip_id, $stateParams.city_id, location.location_id, {fromIndex: fromIndex , toIndex: toIndex},  
+			restAPI.trip.city.location.move($stateParams.trip_id, $stateParams.city_id, location.location_id, 
+					{fromIndex: $scope.locations[fromLocalIndex].index , toIndex: $scope.locations[toLocalIndex].index},  
 				function(){
 					//Update frontend on success
-					console.log('Move Location ' + location.location_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
+					console.log('Move Location ' + location.location_id + ' from ' + $scope.locations[fromLocalIndex].index + ' to ' + $scope.locations[toLocalIndex].index + " success");
 					me.getLocationList();
 					me.first = true;
 				}
