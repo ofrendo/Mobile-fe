@@ -11,6 +11,14 @@ app.service("utils", [function() {
 			+ ('0' + (jsDate.getMonth()+1)).slice(-2) + '-'
 			+ ('0' + jsDate.getDate()).slice(-2);
 		return dateString;
-	}
+	};
+	
+	this.DateAndTime = function(htmlDate, htmlTime){
+		var jsDate = new Date(htmlDate);
+		if(htmlTime != null){
+			jsDate = new Date(htmlDate + ' ' + htmlTime + ':00');
+		}
+		return jsDate;
+	};
 	
 }]);
