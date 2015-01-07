@@ -20,29 +20,11 @@ app.controller("menuController",
 		return !!globals.trip_id && globals.trip_id >= 0;
 	};
 	
-	//disable hardware back button
-	$ionicPlatform.registerBackButtonAction(function (event) {
-			event.preventDefault();
-			console.log("back");
-		}, 1000);
-	
 	$scope.checkLeft = function(){
 		//check if menu on left is supposed to be shown
 		return true;
 	};
-	$scope.checkExport = function (){
-		//check if Export should be enabled
-		//enabled only when trip id is given
-		console.log($stateParams.trip_id + "export")
-		if($stateParams.trip_id < 0 || $stateParams.trip_id === undefined){
-			console.log ("no export");
-			return true;
-		}
-		else{
-			console.log("do export");
-			return false;
-		}
-	}
+
 	
 	this.navToSettings = function(){
 		$state.go('app.settings');
@@ -51,7 +33,13 @@ app.controller("menuController",
 		//check if trip_id is given
 		if($stateParams.trip_id < 0 || $stateParams.trip_id === undefined){
 			//show alert
-			console.log("kein export möglich");
+			$translate([ 'EXPORT.ERROR_TRIP_ID', 'EXPORT.ERROR_TITLE']).then(function(translations){
+				var message;
+				var alertPopup = $ionicPopup.alert({
+					title: translations['EXPORT.ERROR_TITLE'],
+					template: translations['EXPORT.ERROR_TRIP_ID']
+				});
+			})
 		}
 		else{
 			//go to export

@@ -128,7 +128,12 @@
 		"NAME" : "Trip name",
 		"STARTDATE" :"Start date",
 		"ENDDATE" : "End date",
-		"EXPORTBTN" : "Export"
+		"EXPORTBTN" : "Export",
+		"ERROR_TITLE" : "Error",
+		"ERROR_TRIP_ID" : "Please select a trip",
+		"ERROR" : "An error occured",
+		"SUCCESS" : "Export successfull",
+		"ERROR_CORDOVA" : "No calendar in browser available"
 	}
 
 }
