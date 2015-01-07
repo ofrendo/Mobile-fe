@@ -26,7 +26,7 @@
 	        	<ion-reorder-button class="ion-navicon"
 	        						on-reorder="cityListCtrl.reorderCity(city, $fromIndex, $toIndex)">
 	        	</ion-reorder-button>
-	        	        	<ion-option-button class="button-assertive" ng-click="cityListCtrl.deleteCity(city)">Delete</ion-option-button>
+	        	        	<ion-option-button class="button-assertive" ng-click="cityListCtrl.deleteCity(city)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
 	      </ion-item>
 	    </ion-list>
     </ion-scroll>
