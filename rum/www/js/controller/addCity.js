@@ -92,7 +92,7 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 					restAPI.trip.city.create($stateParams.trip_id, {city: city}, function(city){
 						console.log('city created. Data returned:');
 						console.log(city);
-						$state.go('app.locationList', {city_id: city.city_id});
+						$state.go('app.locationList', {trip_id: $stateParams.trip_id, city_id: city.city_id});
 					});	
 				});
 

@@ -89,6 +89,7 @@ app.controller("cityListController",
 	
 	this.showRouting = function(){
 		// create waypoints
+		sortCitiesByIndex();
 		var waypoints = [];
 		for(var i = 1; i < me.cities.length - 1; i++){
 			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
@@ -195,6 +196,7 @@ app.controller("cityListController",
 					//Update frontend on success
 					console.log('Move City ' + city.city_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
 					me.getCityList({trip_id: $stateParams.trip_id});
+					me.first = true;
 				}
 			);
 		});
