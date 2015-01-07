@@ -44,17 +44,17 @@ app.controller("locationListController",
 	};
 	
 	this.reorderLocation = function(location, $fromIndex, $toIndex){
-//		console.log('Move Location ' + location.location_id + ' from = ' + fromIndex + ' to ' + toIndex);
-//		$timeout(function(){
-//			restAPI.trip.city.location.move($stateParams.trip_id, $stateParams.city_id, location.location_id, {fromIndex: fromIndex , toIndex: toIndex},  
-//				function(){
-//					//Update frontend on success
-//					console.log('Move Location ' + location.location_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
-//					me.getLocationList();
-//					me.first = true;
-//				}
-//			);
-//		});
+		console.log('Move Location ' + location.location_id + ' from = ' + fromIndex + ' to ' + toIndex);
+		$timeout(function(){
+			restAPI.trip.city.location.move($stateParams.trip_id, $stateParams.city_id, location.location_id, {fromIndex: fromIndex , toIndex: toIndex},  
+				function(){
+					//Update frontend on success
+					console.log('Move Location ' + location.location_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
+					me.getLocationList();
+					me.first = true;
+				}
+			);
+		});
 	};
 	
 	this.deleteLocation = function(location){
