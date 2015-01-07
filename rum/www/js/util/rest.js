@@ -6,6 +6,7 @@ app.service("restAPI", ["$http", function($http) {
 			  : "http://localhost:5000";
 	module.url = url;
 	console.log("Using backend: " + url);
+	module.loading = false;
 
 	var routes = [
 		new Route("/auth/login", "post", null, true), //api.auth.login()
@@ -19,6 +20,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id", "get", "read"),
 		new Route("/trip/:trip_id", "put", "update"),
 		new Route("/trip/:trip_id", "delete", "delete"),
+		new Route("/trip/:trip_id/move", "put", "move", true),
 		new Route("/trip/:trip_id/users", "get", "readUsers", true),
 		new Route("/trip/:trip_id/addUser", "put", "addUserToTrip", true), //api.trip.addUserToTrip(trip_id, {user: {user_id}})
 		new Route("/trip/:trip_id/removeUser", "put", "removeUserFromTrip", true), //api.trip.removeUserFromTrip(trip_id, {user: {user_id}})
@@ -32,7 +34,8 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "get", "read"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "put", "update"),
-		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "delete", "delete")
+		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "delete", "delete"),
+		new Route("/trip/:trip_id/city/:city_id/location/:location_id/move", "move", true)
 	];
 
 	for (var i = 0; i < routes.length; i++) { //for each route
@@ -101,12 +104,19 @@ app.service("restAPI", ["$http", function($http) {
 							console.log(data);
 						}
 
+						module.loading = true;
 						var request = $http[route.method](url + finishedPath, data)
 						.success(successFn);
 
 						if (typeof(errorFn) == "function") {
 							request.error(errorFn);
 						}
+
+						request.finally(function() {
+							module.loading = false;
+						});
+
+
 					};
 				})(routes[i]);
 			}

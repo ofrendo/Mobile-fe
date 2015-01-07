@@ -25,6 +25,10 @@ app.controller("tripListController",
 		$state.go('app.addTrip');
 	};
 	
+	this.deleteTrip = function(trip){
+		console.log(trip);
+	};
+	
 	this.navToEditTrip = function(trip){
 		globals.setTripID(trip.trip_id);
 		$state.go('app.editTrip', {trip_id: trip.trip_id});

@@ -7,6 +7,11 @@ app.controller("locationListController",
 		globals.checkTripID();
 	});
 	
+	//be able to reorder list
+	this.data = {
+			showReordering: false
+	};
+	
 	this.getLocationList = function(){
 		console.log('INIT getLocations with city_id = ' + $stateParams.city_id);
 		restAPI.trip.city.readLocations($stateParams.trip_id, $stateParams.city_id, function(locations){
@@ -36,7 +41,26 @@ app.controller("locationListController",
 			trip_id: $stateParams.trip_id, 
 			city_id: $stateParams.city_id, 
 			location_id: location.location_id});
-	}
+	};
+	
+	this.reorderLocation = function(location, $fromIndex, $toIndex){
+		console.log('Move Location ' + location.location_id + ' from = ' + fromIndex + ' to ' + toIndex);
+		$timeout(function(){
+			restAPI.trip.city.location.move($stateParams.trip_id, $stateParams.city_id, location.location_id, {fromIndex: fromIndex , toIndex: toIndex},  
+				function(){
+					//Update frontend on success
+					console.log('Move Location ' + location.location_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
+					me.getLocationList();
+					me.first = true;
+				}
+			);
+		});
+	};
+	
+	this.deleteLocation = function(location){
+		//delete Location
+		console.log("Delete Location");
+	};
 	
 
 }]);

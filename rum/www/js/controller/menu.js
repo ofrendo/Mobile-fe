@@ -2,15 +2,17 @@ app.controller("menuController",
 	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams",
 	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams){
 	
-		//disable hardware back button
-		$ionicPlatform.onHardwareBackButton(function (event){
-			if($ionicViewService._getHistory().cursor <= 1){
-				event.stopPropagation();
-			}
-			else{
-				 $ionicNavBarDelegate.back();
-			}
-		});	
+	console.log("----INIT menuController----");
+
+	//disable hardware back button
+	$ionicPlatform.onHardwareBackButton(function (event){
+		if($ionicViewService._getHistory().cursor <= 1){
+			event.stopPropagation();
+		}
+		else{
+			 $ionicNavBarDelegate.back();
+		}
+	});	
 		
 		
 	$scope.checkRight = function(){

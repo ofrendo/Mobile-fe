@@ -66,7 +66,8 @@
 		"ROAD_DISTANCE": "Road distance",
 		"TRAVEL_TIME": "Travel time",
 		"ADD_CITY_BTN": "Add city",
-		"ROUTING_NOT_POSSIBLE": "No routing possible!"
+		"ROUTING_NOT_POSSIBLE": "No routing possible!",
+		"DELETE": "Delete"
 	},
 	"EDIT_CITY": {
 		"TITLE": "City {name}",

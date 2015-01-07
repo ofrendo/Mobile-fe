@@ -70,7 +70,8 @@ Um die notwendigen Plugins hinzuzufügen, den Projektpfad in der Console öffnen
 ```
 cordova plugin add org.apache.cordova.contacts
 cordova plugin add com.chariotsolutions.toast.plugin
-
+ionic plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
+cordova plugin add org.apache.cordova.geolocation
 ```
 
 Dies muss jeder lokal in seinem Projekt durchführen, da dieses File im Gitignore nicht beachtet wird.
@@ -89,14 +90,12 @@ Cancel an Android Toast Notification
 toast.cancel();
 ```
 
-## Kalender Plugin einbinden
+## Kalender Plugin
 
-Zunächst den Projektpfad in der Console öffnen und folgenden Befehle eingeben:
+Mehr Informationen auf:
+https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
 
-```
-ionic plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
-```
+## Location Plugin
 
-Dann wird das Plugin installiert.
-Damit die Berechtigungen auch tatsächlich der App verliehen werden, müssen im AndroidManifest.xml die Berechtigungen verschoben werden.
-Diese werden falsch hinzugefügt und müssen unter die bestehende Berechtigung INTERNET angehängt werden. 
+Mehr Informationen auf:
+https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md

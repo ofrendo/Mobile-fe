@@ -2,7 +2,7 @@ app.controller("chatController",
 	["$scope", "$http", "$state", "$timeout", "$ionicScrollDelegate", "globals", "restAPI",
 	function($scope, $http, $state, $timeout, $ionicScrollDelegate, globals, restAPI) {
 
-	console.log("----INIT chat.js controller----");
+	console.log("----INIT chatController----");
 	$scope.messages = [];
 
 	var socket;
