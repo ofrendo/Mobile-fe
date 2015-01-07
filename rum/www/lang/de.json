@@ -66,7 +66,8 @@
 		"ROAD_DISTANCE": "Gesamtstrecke",
 		"TRAVEL_TIME": "Gesamtreisedauer",
 		"ADD_CITY_BTN": "Stadt hinzufügen",
-		"ROUTING_NOT_POSSIBLE": "Route konte nicht berechnet werden!"
+		"ROUTING_NOT_POSSIBLE": "Route konte nicht berechnet werden!",
+		"DELETE": "Löschen"
 	},
 	"EDIT_CITY": {
 		"TITLE": "Stadt {name}",
