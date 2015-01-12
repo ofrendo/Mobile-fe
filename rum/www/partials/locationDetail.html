@@ -1,7 +1,35 @@
-<ion-view title="{{location.name}}">
+<ion-view title="{{googlePlace.name}}">
   <content-header></content-header>
   <ion-content class="has-header">
-	LOCATIONDETAIL
-	<div id="google_attr"></div>
+  	<div class="list card">
+		<div class="item item-divider">{{'LOCATION_DETAIL.PICTURES' | translate}}</div>
+  		<div class="item photo-slide">
+  			<ion-scroll id="photos" delegate-handle="photoScroll" direction="x">
+  			<img ng-repeat="photo in googlePlace.photos" ng-src="{{ photo.getUrl({'maxWidth': 500, 'maxHeight': 200}) }}">
+  			</ion-scroll>
+		</div>
+		
+		<div class="item item-divider">
+			{{'LOCATION_DETAIL.ADDRESS' | translate}}
+		</div>
+		<div class="item">
+			<span ng-repeat="addr_comp in googlePlace.address_components" ng-class="{{addr_comp.types}}">
+				<br ng-if="addr_comp.types.indexOf('locality') != -1 || addr_comp.types.indexOf('country') != -1">
+				<span ng-show="addr_comp.types.indexOf('administrative_area_level_1') == -1" class="long_name">
+					{{addr_comp.long_name}}
+				</span>
+				<span ng-hide="addr_comp.types.indexOf('administrative_area_level_1') == -1" class="short_name">
+					{{addr_comp.short_name}}
+				</span>
+			</span>
+		</div>
+		<div class="item item-divider">
+			{{'LOCATION_DETAIL.WEBSITE' | translate}}
+		</div>
+		<div class="item">
+			<a href="{{googlePlace.website}}">{{googlePlace.website}}</a>
+		</div>
+		<div class="item" id="google_attr"></div>
+	</div>
   </ion-content>
 </ion-view>

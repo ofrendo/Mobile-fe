@@ -6,6 +6,6 @@ app.controller("loadingController", ["$scope", "restAPI", function($scope, restA
 		return restAPI.loading;
 	}, function(loading) {
 		$scope.loading = loading;
-		console.log("Loading: " + loading);
+		//console.log("Loading: " + loading);
 	});
 }]);
