@@ -87,6 +87,11 @@
 		"DELETE_PARTICIPANT_TITLE": "Remove participant",
 		"DELETE_PARTICIPANT_TEXT": "Do you want to remove this participant from the trip?"
 	},
+	"LOCATION_DETAIL": {
+		"ADDRESS": "Adresse",
+		"PICTURES": "Bilder",
+		"WEBSITE": "Webseite"
+	},
 	"LOCATION_LIST": {
 		"TITLE": "Your locations in {city_name}",
 		"ADD_LOCATION_BTN": "Add location"
