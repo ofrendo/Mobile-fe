@@ -32,19 +32,19 @@
     </ion-scroll>
     <!-- map -->
     <div class="map-wrapper" ng-show="cityListCtrl.isActiveTab('map')">
-    <div class="overlay">
-    	<table>
-	    	<tr>
-	    		<td>{{'CITY_LIST.ROAD_DISTANCE' | translate}}:</td>
-	    		<td>{{Math.round(cityListCtrl.distance)}} km</td>
-	    	</tr>
-	    	<tr>
-	    		<td>{{'CITY_LIST.TRAVEL_TIME' | translate}}:</td>
-	    		<td>{{ Math.floor(cityListCtrl.travelTime / 60) }} h {{cityListCtrl.travelTime % 60}} min</td>
-	    	</tr>
-    	</table>
-    </div>
-    <div id="map-canvas"></div>
+      <div class="overlay">
+      	<table>
+  	    	<tr>
+  	    		<td>{{'MAP.ROAD_DISTANCE' | translate}}:</td>
+  	    		<td>{{cityListCtrl.distance}}</td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>{{'MAP.TRAVEL_TIME' | translate}}:</td>
+  	    		<td>{{cityListCtrl.travelTime}}</td>
+  	    	</tr>
+      	</table>
+      </div>
+      <div id="map-canvas"></div>
     </div>
   </ion-content>
   <ion-footer-bar ng-hide="cityListCtrl.isActiveTab('map')" class="bar bar-positive triplist-footer">

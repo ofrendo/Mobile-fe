@@ -1,6 +1,6 @@
 app.controller("locationListController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "$timeout", "$translate",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, $timeout, $translate) {
+	["$scope", "$state", "$ionicPopup", "loginService", "globals", "maps", "$stateParams", "$timeout", "$translate",
+	function($scope, $state, $ionicPopup, loginService, globals, maps, $stateParams, $timeout, $translate) {
 	
 	console.log("---INIT locationListController----");
 	loginService.onInit(function() {
@@ -8,18 +8,44 @@ app.controller("locationListController",
 	});
 	
 	var me = this;
+	this.tab = 'list'; // can be "map" or "list"
+	this.map = {};
+	this.distance = 0;		// distance in km
+	this.travelTime = 0;	// travel time in min
 	
+	var directionsService = new google.maps.DirectionsService();
+	var directionsDisplay = new google.maps.DirectionsRenderer();
+
+	
+	// the tabbing functions
+	this.setTab = function(index){
+		me.tab = index;
+		maps.onTabSwitch(function(distance, travelTime) {
+			$timeout(function() {
+				me.distance = distance;
+				me.travelTime = travelTime;
+			});
+		});
+	};
+
+	this.isActiveTab = function(index){
+		return this.tab === index;
+	};
+
 	//be able to reorder list
 	this.data = {
-			showReordering: false
+		showReordering: false
 	};
-	
+
 	this.getLocationList = function(){
 		console.log('INIT getLocations with city_id = ' + $stateParams.city_id);
 		restAPI.trip.city.readLocations($stateParams.trip_id, $stateParams.city_id, function(locations){
-			console.log('getting locations:');
+			console.log('Getting locations:');
 			console.log(locations);
-			$scope.locations = locations;
+			me.locations = locations;
+
+			// initialize map
+			maps.initMap(locations);
 		});
 	};
 	this.getLocationList();

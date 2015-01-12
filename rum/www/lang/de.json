@@ -74,10 +74,7 @@
 		"LIST_TAB": "Liste",
 		"MAP_TAB": "Karte",
 		"CITY_INFO": "{no_locations} {no_locations, plural, one{Ziel} other{Ziele}}",
-		"ROAD_DISTANCE": "Gesamtstrecke",
-		"TRAVEL_TIME": "Gesamtreisedauer",
 		"ADD_CITY_BTN": "Stadt hinzufügen",
-		"ROUTING_NOT_POSSIBLE": "Route konte nicht berechnet werden!",
 		"DELETE": "Löschen"
 	},
 	"EDIT_CITY": {
@@ -102,13 +99,20 @@
 		"ADDRESS": "Adresse",
 		"OPENING_HOURS": "Öffnungzeiten",
 		"PICTURES": "Bilder",
-		"WEBSITE": "Webseite"
+		"WEBSITE": "Webseite",
 	},
 	"LOCATION_LIST": {
+		"LIST_TAB": "Liste",
+		"MAP_TAB": "Karte",
 		"TITLE": "Deine Ziele in {city_name}",
 		"ADD_LOCATION_BTN": "Ziel hinzufügen",
 		"CONFIRM_DELETE_TITLE": "Ziel entfernen",
 		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie dieses Ziel aus der Reise entfernen möchten?"
+	},
+	"MAP": {
+		"ROAD_DISTANCE": "Gesamtstrecke",
+		"TRAVEL_TIME": "Gesamtreisedauer",
+		"ROUTING_NOT_POSSIBLE": "Route konte nicht berechnet werden!"
 	},
 	"LOGIN": {
 		"TITLE": "Login",

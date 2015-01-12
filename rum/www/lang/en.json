@@ -74,10 +74,7 @@
 		"LIST_TAB": "List",
 		"MAP_TAB": "Map",
 		"CITY_INFO": "{no_locations} {no_locations, plural, one{location} other{locations}}",
-		"ROAD_DISTANCE": "Road distance",
-		"TRAVEL_TIME": "Travel time",
 		"ADD_CITY_BTN": "Add city",
-		"ROUTING_NOT_POSSIBLE": "No routing possible!",
 		"DELETE": "Delete"
 	},
 	"EDIT_CITY": {
@@ -105,10 +102,17 @@
 		"WEBSITE": "Website"
 	},
 	"LOCATION_LIST": {
+		"LIST_TAB": "List",
+		"MAP_TAB": "Map",
 		"TITLE": "Your locations in {city_name}",
 		"ADD_LOCATION_BTN": "Add location",
 		"CONFIRM_DELETE_TITLE": "Remove location",
 		"CONFIRM_DELETE_TEXT": "Do you want to remove this location from the trip?"
+	},
+	"MAP": {
+		"ROAD_DISTANCE": "Road distance",
+		"TRAVEL_TIME": "Travel time",
+		"ROUTING_NOT_POSSIBLE": "No routing possible!"
 	},
 	"LOGIN": {
 		"TITLE": "Login",

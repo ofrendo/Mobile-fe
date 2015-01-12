@@ -1,6 +1,6 @@
 app.controller("cityListController", 
-	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "$translate", "$ionicPopup",
-    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, $translate, $ionicPopup) {
+	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "maps", "$translate", "$ionicPopup",
+    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, maps, $translate, $ionicPopup) {
 	
 	console.log("----INIT cityListController----");
 	loginService.onInit(function() {
@@ -12,37 +12,23 @@ app.controller("cityListController",
 	this.cities = [];
 	this.tab = 'list'; // can be "map" or "list"
 	this.map = {};
-	this.first = true;
 	this.distance = 0;		// distance in km
 	this.travelTime = 0;	// travel time in min
 	
-	// be able to use Math object in angular bindings
-	$scope.Math = window.Math;
 	//be able to reorder list
 	this.data = {
-			showReordering: false
+		showReordering: false
 	};
-	
-	var directionsService = new google.maps.DirectionsService();
-	var directionsDisplay = new google.maps.DirectionsRenderer();
-
 	
 	// the tabbing functions
 	this.setTab = function(index){
 		me.tab = index;
-		// workaround to width height problems with google maps when hiding the map and showing it again
-		$timeout(function(){
-			google.maps.event.trigger(me.map, 'resize');
-			me.map.setZoom( me.map.getZoom() );
+		maps.onTabSwitch(function(distance, travelTime) {
+			$timeout(function() {
+				me.distance = distance;
+				me.travelTime = travelTime;
+			});
 		});
-		// center map on trip's starting point if first time
-		if(me.first){
-			$timeout(function(){
-				me.map.setCenter(new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude));
-				me.showRouting();
-				me.first = false;
-			}, 0);
-		}
 	};
 	
 	this.isActiveTab = function(index){
@@ -52,8 +38,6 @@ app.controller("cityListController",
 	//reorder Items
 	this.reorderCity = function(city, fromLocalIndex, toLocalIndex) {
 		//fromLocalIndex and toLocalIndex are positions in list BEFORE reorder, AND also in sorted me.cities array
-		//var test = me.cities.splice(fromLocalIndex, 1);
-		//me.cities.splice(toLocalIndex, 0, city);
 		//update backend
 		me.moveCity(city, me.cities[fromLocalIndex].index, me.cities[toLocalIndex].index);
 	};
@@ -64,99 +48,6 @@ app.controller("cityListController",
 		});
 	}
 
-	// map functions
-	// returns distance in km
-	this.calculateOverallDistance = function(route){
-		var distance = 0;
-		for(var i = 0; i < route.legs.length; i++){
-			distance += route.legs[i].distance.value;
-		}
-		distance /= 1000;
-		console.log('Distance: ' + distance + " km");
-		return distance;
-	};
-	
-	// returns travel time in min
-	this.calculateOverallTravelTime = function(route){
-		var time = 0;
-		for(var i = 0; i < route.legs.length; i++){
-			time += route.legs[i].duration.value;
-		}
-		time = Math.round(time / 60)	// from seconds to minutes
-		console.log('Travel time: ' + time + " min");
-		return time;
-	};
-	
-	this.showRouting = function(){
-		// create waypoints
-		sortCitiesByIndex();
-		var waypoints = [];
-		for(var i = 1; i < me.cities.length - 1; i++){
-			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
-			var waypoint = {
-				location: pos,
-				stopover: true
-			};
-			waypoints.push(waypoint);
-		}
-		// send maps request
-		var request = {
-			origin: new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude),
-			destination: new google.maps.LatLng(
-							me.cities[me.cities.length - 1].latitude, 
-							me.cities[me.cities.length - 1].longitude),
-			waypoints: waypoints,
-			provideRouteAlternatives: false,
-			travelMode: google.maps.TravelMode.DRIVING,
-			unitSystem: google.maps.UnitSystem.METRIC
-		};
-		directionsService.route(request, function(result, status) {
-			if (status != google.maps.DirectionsStatus.OK) {
-				console.error('Fehler beim Berechnen der Route: ' + status);
-				$translate('CITY_LIST.ROUTING_NOT_POSSIBLE').then(function(text){
-					toast.showLong(text);
-				});
-				return
-			}
-			$timeout(function(){
-				console.log(result);
-				directionsDisplay.setDirections(result);
-				me.distance = me.calculateOverallDistance(result.routes[0]);
-				me.travelTime = me.calculateOverallTravelTime(result.routes[0]);
-			});
-		});
-	}
-	
-	this.initMap = function() {
-		console.log('INIT google maps object');
-		var posCenter = new google.maps.LatLng(me.cities[0].latitude, me.cities[0].longitude);
-		console.log(posCenter.toString());
-		var mapOptions = {
-				zoom: 8,
-				streetViewControl: false,
-				zoomControl: false,
-				panControl: false,
-				mapTypeControl: false,
-				center: posCenter // the center positioning won't really work because the div size is not speicified (the tab is not shown at initialization)
-		};
-		me.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		// add markers for each city
-		for(var i = 0; i < me.cities.length; i++){
-			var pos = new google.maps.LatLng(me.cities[i].latitude, me.cities[i].longitude);
-			var marker = new google.maps.Marker({
-			    position: pos,
-			    map: me.map,
-			    title: me.cities[i].name
-			});
-		}
-		// init directions
-		directionsDisplay.setMap(me.map);
-		// don't show the standard markers (A, B, C, ...)
-		directionsDisplay.setOptions({ 
-			suppressMarkers: true
-		});
-	};
-	
 	// navigation functions
 	this.navToAddCity = function(){
 		$state.go('app.addCity', {trip_id: me.trip.trip_id});
@@ -196,7 +87,7 @@ app.controller("cityListController",
 					//Update frontend on success
 					console.log('Move City ' + city.city_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
 					me.getCityList({trip_id: $stateParams.trip_id});
-					me.first = true;
+					maps.first = true;
 				}
 			);
 		});
@@ -238,7 +129,7 @@ app.controller("cityListController",
 					me.cities = cities;
 					sortCitiesByIndex();
 					// initialize map
-					me.initMap();
+					maps.initMap(cities);
 				}
 			);
 		});
