@@ -63,6 +63,13 @@ app.controller("locationListController",
 	this.deleteLocation = function(location){
 		//delete Location
 		console.log("Delete Location");
+		$timeout(function(){
+			restAPI.trip.city.location.delete($stateParams.trip_id, $stateParams.city_id, location.location_id, function(){
+				// reload frontend
+				$state.reload();
+				me.getLocationList();
+			});
+		});
 	};
 	
 
