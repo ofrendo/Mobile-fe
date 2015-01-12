@@ -7,8 +7,9 @@ app.controller("loginController",
 	console.log("----INIT loginController----")
 	globals.removeTripID();
 	
-	//disables back button after login
+	//clear history
 	$ionicViewService.clearHistory();
+	//disables (software) back button after login
 	$ionicViewService.nextViewOptions({
 		   disableBack: true
 		});
