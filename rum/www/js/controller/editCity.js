@@ -37,26 +37,4 @@ app.controller("editCityController",
 		});
 	};
 	
-	this.deleteCity = function(){
-		// show popup to confirm deletion
-		$translate(['EDIT_CITY.CONFIRM_DELETE_TITLE', 'EDIT_CITY.CONFIRM_DELETE_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
-			var confirmPopup = $ionicPopup.confirm({
-			     title: translations['EDIT_CITY.CONFIRM_DELETE_TITLE'],
-			     template: translations['EDIT_CITY.CONFIRM_DELETE_TEXT'],
-			     okText: translations['DIALOG.OK_BTN'],
-			     cancelText: translations['DIALOG.CANCEL_BTN']
-			   });
-			confirmPopup.then(function(res){
-				if(res){
-				   // delete the city
-				   restAPI.trip.city.delete($stateParams.trip_id, $stateParams.city_id, function(){
-					   console.log('city deleted!');
-					   $state.go('app.cityList', {trip_id: $stateParams.trip_id});
-				   });
-				} else {
-					console.log('city deletion canceled.');
-				}
-			});
-		});
-	};
 }]);

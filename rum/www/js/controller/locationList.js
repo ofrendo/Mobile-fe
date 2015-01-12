@@ -1,6 +1,6 @@
 app.controller("locationListController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "$timeout",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, $timeout) {
+	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "$timeout", "$translate",
+	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, $timeout, $translate) {
 	
 	console.log("---INIT locationListController----");
 	loginService.onInit(function() {
@@ -61,8 +61,31 @@ app.controller("locationListController",
 	};
 	
 	this.deleteLocation = function(location){
-		//delete Location
-		console.log("Delete Location");
+		// show popup to confirm deletion
+		$translate(['LOCATION_LIST.CONFIRM_DELETE_TITLE', 'LOCATION_LIST.CONFIRM_DELETE_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
+			var confirmPopup = $ionicPopup.confirm({
+			     title: translations['LOCATION_LIST.CONFIRM_DELETE_TITLE'],
+			     template: translations['LOCATION_LIST.CONFIRM_DELETE_TEXT'],
+			     okText: translations['DIALOG.OK_BTN'],
+			     cancelText: translations['DIALOG.CANCEL_BTN']
+			   });
+			confirmPopup.then(function(res){
+				if(res){
+					//delete Location
+					console.log("Delete Location");
+					$timeout(function(){
+						restAPI.trip.city.location.delete($stateParams.trip_id, $stateParams.city_id, location.location_id, function(){
+							// reload frontend
+							$state.reload();
+							me.getLocationList();
+						});
+					});
+				} else {
+					console.log('location deletion canceled.');
+				}
+			});
+		});
+
 	};
 	
 

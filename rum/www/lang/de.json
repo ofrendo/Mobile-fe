@@ -37,6 +37,15 @@
 		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?",
 		"EXPORT":"In Kalender exportieren"
 	},
+	"WEEKDAYS": {
+		"MONDAY": "Montag",
+		"TUESDAY": "Dienstag",
+		"WEDNESDAY": "Mittwoch",
+		"THURSDAY": "Donnerstag",
+		"FRIDAY": "Freitag",
+		"SATURDAY": "Samstag",
+		"SUNDAY": "Sonntag"
+	},
 
 
 	"ADD_CITY": {
@@ -91,12 +100,15 @@
 	},
 	"LOCATION_DETAIL": {
 		"ADDRESS": "Adresse",
+		"OPENING_HOURS": "Öffnungzeiten",
 		"PICTURES": "Bilder",
 		"WEBSITE": "Webseite"
 	},
 	"LOCATION_LIST": {
 		"TITLE": "Deine Ziele in {city_name}",
-		"ADD_LOCATION_BTN": "Ziel hinzufügen"
+		"ADD_LOCATION_BTN": "Ziel hinzufügen",
+		"CONFIRM_DELETE_TITLE": "Ziel entfernen",
+		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie dieses Ziel aus der Reise entfernen möchten?"
 	},
 	"LOGIN": {
 		"TITLE": "Login",

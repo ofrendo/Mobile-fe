@@ -1,8 +1,8 @@
 app.controller("locationDetailController", 
 	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", 
-	 "$ionicScrollDelegate", "$timeout", "$interval",
+	 "$ionicScrollDelegate", "$timeout", "$interval", "utils",
 	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI,
-	 $ionicScrollDelegate, $timeout, $interval) {
+	 $ionicScrollDelegate, $timeout, $interval, utils) {
 	
 	console.log("---INIT locationDetailController----");
 	loginService.onInit(function() {
@@ -25,7 +25,7 @@ app.controller("locationDetailController",
 			var scroll = $interval(function(){
 				console.log('scroll');
 				// if pictures aren't available anymore, stop automatic scrolling
-				if (angular.isDefined(scroll) && document.getElementById('photos') == null) {
+				if (document.getElementById('photos') == null || document.getElementById('photos').children[0].children.length == 0) {
 		            $interval.cancel(scroll);
 		            scroll = undefined;
 		            return;
@@ -39,7 +39,7 @@ app.controller("locationDetailController",
 					$ionicScrollDelegate.$getByHandle('photoScroll').scrollTo(0, 0, true);
 				}
 			}, 4000);
-		}, 2000);
+		}, 100);
 		
 	}
 	
@@ -57,6 +57,13 @@ app.controller("locationDetailController",
 				if(status != 'OK'){
 					console.error('NO place returned from google api: ' + status);
 					return;
+				}
+				// modify time for output
+				var weekday = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+				for(var i = 0; i < place.opening_hours.periods.length; i++){
+					place.opening_hours.periods[i].weekDay = weekday[i];
+					place.opening_hours.periods[i].open.timeString = utils.timeFormat(place.opening_hours.periods[i].open.time);
+					place.opening_hours.periods[i].close.timeString = utils.timeFormat(place.opening_hours.periods[i].close.time);
 				}
 				console.log(place);
 				$scope.googlePlace = place;
