@@ -53,7 +53,9 @@
 	"ADD_PARTICIPANTS": {
 		"TITLE": "Teilnehmer hinzufügen",
 		"CONTACT_LIST": "Kontaktliste",
-		"FILTER_NAME": "Namen eingeben"
+		"FILTER_NAME": "Namen eingeben",
+		"ERROR":"Ein Fehler beim Laden der Kontakte ist aufgetreten",
+		"ERROR_TITLE":"Fehler"
 	},
 	"ADD_TRIP": {
 		"TITLE": "Reise hinzufügen",

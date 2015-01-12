@@ -1,25 +1,33 @@
-app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$stateParams", "restAPI", "loginService", "globals",
-                    function($scope, $timeout, $state, $http, $stateParams, restAPI, loginService, globals) {
+app.controller("addCityController", [ "$timeout", "$state", "$stateParams", "restAPI", "loginService", "globals",
+                    function( $timeout, $state,  $stateParams, restAPI, loginService, globals) {
 	
-    loginService.onInit(function() {
+	
+	//INIT
+	//check if trip id is given
+	loginService.onInit(function() {
     	globals.checkTripID();
     });
 
+	//VARIABLES	
 	this.autocompletionData;
 	this.cityData;
-	var me = this;
-	
+	var me = this;	
 	// initialize autocompletion service
 	var autocompleteService = new google.maps.places.AutocompleteService();
 	// initialize places service
 	var html_attr = document.getElementById('google_attr');
 	var placesService = new google.maps.places.PlacesService(html_attr);
 	
+	
+	//FUNCTIONS
+	
+	//select city from autocompletion data
 	this.selectCity = function(city){
 		me.cityData.name = city.description;
 		me.autocompletionData = [];
 	}
 	
+	//get autocomplete data from google
 	this.callGoogleAutocomplete = function(callback){
 		// check whether input field is empty
 		if(me.cityData.name == ""){
@@ -35,6 +43,7 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 		autocompleteService.getPlacePredictions(input, callback);
 	}
 	
+	//autocomplete Handler
 	this.autocomplete = function(){
 		var callback = function(predictions, status){
 			$timeout(function(){
@@ -52,6 +61,7 @@ app.controller("addCityController", ["$scope", "$timeout", "$state", "$http", "$
 		me.callGoogleAutocomplete(callback);
 	}
 	
+	//get place information and add city to trip
 	this.addCity = function(){
 		console.log('add city');
 		// get best prediction

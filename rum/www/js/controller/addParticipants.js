@@ -1,17 +1,24 @@
 app.controller("addParticipantsController",
-		["$scope", "restAPI", "$timeout", "$stateParams", "loginService", "globals",
-        function($scope, restAPI, $timeout, $stateParams, loginService, globals){
+		["$scope", "restAPI", "$timeout", "$stateParams", "loginService", "globals", "$translate" , "$ionicPopup",
+        function($scope, restAPI, $timeout, $stateParams, loginService, globals, $translate,$ionicPopup){
 	
-	var me = this;
-	
+			
+	//INIT
     console.log("----INIT addParticipantsController----");
     loginService.onInit(function() {
     	globals.checkTripID();
-    });
+    });		
+			
+    //VARIABLES
+	var me = this;
+	
+	//FUNCTIONS
 
+	//get contact list frome cordova
 	this.getContactList = function(){
 			console.log("Kontaktliste wird geladen");
 			console.log($scope.participants);
+			//onSuccessCallback
 			function onSuccess(contacts) {
 			    console.log('Found ' + contacts.length + ' contacts.');
 			    console.log(contacts);
@@ -42,32 +49,48 @@ app.controller("addParticipantsController",
 				    console.log('check completed');
 			    });
 			};
-
+			
+			//onErrorCallback
 			function onError(contactError) {
-			    consolse.log('onError!');
+				//show alert
+				$translate(['ADD_PARTICIPANTS.ERROR_TITLE', 'ADD_PARTICIPANTS.ERROR']).then(function(translations){
+					var alertPopup = $ionicPopup.alert({
+						title: translations['ADD_PARTICIPANTS.ERROR_TITLE'],
+						template: translations['ADD_PARTICIPANTS.ERROR']
+					});
+				});
 			};
 
-			// find all contacts with 'Bob' in any name field
-			var options      = new ContactFindOptions();
-			options.filter   = "";
-			options.multiple = true;
-			var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-			navigator.contacts.find(fields, onSuccess, onError, options);
+			// find all contacts with any name field
+			try {
+				var options      = new ContactFindOptions();
+				options.filter   = "";
+				options.multiple = true;
+				var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+				navigator.contacts.find(fields, onSuccess, onError, options);
+			}
+			catch (e) {
+				//catch if app is called in browser 
+				onError();
+			}
+
 	};
 	
+	//closes addParticipant
 	this.closeDialog = function(){
 		$scope.editTripCtrl.getParticipants()
 		$scope.modal.hide();
 	};
 
+	//modifies photo URL, to show them in the participant list
+	//due to inconsistent android versions
 	this.modifyPhotoURL = function(imageUrl){
-	       //if (imageUrl.substring(0,21)=="content://com.android") {
+
+		//changes directory
         if(imageUrl.indexOf('content://') != -1 && imageUrl.indexOf("%3A") != -1){
-            //"PlainFileUrl = content://com.android.providers.media.documents/document/image%3A14",
             photo_split=imageUrl.split("%3A");
             imageUrl="content://media/external/images/media/"+photo_split[1];
         }
-        // workaround end
 
         var fileName = imageUrl.substr(imageUrl.lastIndexOf('/') + 1);
         var extension;
@@ -92,7 +115,7 @@ app.controller("addParticipantsController",
         return imageUrl;
 	};
 	
-	
+	//user will be added to trip
 	this.addUser = function(contact){
 		console.log("AddUser called");
 		var userData = {};
@@ -109,7 +132,7 @@ app.controller("addParticipantsController",
 			console.log('The contact doesn\'t have a phone number or mail address!');
 			return;
 		}
-		// if all data are specified, set isParticipant variable to show that this contact has already been added
+		// if all data is specified, set isParticipant variable to show that this contact has already been added
 		contact.is_participant = true;
 		// perform backend call to add the user
 		restAPI.trip.addUserToTrip($stateParams.trip_id, {user: userData}, function() {
