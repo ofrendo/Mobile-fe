@@ -37,6 +37,15 @@
 		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?",
 		"EXPORT":"In Kalender exportieren"
 	},
+	"WEEKDAYS": {
+		"MONDAY": "Montag",
+		"TUESDAY": "Dienstag",
+		"WEDNESDAY": "Mittwoch",
+		"THURSDAY": "Donnerstag",
+		"FRIDAY": "Freitag",
+		"SATURDAY": "Samstag",
+		"SUNDAY": "Sonntag"
+	},
 
 
 	"ADD_CITY": {
@@ -89,6 +98,7 @@
 	},
 	"LOCATION_DETAIL": {
 		"ADDRESS": "Adresse",
+		"OPENING_HOURS": "Öffnungzeiten",
 		"PICTURES": "Bilder",
 		"WEBSITE": "Webseite"
 	},

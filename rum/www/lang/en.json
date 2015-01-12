@@ -37,6 +37,15 @@
 		"CONFIRM_LOGOUT_TEXT": "Do you really want to logout?",
 		"EXPORT":"Export to Calendar"
 	},
+	"WEEKDAYS": {
+		"MONDAY": "Monday",
+		"TUESDAY": "Tuesday",
+		"WEDNESDAY": "Wednesday",
+		"THURSDAY": "Thursday",
+		"FRIDAY": "Friday",
+		"SATURDAY": "Saturday",
+		"SUNDAY": "Sunday"
+	},
 
 
 	"ADD_CITY": {
@@ -88,9 +97,10 @@
 		"DELETE_PARTICIPANT_TEXT": "Do you want to remove this participant from the trip?"
 	},
 	"LOCATION_DETAIL": {
-		"ADDRESS": "Adresse",
-		"PICTURES": "Bilder",
-		"WEBSITE": "Webseite"
+		"ADDRESS": "Address",
+		"OPENING_HOURS": "Opening hours",
+		"PICTURES": "Pictures",
+		"WEBSITE": "Website"
 	},
 	"LOCATION_LIST": {
 		"TITLE": "Your locations in {city_name}",

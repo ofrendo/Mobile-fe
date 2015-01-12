@@ -2,13 +2,17 @@
   <content-header></content-header>
   <ion-content class="has-header">
   	<div class="list card">
-		<div class="item item-divider">{{'LOCATION_DETAIL.PICTURES' | translate}}</div>
+  		<!-- Pictures -->
+		<div class="item item-divider" ng-if="googlePlace.photos != null">
+			{{'LOCATION_DETAIL.PICTURES' | translate}}
+		</div>
   		<div class="item photo-slide">
   			<ion-scroll id="photos" delegate-handle="photoScroll" direction="x">
   			<img ng-repeat="photo in googlePlace.photos" ng-src="{{ photo.getUrl({'maxWidth': 500, 'maxHeight': 200}) }}">
   			</ion-scroll>
 		</div>
 		
+		<!-- Address -->
 		<div class="item item-divider">
 			{{'LOCATION_DETAIL.ADDRESS' | translate}}
 		</div>
@@ -23,13 +27,30 @@
 				</span>
 			</span>
 		</div>
-		<div class="item item-divider">
+		
+		<!-- Website -->
+		<div class="item item-divider" ng-hide="googlePlace.website == null">
 			{{'LOCATION_DETAIL.WEBSITE' | translate}}
 		</div>
 		<div class="item">
 			<a href="{{googlePlace.website}}">{{googlePlace.website}}</a>
 		</div>
-		<div class="item" id="google_attr"></div>
+		
+		<!-- Opening hours -->
+		<div class="item item-divider" ng-hide="googlePlace.opening_hours == null">
+			{{'LOCATION_DETAIL.OPENING_HOURS' | translate}}
+		</div>
+		<div class="item">
+			<div  ng-repeat="period in googlePlace.opening_hours.periods">
+				<span class="week-day">
+					{{'WEEKDAYS.' + period.weekDay | translate}}
+				</span>
+				<span class="time">
+					{{period.open.timeString}} - {{period.close.timeString}}
+				</span>
+			</div>
+		</div>
 	</div>
+	<div id="google_attr"></div>
   </ion-content>
 </ion-view>

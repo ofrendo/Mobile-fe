@@ -21,4 +21,10 @@ app.service("utils", [function() {
 		return jsDate;
 	};
 	
+	// formats time from 0830 to 08:30
+	this.timeFormat = function(timeString){
+		var time = timeString.slice(0, 2) + ':' + timeString.slice(2, 4);
+		return time;
+	};
+	
 }]);
