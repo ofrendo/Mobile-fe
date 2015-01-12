@@ -13,6 +13,7 @@ app.controller("tripListController",
 	
 	loginService.onInit(function() {
 		globals.setTripID(-1); //also connects chat WS to server
+		 
 		
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
 			console.log(trips);

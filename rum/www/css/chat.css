@@ -109,3 +109,10 @@
 .msg-right .msg-bubble:before {
 	border-left-color: #8b8b8b;
 }
+
+.menu-right>.bar-footer>.msg-input {
+	width: 85%;
+}
+.menu-right>.bar-footer>.button {
+	width: 35px;
+}
