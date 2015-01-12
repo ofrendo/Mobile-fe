@@ -94,7 +94,9 @@
 	},
 	"LOCATION_LIST": {
 		"TITLE": "Your locations in {city_name}",
-		"ADD_LOCATION_BTN": "Add location"
+		"ADD_LOCATION_BTN": "Add location",
+		"CONFIRM_DELETE_TITLE": "Remove location",
+		"CONFIRM_DELETE_TEXT": "Do you want to remove this location from the trip?"
 	},
 	"LOGIN": {
 		"TITLE": "Login",

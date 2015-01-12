@@ -1,6 +1,6 @@
 app.controller("tripListController", 
-	["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "loginService", "globals",
-	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals) {
+	["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "loginService", "globals", "$translate", "$ionicPopup",
+	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals, $translate, $ionicPopup) {
 	
 	console.log("----INIT tripListController----");
 	$scope.trips = [];
@@ -40,6 +40,27 @@ app.controller("tripListController",
 	
 	this.deleteTrip = function(trip){
 		console.log(trip);
+		$translate(['EDIT_TRIP.LEAVE_TRIP_TITLE', 'EDIT_TRIP.LEAVE_TRIP_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
+			var confirmPopup = $ionicPopup.confirm({
+			     title: translations['EDIT_TRIP.LEAVE_TRIP_TITLE'],
+			     template: translations['EDIT_TRIP.LEAVE_TRIP_TEXT'],
+			     okText: translations['DIALOG.OK_BTN'],
+			     cancelText: translations['DIALOG.CANCEL_BTN']
+			   });
+			   confirmPopup.then(function(res) {
+			     if(res) {
+			    	 // remove user from trip
+				 		$timeout(function(){
+				    	 restAPI.trip.removeUserFromTrip(trip.trip_id, {user: {user_id: globals.user.user_id}}, function(){
+				    		 console.log("Delete success");
+							     me.getTrip();
+				    	 });
+				 		});
+			     } else {
+			       console.log("Delete Canceled");
+			     }
+			   });
+		});
 	};
 	
 	this.navToEditTrip = function(trip){

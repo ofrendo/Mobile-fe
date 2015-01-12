@@ -20,6 +20,7 @@
         	<ion-reorder-button class="ion-navicon"
 	        					on-reorder="tripListCtrl.reorderTrip(trip, $fromIndex, $toIndex)">
 	        </ion-reorder-button>
+	        <ion-option-button class="button-assertive" ng-click="tripListCtrl.deleteTrip(trip)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
