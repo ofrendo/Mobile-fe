@@ -194,6 +194,11 @@ ion-side-menu ion-item {
 	content: ', ';
 }
 
+.week-day {
+	width:100px;
+	display:inline-block;
+}
+
 /* For loading */
 #divLoading {
 	position: fixed;

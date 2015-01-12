@@ -37,6 +37,15 @@
 		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?",
 		"EXPORT":"In Kalender exportieren"
 	},
+	"WEEKDAYS": {
+		"MONDAY": "Montag",
+		"TUESDAY": "Dienstag",
+		"WEDNESDAY": "Mittwoch",
+		"THURSDAY": "Donnerstag",
+		"FRIDAY": "Freitag",
+		"SATURDAY": "Samstag",
+		"SUNDAY": "Sonntag"
+	},
 
 
 	"ADD_CITY": {
@@ -53,7 +62,9 @@
 	"ADD_PARTICIPANTS": {
 		"TITLE": "Teilnehmer hinzufügen",
 		"CONTACT_LIST": "Kontaktliste",
-		"FILTER_NAME": "Namen eingeben"
+		"FILTER_NAME": "Namen eingeben",
+		"ERROR":"Ein Fehler beim Laden der Kontakte ist aufgetreten",
+		"ERROR_TITLE":"Fehler"
 	},
 	"ADD_TRIP": {
 		"TITLE": "Reise hinzufügen",
@@ -86,6 +97,7 @@
 	},
 	"LOCATION_DETAIL": {
 		"ADDRESS": "Adresse",
+		"OPENING_HOURS": "Öffnungzeiten",
 		"PICTURES": "Bilder",
 		"WEBSITE": "Webseite",
 	},
@@ -93,7 +105,9 @@
 		"LIST_TAB": "Liste",
 		"MAP_TAB": "Karte",
 		"TITLE": "Deine Ziele in {city_name}",
-		"ADD_LOCATION_BTN": "Ziel hinzufügen"
+		"ADD_LOCATION_BTN": "Ziel hinzufügen",
+		"CONFIRM_DELETE_TITLE": "Ziel entfernen",
+		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie dieses Ziel aus der Reise entfernen möchten?"
 	},
 	"MAP": {
 		"ROAD_DISTANCE": "Gesamtstrecke",

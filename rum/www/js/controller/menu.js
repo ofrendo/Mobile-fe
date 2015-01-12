@@ -1,15 +1,17 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams",
-	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams,loginService){
 	
 	console.log("----INIT menuController----");
 
 	//disable hardware back button
 	$ionicPlatform.onHardwareBackButton(function (event){
+		//if history is less then 1 the back-button should not work, because the last entry is the login/register-Page
 		if($ionicViewService._getHistory().cursor <= 1){
 			event.stopPropagation();
 		}
 		else{
+			//else do back
 			 $ionicNavBarDelegate.back();
 		}
 	});	
@@ -22,8 +24,19 @@ app.controller("menuController",
 	
 	$scope.checkLeft = function(){
 		//check if menu on left is supposed to be shown
-		return true;
+		return loginService.isLoggedIn();
 	};
+	
+	//check if menu button should be shown
+	$scope.checkMenuButton = function (){
+		if($ionicViewService.getBackView() !== null){
+			//show no menu button if back button is shown
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 	
 	this.navToSettings = function(){

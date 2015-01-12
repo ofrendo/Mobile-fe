@@ -6,7 +6,7 @@ app.controller("addTripController",
 	loginService.onInit(function() {
 		globals.setTripID(-1);
 	});
-	
+	// create new trip
 	this.addTrip = function(){
 		console.log('Adding trip...');
 		console.log($scope.tripData);
@@ -17,7 +17,6 @@ app.controller("addTripController",
 
 		// call rest api
 		console.log(restAPI);
-
 		restAPI.trip.create({trip: tripData}, function(trip){
 			console.log('success' + trip.trip_id);
 			// navigate to trip detail

@@ -37,6 +37,15 @@
 		"CONFIRM_LOGOUT_TEXT": "Do you really want to logout?",
 		"EXPORT":"Export to Calendar"
 	},
+	"WEEKDAYS": {
+		"MONDAY": "Monday",
+		"TUESDAY": "Tuesday",
+		"WEDNESDAY": "Wednesday",
+		"THURSDAY": "Thursday",
+		"FRIDAY": "Friday",
+		"SATURDAY": "Saturday",
+		"SUNDAY": "Sunday"
+	},
 
 
 	"ADD_CITY": {
@@ -53,7 +62,9 @@
 	"ADD_PARTICIPANTS": {
 		"TITLE": "Add participants",
 		"CONTACT_LIST": "Contact list",
-		"FILTER_NAME": "filter contacts"
+		"FILTER_NAME": "filter contacts",
+		"ERROR":"An error occured while loading contacts",
+		"ERROR_TITLE":"Error"
 	},
 	"ADD_TRIP": {
 		"TITLE": "Add trip",
@@ -84,11 +95,19 @@
 		"DELETE_PARTICIPANT_TITLE": "Remove participant",
 		"DELETE_PARTICIPANT_TEXT": "Do you want to remove this participant from the trip?"
 	},
+	"LOCATION_DETAIL": {
+		"ADDRESS": "Address",
+		"OPENING_HOURS": "Opening hours",
+		"PICTURES": "Pictures",
+		"WEBSITE": "Website"
+	},
 	"LOCATION_LIST": {
 		"LIST_TAB": "List",
 		"MAP_TAB": "Map",
 		"TITLE": "Your locations in {city_name}",
-		"ADD_LOCATION_BTN": "Add location"
+		"ADD_LOCATION_BTN": "Add location",
+		"CONFIRM_DELETE_TITLE": "Remove location",
+		"CONFIRM_DELETE_TEXT": "Do you want to remove this location from the trip?"
 	},
 	"MAP": {
 		"ROAD_DISTANCE": "Road distance",

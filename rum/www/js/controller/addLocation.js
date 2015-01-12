@@ -2,20 +2,24 @@ app.controller("addLocationController",
 	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "$timeout", "restAPI", "utils",
 	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, $timeout, restAPI, utils) {
 	
+	//INIT
 	console.log("---INIT addLocationController----");
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});
 	
+	//VARIABLES
 	var me = this;
 	this.location;
-	
 	// initialize autocompletion service
 	var autocompleteService = new google.maps.places.AutocompleteService();
 	// initialize places service
 	var html_attr = document.getElementById('google_attr');
 	var placesService = new google.maps.places.PlacesService(html_attr);
 	
+	//FUNCTIONS
+	
+	//get City Data from Backend
 	this.getCityData = function(){
 		console.log('INIT getCityData with id = ' + $stateParams.city_id);
 		restAPI.trip.city.read($stateParams.trip_id, $stateParams.city_id, function(city){
@@ -26,6 +30,8 @@ app.controller("addLocationController",
 	};
 	this.getCityData();
 	
+	
+	//get autocomplete data from google
 	this.callGoogleAutocomplete = function(callback){
 		// check whether input field is empty
 		if(me.locationName == ""){
@@ -45,6 +51,7 @@ app.controller("addLocationController",
 		autocompleteService.getPlacePredictions(input, callback);
 	}
 	
+	//autocomplete handler
 	this.autocomplete = function(){
 		var callback = function(predictions, status){
 			$timeout(function(){
@@ -71,6 +78,8 @@ app.controller("addLocationController",
 		me.callGoogleAutocomplete(callback);
 	}
 	
+	
+	//selects a location from google suggestions
 	this.selectLocation = function(location){
 		console.log('Location selected: ');
 		console.log(location);
@@ -78,6 +87,7 @@ app.controller("addLocationController",
 		me.autocompletionData = [];
 	};
 	
+	//gets location data and adds location to city
 	this.addLocation = function(){
 		console.log('add location');
 		me.callGoogleAutocomplete(function(predictions, status){
