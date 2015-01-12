@@ -33,11 +33,11 @@ app.controller("tripListController",
 		globals.setTripID(trip.trip_id);
 		$state.go('app.cityList', {trip_id: trip.trip_id});
 	};
-	
+	// navigate to add a new trip
 	this.navToAddTrip = function(){
 		$state.go('app.addTrip');
 	};
-	
+	// delete a trip/ leave a trip
 	this.deleteTrip = function(trip){
 		console.log(trip);
 		$translate(['EDIT_TRIP.LEAVE_TRIP_TITLE', 'EDIT_TRIP.LEAVE_TRIP_TEXT', 'DIALOG.OK_BTN', 'DIALOG.CANCEL_BTN']).then(function(translations){
@@ -62,12 +62,12 @@ app.controller("tripListController",
 			   });
 		});
 	};
-	
+	// navigate to edit the trip
 	this.navToEditTrip = function(trip){
 		globals.setTripID(trip.trip_id);
 		$state.go('app.editTrip', {trip_id: trip.trip_id});
 	};
-	
+	//reorder Trip List
 	this.reorderTrip = function(trip, fromLocalIndex, toLocalIndex){
 		console.log('Move Trip ' + trip.trip_id + ' from = ' + $scope.trips[fromLocalIndex].index + ' to ' + $scope.trips[toLocalIndex].index);
 		$timeout(function(){
