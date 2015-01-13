@@ -20,6 +20,11 @@ app.controller("cityListController",
 		showReordering: false
 	};
 	
+	// Callback to globals for reordering
+	globals.setReorderCallback(function(){
+		me.data.showReordering = !me.data.showReordering;
+	});
+	
 	// the tabbing functions
 	this.setTab = function(index){
 		me.tab = index;

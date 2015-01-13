@@ -121,10 +121,6 @@ app.controller("exportController",
 				
 				var calOptions = {};
 				calOptions.firstReminderMinutes = null;
-				  var alertPopup = $ionicPopup.alert({
-						title: "hallo",
-						template: "hallo"
-					});
 				 window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
 			}
 			catch (e) {

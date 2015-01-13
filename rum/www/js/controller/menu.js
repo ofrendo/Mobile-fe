@@ -1,8 +1,9 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService",
-	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams,loginService){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService", "$ionicActionSheet",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams,loginService, $ionicActionSheet){
 	
 	console.log("----INIT menuController----");
+	var me = this;
 
 	//disable hardware back button
 	$ionicPlatform.onHardwareBackButton(function (event){
@@ -42,7 +43,49 @@ app.controller("menuController",
 			return true;
 		}
 	}
+	
+	$scope.openListOptionsDropdown = function(){
+		// translate texts
+		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL']).then(function(translations){
+			//open actionSheet 
+			//check witch view is open
+			//if tripList is open show only Reorder Button
+			console.log($scope.showReordering);
+			console.log($scope.locationListCtrl);
+			if ($stateParams.trip_id) {
+				var ButtonList = [
+				                  {text: translations['MENU.REORDER']},
+				                  {text: translations['MENU.EXPORT']}
+				                  ]
+			}else{
+				var ButtonList = [
+				                  {text: translations['MENU.REORDER']}
+				                  ]
+			}
+			$ionicActionSheet.show({
 
+			     buttons: ButtonList,
+				
+			     cancelText: translations['MENU.CANCEL'],
+			     cancel: function() {
+			          // add cancel code..
+			        },
+			     buttonClicked: function(index) {
+			    	 switch (index) {
+					case 0:
+						me.reorder();
+						break;
+					case 1:
+						me.navToExport();
+						break;
+					default:
+						break;
+					}
+			       return true;
+			     }
+			   });
+		});
+	}
 	
 	this.navToSettings = function(){
 		$state.go('app.settings');
@@ -67,6 +110,10 @@ app.controller("menuController",
 	}
 	this.navToTripList = function(){
 		$state.go('app.tripList');
+	}
+	
+	this.reorder = function(){
+		globals.callReorderCallback();
 	}
 	
 	this.logout = function(){

@@ -21,6 +21,10 @@ app.controller("tripListController",
 		});
 	});
 	
+	globals.setReorderCallback(function(){
+		me.data.showReordering = !me.data.showReordering;
+	});
+	
 	//get Trips
 	this.getTrip = function(){
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
