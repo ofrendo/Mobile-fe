@@ -27,6 +27,11 @@ app.controller("menuController",
 		return loginService.isLoggedIn();
 	};
 	
+	$scope.checkListOptions = function(){
+		// check if list options should be available
+		return loginService.isLoggedIn();
+	}
+	
 	//check if menu button should be shown
 	$scope.checkMenuButton = function (){
 		if($ionicViewService.getBackView() !== null){
