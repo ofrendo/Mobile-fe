@@ -90,7 +90,7 @@ app.service("maps", ["$timeout", function($timeout) {
 		});
 	}
 	
-	this.initMap = function(objects) {
+	this.initMap = function(objects, mapDivID) {
 		console.log('INIT google maps objects');
 		console.log(objects);
 		me.objects = objects;
@@ -104,7 +104,7 @@ app.service("maps", ["$timeout", function($timeout) {
 				mapTypeControl: false,
 				center: posCenter // the center positioning won't really work because the div size is not specified (the tab is not shown at initialization)
 		};
-		me.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+		me.map = new google.maps.Map(document.getElementById(mapDivID), mapOptions);
 		// add markers for each city
 		for (var i = 0; i < me.objects.length; i++){
 			var pos = new google.maps.LatLng(me.objects[i].latitude, me.objects[i].longitude);
@@ -116,6 +116,7 @@ app.service("maps", ["$timeout", function($timeout) {
 		};;;
 		// init directions
 		directionsDisplay.setMap(me.map);
+		console.log(document.getElementById(mapDivID));
 		// don't show the standard markers (A, B, C, ...)
 		directionsDisplay.setOptions({ 
 			suppressMarkers: true

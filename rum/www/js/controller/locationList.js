@@ -46,7 +46,7 @@ app.controller("locationListController",
 			$scope.locations = locations;
 
 			// initialize map
-			maps.initMap(locations);
+			maps.initMap(locations, "map-canvas-locations");
 		});
 	};
 	this.getLocationList();

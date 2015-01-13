@@ -129,7 +129,7 @@ app.controller("cityListController",
 					me.cities = cities;
 					sortCitiesByIndex();
 					// initialize map
-					maps.initMap(cities);
+					maps.initMap(cities, "map-canvas-cities");
 				}
 			);
 		});
