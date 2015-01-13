@@ -14,7 +14,7 @@ app.service("maps", ["$timeout", function($timeout) {
 			me.map.setZoom( me.map.getZoom() );
 		});
 		// center map on trip's starting point if first time
-		if(me.first === true){
+		if(me.first === true || true){
 			$timeout(function(){
 				me.map.setCenter(new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude));
 				me.showRouting(onDataChange);

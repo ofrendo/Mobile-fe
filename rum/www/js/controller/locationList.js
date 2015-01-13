@@ -43,6 +43,7 @@ app.controller("locationListController",
 			console.log('Getting locations:');
 			console.log(locations);
 			me.locations = locations;
+			$scope.locations = locations;
 
 			// initialize map
 			maps.initMap(locations);
@@ -72,13 +73,13 @@ app.controller("locationListController",
 	};
 	
 	this.reorderLocation = function(location, fromLocalIndex, toLocalIndex){
-		console.log('Move Location ' + location.location_id + ' from = ' + $scope.locations[fromLocalIndex].index + ' to ' + $scope.locations[toLocalIndex].index);
+		console.log('Move Location ' + location.location_id + ' from = ' + me.locations[fromLocalIndex].index + ' to ' + me.locations[toLocalIndex].index);
 		$timeout(function(){
 			restAPI.trip.city.location.move($stateParams.trip_id, $stateParams.city_id, location.location_id, 
-					{fromIndex: $scope.locations[fromLocalIndex].index , toIndex: $scope.locations[toLocalIndex].index},  
+					{fromIndex: me.locations[fromLocalIndex].index , toIndex: me.locations[toLocalIndex].index},  
 				function(){
 					//Update frontend on success
-					console.log('Move Location ' + location.location_id + ' from ' + $scope.locations[fromLocalIndex].index + ' to ' + $scope.locations[toLocalIndex].index + " success");
+					console.log('Move Location ' + location.location_id + ' from ' + me.locations[fromLocalIndex].index + ' to ' + me.locations[toLocalIndex].index + " success");
 					me.getLocationList();
 					me.first = true;
 				}

@@ -10,7 +10,7 @@
       </button>
     </div>
     <!-- city List -->
-    <div ng-show="locationListCtrl.isActiveTab('list')">
+    <ion-scroll class="city-list-scroll" ng-show="locationListCtrl.isActiveTab('list')">
       <button class="button" ng-click="locationListCtrl.data.showReordering = !locationListCtrl.data.showReordering">
         Reorder
       </button>
@@ -23,7 +23,7 @@
           <ion-option-button class="button-assertive" ng-click="locationListCtrl.deleteLocation(location)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
         </ion-item>
       </ion-list>
-    </div>
+    </ion-scroll>
     <!-- map -->
     <div class="map-wrapper" ng-show="locationListCtrl.isActiveTab('map')">
     <div class="overlay">
