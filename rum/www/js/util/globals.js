@@ -12,6 +12,16 @@ app.service("globals", [function() {
 		//init chat
 		this.chat.connect();
 	};
+	
+	this.setReorderCallback = function(callback){
+		this.reorderCallback = callback;
+	}
+	
+	this.callReorderCallback = function(){
+		if (typeof(this.reorderCallback)== "function") {
+			this.reorderCallback();
+		}
+	}
 
 	this.setTripID = function(trip_id) {
 		trip_id = parseInt(trip_id);

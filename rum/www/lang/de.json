@@ -35,7 +35,9 @@
 		"LOGOUT": "Ausloggen",
 		"CONFIRM_LOGOUT_TITLE": "Ausloggen",
 		"CONFIRM_LOGOUT_TEXT": "Möchten Sie sich wirklich ausloggen?",
-		"EXPORT":"In Kalender exportieren"
+		"EXPORT":"In Kalender exportieren",
+		"CANCEL":"Abbrechen",
+		"REORDER":"Sortieren"
 	},
 	"WEEKDAYS": {
 		"MONDAY": "Montag",

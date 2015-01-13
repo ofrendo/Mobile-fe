@@ -1,7 +1,6 @@
 <ion-view title="{{'TRIP_LIST.TITLE' | translate}}">
   <content-header></content-header>
   <ion-content class="has-header">
-  <button class="button" ng-click="tripListCtrl.data.showReordering = !tripListCtrl.data.showReordering">Reorder</button>
     <ion-list class="trip-list" show-reorder="tripListCtrl.data.showReordering">
       <ion-item ng-repeat="trip in trips" ng-click="tripListCtrl.navToCityList(trip)"><!--  | orderBy: 'start_date'-->
         	<div class="date">

@@ -15,7 +15,15 @@ app.controller("locationListController",
 	
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
-
+	
+	this.data = {
+			showReordering: false
+	};
+	
+	// Callback to globals for reordering
+	globals.setReorderCallback(function(){
+		me.data.showReordering = !me.data.showReordering;
+	});
 	
 	// the tabbing functions
 	this.setTab = function(index){
@@ -30,11 +38,6 @@ app.controller("locationListController",
 
 	this.isActiveTab = function(index){
 		return this.tab === index;
-	};
-
-	//be able to reorder list
-	this.data = {
-		showReordering: false
 	};
 
 	this.getLocationList = function(){

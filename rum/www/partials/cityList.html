@@ -11,7 +11,6 @@
   	</div>
   	<!-- city List -->
   	<ion-scroll class="city-list-scroll" ng-show="cityListCtrl.isActiveTab('list')">
-  	<button class="button" ng-click="cityListCtrl.data.showReordering = !cityListCtrl.data.showReordering">Reorder</button>
 	    <ion-list class="trip-list city-list" show-reorder="cityListCtrl.data.showReordering">
 	      <ion-item ng-repeat="city in cityListCtrl.cities" ng-click="cityListCtrl.navToLocationList(city)"><!--  | orderBy: 'index' -->
 	        	<div class="date">
