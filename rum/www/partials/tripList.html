@@ -3,7 +3,7 @@
   <ion-content class="has-header">
   <button class="button" ng-click="tripListCtrl.data.showReordering = !tripListCtrl.data.showReordering">Reorder</button>
     <ion-list class="trip-list" show-reorder="tripListCtrl.data.showReordering">
-      <ion-item ng-repeat="trip in trips | orderBy: 'start_date'" ng-click="tripListCtrl.navToCityList(trip)">
+      <ion-item ng-repeat="trip in trips" ng-click="tripListCtrl.navToCityList(trip)"><!--  | orderBy: 'start_date'-->
         	<div class="date">
         		<div class="date-start">{{trip.start_date | date: 'dd.MM.yy'}}</div>
         		<div class="date-end">{{trip.end_date | date: 'dd.MM.yy'}}</div>
