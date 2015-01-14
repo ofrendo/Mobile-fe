@@ -13,6 +13,29 @@ app.controller("addParticipantsController",
 	var me = this;
 	
 	//FUNCTIONS
+	
+	this.addUserWithMail = function(){
+		// check email-address
+		//simple email validation
+		var re = /\S+@\S+\.\S+/;  //regularexpression string@sting.string
+		if (re.test(me.email)){
+			//send mail to server
+			var contact = {};
+			contact.emails = {};
+			contact.emails[0] = {};
+			contact.emails[0].value = me.email;
+			me.addUser(contact);
+		}	
+		else{
+			//show popup --> no correct mail-address
+			$translate(['ADD_PARTICIPANTS.ERROR_TITLE', 'ADD_PARTICIPANTS.ERROR_MAIL']).then(function(translations){
+				var alertPopup = $ionicPopup.alert({
+					title: translations['ADD_PARTICIPANTS.ERROR_TITLE'],
+					template: translations['ADD_PARTICIPANTS.ERROR_MAIL']
+				});
+			});
+		}
+	};
 
 	//get contact list frome cordova
 	this.getContactList = function(){
@@ -124,7 +147,7 @@ app.controller("addParticipantsController",
 			userData.name = contact.displayName;
 		}
 		if (contact.emails){ 
-			userData.email = contact.emails[0];
+			userData.email = contact.emails[0].value;
 		}
 		if (contact.phoneNumbers){
 			userData.phone = contact.phoneNumbers[0].value;
