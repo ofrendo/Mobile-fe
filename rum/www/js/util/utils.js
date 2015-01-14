@@ -13,7 +13,17 @@ app.service("utils", [function() {
 		return dateString;
 	};
 	
+	this.DateToHtmlTime = function(jsDate){
+		console.log(jsDate);
+		var timeString =
+			('0' + jsDate.getHours()).slice(-2) + ':'
+			+ ('0' + jsDate.getMinutes()).slice(-2);
+		console.log('Stunden: ' + jsDate.getHours() + ', Minuten: ' + jsDate.getMinutes() + ', String: ' + timeString);
+		return timeString;
+	}
+	
 	this.DateAndTime = function(htmlDate, htmlTime){
+		console.log(htmlTime);
 		var jsDate = new Date(htmlDate);
 		if(htmlTime != null){
 			jsDate = new Date(htmlDate + ' ' + htmlTime + ':00');

@@ -23,11 +23,50 @@ Auf der Rechten Seite der Ion-Nav-Bar befindet sich ein Button für das Kontext 
 Ein weiterer Button auf der Rechten Seite ermöglicht das aufsliden des rechten Side-Menu, in dem sich ein Chat befindet [ siehe Chat]. Dieser wird ebenfalls nur angezeigt sobald ein Trip asugewählt wurde.
 
 ### triplist
-Nachdem der Nutzer eingeloggt ist, kommt man zu dem Home-Screen, der tripList
+Nachdem der Nutzer eingeloggt ist, kommt er zu dem Home-Screen, der tripList (tripList.html und tripList.js).
+Hier werden alle vorhandenem Trips, die er bereits angelegt hat angezeigt. Zu jedem Trip wird der Name, Start- und Enddatum, Anzahl der Städte in dem Trip und die Anzahl an Teilnehmern des Trips angezeigt. Wenn er einen Trip auswählt gelangt er zu der Citylist. Mit dem Bearbeiten-Button auf der Rechten Seite jedes Eintrags kommt man zum EditTrip. Eine weitere Möglichkeit ist das Löschen der Einträge, das dadurch erreicht wird, indem der Eintrag nach links gezogen wird. Dann wird ein Delete-Button angezeigt, der das Löschen ermöglicht [deleteTrip()].
+Zunächst wird der Nutzer allerdings einen neuen Trip anlegen müssen. Dies geschieht über den Button am in der Fußleiste.
 
-### Chat
+#### addTrip
+Im addTrip wird ein Neuer Eintrag hinzugefügt. Dafür werden ein Name, sowie Start- und Enddatum (beide optional), welche daraufhin im addTripController an das Backend übergeben werden.
+
+#### editTrip
+Sobald ein Trip angelegt ist, kann dieser auch bearbeitet werden. Hier kann, ähnlich wie beim Hinzufügen, der Name, sowie Start- und Enddatum geändert werden. 
+Zusätzlich sieht man alle Teilnehmer der Reise und kann auch mit dem Betätigen des "Add User"-Buttons neue Teilnehmer hinzufügen.
+
+####AddParticipant
+Im addParticipant können User zu einem vorhandenem Trip hinzugefügt werden. 
+Zum Einen geschieht dies über die Angabe einer Email-Adresse. 
+
+Zum Anderen kann man Nutzer über die Kontaktliste seines Handys hinzufügen. Dafür wird zunächst die Kontaktliste ausgelesen [getContactList()] . Nun kann der Nutzer sich aus dieser Liste einen Kontakt auswählen, der eingeladen werden soll. 
+
+Nach diesem Vorgang werden die User-Daten an das Backend geschickt [addUser()]. Nun wird entweder ein User zu einem Trip hinzugefügt (sollte der Kontakt bereits registriert sein), oder ein Dummy-User wird erstellt. Dieser Dummy enthält alle Daten, die zu diesem Zeitpunkt über den User bekannt sind: Email und/oder Telefonnummer. Sobald sich nun jemand mit diesen Daten registriert, wird der Dummy-Eintrag aktualisiert und der Benutzer ist sofort in dem Trip, in den er eingeladen wurde.
+
+###cityList
+Nun wurde, ein Trip erstellt und diesem möglicherweise weitere Nutzer hinzugefügt. Wenn nun ein Trip ausgewählt wird gelangt der Nutzer zu der cityList. 
+Diese zeigt alle Städte an, die in der Reise beuscht werden sollen. Wie auch bei der tripList gibt es die Möglichkeit eine Stadt zu löschen, zu bearbeiten oder hinzuzufügen. Das Löschen funktioniert wiederum über das Ziehen des Eintrags nach links.
+Für das Bearbeiten und Hinzufügen sind jeweils Buttons vorhanden die angewählt werden können.
+
+In der cityList gibt es neben der eigentlichen Liste noch einen weiteren Tab, die Map. Hier wird über die Google-Maps-Api eine Route mit den vorhandenen Städten angezeigt, zusammen mit der Entfernung und Dauer, die der Trip beanspruchen würde. (siehe Mapservice)
+
+####addCity
+Um eine Stadt hinzuzufügen, muss zunächst eine über das obere Eingabefeld ausgewählt werden. Hier gibt der Nutzer den Namen der Stadt ein, die er hinzufügen möchte. Hierbei wird die Eingabe mit einem Autocorrect über Google-Maps unterstützt[autocomplete() und callGoogleAutocomlete()]. Aus der Liste an Vorschlägen wählt der Nutzer nun eine Stadt aus. Durch die Nutzung des Autocompletes von Google, werden direkt nähere Daten zu der Stadt (wie zum Beispiel die GoogleID und die Koordinaten) gespeichert. Zusammen mit einem Start- und Enddatum (optional) kann so nun die Stadt zu einem Trip hinzugefügt werden [addCity()].
+
+####editCity
+Im editCity können lediglich noch das Start- und Enddatum verändert werden.
+
+###locationList
+Sobald eine Stadt zu einem Trip hinzugefügt wurde kann diese ausgewählt werden und der Nutzer gelangt zu der locationList, die jede einzelne Sehenswürdigkeit des Trips enthält.
+
+
+####addLocation
+####LocationDetail
+
+###Chat
 
 ###Kalenderexport
+
+###Mapservice
 
 
 

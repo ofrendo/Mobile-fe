@@ -10,13 +10,22 @@
       </button>
       <button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('suggest')}" ng-click="locationListCtrl.setTab('suggest')" ng-disabled="locationListCtrl.locations.length < 1">
         {{'LOCATION_LIST.SUGGEST_TAB' | translate}}
-      <button>
+      </button>
     </div>
     <!-- location List -->
     <ion-scroll class="city-list-scroll" ng-show="locationListCtrl.isActiveTab('list')">
-    	<ion-list class="location-list" show-reorder="locationListCtrl.data.showReordering">
+    	<ion-list class="trip-list location-list" show-reorder="locationListCtrl.data.showReordering">
     	  <ion-item ng-repeat="location in locationListCtrl.locations" ng-click="locationListCtrl.navToLocationDetail(location)">
-      	  {{location.name}}
+      	  	<div class="date">
+	        	<div class="date-start">{{location.start_date | date: 'dd.MM HH:mm'}}</div>
+	        	<div class="date-end">{{location.end_date | date: 'dd.MM HH:mm'}}</div>
+	        </div>
+	        <div class="actions">
+	        	<button class="button button-icon icon ion-edit" ng-click="locationListCtrl.navToEditLocation(location)" stop-event></button>
+	        </div>
+	        <div class="item-center">
+	        	<div class="name">{{location.name}}</div>
+	        </div>
     	    <ion-reorder-button class="ion-navicon"
     	        						     on-reorder="locationListCtrl.reorderLocation(location, $fromIndex, $toIndex)">
           </ion-reorder-button>

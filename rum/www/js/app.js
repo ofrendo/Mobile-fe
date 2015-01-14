@@ -133,6 +133,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			}
 		}
 	})
+	
+	.state('app.editLocation', {
+		url: "/editLocation/:trip_id/:city_id/:location_id",
+		views: {
+			'menuContent' :{
+				templateUrl: "partials/editLocation.html",
+				controller: 'editLocationController as editLocationCtrl'
+			}
+		}
+	})
 
 	.state('app.locationDetail', {
 		url: "/LocationDetail/:trip_id/:city_id/:location_id",

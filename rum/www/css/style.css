@@ -104,6 +104,10 @@ ion-side-menu ion-item {
 	color: red !important;
 }
 
+.trip-list .item-content {
+	padding-right:20px;
+}
+
 .trip-list .date {
 	float: left;
 	width: 25%;

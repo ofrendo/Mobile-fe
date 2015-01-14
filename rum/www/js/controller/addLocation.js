@@ -110,7 +110,7 @@ app.controller("addLocationController",
 					locationData.start_date = locationData.start_date.toISOString();
 				}
 				if (locationData.end_date != null){
-					cityData.end_date = utils.DateAndTime(locationData.end_date, locationData.end_time);
+					locationData.end_date = utils.DateAndTime(locationData.end_date, locationData.end_time);
 					locationData.end_date = locationData.end_date.toISOString();
 				}
 				// build location object for backend
