@@ -1,4 +1,6 @@
 app.service("restAPI", ["$http", function($http) {
+	
+	//VARAIBLES
 	console.log("----INIT restAPI----");
 	var module = this;
 	var url = (localStorage.getItem("useLocalServer") !== "true")
@@ -48,6 +50,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id/move", "put", "move", true)
 	];
 
+	//build a function for each entered route
 	for (var i = 0; i < routes.length; i++) { // for each route
 		var parent = module;				  // reset parent
 		var parts = routes[i].path.split("/"); // split path into parts divided

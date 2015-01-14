@@ -1,8 +1,10 @@
 app.controller("tripListController", 
-	["$scope", "$http", "$state", "$ionicPopup", "$timeout", "restAPI", "loginService", "globals", "$translate", "$ionicPopup",
-	 function($scope, $http, $state, $ionicPopup, $timeout, restAPI, loginService, globals, $translate, $ionicPopup) {
+	["$scope", "$state",  "$timeout", "restAPI", "loginService", "globals", "$translate", "$ionicPopup",
+	 function($scope, $state,  $timeout, restAPI, loginService, globals, $translate, $ionicPopup) {
+		
+
 	
-	console.log("----INIT tripListController----");
+	//VARIABLES
 	$scope.trips = [];
 	var me = this;
 
@@ -11,20 +13,25 @@ app.controller("tripListController",
 		showReordering: false
 	};
 	
+	//INIT
+	console.log("----INIT tripListController----");
 	loginService.onInit(function() {
 		globals.setTripID(-1); //also connects chat WS to server
-		 
 		
+		//reads the triplist from backend
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
 			console.log(trips);
 			$scope.trips = trips;
 		});
 	});
 	
+	//sets callback for reordering
 	globals.setReorderCallback(function(){
 		me.data.showReordering = !me.data.showReordering;
 	});
 	
+	
+	//FUNCTIONS
 	//get Trips
 	this.getTrip = function(){
 		restAPI.user.readTrips(globals.user.user_id, function(trips) {
