@@ -1,8 +1,8 @@
 app.controller("exportController", 
-	["$scope","restAPI", "$translate", "$timeout","$stateParams","utils","loginService","globals","$ionicPopup",
-	function($scope,restAPI, $translate, $timeout,$stateParams,utils,loginService,globals,$ionicPopup) {
+	["restAPI", "$translate", "$timeout","$stateParams","utils","loginService","globals","$ionicPopup",
+	function(restAPI, $translate, $timeout,$stateParams,utils,loginService,globals,$ionicPopup) {
 		
-
+		//VARIABLES
 		var trip_id = $stateParams.trip_id;
 		var me = this;
 		this.trip;
@@ -12,10 +12,13 @@ app.controller("exportController",
 		var nameError = false;
 		var dateError = false;
 		
+		//INIT
 		loginService.onInit(function() {
 			globals.setTripID($stateParams.trip_id);
 		});
 		
+		//FUNCTIONS
+		//loads trip data from backend
 		var loadTripData = function(trip_id){
 			console.log('INIT loadTripData with id = ' + trip_id);
 			$timeout(function(){
@@ -28,6 +31,7 @@ app.controller("exportController",
 						me.trip = trip;
 						
 						//save name and dates in local variables for the frontend
+						//converts the date to html date
 						me.name = me.trip.name;
 						me.start = utils.DateToHtmlDate(new Date(me.trip.start_date));
 						me.end = utils.DateToHtmlDate(new Date(me.trip.end_date));
@@ -38,6 +42,7 @@ app.controller("exportController",
 		};
 		loadTripData();
 		
+		//checks if name is empty, called everyytime name is changed
 		this.changeName = function (){
 			//error if name is empty
 			if(me.name ==""){
@@ -48,6 +53,7 @@ app.controller("exportController",
 			}
 		}
 		
+		//checks if dates are correct, called everytime a date is changed
 		this.changeDate = function (){
 			//error if a date is empty or start is after end date
 			if(me.start == "" || me.end == ""){
@@ -61,13 +67,16 @@ app.controller("exportController",
 			}
 
 		}
+		//checks if a name error exists
 		this.hasNameError = function() {
 			return nameError;
 		}
+		//checks if a date error exists
 		this.hasDateError = function () {
 			return dateError;
 		}
 		
+		//disables the export button due to error in name or date
 		this.disableExportButton = function () {
 			if(nameError || dateError){
 				return true;
@@ -78,9 +87,9 @@ app.controller("exportController",
 
 		}
 		
+		//actually does the export
 		this.doExport = function (){
 			// prep some variables
-			//  var startDate = new Date((new Date(me.start)).toISOString());
 			  var startDate = new Date(me.start);
 			  var endDate = new Date(me.end);
 			  var title = me.name;
@@ -94,7 +103,7 @@ app.controller("exportController",
 						if(message){
 							msg = translations['EXPORT.SUCCESS'];
 						}
-						else{ //message can stil contain an error (if for example no calender is available
+						else{ //message can stil contain an error (if for example no calender is available)
 							msg = translations['EXPORT.ERROR'];
 						}
 						var alertPopup = $ionicPopup.alert({
@@ -124,6 +133,7 @@ app.controller("exportController",
 				 window.plugins.calendar.createEventWithOptions(title,location,notes,startDate,endDate,calOptions,success,error);
 			}
 			catch (e) {
+				//if cordova is not available (browser)
 				  $translate([ 'EXPORT.ERROR_CORDOVA','EXPORT.ERROR_TITLE']).then(function(translations){
 						
 						var alertPopup = $ionicPopup.alert({

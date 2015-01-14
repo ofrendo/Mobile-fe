@@ -1,13 +1,17 @@
 app.controller("editCityController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", "$timeout", "$translate", "utils",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI, $timeout, $translate, utils) {
+	["$scope",  "$state",  "loginService", "globals", "$stateParams", "restAPI",  "utils",
+	function($scope,  $state,  loginService, globals, $stateParams, restAPI, utils) {
 	
+	//VARIABLES	
 	var me = this;
 		
+	//INIT
 	console.log("---INIT editCityController----");
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});
+	
+	//FUNCTIONS
 	
 	// get city data from server
 	this.getCityData = function(){
@@ -15,7 +19,7 @@ app.controller("editCityController",
 		restAPI.trip.city.read($stateParams.trip_id, $stateParams.city_id, function(city){
 			console.log('getting cityData: ');
 			console.log(city);
-			// convert date
+			// convert dates
 			if(city.start_date != null){
 				city.start_date = utils.DateToHtmlDate(new Date(city.start_date));
 			}
@@ -26,6 +30,7 @@ app.controller("editCityController",
 		});
 	};
 	
+	//saves the edited changes 
 	this.saveCity = function(){
 		// copy JSON so the date conversion doesn't break the visualization
 		var city = JSON.parse(JSON.stringify($scope.city));

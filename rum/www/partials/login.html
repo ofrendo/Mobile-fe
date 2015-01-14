@@ -1,0 +1,28 @@
+<ion-view title="{{'LOGIN.TITLE' | translate}}">
+	<ion-content class="has-header">
+		<div class="list card">
+	    	<label class="item item-input">
+	        	<span class="input-label">{{'FORMS.USERNAME' | translate}}</span>
+	          	<input type="text" ng-init="loginCtrl.loginData.username='test_user'" ng-model="loginCtrl.loginData.username">
+	        </label>
+	        <label class="item item-input">
+	          	<span class="input-label">{{'FORMS.PASSWORD' | translate}}</span>
+	          	<input type="password" ng-init="loginCtrl.loginData.password='un1tt3st1ng'" ng-model="loginCtrl.loginData.password">
+	        </label>
+	       		<label class="item" >
+	          		<button class="button button-block button-positive" ng-click = "loginCtrl.login()"
+	          				ng-disabled = "!loginCtrl.verifyLoginButton()" >
+	          			{{'LOGIN.LOGIN_BTN' | translate}}
+	          		</button>
+	        	</label>
+	    </div>
+	    <div class="list card">
+	        <label class="item">
+	      		{{'LOGIN.NOT_REGISTERED_YET' | translate}}
+	      		<button class="button button-block button-positive" ng-click = "loginCtrl.navToRegisterView()">
+	      			{{'LOGIN.TO_REGISTRATION' | translate}}
+	      		</button>
+	        </label>
+	    </div>
+	</ion-content>
+</ion-view>

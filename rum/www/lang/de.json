@@ -147,7 +147,8 @@
 	"TRIP_LIST": {
 		"TITLE": "Meine Reisen",
 		"ADD_TRIP_BTN": "Reise hinzufügen",
-		"TRIP_INFO": "{no_participants} {no_participants, plural, one{Teilnehmer} other{Teilnehmer}} | {no_cities} {no_cities, plural, one{Stadt} other{Städte}}"
+		"TRIP_INFO": "{no_participants} {no_participants, plural, one{Teilnehmer} other{Teilnehmer}} | {no_cities} {no_cities, plural, one{Stadt} other{Städte}}",
+		"REORDERING": "Verschieben..."
 	},
 	"EXPORT": {
 		"TITLE": "Kalenderexport",

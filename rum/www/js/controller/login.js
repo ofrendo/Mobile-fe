@@ -3,10 +3,9 @@ app.controller("loginController",
 	function(  $state, loginService, $ionicPopup, globals, $translate, $ionicViewService) {
 		
 		
-	
+	//INIT
 	console.log("----INIT loginController----")
 	globals.removeTripID();
-	
 	//clear history
 	$ionicViewService.clearHistory();
 	//disables (software) back button after login
@@ -14,11 +13,13 @@ app.controller("loginController",
 		   disableBack: true
 		});
 	
-
+	//FUNCTIONS
 	
 	this.login = function () {
+		//get username+pw from view
 		var username = this.loginData.username;
 		var password = this.loginData.password;
+		//try login
 		loginService.login(username, password, function(user) {
 			$state.go("app.tripList");
 		}, function(data, status) {
@@ -38,10 +39,13 @@ app.controller("loginController",
 		});
 	}
 	
+	//Navigation to register
 	this.navToRegisterView = function () {
 		$state.go('app.register');
 	}
 	
+	//verfies if the loginbutton should be shown
+	//disable if error
 	this.verifyLoginButton = function () {
 		//verify if loginButton should be enabled
 		var username = this.loginData.username;

@@ -1,0 +1,50 @@
+<ion-view title="{{'REGISTER.TITLE' | translate}}">
+	<ion-content class="has-header" ng-controller = "registerController as registerCtrl">
+	    <div class="list card ">
+	        <label class="item item-input">
+	        	<span class="input-label">{{'FORMS.MAIL' | translate}}</span>
+	          	<input type="email" ng-change = "registerCtrl.emailChange()" ng-class = "{invalidInput: registerCtrl.hasEmailError() }" 
+	          		   ng-init="registerCtrl.loginData.email='Hallo@web.de'" ng-model="registerCtrl.loginData.email">
+			  	<i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasEmailError()"></i>
+	        </label>
+	        <label class="item item-input">
+	          	<span class="input-label">{{'FORMS.USERNAME' | translate}}</span>
+	          	<input type="text" ng-init="registerCtrl.loginData.username='HalloWelt'" requiered = "required" ng-model="registerCtrl.loginData.username">
+	        </label>
+	        <label class="item item-input">
+	          	<span class="input-label">{{'FORMS.NAME' | translate}}</span>
+	          	<input type="text" ng-init="registerCtrl.loginData.name='Hallo'" ng-model="registerCtrl.loginData.name">
+	        </label>
+	        <label class="item item-input">
+	          	<span class="input-label">{{'FORMS.PHONE' | translate}}</span>
+	          	<input type="tel"  ng-init="registerCtrl.loginData.phone='0151200000000'" ng-model="registerCtrl.loginData.phone">
+	        </label>
+	        <label class="item item-input">
+	          	<span class="input-label">{{'FORMS.PASSWORD' | translate}}</span>
+	          	<input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" 
+	          		   ng-init="registerCtrl.loginData.password='Passwort'" ng-model="registerCtrl.loginData.password">
+	          	<i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasPasswordError()"></i>
+	        </label>
+	       	<label class="item item-input">
+	          	<span class="input-label">{{'FORMS.PASSWORD_REPEAT' | translate}}</span>
+	          	<input type="password" ng-change = "registerCtrl.passwordChange()" ng-class = "{invalidInput: registerCtrl.hasPasswordError() }" 
+	          		   ng-init="registerCtrl.loginData.password2='Passwort'" ng-model="registerCtrl.loginData.password2">
+	          	<i class="errorIcon icon ion-alert-circled error" ng-show = "registerCtrl.hasPasswordError()"></i>
+	        </label>
+	       		<label class="item" >
+	          		<button class="button button-block button-positive" ng-click = "registerCtrl.register()"
+	          				ng-disabled = "!registerCtrl.verifyRegisterButton()" >
+	          			{{'REGISTER.REGISTER_BTN' | translate}}
+	          		</button>
+	        	</label>
+	    </div>
+	    <div class="list card">
+	    	<label class="item">
+	      		{{'REGISTER.ALREADY_REGISTERED' | translate}}
+	      		<button class="button button-block button-positive" ng-click = "registerCtrl.navToLoginView()">
+	      			{{'REGISTER.TO_LOGIN' | translate}}
+	      		</button>
+	        </label>
+	    </div>
+	</ion-content>
+</ion-view>

@@ -1,46 +1,46 @@
 <ion-view title="{{'ADD_LOCATION.TITLE' | translate: '{city_name: city.name}'}}">
-  <content-header></content-header>
-  <ion-content class="has-header">
-  	<div class="list card">
-  		<div class="item item-input baseline-align" ng-init="addLocationCtrl.location = {};">
-  			<span class="input-label">{{'ADD_LOCATION.LOCATION' | translate}}</span>
-  			<div class="location-name">
-  				<input type="text" id="searchText" 
-  					ng-model="addLocationCtrl.locationName" 
-  					ng-init="addLocationCtrl.locationName=''" 
-  					ng-change="addLocationCtrl.autocomplete()" 
-  					placeholder="{{'ADD_LOCATION.LOC_SEARCH' | translate}}"/>
-  				<ul class="autocompletion" 
-  					ng-init="addLocationCtrl.autocompletionData = [];"
-  					ng-hide="addLocationCtrl.autocompletionData.length == 0">
-  					<li ng-repeat="ac_location in addLocationCtrl.autocompletionData" ng-click="addLocationCtrl.selectLocation(ac_location)">
-  						<span class="city">{{ac_location.terms[0].value}}</span>
-  						<span class="term">{{ac_location.terms[1].value}}</span>
-  					</li>
-  					<li class="powered"><img src="img/powered-by-google.png"></li>
-  				</ul>
-  			</div>
-  		</div>
-  		<label class="item item-input">
-  			<span class="input-label">{{'FORMS.START_DATE' | translate}}</span>
-  			<input type="date" id="searchText" ng-model="addLocationCtrl.location.start_date"/>
-  		</label>
-  		<label class="item item-input">
-  			<span class="input-label">{{'FORMS.START_TIME' | translate}}</span>
-  			<input type="time" id="searchText" ng-model="addLocationCtrl.location.start_time"/>
-  		</label>
-  		<label class="item item-input">
-  			<span class="input-label">{{'FORMS.END_DATE' | translate}}</span>
-  			<input type="date" id="searchText" ng-model="addLocationCtrl.location.end_date"/>
-  		</label>
-  		<label class="item item-input">
-  			<span class="input-label">{{'FORMS.END_TIME' | translate}}</span>
-  			<input type="time" id="searchText" ng-model="addLocationCtrl.location.end_time"/>
-  		</label>
-  		<div class="item">
-      		<button class="button button-block button-positive" ng-disabled="location.name == ''" ng-click="addLocationCtrl.addLocation()">{{'ADD_LOCATION.ADD_LOCATION_BTN' | translate}}</button>
-      		<div id="google_attr"></div>
-      	</div>
-  	</div>    
-  </ion-content>
+	<content-header></content-header>
+  	<ion-content class="has-header">
+	  	<div class="list card">
+	  		<div class="item item-input baseline-align" ng-init="addLocationCtrl.location = {};">
+	  			<span class="input-label">{{'ADD_LOCATION.LOCATION' | translate}}</span>
+	  			<div class="location-name">
+	  				<input type="text" id="searchText" 
+	  					ng-model="addLocationCtrl.locationName" 
+	  					ng-init="addLocationCtrl.locationName=''" 
+	  					ng-change="addLocationCtrl.autocomplete()" 
+	  					placeholder="{{'ADD_LOCATION.LOC_SEARCH' | translate}}"/>
+	  				<ul class="autocompletion" 
+	  					ng-init="addLocationCtrl.autocompletionData = [];"
+	  					ng-hide="addLocationCtrl.autocompletionData.length == 0">
+	  					<li ng-repeat="ac_location in addLocationCtrl.autocompletionData" ng-click="addLocationCtrl.selectLocation(ac_location)">
+	  						<span class="city">{{ac_location.terms[0].value}}</span>
+	  						<span class="term">{{ac_location.terms[1].value}}</span>
+	  					</li>
+	  					<li class="powered"><img src="img/powered-by-google.png"></li>
+	  				</ul>
+	  			</div>
+	  		</div>
+	  		<label class="item item-input">
+	  			<span class="input-label">{{'FORMS.START_DATE' | translate}}</span>
+	  			<input type="date" id="searchText" ng-model="addLocationCtrl.location.start_date"/>
+	  		</label>
+	  		<label class="item item-input">
+	  			<span class="input-label">{{'FORMS.START_TIME' | translate}}</span>
+	  			<input type="time" id="searchText" ng-model="addLocationCtrl.location.start_time"/>
+	  		</label>
+	  		<label class="item item-input">
+	  			<span class="input-label">{{'FORMS.END_DATE' | translate}}</span>
+	  			<input type="date" id="searchText" ng-model="addLocationCtrl.location.end_date"/>
+	  		</label>
+	  		<label class="item item-input">
+	  			<span class="input-label">{{'FORMS.END_TIME' | translate}}</span>
+	  			<input type="time" id="searchText" ng-model="addLocationCtrl.location.end_time"/>
+	  		</label>
+	  		<div class="item">
+	      		<button class="button button-block button-positive" ng-disabled="location.name == ''" ng-click="addLocationCtrl.addLocation()">{{'ADD_LOCATION.ADD_LOCATION_BTN' | translate}}</button>
+	      		<div id="google_attr"></div>
+	      	</div>
+	  	</div>    
+	</ion-content>
 </ion-view>

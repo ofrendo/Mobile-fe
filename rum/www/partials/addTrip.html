@@ -1,24 +1,24 @@
-<ion-view title="{{'ADD_TRIP.TITLE' | translate}}">
-  <content-header></content-header>
-  <ion-content class="has-header" ng-controller="addTripController as addTripCtrl">
-    <div class="list card">
-      <label class="item item-input">
-     	<span class="input-label">{{'FORMS.NAME' | translate}}</span>
-     	<input type="text" ng-model="tripData.name" ng-init="tripData.name ='test'">
-      </label>
-      <label class="item item-input">
-     	<span class="input-label">{{'FORMS.TRIP_START_DATE' | translate}}</span>
-     	<input type="date" ng-model="tripData.start_date">
-      </label>
-      <label class="item item-input">
-     	<span class="input-label">{{'FORMS.TRIP_END_DATE' | translate}}</span>
-     	<input type="date" ng-model="tripData.end_date">
-      </label>
-      <label class="item">
-      	<button class="button button-positive button-block" ng-disabled="tripData.name == ''" ng-click="addTripCtrl.addTrip()">
-      		{{'ADD_TRIP.ADD_TRIP_BTN' | translate}}
-      	</button>
-      </label>
-    </div>
-  </ion-content>
+<ion-view title="{{'ADD_TRIP.TITLE' | translate}}"> 
+	<content-header></content-header>
+	<ion-content class="has-header" ng-controller="addTripController as addTripCtrl">
+		<div class="list card">
+			<label class="item item-input">
+				<span class="input-label">{{'FORMS.NAME'| translate}}</span>
+				<input type="text" ng-model="tripData.name" ng-init="tripData.name ='test'">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">{{'FORMS.TRIP_START_DATE'	| translate}}</span> 
+				<input type="date" ng-model="tripData.start_date">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">{{'FORMS.TRIP_END_DATE'| translate}}</span> 
+				<input type="date" ng-model="tripData.end_date">
+			</label>
+			<label class="item">
+				<button class="button button-positive button-block" ng-disabled="tripData.name == ''" ng-click="addTripCtrl.addTrip()">
+					{{'ADD_TRIP.ADD_TRIP_BTN' | translate}}
+				</button>
+			</label>
+		</div>
+	</ion-content> 
 </ion-view>

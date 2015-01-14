@@ -1,24 +1,29 @@
 app.controller("locationDetailController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", 
-	 "$ionicScrollDelegate", "$timeout", "$interval", "utils",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI,
-	 $ionicScrollDelegate, $timeout, $interval, utils) {
+	["$scope",   "loginService", "globals", "$stateParams", "restAPI", "$ionicScrollDelegate", "$timeout",
+	 "$interval", "utils",
+	function($scope, loginService, globals, $stateParams, restAPI, $ionicScrollDelegate, $timeout,
+			$interval, utils) {
 	
+		
+	//INIT	
 	console.log("---INIT locationDetailController----");
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});
 	
-	var me = this;
-	
+	//VARIABLES
+	var me = this;	
 	// initialize places service
 	var html_attr = document.getElementById('google_attr');
 	var placesService = new google.maps.places.PlacesService(html_attr);
 	
+	
+	//FUNCTIONS
 	this.slideChanged = function(index){
 		$scope.photoIndex = index;
 	}
 	
+	//slides through a couple of pitcures for the selected location
 	this.autoScroll = function(){
 		var i = 0;
 		$timeout(function(){
@@ -43,6 +48,7 @@ app.controller("locationDetailController",
 		
 	}
 	
+	//gets the location from backend
 	this.getLocation = function(){
 		restAPI.trip.city.location.read($stateParams.trip_id, $stateParams.city_id, $stateParams.location_id, function(location){
 			console.log('getting Location Details:');

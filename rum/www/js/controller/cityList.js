@@ -1,12 +1,9 @@
 app.controller("cityListController", 
-	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "maps", "$translate", "$ionicPopup",
-    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, maps, $translate, $ionicPopup) {
-	
-	console.log("----INIT cityListController----");
-	loginService.onInit(function() {
-		globals.setTripID($stateParams.trip_id);
-	});
+	[  "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "maps", "$translate", "$ionicPopup",
+    function(  $state, $stateParams, $timeout, restAPI, loginService, globals, maps, $translate, $ionicPopup) {
 
+
+	//VARIABLES
 	var me = this;
 	this.trip = {};
 	this.cities = [];
@@ -14,6 +11,13 @@ app.controller("cityListController",
 	this.map = {};
 	this.distance = 0;		// distance in km
 	this.travelTime = 0;	// travel time in min
+	
+	
+	//INIT
+	console.log("----INIT cityListController----");
+	loginService.onInit(function() {
+		globals.setTripID($stateParams.trip_id);
+	});
 	
 	//be able to reorder list
 	this.data = {
@@ -24,6 +28,9 @@ app.controller("cityListController",
 	globals.setReorderCallback(function(){
 		me.data.showReordering = !me.data.showReordering;
 	});
+	
+	
+	//FUNCTIONS
 	
 	// the tabbing functions
 	this.setTab = function(index){
@@ -36,6 +43,8 @@ app.controller("cityListController",
 		});
 	};
 	
+	//check if list or map is active
+	//true = list ; false = map
 	this.isActiveTab = function(index){
 		return this.tab === index;
 	};
@@ -47,6 +56,7 @@ app.controller("cityListController",
 		me.moveCity(city, me.cities[fromLocalIndex].index, me.cities[toLocalIndex].index);
 	};
 	
+	//sorts the cities array
 	function sortCitiesByIndex() {
 		me.cities.sort(function(a, b) {
 			return a.index - b.index;
@@ -57,16 +67,14 @@ app.controller("cityListController",
 	this.navToAddCity = function(){
 		$state.go('app.addCity', {trip_id: me.trip.trip_id});
 	};
-	
 	this.navToEditCity = function(city){
 		$state.go('app.editCity', {trip_id: me.trip.trip_id, city_id: city.city_id})
 	};
-	
 	this.navToLocationList = function(city){
 		$state.go('app.locationList', {trip_id: me.trip.trip_id, city_id: city.city_id})
 	};
 	
-	// get the trip
+	// get the tripData from the backend
 	this.loadTripData = function(trip_id){
 		console.log('INIT loadTripData with id = ' + trip_id);
 		$timeout(function(){
@@ -83,7 +91,7 @@ app.controller("cityListController",
 	};
 	this.loadTripData($stateParams.trip_id);
 	
-	//move city
+	//move city (reorder)
 	this.moveCity = function(city, fromIndex, toIndex) {
 		console.log('Move City ' + city.city_id + ' from = ' + fromIndex + ' to ' + toIndex);
 		$timeout(function(){

@@ -1,10 +1,18 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService", "$ionicActionSheet",
-	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams,loginService, $ionicActionSheet){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", 
+	 "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService", "$ionicActionSheet",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform,
+			$ionicViewService, $ionicNavBarDelegate,$stateParams,loginService, $ionicActionSheet){
 	
-	console.log("----INIT menuController----");
+
+
+	
+	//VARIABLES
 	var me = this;
 
+	
+	//INIT
+	console.log("----INIT menuController----");
 	//disable hardware back button
 	$ionicPlatform.onHardwareBackButton(function (event){
 		//if history is less then 1 the back-button should not work, because the last entry is the login/register-Page
@@ -17,18 +25,23 @@ app.controller("menuController",
 		}
 	});	
 		
-		
+	//FUNCTIONS
+	//checks-functions
+	//checks if differnet ui elemts should be shown
 	$scope.checkRight = function(){
 		//check if chat is supposed to be shown
+		//show chat if trip is availavle
 		return !!globals.trip_id && globals.trip_id >= 0;
 	};
 	
 	$scope.checkLeft = function(){
 		//check if menu on left is supposed to be shown
+		//menu is shown if user is logged in
 		return loginService.isLoggedIn();
 	};
 	
 	$scope.checkListOptions = function(){
+		//list options are shown if user is logged in
 		// check if list options should be available
 		return loginService.isLoggedIn();
 	}
@@ -44,6 +57,7 @@ app.controller("menuController",
 		}
 	}
 	
+	//opens the dropdown menu for context menu on the right site
 	$scope.openListOptionsDropdown = function(){
 		// translate text
 		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL', 'MENU.OPTIMIZE']).then(function(translations){
