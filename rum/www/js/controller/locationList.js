@@ -124,6 +124,14 @@ app.controller("locationListController",
 			location_id: location.location_id});
 	};
 	
+	this.navToEditLocation = function(location){
+		$state.go('app.editLocation', {
+			trip_id: $stateParams.trip_id,
+			city_id: $stateParams.city_id,
+			location_id: location.location_id
+		});
+	}
+	
 	//reorders the locations
 	this.reorderLocation = function(location, fromLocalIndex, toLocalIndex){
 		console.log('Move Location ' + location.location_id + ' from = ' + me.locations[fromLocalIndex].index + ' to ' + me.locations[toLocalIndex].index);

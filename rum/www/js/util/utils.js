@@ -14,6 +14,7 @@ app.service("utils", [function() {
 	};
 	
 	this.DateAndTime = function(htmlDate, htmlTime){
+		console.log(htmlTime);
 		var jsDate = new Date(htmlDate);
 		if(htmlTime != null){
 			jsDate = new Date(htmlDate + ' ' + htmlTime + ':00');
