@@ -1,7 +1,9 @@
 app.service("globals", [ function() {
+	//VARIABLES
 	this.trips = [];
 	this.chat;
 
+	//FUNCTIONS
 	this.setChat = function(chat) {
 		this.chat = chat;
 	};
