@@ -1,46 +1,48 @@
 <ion-view title="{{'LOCATION_LIST.TITLE' | translate: '{city_name: city.name}'}}">
-  <content-header></content-header>
-  <ion-content scroll="false" class="has-header">
-    <div class="button-bar tabbar">
-      <button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('list')}" ng-click="locationListCtrl.setTab('list')">
-        {{'LOCATION_LIST.LIST_TAB' | translate}}
-      </button>
-      <button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('map')}" ng-click="locationListCtrl.setTab('map')" ng-disabled="locationListCtrl.locations.length < 1">
-        {{'LOCATION_LIST.MAP_TAB' | translate}}
-      </button>
-    </div>
-    <!-- city List -->
-    <ion-scroll class="city-list-scroll" ng-show="locationListCtrl.isActiveTab('list')">
-    	<ion-list class="location-list" show-reorder="locationListCtrl.data.showReordering">
-    	  <ion-item ng-repeat="location in locationListCtrl.locations" ng-click="locationListCtrl.navToLocationDetail(location)">
-      	  {{location.name}}
-    	    <ion-reorder-button class="ion-navicon"
-    	        						     on-reorder="locationListCtrl.reorderLocation(location, $fromIndex, $toIndex)">
-          </ion-reorder-button>
-          <ion-option-button class="button-assertive" ng-click="locationListCtrl.deleteLocation(location)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
-        </ion-item>
-      </ion-list>
-    </ion-scroll>
-    <!-- map -->
-    <div class="map-wrapper" ng-show="locationListCtrl.isActiveTab('map')">
-    <div class="overlay">
-      <table>
-        <tr>
-          <td>{{'MAP.ROAD_DISTANCE' | translate}}:</td>
-          <td>{{locationListCtrl.distance}}</td>
-        </tr>
-        <tr>
-          <td>{{'MAP.TRAVEL_TIME' | translate}}:</td>
-          <td>{{locationListCtrl.travelTime}}</td>
-        </tr>
-      </table>
-    </div>
-    <div class="map-container" id="map-canvas-locations"></div>
-    </div>
-  </ion-content>
-  <ion-footer-bar class="bar bar-positive triplist-footer">
-  	<button class="button button-icon icon ion-plus-round" ng-click="locationListCtrl.navToAddLocation()">
-  		{{'LOCATION_LIST.ADD_LOCATION_BTN' | translate}}
-  	</button>
-  </ion-footer-bar>
+  	<content-header></content-header>
+  	<ion-content scroll="false" class="has-header">
+	    <div class="button-bar tabbar">
+	      	<button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('list')}" ng-click="locationListCtrl.setTab('list')">
+	        	{{'LOCATION_LIST.LIST_TAB' | translate}}
+	      	</button>
+	      	<button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('map')}" ng-click="locationListCtrl.setTab('map')" ng-disabled="locationListCtrl.locations.length < 1">
+	        	{{'LOCATION_LIST.MAP_TAB' | translate}}
+	     	</button>
+	    </div>
+	    <!-- city List -->
+	    <ion-scroll class="city-list-scroll" ng-show="locationListCtrl.isActiveTab('list')">
+	    	<ion-list class="location-list" show-reorder="locationListCtrl.data.showReordering">
+	    		<ion-item ng-repeat="location in locationListCtrl.locations" ng-click="locationListCtrl.navToLocationDetail(location)">
+	      	  		{{location.name}}
+	    	    	<ion-reorder-button class="ion-navicon"
+	    	        					on-reorder="locationListCtrl.reorderLocation(location, $fromIndex, $toIndex)">
+	          		</ion-reorder-button>
+	          		<ion-option-button class="button-assertive" ng-click="locationListCtrl.deleteLocation(location)">
+	          			{{'CITY_LIST.DELETE' | translate}}
+	          		</ion-option-button>
+	        	</ion-item>
+	      	</ion-list>
+	    </ion-scroll>
+	    <!-- map -->
+	    <div class="map-wrapper" ng-show="locationListCtrl.isActiveTab('map')">
+		    <div class="overlay">
+			    <table>
+			        <tr>
+			          <td>{{'MAP.ROAD_DISTANCE' | translate}}:</td>
+			          <td>{{locationListCtrl.distance}}</td>
+			        </tr>
+			        <tr>
+			          <td>{{'MAP.TRAVEL_TIME' | translate}}:</td>
+			          <td>{{locationListCtrl.travelTime}}</td>
+			        </tr>
+			    </table>
+		    </div>
+		    <div class="map-container" id="map-canvas-locations"></div>
+	    </div>
+  	</ion-content>
+  	<ion-footer-bar class="bar bar-positive triplist-footer">
+  		<button class="button button-icon icon ion-plus-round" ng-click="locationListCtrl.navToAddLocation()">
+  			{{'LOCATION_LIST.ADD_LOCATION_BTN' | translate}}
+  		</button>
+  	</ion-footer-bar>
 </ion-view>

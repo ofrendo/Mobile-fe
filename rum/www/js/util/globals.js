@@ -1,4 +1,4 @@
-app.service("globals", [function() {
+app.service("globals", [ function() {
 	this.trips = [];
 	this.chat;
 
@@ -9,16 +9,16 @@ app.service("globals", [function() {
 	this.setUser = function(user) {
 		this.user = user;
 
-		//init chat
+		// init chat
 		this.chat.connect();
 	};
-	
-	this.setReorderCallback = function(callback){
+
+	this.setReorderCallback = function(callback) {
 		this.reorderCallback = callback;
 	}
-	
-	this.callReorderCallback = function(){
-		if (typeof(this.reorderCallback)== "function") {
+
+	this.callReorderCallback = function() {
+		if (typeof (this.reorderCallback) == "function") {
 			this.reorderCallback();
 		}
 	}
@@ -27,8 +27,7 @@ app.service("globals", [function() {
 		trip_id = parseInt(trip_id);
 		if (!isNaN(trip_id) && trip_id >= 0) {
 			this.chat.joinTripRoom(trip_id);
-		}
-		else if (!isNaN(this.trip_id)) {
+		} else if (!isNaN(this.trip_id)) {
 			this.chat.leaveTripRoom();
 		}
 		this.trip_id = trip_id;
@@ -46,4 +45,4 @@ app.service("globals", [function() {
 		localStorage.removeItem("trip_id");
 		delete this.trip_id;
 	};
-}]);
+} ]);

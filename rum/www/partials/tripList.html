@@ -1,29 +1,29 @@
 <ion-view title="{{'TRIP_LIST.TITLE' | translate}}">
-  <content-header></content-header>
-  <ion-content class="has-header">
-    <ion-list class="trip-list" show-reorder="tripListCtrl.data.showReordering">
-      <ion-item ng-repeat="trip in trips" ng-click="tripListCtrl.navToCityList(trip)"><!--  | orderBy: 'start_date'-->
-        	<div class="date">
-        		<div class="date-start">{{trip.start_date | date: 'dd.MM.yy'}}</div>
-        		<div class="date-end">{{trip.end_date | date: 'dd.MM.yy'}}</div>
-        	</div>
-        	<div class="actions">
-        		<button class="button button-icon icon ion-edit" ng-click="tripListCtrl.navToEditTrip(trip)" stop-event></button>
-        	</div>
-        	<div class="item-center">
-        		<div class="name">{{trip.name}}</div>
-        		<div class="info">
-        			{{'TRIP_LIST.TRIP_INFO' | translate: '{no_participants: trip.no_participants, no_cities: trip.no_cities}'}}	
-        		</div>
-        	</div>
-        	<ion-reorder-button class="ion-navicon"
-	        					on-reorder="tripListCtrl.reorderTrip(trip, $fromIndex, $toIndex)">
-	        </ion-reorder-button>
-	        <ion-option-button class="button-assertive" ng-click="tripListCtrl.deleteTrip(trip)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  <ion-footer-bar class="bar bar-positive triplist-footer">
+	<content-header></content-header>
+  	<ion-content class="has-header">
+	    <ion-list class="trip-list" show-reorder="tripListCtrl.data.showReordering">
+	      	<ion-item ng-repeat="trip in trips" ng-click="tripListCtrl.navToCityList(trip)"><!--  | orderBy: 'start_date'-->
+	        	<div class="date">
+	        		<div class="date-start">{{trip.start_date | date: 'dd.MM.yy'}}</div>
+	        		<div class="date-end">{{trip.end_date | date: 'dd.MM.yy'}}</div>
+	        	</div>
+	        	<div class="actions">
+	        		<button class="button button-icon icon ion-edit" ng-click="tripListCtrl.navToEditTrip(trip)" stop-event></button>
+	        	</div>
+	        	<div class="item-center">
+	        		<div class="name">{{trip.name}}</div>
+	        		<div class="info">
+	        			{{'TRIP_LIST.TRIP_INFO' | translate: '{no_participants: trip.no_participants, no_cities: trip.no_cities}'}}	
+	        		</div>
+	        	</div>
+	        	<ion-reorder-button class="ion-navicon"
+		        					on-reorder="tripListCtrl.reorderTrip(trip, $fromIndex, $toIndex)">
+		        </ion-reorder-button>
+		        <ion-option-button class="button-assertive" ng-click="tripListCtrl.deleteTrip(trip)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
+	      	</ion-item>
+	    </ion-list>
+  	</ion-content>
+  	<ion-footer-bar class="bar bar-positive triplist-footer">
     	<button class="button button-icon icon ion-plus-round" ng-click="tripListCtrl.navToAddTrip()">{{'TRIP_LIST.ADD_TRIP_BTN' | translate}}</button>
     </ion-footer-bar>
 </ion-view>

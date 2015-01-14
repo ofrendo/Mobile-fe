@@ -2,13 +2,14 @@ app.service("maps", ["$timeout", function($timeout) {
 
 	var me = this;
 	this.first = true;
-	this.objects = []; //can be either locations or cities
+	this.objects = []; // can be either locations or cities
 
 	var directionsService = new google.maps.DirectionsService();
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 
 	this.onTabSwitch = function(onDataChange) {
-		// workaround to width height problems with google maps when hiding the map and showing it again
+		// workaround to width height problems with google maps when hiding the
+		// map and showing it again
 		$timeout(function(){
 			google.maps.event.trigger(me.map, 'resize');
 			me.map.setZoom( me.map.getZoom() );
@@ -103,7 +104,9 @@ app.service("maps", ["$timeout", function($timeout) {
 				zoomControl: false,
 				panControl: false,
 				mapTypeControl: false,
-				center: posCenter // the center positioning won't really work because the div size is not specified (the tab is not shown at initialization)
+				center: posCenter // the center positioning won't really work
+									// because the div size is not specified
+									// (the tab is not shown at initialization)
 		};
 		me.map = new google.maps.Map(document.getElementById(mapDivID), mapOptions);
 		// add markers for each city

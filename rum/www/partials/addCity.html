@@ -1,39 +1,40 @@
-<ion-view title="{{'ADD_CITY.TITLE' | translate}}">
-  <content-header></content-header>
-  <ion-content class="has-header">
-  	<div class="list card">
-  		<div class="item item-input baseline-align">
-  			<span class="input-label">{{'FORMS.NAME' | translate}}</span>
-  			<div class="city-name">
-  				<input type="text" id="searchText" 
-  					ng-model="addCityCtrl.cityData.name" 
-  					ng-init="addCityCtrl.cityData.name=''" 
-  					ng-change="addCityCtrl.autocomplete()" 
-  					placeholder="{{'ADD_CITY.CITY_SEARCH' | translate}}"/>
-  				<ul class="autocompletion" 
-  					ng-init="addCityCtrl.autocompletionData = [];"
-  					ng-hide="addCityCtrl.autocompletionData.length == 0">
-  					<li ng-repeat="city in addCityCtrl.autocompletionData" ng-click="addCityCtrl.selectCity(city)">
-  						<span ng-class="(term.offset == 0) ? 'city' : 'term'" ng-repeat="term in city.terms">
-  							{{term.value}}
-  						</span>
-  					</li>
-  					<li class="powered"><img src="img/powered-by-google.png"></li>
-  				</ul>
-  			</div>
-  		</div>
-  		<label class="item item-input">
-  			<span class="input-label">{{'FORMS.START_DATE' | translate}}</span>
-  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.start_date"/>
-  		</label>
-  		<label class="item item-input">
-  			<span class="input-label">{{'FORMS.END_DATE' | translate}}</span>
-  			<input type="date" id="searchText" ng-model="addCityCtrl.cityData.end_date"/>
-  		</label>
-  		<div class="item">
-      		<button class="button button-block button-positive" ng-disabled="addCityCtrl.cityData.name == ''" ng-click="addCityCtrl.addCity()">{{'ADD_CITY.ADD_CITY_BTN' | translate}}</button>
-      		<div id="google_attr"></div>
-      	</div>
-  	</div>    
-  </ion-content>
+<ion-view title="{{'ADD_CITY.TITLE' | translate}}"> 
+	<content-header></content-header>
+	<ion-content class="has-header">
+		<div class="list card">
+			<div class="item item-input baseline-align">
+				<span class="input-label">{{'FORMS.NAME' | translate}}</span>
+				<div class="city-name">
+					<input type="text" id="searchText"
+						ng-model="addCityCtrl.cityData.name"
+						ng-init="addCityCtrl.cityData.name=''"
+						ng-change="addCityCtrl.autocomplete()"
+						placeholder="{{'ADD_CITY.CITY_SEARCH' | translate}}" />
+					<ul class="autocompletion"
+						ng-init="addCityCtrl.autocompletionData = [];"
+						ng-hide="addCityCtrl.autocompletionData.length == 0">
+						<li ng-repeat="city in addCityCtrl.autocompletionData"
+							ng-click="addCityCtrl.selectCity(city)"><span
+							ng-class="(term.offset == 0) ? 'city' : 'term'"
+							ng-repeat="term in city.terms"> {{term.value}} </span></li>
+						<li class="powered"><img src="img/powered-by-google.png"></li>
+					</ul>
+				</div>
+			</div>
+			<label class="item item-input"> <span class="input-label">{{'FORMS.START_DATE'
+					| translate}}</span> <input type="date" id="searchText"
+				ng-model="addCityCtrl.cityData.start_date" />
+			</label> <label class="item item-input"> <span class="input-label">{{'FORMS.END_DATE'
+					| translate}}</span> <input type="date" id="searchText"
+				ng-model="addCityCtrl.cityData.end_date" />
+			</label>
+			<div class="item">
+				<button class="button button-block button-positive"
+					ng-disabled="addCityCtrl.cityData.name == ''"
+					ng-click="addCityCtrl.addCity()">{{'ADD_CITY.ADD_CITY_BTN' |
+					translate}}</button>
+				<div id="google_attr"></div>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>

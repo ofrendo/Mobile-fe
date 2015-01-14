@@ -1,61 +1,62 @@
 <ion-side-menus ng-controller = "menuController as menuCtrl">
 
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-positive nav-title-slide-ios7">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i>{{'MENU.BACK_BTN' | translate}}</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-side-menu-content>
+  	<ion-side-menu-content>
+	    <ion-nav-bar class="bar-positive nav-title-slide-ios7">
+	    	<ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i>{{'MENU.BACK_BTN' | translate}}</ion-nav-back-button>
+	    </ion-nav-bar>
+	    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  	</ion-side-menu-content>
 
-  <ion-side-menu side="left" is-enabled="checkLeft()">
-    <header class="bar bar-header bar-positive">
-      <h1 class="title">{{'MENU.TITLE' | translate}}</h1>
-       <button class="button button-icon" menu-close><i class="icon ion-ios7-arrow-forward"></i></button>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
-      	<ion-item menu-close nav-clear ng-click="menuCtrl.navToTripList()">
-          {{'MENU.TRIP_LIST' | translate}}
-        </ion-item>
-        <ion-item menu-close ng-click="menuCtrl.navToExport()" >
-          {{'MENU.EXPORT' | translate}}
-        </ion-item>
-         <ion-item menu-close ng-click="menuCtrl.navToSettings()">
-          {{'MENU.SETTINGS' | translate}}
-        </ion-item>
-        <ion-item nav-clear menu-close ng-click="menuCtrl.logout()">
-          {{'MENU.LOGOUT' | translate}}
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
+  	<ion-side-menu side="left" is-enabled="checkLeft()">
+	    <header class="bar bar-header bar-positive">
+	    	<h1 class="title">{{'MENU.TITLE' | translate}}</h1>
+	       	<button class="button button-icon" menu-close>
+	       		<i class="icon ion-ios7-arrow-forward"></i>
+	       	</button>
+	    </header>
+	    <ion-content class="has-header">
+	      	<ion-list>
+	      		<ion-item menu-close nav-clear ng-click="menuCtrl.navToTripList()">
+	          		{{'MENU.TRIP_LIST' | translate}}
+	        	</ion-item>
+	        	<ion-item menu-close ng-click="menuCtrl.navToExport()" >
+	          		{{'MENU.EXPORT' | translate}}
+	        	</ion-item>
+	         	<ion-item menu-close ng-click="menuCtrl.navToSettings()">
+	          		{{'MENU.SETTINGS' | translate}}
+	        	</ion-item>
+	        	<ion-item nav-clear menu-close ng-click="menuCtrl.logout()">
+	          		{{'MENU.LOGOUT' | translate}}
+	        	</ion-item>
+	      	</ion-list>
+	    </ion-content>
+  	</ion-side-menu>
   
-  <ion-side-menu side="right" ng-controller="chatController as chatCtrl" is-enabled="checkRight()">
-  	 <header class="bar bar-header bar-positive">
-      <button class="button button-icon" menu-close><i class="icon ion-ios7-arrow-back"></i></button>
-      <h1 class="title">{{'CHAT.TITLE' | translate}}</h1>
-    </header>
-    <ion-content class="has-header" delegate-handle="chatScroll">
-    	<div class="chat">
-			<div class="msg" ng-class="(isOwnMessage(msg)) ? 'msg-right' : 'msg-left'" ng-repeat="msg in messages | orderBy: msg.created_on">
-				<div class="icon">
-					<img ng-src="{{msg.avatar}}" />
-				</div>
-				<div class="msg-bubble-wrapper">
-					<div class="msg-bubble">
-						<div class="msg-author">{{msg.name}}</div>
-						{{msg.msg_text}}
-						<div class="msg-info">{{msg.created_on | date: 'dd.MM.yy - HH:mm'}}</div>
-						<div style="clear:both;"></div>
+  	<ion-side-menu side="right" ng-controller="chatController as chatCtrl" is-enabled="checkRight()">
+  		<header class="bar bar-header bar-positive">
+      		<button class="button button-icon" menu-close><i class="icon ion-ios7-arrow-back"></i></button>
+      		<h1 class="title">{{'CHAT.TITLE' | translate}}</h1>
+    	</header>
+    	<ion-content class="has-header" delegate-handle="chatScroll">
+	    	<div class="chat">
+				<div class="msg" ng-class="(isOwnMessage(msg)) ? 'msg-right' : 'msg-left'" ng-repeat="msg in messages | orderBy: msg.created_on">
+					<div class="icon">
+						<img ng-src="{{msg.avatar}}" />
+					</div>
+					<div class="msg-bubble-wrapper">
+						<div class="msg-bubble">
+							<div class="msg-author">{{msg.name}}</div>
+							{{msg.msg_text}}
+							<div class="msg-info">{{msg.created_on | date: 'dd.MM.yy - HH:mm'}}</div>
+							<div style="clear:both;"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-    </ion-content>
-    <ion-footer-bar>
-    	<textarea class="msg-input" ng-model="msgText" ng-init="msgText =''" placeholder="{{'CHAT.INSERT_MSG' | translate}}"></textarea>
-    	<button class="button button-positive icon ion-ios7-paperplane" ng-click="sendMsg()" ng-disabled="msgText.length == 0">
-    	</button>
-    </ion-footer-bar>
-  </ion-side-menu>
+    	</ion-content>
+    	<ion-footer-bar>
+    		<textarea class="msg-input" ng-model="msgText" ng-init="msgText =''" placeholder="{{'CHAT.INSERT_MSG' | translate}}"></textarea>
+    		<button class="button button-positive icon ion-ios7-paperplane" ng-click="sendMsg()" ng-disabled="msgText.length == 0"></button>
+    	</ion-footer-bar>
+  	</ion-side-menu>
 </ion-side-menus>

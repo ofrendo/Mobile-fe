@@ -1,15 +1,15 @@
 <ion-view title="{{'SETTINGS.TITLE' | translate}}">
-  <content-header></content-header>
-  <ion-content class="has-header">
-	<div class="list card">
-		<div class="item item-input">
-			<label class="input-label">{{'FORMS.LANGUAGE' | translate}}</label>
-			<select ng-change="settingsCtrl.changeLanguage(language)" 
-					ng-model="language" 
-					ng-init="settingsCtrl.initLanguage()">
-				<option value="{{language.short}}" ng-repeat="language in settingsCtrl.languages">{{'LANGUAGES.' + language.key | translate}}</option>
-			</select>
+  	<content-header></content-header>
+  	<ion-content class="has-header">
+		<div class="list card">
+			<div class="item item-input">
+				<label class="input-label">{{'FORMS.LANGUAGE' | translate}}</label>
+				<select ng-change="settingsCtrl.changeLanguage(language)" 
+						ng-model="language" 
+						ng-init="settingsCtrl.initLanguage()">
+					<option value="{{language.short}}" ng-repeat="language in settingsCtrl.languages">{{'LANGUAGES.' + language.key | translate}}</option>
+				</select>
+			</div>
 		</div>
-	</div>
-  </ion-content>
+  	</ion-content>
 </ion-view>

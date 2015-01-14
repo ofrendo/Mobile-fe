@@ -9,28 +9,38 @@ app.service("restAPI", ["$http", function($http) {
 	module.loading = false;
 
 	var routes = [
-		new Route("/auth/login", "post", null, true), //api.auth.login()
+		new Route("/auth/login", "post", null, true), // api.auth.login()
 		new Route("/auth/logout", "post", null, true),
 		new Route("/user", "post", "create"),
 		new Route("/user/:user_id", "get", "read"),
 		new Route("/user/:user_id", "put", "update"),
 		new Route("/user/:user_id", "delete", "delete"),
-		new Route("/user/:user_id/trips", "get", "readTrips", true), //api.user.readTrips()
-		new Route("/trip", "post", "create"), //api.trip.create
+		new Route("/user/:user_id/trips", "get", "readTrips", true), // api.user.readTrips()
+		new Route("/trip", "post", "create"), // api.trip.create
 		new Route("/trip/:trip_id", "get", "read"),
 		new Route("/trip/:trip_id", "put", "update"),
 		new Route("/trip/:trip_id", "delete", "delete"),
 		new Route("/trip/:trip_id/move", "put", "move", true),
 		new Route("/trip/:trip_id/users", "get", "readUsers", true),
-		new Route("/trip/:trip_id/addUser", "put", "addUserToTrip", true), //api.trip.addUserToTrip(trip_id, {user: {user_id}})
-		new Route("/trip/:trip_id/removeUser", "put", "removeUserFromTrip", true), //api.trip.removeUserFromTrip(trip_id, {user: {user_id}})
-		new Route("/trip/:trip_id/cities", "get", "readCities", true), //api.trip.readCities(trip_id)
+		new Route("/trip/:trip_id/addUser", "put", "addUserToTrip", true), // api.trip.addUserToTrip(trip_id,
+																			// {user:
+																			// {user_id}})
+		new Route("/trip/:trip_id/removeUser", "put", "removeUserFromTrip", true), // api.trip.removeUserFromTrip(trip_id,
+																					// {user:
+																					// {user_id}})
+		new Route("/trip/:trip_id/cities", "get", "readCities", true), // api.trip.readCities(trip_id)
 		new Route("/trip/:trip_id/city", "post", "create"),
 		new Route("/trip/:trip_id/city/:city_id", "get", "read"),
 		new Route("/trip/:trip_id/city/:city_id", "put", "update"),
 		new Route("/trip/:trip_id/city/:city_id", "delete", "delete"),
-		new Route("/trip/:trip_id/city/:city_id/move", "put", "move", true), //api.trip.city.move(trip_id, city_id, {fromIndex: x, toIndex: y})
-		new Route("/trip/:trip_id/city/:city_id/locations", "get", "readLocations", true), //api.trip.city.readLocations(trip_id, city_id)
+		new Route("/trip/:trip_id/city/:city_id/move", "put", "move", true), // api.trip.city.move(trip_id,
+																				// city_id,
+																				// {fromIndex:
+																				// x,
+																				// toIndex:
+																				// y})
+		new Route("/trip/:trip_id/city/:city_id/locations", "get", "readLocations", true), // api.trip.city.readLocations(trip_id,
+																							// city_id)
 		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "get", "read"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "put", "update"),
@@ -38,51 +48,55 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id/move", "put", "move", true)
 	];
 
-	for (var i = 0; i < routes.length; i++) { //for each route
-		var parent = module;				  //reset parent
-		var parts = routes[i].path.split("/"); //split path into parts divided by /
-		for (var j = 1; j < parts.length; j++) { //first part slash is empty
+	for (var i = 0; i < routes.length; i++) { // for each route
+		var parent = module;				  // reset parent
+		var parts = routes[i].path.split("/"); // split path into parts divided
+												// by /
+		for (var j = 1; j < parts.length; j++) { // first part slash is empty
 
 			var part = parts[j];
 			if (part.indexOf(":") === -1 && (j !== parts.length-1 || routes[i].lastPathIsFunction !== true)) { 
-				//Build up empty object (namespace), such as module.auth IF
-				//not a :object_id AND
-				//there is specific function name defined (in all cases except login and logout) OR not at the end
+				// Build up empty object (namespace), such as module.auth IF
+				// not a :object_id AND
+				// there is specific function name defined (in all cases except
+				// login and logout) OR not at the end
 				if (!parent[part]) {
 					parent[part] = {};
 				}
 				parent = parent[part];
 			}
 			
-			if (j === parts.length-1) { //last one will be the function itself
+			if (j === parts.length-1) { // last one will be the function itself
 				var functionName = routes[i].functionName || part;
 
-				//Is able to be called like this
-				//restAPI.user.create(data, fn, fn);
-				//restAPI.user.get(user_id, fn, fn);
-				//restAPI.user.update(user_id, data, fn, fn); 
-				//restAPI.user.delete(user_id, fn, fn);
-				//restAPI.xyz.zyx.update(x_id, y_id, data, fn, fn);
+				// Is able to be called like this
+				// restAPI.user.create(data, fn, fn);
+				// restAPI.user.get(user_id, fn, fn);
+				// restAPI.user.update(user_id, data, fn, fn);
+				// restAPI.user.delete(user_id, fn, fn);
+				// restAPI.xyz.zyx.update(x_id, y_id, data, fn, fn);
 				parent[functionName] = (function(route) {
 					return function() {
-						//First check if two functions were passed
+						// First check if two functions were passed
 						var l = arguments.length;
 						var errorFn;
 						var successFn;
 						var nextAfterFunctionIndex;
 						if (typeof(arguments[l-2]) == "function") { 
-							//if second to last argument is a function, there will be a successFn and errorFn
+							// if second to last argument is a function, there
+							// will be a successFn and errorFn
 							errorFn = arguments[l-1];
 							successFn = arguments[l-2];
 							nextAfterFunctionIndex = l-3;
 						}
 						else {
-							//Else there is only a successFn
+							// Else there is only a successFn
 							successFn = arguments[l-1];
 							nextAfterFunctionIndex = l-2;
 						}
 
-						//Replace any parameters in path with integers if needed
+						// Replace any parameters in path with integers if
+						// needed
 						var argumentsIndex = 0;
 						var finishedPath = "";
 						var pathParts = route.path.split("/");

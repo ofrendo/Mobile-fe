@@ -1,192 +1,195 @@
 /* general styling */
 #google_attr {
-	display:block;
+	display: block;
 }
 
 .italic {
 	font-style: italic;
 }
 
-.text-add-participant{
+.text-add-participant {
 	display: inline-block;
 	margin-left: 30px;
 }
 
 .toast {
-	position:absolute;
-	z-index:99;
-	bottom:100px;
-	left:50%;
-	margin-left:-200px;
-	width:400px;
-	background:#464646;
-	border-radius:8px;
-	padding:10px 5px;
-	text-align:center;
-	color:#ffffff;
+	position: absolute;
+	z-index: 99;
+	bottom: 100px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	background: #464646;
+	border-radius: 8px;
+	padding: 10px 5px;
+	text-align: center;
+	color: #ffffff;
 }
 
 /* side menus */
 ion-side-menu ion-content {
-	background-color:#fafafa;
+	background-color: #fafafa;
 }
 
 ion-side-menu ion-item {
-	background-color:#fafafa !important;
+	background-color: #fafafa !important;
 }
 
 /* tabbar */
 .tabbar {
-	z-index:5;
+	z-index: 5;
 }
 
 .tabbar .button {
-	z-index:2;
-	color:#ffffff;
-	border-color:##8b8b8b;
-	background-color:#ababab;
+	z-index: 2;
+	color: #ffffff;
+	border-color: ##8b8b8b;
+	background-color: #ababab;
 }
 
 .tabbar .selected {
-	background-color:#dedede;
-	color:#000000;
+	background-color: #dedede;
+	color: #000000;
 }
 
 /* contact list */
 .contact-icon {
 	width: 47px;
 	height: 47px; /* the minimum size used by a button */
-	border-radius:8px;
+	border-radius: 8px;
 }
 
 .contact-name {
-	margin-left:20px;
-	line-height:42px;
+	margin-left: 20px;
+	line-height: 42px;
 }
 
 .contact-list .action .button {
-	float:right;
+	float: right;
 }
 
 /* trip-list (also used for city list)*/
-.errorIcon{
+.errorIcon {
 	margin: 0px 10px !important;
-	color:red !important;
+	color: red !important;
 }
-.invalidInput{
-	color:red !important;
+
+.invalidInput {
+	color: red !important;
 }
+
 .trip-list .date {
-	float:left;
-	width:25%;
-	min-width:90px;
-	font-size:80%;
+	float: left;
+	width: 25%;
+	min-width: 90px;
+	font-size: 80%;
 }
 
 /* this is a workaround to make the date div need space, even if there's no content; it's still pretty bad*/
-.trip-list .date-start::after, .trip-list .date-end::after {
+.trip-list .date-start::after,.trip-list .date-end::after {
 	content: '.';
-	visibility:hidden;
+	visibility: hidden;
 }
 
 .trip-list .date-start {
-	color:#00cc00;
+	color: #00cc00;
 }
 
 .trip-list .date-end {
-	color:#cc0000;
+	color: #cc0000;
 }
 
 .trip-list .name {
-	 font-weight:bold;
+	font-weight: bold;
 }
 
 .trip-list .info {
 	font-size: 80%;
-	color:#656565;
+	color: #656565;
 }
 
 .trip-list .actions {
-	float:right;
+	float: right;
 }
 
 .triplist-footer .button {
-	width:100%;
+	width: 100%;
 }
 
 .triplist-footer .button::before {
-	margin-right:10px;
+	margin-right: 10px;
 }
 
 /* city-list */
 .city-list-scroll {
-	height:100%;
+	height: 100%;
 }
 
 .map-container {
-	width:100%;
-	height:100%;
+	width: 100%;
+	height: 100%;
 }
 
 .map-wrapper {
-	width:100%;
-	height:100%;
-	margin-top:-47px; /* the height of the toolbar */
+	width: 100%;
+	height: 100%;
+	margin-top: -47px; /* the height of the toolbar */
 }
 
 .map-wrapper .overlay {
-	margin-top:57px;
-	margin-left:10px;
-	position:absolute;
-	z-index:5;
-	background:#ffffff;
+	margin-top: 57px;
+	margin-left: 10px;
+	position: absolute;
+	z-index: 5;
+	background: #ffffff;
 	border: 1px solid #ababab;
-	padding:2px 5px;
+	padding: 2px 5px;
 }
+
 .map-wrapper .overlay td {
-	padding:0px 2px;
-	white-space:nowrap;
+	padding: 0px 2px;
+	white-space: nowrap;
 }
 
 /* add city */
 .baseline-align {
-	align-items:baseline;
+	align-items: baseline;
 }
 
 .autocompletion {
-	border:1px solid #ddd;
-	padding:2px 10px;
+	border: 1px solid #ddd;
+	padding: 2px 10px;
 }
 
 .autocompletion li {
-	border-top:1px solid #ddd;
-	padding:2px 5px;
+	border-top: 1px solid #ddd;
+	padding: 2px 5px;
 }
 
 .autocompletion li:first-child {
-	border:none;
+	border: none;
 }
 
 .autocompletion .term {
-	font-size:80%;
-	color:#969696;
-	margin-right:5px;
+	font-size: 80%;
+	color: #969696;
+	margin-right: 5px;
 }
 
 .autocompletion .city {
-	margin-right:10px;
-	color:black;
-	font-size:100%;
+	margin-right: 10px;
+	color: black;
+	font-size: 100%;
 }
 
 .autocompletion .powered {
-	padding:0px;
-	text-align:right;
+	padding: 0px;
+	text-align: right;
 }
 
 /* this is just for jörn, that he knows that the autocompletion elements are clickable :-) */
 .autocompletion li:hover {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 /* locationDetail */
@@ -195,8 +198,8 @@ ion-side-menu ion-item {
 }
 
 .week-day {
-	width:100px;
-	display:inline-block;
+	width: 100px;
+	display: inline-block;
 }
 
 /* For loading */
