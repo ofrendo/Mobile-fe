@@ -4,19 +4,19 @@
 		<div class="list card" ng-init="editLocationCtrl.getLocationData()">
 	    	<label class="item item-input">
 	     		<span class="input-label">{{'FORMS.START_DATE' | translate}}</span>
-	     		<input type="date" ng-model="location.start_date">
+	     		<input type="date" ng-model="location.html_start_date">
 	    	</label>
 	    	<label class="item item-input">
 	  			<span class="input-label">{{'FORMS.START_TIME' | translate}}</span>
-	  			<input type="time" ng-model="location.start_time"/>
+	  			<input type="time" ng-model="location.html_start_time"/>
 	  		</label>
 	    	<label class="item item-input">
 	     		<span class="input-label">{{'FORMS.END_DATE' | translate}}</span>
-	     		<input type="date" ng-model="location.end_date">
+	     		<input type="date" ng-model="location.html_end_date">
 	      	</label>
 	      	<label class="item item-input">
 	  			<span class="input-label">{{'FORMS.END_TIME' | translate}}</span>
-	  			<input type="time" ng-model="location.end_time"/>
+	  			<input type="time" ng-model="location.html_end_time"/>
 	  		</label>
 	      	<div class="item">
 	      		<button class="button button-positive button-block" ng-click="editLocationCtrl.saveLocation()">
