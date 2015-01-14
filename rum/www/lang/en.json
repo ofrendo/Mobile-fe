@@ -146,7 +146,8 @@
 	"TRIP_LIST": {
 		"TITLE": "My trips",
 		"ADD_TRIP_BTN": "Add trip",
-		"TRIP_INFO": "{no_participants} {no_participants, plural, one{participant} other{participants}} | {no_cities} {no_cities, plural, one{city} other{cities}}"
+		"TRIP_INFO": "{no_participants} {no_participants, plural, one{participant} other{participants}} | {no_cities} {no_cities, plural, one{city} other{cities}}",
+		"REORDERING": "Reordering..."
 	},
 	"EXPORT": {
 		"TITLE": "Export to Calendar",

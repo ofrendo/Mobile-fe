@@ -12,6 +12,32 @@
 	margin-left: 30px;
 }
 
+.reordering {
+	position: fixed;
+	width:100%;
+	bottom:75px;
+}
+
+.reordering .text {
+	width:150px;
+	margin-left:auto;
+	margin-right:auto;
+	background: #464646;
+	border-radius: 8px;
+	text-align:center;
+	padding: 10px 5px;
+	color:#ffffff;
+	opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+.reordering .stop-button {
+	font-size:120%;
+	float:right;
+	margin-right:10px;
+	cursor:pointer;
+}
+
 .toast {
 	position: absolute;
 	z-index: 99;

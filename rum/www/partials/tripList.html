@@ -26,4 +26,11 @@
   	<ion-footer-bar class="bar bar-positive triplist-footer">
     	<button class="button button-icon icon ion-plus-round" ng-click="tripListCtrl.navToAddTrip()">{{'TRIP_LIST.ADD_TRIP_BTN' | translate}}</button>
     </ion-footer-bar>
+    
+    <div class="reordering" ng-show="tripListCtrl.data.showReordering">
+    	<div class="text">
+	    	{{'TRIP_LIST.REORDERING' | translate}}
+	    	<span class="stop-button" ng-click="menuCtrl.reorder()">X</span>
+	    </div>
+	</div>
 </ion-view>

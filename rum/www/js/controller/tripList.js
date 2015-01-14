@@ -8,7 +8,7 @@ app.controller("tripListController",
 
 	//be able to reorder list
 	this.data = {
-			showReordering: false
+		showReordering: false
 	};
 	
 	loginService.onInit(function() {

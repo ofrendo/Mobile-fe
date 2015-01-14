@@ -50,17 +50,15 @@ app.controller("menuController",
 			//open actionSheet 
 			//check witch view is open
 			//if tripList is open show only Reorder Button
-			console.log($scope.showReordering);
-			console.log($scope.locationListCtrl);
 			if ($stateParams.trip_id) {
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']},
 				                  {text: translations['MENU.EXPORT']}
-				                  ]
+				                  ];
 			}else{
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']}
-				                  ]
+				                  ];
 			}
 			$ionicActionSheet.show({
 
