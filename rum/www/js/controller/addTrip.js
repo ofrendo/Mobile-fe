@@ -1,6 +1,6 @@
 app.controller("addTripController", 
-	["$scope", "$timeout", "$state", "restAPI", "loginService", "globals",
-	function($scope, $timeout, $state, restAPI, loginService, globals) {
+	["$scope", "$state", "restAPI", "loginService", "globals",
+	function($scope,  $state, restAPI, loginService, globals) {
 	
 	//INIT	
 	console.log("----INIT addTripController----");

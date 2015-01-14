@@ -1,15 +1,21 @@
 app.controller("editTripController", 
-	["$scope", "$http", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", 
+	["$scope", "$state", "$ionicPopup", "$stateParams", "restAPI", "$timeout", "loginService", 
 	 "globals", "$ionicModal", "utils", "$translate",
-	 function($scope, $http, $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, 
+	 function($scope,  $state, $ionicPopup, $stateParams, restAPI, $timeout, loginService, 
 	 globals, $ionicModal, utils, $translate) {
 	
+		
+	//INIT	
 	loginService.onInit(function() {
 		globals.setTripID($stateParams.trip_id);
 	});
 
+	//VARIABLES
 	var me = this;
 	
+	//FUNCTIONS
+	
+	//gets the users, which are already in the trip
 	this.getParticipants = function(){
 		console.log('INIT getParticipants with id = ' + $stateParams.trip_id);
 			restAPI.trip.readUsers($stateParams.trip_id, 
@@ -31,6 +37,7 @@ app.controller("editTripController",
 			);
 	};
 	
+	//gets the data for the trip
 	this.getTripData = function(){
 		console.log('INIT getTripData with id = ' + $stateParams.trip_id);
 		$timeout(function(){
@@ -52,6 +59,7 @@ app.controller("editTripController",
 		});
 	};
 	
+	//saves the trip to backend
 	this.saveTrip = function(){
 		// copy JSON so the date conversion doesn't break the visualization
 		var trip = JSON.parse(JSON.stringify($scope.tripData));
@@ -66,6 +74,7 @@ app.controller("editTripController",
 		});
 	};
 	
+	//deletes a participant from a trip
 	this.deletPaticipant = function(participant){
 		// check user
 		// if you want to remove yourself
@@ -121,6 +130,7 @@ app.controller("editTripController",
 		}
 	};
 	
+	//adds a participant to the trip
 	this.addParticipant = function() {
 		//set ionicModal for popup
 		$ionicModal.fromTemplateUrl('partials/addParticipants.html', {

@@ -1,6 +1,6 @@
 app.controller("chatController", 
-	["$scope", "$http", "$state", "$timeout", "$ionicScrollDelegate", "globals", "restAPI",
-	function($scope, $http, $state, $timeout, $ionicScrollDelegate, globals, restAPI) {
+	["$scope",  "$ionicScrollDelegate", "globals", "restAPI",
+	function($scope,  $ionicScrollDelegate, globals, restAPI) {
 
 	//INIT
 	console.log("----INIT chatController----");
