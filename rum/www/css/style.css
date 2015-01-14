@@ -155,6 +155,10 @@ ion-side-menu ion-item {
 	width: 100%;
 	height: 100%;
 }
+.map-container-small {
+	width: 100%;
+	height: 50%;
+}
 
 .map-wrapper {
 	width: 100%;
