@@ -71,7 +71,9 @@
 		"ERROR_MAIL":"Es wurde keine gültige E-Mail Adresse angegeben.",
 		"ADD_PERSON":"Person hinzufügen",
 		"EMAIL":"E-Mail",
-		"ADD":"Hinzufügen"
+		"ADD":"Hinzufügen",
+		"MAIL_CONTENT":"Sie wurden zu einer Reise bei RUM eingeladen.",
+		"MAIL_SUBJECT":"RUM Einladung"
 	},
 	"ADD_TRIP": {
 		"TITLE": "Reise hinzufügen",

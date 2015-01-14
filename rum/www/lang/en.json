@@ -71,7 +71,9 @@
 		"ERROR_MAIL":"Please enter a valid mail address",
 		"ADD_PERSON":"Add Person",
 		"EMAIL":"email",
-		"ADD":"Add"
+		"ADD":"Add",
+		"MAIL_CONTENT":"Blablabla",
+		"MAIL_SUBJECT":"RUM Invitation"
 	},
 	"ADD_TRIP": {
 		"TITLE": "Add trip",

@@ -26,8 +26,9 @@ app.controller("addParticipantsController",
 			contact.emails[0].value = me.email;
 			// add User
 			me.addUser(contact);
-			// free Input
-			me.email = "";
+			
+			// send mail
+			me.sendMail();
 		}	
 		else{
 			//show popup --> no correct mail-address
@@ -38,6 +39,17 @@ app.controller("addParticipantsController",
 				});
 			});
 		}
+	};
+	
+	this.sendMail = function(){
+		$translate(['ADD_PARTICIPANTS.MAIL_SUBJECT' , 'ADD_PARTICIPANTS.MAIL_CONTENT']).then(function(translations){
+			cordova.plugins.email.open({
+			    to:      me.email,
+			    subject: translations['ADD_PARTICIPANTS.MAIL_SUBJECT'],
+			    body:    translations['ADD_PARTICIPANTS.MAIL_CONTENT']
+			});
+			me.email = "";
+		});
 	};
 
 	//get contact list frome cordova
