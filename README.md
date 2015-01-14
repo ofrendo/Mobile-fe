@@ -23,7 +23,33 @@ Auf der Rechten Seite der Ion-Nav-Bar befindet sich ein Button für das Kontext 
 Ein weiterer Button auf der Rechten Seite ermöglicht das aufsliden des rechten Side-Menu, in dem sich ein Chat befindet [ siehe Chat]. Dieser wird ebenfalls nur angezeigt sobald ein Trip asugewählt wurde.
 
 ### triplist
-Nachdem der Nutzer eingeloggt ist, kommt man zu dem Home-Screen, der tripList
+Nachdem der Nutzer eingeloggt ist, kommt er zu dem Home-Screen, der tripList (tripList.html und tripList.js).
+Hier werden alle vorhandenem Trips, die er bereits angelegt hat angezeigt. Zu jedem Trip wird der Name, Start- und Enddatum, Anzahl der Städte in dem Trip und die Anzahl an Teilnehmern des Trips angezeigt. Wenn er einen Trip auswählt gelangt er zu der Citylist. Mit dem Bearbeiten-Button auf der Rechten Seite jedes Eintrags kommt man zum EditTrip. Eine weitere Möglichkeit ist das Löschen der Einträge, das dadurch erreicht wird, indem der Eintrag nach links gezogen wird. Dann wird ein Delete-Button angezeigt, der das Löschen ermöglicht [deleteTrip()].
+Zunächst wird der Nutzer allerdings einen neuen Trip anlegen müssen. Dies geschieht über den Button am in der Fußleiste.
+
+#### addTrip
+Im addTrip wird ein Neuer Eintrag hinzugefügt. Dafür werden ein Name, sowie Start- und Enddatum (beide optional), welche daraufhin im addTripController an das Backend übergeben werden.
+
+#### editTrip
+Sobald ein Trip angelegt ist, kann dieser auch bearbeitet werden. Hier kann, ähnlich wie beim Hinzufügen, der Name, sowie Start- und Enddatum geändert werden. 
+Zusätzlich sieht man alle Teilnehmer der Reise und kann auch mit dem Betätigen des "Add User"-Buttons neue Teilnehmer hinzufügen.
+
+####AddParticipant
+Im addParticipant können User zu einem vorhandenem Trip hinzugefügt werden. 
+Zum Einen geschieht dies über die Angabe einer Email-Adresse. 
+
+Zum Anderen kann man Nutzer über die Kontaktliste seines Handys hinzufügen. Dafür wird zunächst die Kontaktliste ausgelesen [getContactList()] . Nun kann der Nutzer sich aus dieser Liste einen Kontakt auswählen, der eingeladen werden soll. 
+
+Nach diesem Vorgang werden die User-Daten an das Backend geschickt [addUser()]. Nun wird entweder ein User zu einem Trip hinzugefügt (sollte der Kontakt bereits registriert sein), oder ein Dummy-User wird erstellt. Dieser Dummy enthält alle Daten, die zu diesem Zeitpunkt über den User bekannt sind: Email und/oder Telefonnummer. Sobald sich nun jemand mit diesen Daten registriert, wird der Dummy-Eintrag aktualisiert und der Benutzer ist sofort in dem Trip, in den er eingeladen wurde.
+
+###cityList
+
+####addCity
+####editCity
+
+###locationList
+####addLocation
+####LocationDetail
 
 ### Chat
 
