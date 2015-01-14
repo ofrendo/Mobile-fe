@@ -64,12 +64,19 @@ app.controller("locationDetailController",
 					console.error('NO place returned from google api: ' + status);
 					return;
 				}
+				console.log(place);
 				// modify time for output
 				var weekday = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
-				for(var i = 0; i < place.opening_hours.periods.length; i++){
-					place.opening_hours.periods[i].weekDay = weekday[i];
-					place.opening_hours.periods[i].open.timeString = utils.timeFormat(place.opening_hours.periods[i].open.time);
-					place.opening_hours.periods[i].close.timeString = utils.timeFormat(place.opening_hours.periods[i].close.time);
+				if(place.opening_hours != null){
+					for(var i = 0; i < place.opening_hours.periods.length; i++){
+						place.opening_hours.periods[i].weekDay = weekday[i];
+						if(place.opening_hours.periods[i].open != null){
+							place.opening_hours.periods[i].open.timeString = utils.timeFormat(place.opening_hours.periods[i].open.time);
+						}
+						if(place.opening_hours.periods[i].close != null){
+							place.opening_hours.periods[i].close.timeString = utils.timeFormat(place.opening_hours.periods[i].close.time);
+						}
+					}
 				}
 				console.log(place);
 				$scope.googlePlace = place;
