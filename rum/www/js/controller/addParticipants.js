@@ -24,7 +24,10 @@ app.controller("addParticipantsController",
 			contact.emails = {};
 			contact.emails[0] = {};
 			contact.emails[0].value = me.email;
+			// add User
 			me.addUser(contact);
+			// free Input
+			me.email = "";
 		}	
 		else{
 			//show popup --> no correct mail-address
