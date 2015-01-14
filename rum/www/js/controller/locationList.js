@@ -12,12 +12,12 @@ app.controller("locationListController",
 	this.map = {};
 	this.distance = 0;		// distance in km
 	this.travelTime = 0;	// travel time in min
-	
-	var directionsService = new google.maps.DirectionsService();
-	var directionsDisplay = new google.maps.DirectionsRenderer();
-	
+
+	var mapManager = new maps.MapManager();
+	var mapManagerSuggest = new maps.MapManager();
+
 	this.data = {
-			showReordering: false
+		showReordering: false
 	};
 	
 	// Callback to globals for reordering
@@ -28,12 +28,17 @@ app.controller("locationListController",
 	// the tabbing functions
 	this.setTab = function(index){
 		me.tab = index;
-		maps.onTabSwitch(function(distance, travelTime) {
-			$timeout(function() {
-				me.distance = distance;
-				me.travelTime = travelTime;
+		if (index == "map") {
+			mapManager.onTabSwitch(function(distance, travelTime) {
+				$timeout(function() {
+					me.distance = distance;
+					me.travelTime = travelTime;
+				});
 			});
-		});
+		}
+		else if (index == "suggest") {
+			mapManagerSuggest.onTabSwitch();
+		}
 	};
 
 	this.isActiveTab = function(index){
@@ -49,7 +54,7 @@ app.controller("locationListController",
 			$scope.locations = locations;
 
 			// initialize map
-			maps.initMap(locations, "map-canvas-locations");
+			mapManager.initMap(locations, "map-canvas-locations");
 		});
 	};
 	this.getLocationList();
@@ -60,10 +65,47 @@ app.controller("locationListController",
 			console.log('getting cityData: ');
 			console.log(city);
 			$scope.city = city;
+
+			//Initialize suggestions map
+			mapManagerSuggest.initMap([$scope.city], "map-canvas-locations-suggest");
 		});
 	};
 	this.getCityData();
 	
+	//Suggest tab
+	//Load keys
+	$scope.multiple = null;
+	$scope.textPlacesCategories = "Choose categories";
+	$scope.placesCategories = [];
+	loadPlacesCategories(function(translations) {
+		$timeout(function() {
+			var i = 0;
+			for (var key in translations) {
+				i++;
+				$scope.placesCategories.push({
+					id: i,
+					text: translations[key],
+					icon: null
+				});
+			}
+		});
+	});
+
+	function loadPlacesCategories(callback) {
+		$translate(["PLACES_CATEGORIES.SIGHTSEEING", 
+			"PLACES_CATEGORIES.CULTURE", 
+			"PLACES_CATEGORIES.TRANSPORT", 
+			"PLACES_CATEGORIES.ACCOMODATION", 
+			"PLACES_CATEGORIES.SHOPPING", 
+			"PLACES_CATEGORIES.FOOD",
+			"PLACES_CATEGORIES.SPORTS",
+			"PLACES_CATEGORIES.NATURE",
+			"PLACES_CATEGORIES.FUN",
+			"PLACES_CATEGORIES.RELIGION",
+			"PLACES_CATEGORIES.EDUCATION"])
+		.then(callback);
+	}
+
 	this.navToAddLocation = function(){
 		$state.go('app.addLocation', {trip_id: $stateParams.trip_id, city_id: $stateParams.city_id});
 	};
@@ -115,7 +157,6 @@ app.controller("locationListController",
 				}
 			});
 		});
-
 	};
 	
 

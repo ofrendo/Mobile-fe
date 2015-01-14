@@ -106,10 +106,24 @@
 	"LOCATION_LIST": {
 		"LIST_TAB": "List",
 		"MAP_TAB": "Map",
+		"SUGGEST_TAB": "Suggest",
 		"TITLE": "Your locations in {city_name}",
 		"ADD_LOCATION_BTN": "Add location",
 		"CONFIRM_DELETE_TITLE": "Remove location",
 		"CONFIRM_DELETE_TEXT": "Do you want to remove this location from the trip?"
+	},
+	"PLACES_CATEGORIES": {
+		"SIGHTSEEING": "Sightseeing",
+		"CULTURE": "Culture",
+		"TRANSPORT": "Transport",
+		"ACCOMODATION": "Accomodation",
+		"SHOPPING": "Shopping",
+		"FOOD": "Food",
+		"SPORTS": "Sports",
+		"NATURE": "Nature",
+		"FUN": "Fun",
+		"RELIGION": "Religion",
+		"EDUCATION": "Education"
 	},
 	"MAP": {
 		"ROAD_DISTANCE": "Road distance",

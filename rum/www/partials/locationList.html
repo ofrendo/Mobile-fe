@@ -8,8 +8,11 @@
       <button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('map')}" ng-click="locationListCtrl.setTab('map')" ng-disabled="locationListCtrl.locations.length < 1">
         {{'LOCATION_LIST.MAP_TAB' | translate}}
       </button>
+      <button class="button" ng-class="{'selected': locationListCtrl.isActiveTab('suggest')}" ng-click="locationListCtrl.setTab('suggest')" ng-disabled="locationListCtrl.locations.length < 1">
+        {{'LOCATION_LIST.SUGGEST_TAB' | translate}}
+      <button>
     </div>
-    <!-- city List -->
+    <!-- location List -->
     <ion-scroll class="city-list-scroll" ng-show="locationListCtrl.isActiveTab('list')">
     	<ion-list class="location-list" show-reorder="locationListCtrl.data.showReordering">
     	  <ion-item ng-repeat="location in locationListCtrl.locations" ng-click="locationListCtrl.navToLocationDetail(location)">
@@ -36,6 +39,24 @@
       </table>
     </div>
     <div class="map-container" id="map-canvas-locations"></div>
+    </div>
+    <!-- map with suggestions -->
+    <div class="suggest-wrapper" ng-show="locationListCtrl.isActiveTab('suggest')">
+      <!-- Dropdown, see http://codepen.io/mhartington/pen/CImqy -->
+      <fancy-select
+          allow-empty="true"
+          value="multiple"
+          multi-select="true"
+          text="textPlacesCategories"
+          header-text="Choose categories"
+          items="placesCategories">
+      </fancy-select>
+
+      <!-- Map container -->
+      <div class="map-container" id="map-canvas-locations-suggest"></div>  
+
+      <!-- List of suggestions -->
+
     </div>
   </ion-content>
   <ion-footer-bar class="bar bar-positive triplist-footer">

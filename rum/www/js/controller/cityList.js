@@ -11,10 +11,11 @@ app.controller("cityListController",
 	this.trip = {};
 	this.cities = [];
 	this.tab = 'list'; // can be "map" or "list"
-	this.map = {};
 	this.distance = 0;		// distance in km
 	this.travelTime = 0;	// travel time in min
 	
+	var mapManager = new maps.MapManager();
+
 	//be able to reorder list
 	this.data = {
 		showReordering: false
@@ -28,7 +29,7 @@ app.controller("cityListController",
 	// the tabbing functions
 	this.setTab = function(index){
 		me.tab = index;
-		maps.onTabSwitch(function(distance, travelTime) {
+		mapManager.onTabSwitch(function(distance, travelTime) {
 			$timeout(function() {
 				me.distance = distance;
 				me.travelTime = travelTime;
@@ -92,7 +93,7 @@ app.controller("cityListController",
 					//Update frontend on success
 					console.log('Move City ' + city.city_id + ' from ' + fromIndex + ' to ' + toIndex + " success");
 					me.getCityList({trip_id: $stateParams.trip_id});
-					maps.first = true;
+					mapManager.first = true;
 				}
 			);
 		});
@@ -134,7 +135,7 @@ app.controller("cityListController",
 					me.cities = cities;
 					sortCitiesByIndex();
 					// initialize map
-					maps.initMap(cities, "map-canvas-cities");
+					mapManager.initMap(cities, "map-canvas-cities");
 				}
 			);
 		});

@@ -106,10 +106,24 @@
 	"LOCATION_LIST": {
 		"LIST_TAB": "Liste",
 		"MAP_TAB": "Karte",
+		"SUGGEST_TAB": "Vorschläge",
 		"TITLE": "Deine Ziele in {city_name}",
 		"ADD_LOCATION_BTN": "Ziel hinzufügen",
 		"CONFIRM_DELETE_TITLE": "Ziel entfernen",
 		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie dieses Ziel aus der Reise entfernen möchten?"
+	},
+	"PLACES_CATEGORIES": {
+		"SIGHTSEEING": "Sightseeing",
+		"CULTURE": "Culture",
+		"TRANSPORT": "Transport",
+		"ACCOMODATION": "Accomodation",
+		"SHOPPING": "Shopping",
+		"FOOD": "Food",
+		"SPORTS": "Sports",
+		"NATURE": "Nature",
+		"FUN": "Fun",
+		"RELIGION": "Religion",
+		"EDUCATION": "Education"
 	},
 	"MAP": {
 		"ROAD_DISTANCE": "Gesamtstrecke",
