@@ -3,14 +3,24 @@
 
 Frontend repo for mobile project
 
+## Dokumentation
+Für unser Projekt "Rum" (Reisen und Mehr) haben wir eine Android App entwickelt. Diese beruht auf den Frameworks Cordova/Phonegap, Angular und Ionic. Zudem benutzen wir für das Backend einen Heroku-Server, auf dem Node.js läuft. 
+
+Die App soll es dem Nutzer ermöglichen eine Reise zu planen. Dabei kann er verschiedene Städte und, in den Städten, einzelne Sehenswürdigkeiten einfügen, die er besuchen möchte. Zusätzliche Funktionen sind unter anderem Benutzerverwaltung (Login/Register), das Hinzufügen weiterer Personen zu der Reise (die diese dann mitbearbeiten können), ein Chat für jede Reise, ein Kalenderexport, das automatische Vorschlagen von Sehenswürdigkeiten in den Städten und die automatische Optimierung einer Route.
+
+Um die einzelnen Funktionalitäten der Applikation näher zu erläutern gehen wir das Ganze an einem Beispiel durch:
+
+#Login/Register
+Der Einstiegspunkt der App ist der Login-View, auf dem kann der Nutzer den Benutzernamen und Password eines bereits existierenden Nutzers eingeben und sich mit dem Klick auf "Login" anmelden. Dabei wird im 'loginController' überprüft ob ein Name und Password eingegeben sind [verfiyLoginButton()] und der Nutzer wird eingeloggt [login()].
+Für das eigentliche Anmelden am Server wird allerdings der 'loginService' verwendet. Dieser nimmt die Daten auf und schickt die login-Anfrage an das Backend [login()]. In dem Backend wird eine Session für den Nutzer erstellt, sodass dieser sich nicht bei jedem Öffnen der App neu anmelden muss (wenn Session noch vorhanden). Außerdem setzt der 'loginService' die Logout Funktion um, dass den Nutzer beim Server abmeldet und die Session beendet.
+Für den ersten Gebrauch muss ein neuer Nutzer registriert werden. Dazu geht man zur Registrierung (register.html und registerController.js). Auf diesem Bildschirm werden nun alle Nutzerdaten eingegeben werden und die Registrierung getriggert werden [register()]. Diese Funktion überprüft zunächst ob die optionalen Daten angegeben wurden (Telefonnummer) und fragt gegebenenfalls ob der Nutzer diese noch ändern möchte. Danach wird der eigentliche Registrierungsvorgang gestartet [doRegistration] der den Nutzer im Backend registriert und einloggt. Zusätzlich wird von dem Controller verifiziert ob alle notwendigen Daten angegeben wurden, ob die Email ein gültiges Format besitzt und ob die beiden Passwörter übereinstimmen [verifyRegisterButton]. 
+
+
+
 ## TODO
 
 Unit Testing / Testing?
 
-Kalenderexport
-Back/Menu Button (Jörn)
-Sortieren     (Max)
-location views (Mathias)
 Sehenswürdigkeiten in der Nähe
 
 ## Unit Testing Information
