@@ -67,7 +67,11 @@
 		"CONTACT_LIST": "Kontaktliste",
 		"FILTER_NAME": "Namen eingeben",
 		"ERROR":"Ein Fehler beim Laden der Kontakte ist aufgetreten",
-		"ERROR_TITLE":"Fehler"
+		"ERROR_TITLE":"Fehler",
+		"ERROR_MAIL":"Es wurde keine gültige E-Mail Adresse angegeben.",
+		"ADD_PERSON":"Person hinzufügen",
+		"EMAIL":"E-Mail",
+		"ADD":"Hinzufügen"
 	},
 	"ADD_TRIP": {
 		"TITLE": "Reise hinzufügen",

@@ -43,7 +43,12 @@ app.controller("menuController",
 	$scope.checkListOptions = function(){
 		//list options are shown if user is logged in
 		// check if list options should be available
-		return loginService.isLoggedIn();
+		if ($state.current.name.indexOf("List") > -1) {
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 	
 	//check if menu button should be shown
