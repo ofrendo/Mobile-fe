@@ -1,6 +1,6 @@
 app.controller("editCityController", 
-	["$scope", "$http", "$state", "$ionicPopup", "loginService", "globals", "$stateParams", "restAPI", "$timeout", "$translate", "utils",
-	function($scope, $http, $state, $ionicPopup, loginService, globals, $stateParams, restAPI, $timeout, $translate, utils) {
+	["$scope",  "$state",  "loginService", "globals", "$stateParams", "restAPI",  "utils",
+	function($scope,  $state,  loginService, globals, $stateParams, restAPI, utils) {
 	
 	//VARIABLES	
 	var me = this;

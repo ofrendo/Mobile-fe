@@ -1,6 +1,6 @@
 app.controller("cityListController", 
-	["$scope", "$http", "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "maps", "$translate", "$ionicPopup",
-    function($scope, $http, $state, $stateParams, $timeout, restAPI, loginService, globals, maps, $translate, $ionicPopup) {
+	[  "$state", "$stateParams", "$timeout", "restAPI", "loginService", "globals", "maps", "$translate", "$ionicPopup",
+    function(  $state, $stateParams, $timeout, restAPI, loginService, globals, maps, $translate, $ionicPopup) {
 
 
 	//VARIABLES
