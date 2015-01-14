@@ -24,6 +24,12 @@
         </ion-item>
       </ion-list>
     </ion-scroll>
+    <div class="reordering" ng-show="locationListCtrl.data.showReordering">
+        <div class="text">
+          {{'TRIP_LIST.REORDERING' | translate}}
+          <span class="stop-button" ng-click="menuCtrl.reorder()">X</span>
+        </div>
+    </div>
     <!-- map -->
     <div class="map-wrapper" ng-show="locationListCtrl.isActiveTab('map')">
     <div class="overlay">

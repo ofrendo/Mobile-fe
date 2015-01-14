@@ -1,17 +1,23 @@
 app.controller("chatController", 
-	["$scope", "$http", "$state", "$timeout", "$ionicScrollDelegate", "globals", "restAPI",
-	function($scope, $http, $state, $timeout, $ionicScrollDelegate, globals, restAPI) {
+	["$scope",  "$ionicScrollDelegate", "globals", "restAPI",
+	function($scope,  $ionicScrollDelegate, globals, restAPI) {
 
+	//INIT
 	console.log("----INIT chatController----");
+	
+	//VARIABLES
 	$scope.messages = [];
-
 	var socket;
 	//Call this to connect to server - only AFTER log in
 	var chat = {};
+	
+	//FUNCTIONS
 	chat.connect = function() {
+		//build url
 		var url = (restAPI.url.indexOf("https") !== -1) 
 				  ? restAPI.url + ":443"
 				  : restAPI.url;
+		//connect to url
 		socket = io.connect(url, {
 			reconnection: false
 		});	
@@ -101,10 +107,12 @@ app.controller("chatController",
 		scrollToBottom();
 	};
 
+	//checks if message is from the user
 	$scope.isOwnMessage = function(user) {
 		return user.username == globals.user.username;
 	};
 
+	//pushes message to scope
 	function pushMessage(message) {
 		if (!$scope.$$phase) {
 			$scope.$apply(function() {
@@ -116,10 +124,12 @@ app.controller("chatController",
 		}
 	}
 
+	//pushes message in array
 	function pushMessageToScope(message) {
 		$scope.messages.push(message);	
 	}
 
+	//scrolls to the bottom of the chat
 	function scrollToBottom() {
 		$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
 	}

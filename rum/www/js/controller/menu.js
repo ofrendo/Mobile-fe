@@ -1,10 +1,18 @@
 app.controller("menuController", 
-	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService", "$ionicActionSheet",
-	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform, $ionicViewService, $ionicNavBarDelegate,$stateParams,loginService, $ionicActionSheet){
+	["$scope", "globals", "$ionicPopup", "$state", "restAPI", "$translate","$ionicPlatform", 
+	 "$ionicViewService","$ionicNavBarDelegate","$stateParams","loginService", "$ionicActionSheet",
+	function($scope, globals, $ionicPopup, $state, restAPI, $translate,$ionicPlatform,
+			$ionicViewService, $ionicNavBarDelegate,$stateParams,loginService, $ionicActionSheet){
 	
-	console.log("----INIT menuController----");
+
+
+	
+	//VARIABLES
 	var me = this;
 
+	
+	//INIT
+	console.log("----INIT menuController----");
 	//disable hardware back button
 	$ionicPlatform.onHardwareBackButton(function (event){
 		//if history is less then 1 the back-button should not work, because the last entry is the login/register-Page
@@ -17,18 +25,23 @@ app.controller("menuController",
 		}
 	});	
 		
-		
+	//FUNCTIONS
+	//checks-functions
+	//checks if differnet ui elemts should be shown
 	$scope.checkRight = function(){
 		//check if chat is supposed to be shown
+		//show chat if trip is availavle
 		return !!globals.trip_id && globals.trip_id >= 0;
 	};
 	
 	$scope.checkLeft = function(){
 		//check if menu on left is supposed to be shown
+		//menu is shown if user is logged in
 		return loginService.isLoggedIn();
 	};
 	
 	$scope.checkListOptions = function(){
+		//list options are shown if user is logged in
 		// check if list options should be available
 		return loginService.isLoggedIn();
 	}
@@ -44,23 +57,39 @@ app.controller("menuController",
 		}
 	}
 	
+	//opens the dropdown menu for context menu on the right site
 	$scope.openListOptionsDropdown = function(){
-		// translate texts
-		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL']).then(function(translations){
+		// translate text
+		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL', 'MENU.OPTIMIZE']).then(function(translations){
 			//open actionSheet 
 			//check witch view is open
 			//if tripList is open show only Reorder Button
-			console.log($scope.showReordering);
-			console.log($scope.locationListCtrl);
-			if ($stateParams.trip_id) {
+			//show reorder and export if a trip is selected
+			switch ($state.current.name) {
+			case "app.locationList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']},
-				                  {text: translations['MENU.EXPORT']}
+				                  {text: translations['MENU.EXPORT']},
+				                  {text: translations['MENU.OPTIMIZE']}
 				                  ]
-			}else{
+				break;
+			case "app.tripList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']}
 				                  ]
+				break
+			case "app.cityList":
+				var ButtonList = [
+				                  {text: translations['MENU.REORDER']},
+				                  {text: translations['MENU.EXPORT']},
+				                  {text: translations['MENU.OPTIMIZE']}
+				                  ]
+				break
+			default:
+				var ButtonList = [
+				                  {text: translations['MENU.REORDER']}
+				                  ]
+				break;
 			}
 			$ionicActionSheet.show({
 
@@ -77,6 +106,9 @@ app.controller("menuController",
 						break;
 					case 1:
 						me.navToExport();
+						break;
+					case 2:
+						me.optimize();
 						break;
 					default:
 						break;
@@ -114,6 +146,10 @@ app.controller("menuController",
 	
 	this.reorder = function(){
 		globals.callReorderCallback();
+	}
+	
+	this.optimize = function(){
+		console.log("Optimize Trip/LoationList");
 	}
 	
 	this.logout = function(){

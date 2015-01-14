@@ -1,52 +1,63 @@
 <ion-view title="{{cityListCtrl.trip.name}}">
-  <content-header></content-header>
-  <ion-content class="has-header" scroll="false">
-  	<div class="button-bar tabbar">
-  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('list')}" ng-click="cityListCtrl.setTab('list')">
-  			{{'CITY_LIST.LIST_TAB' | translate}}
+	<content-header></content-header>
+  	<ion-content class="has-header" scroll="false">
+	  	<div class="button-bar tabbar">
+	  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('list')}" ng-click="cityListCtrl.setTab('list')">
+	  			{{'CITY_LIST.LIST_TAB' | translate}}
+	  		</button>
+	  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('map')}" ng-click="cityListCtrl.setTab('map')" ng-disabled="cityListCtrl.cities.length < 1">
+	  			{{'CITY_LIST.MAP_TAB' | translate}}
+	  		</button>
+	  	</div>
+	  	<!-- city List -->
+	  	<ion-scroll class="city-list-scroll" ng-show="cityListCtrl.isActiveTab('list')">
+		    <ion-list class="trip-list city-list" show-reorder="cityListCtrl.data.showReordering">
+		    	<ion-item ng-repeat="city in cityListCtrl.cities" ng-click="cityListCtrl.navToLocationList(city)"><!--  | orderBy: 'index' -->
+		        	<div class="date">
+		        		<div class="date-start">{{city.start_date | date: 'dd.MM.yy'}}</div>
+		        		<div class="date-end">{{city.end_date | date: 'dd.MM.yy'}}</div>
+		        	</div>
+		        	<div class="actions">
+		        		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
+		        	</div>
+		        	<div class="name">{{city.name}}</div>
+		        	<div class="info">{{'CITY_LIST.CITY_INFO' | translate: '{no_locations: city.no_locations}'}}</div>
+		        	<ion-reorder-button class="ion-navicon"
+		        						on-reorder="cityListCtrl.reorderCity(city, $fromIndex, $toIndex)">
+		        	</ion-reorder-button>
+		        	<ion-option-button class="button-assertive" ng-click="cityListCtrl.deleteCity(city)">
+		        		{{'CITY_LIST.DELETE' | translate}}
+		        	</ion-option-button>
+		      	</ion-item>
+		    </ion-list>
+	    </ion-scroll>
+	    <div class="reordering" ng-show="cityListCtrl.data.showReordering">
+    		<div class="text">
+	    		{{'TRIP_LIST.REORDERING' | translate}}
+	    		<span class="stop-button" ng-click="menuCtrl.reorder()">X</span>
+	    	</div>
+		</div>
+		
+	    <!-- map -->
+	    <div class="map-wrapper" ng-show="cityListCtrl.isActiveTab('map')">
+	    	<div class="overlay">
+		      	<table>
+		  	    	<tr>
+		  	    		<td>{{'MAP.ROAD_DISTANCE' | translate}}:</td>
+		  	    		<td>{{cityListCtrl.distance}}</td>
+		  	    	</tr>
+		  	    	<tr>
+		  	    		<td>{{'MAP.TRAVEL_TIME' | translate}}:</td>
+		  	    		<td>{{cityListCtrl.travelTime}}</td>
+		  	    	</tr>
+		      	</table>
+	      	</div>
+	      	<div class="map-container" id="map-canvas-cities"></div>
+	  	</div>
+	</ion-content>
+  	<ion-footer-bar ng-hide="cityListCtrl.isActiveTab('map')" class="bar bar-positive triplist-footer">
+  		<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">
+  			{{'CITY_LIST.ADD_CITY_BTN' | translate}}
   		</button>
-  		<button class="button" ng-class="{'selected': cityListCtrl.isActiveTab('map')}" ng-click="cityListCtrl.setTab('map')" ng-disabled="cityListCtrl.cities.length < 1">
-  			{{'CITY_LIST.MAP_TAB' | translate}}
-  		</button>
-  	</div>
-  	<!-- city List -->
-  	<ion-scroll class="city-list-scroll" ng-show="cityListCtrl.isActiveTab('list')">
-	    <ion-list class="trip-list city-list" show-reorder="cityListCtrl.data.showReordering">
-	      <ion-item ng-repeat="city in cityListCtrl.cities" ng-click="cityListCtrl.navToLocationList(city)"><!--  | orderBy: 'index' -->
-	        	<div class="date">
-	        		<div class="date-start">{{city.start_date | date: 'dd.MM.yy'}}</div>
-	        		<div class="date-end">{{city.end_date | date: 'dd.MM.yy'}}</div>
-	        	</div>
-	        	<div class="actions">
-	        		<button class="button button-icon icon ion-edit" ng-click="cityListCtrl.navToEditCity(city)" stop-event></button>
-	        	</div>
-	        	<div class="name">{{city.name}}</div>
-	        	<div class="info">{{'CITY_LIST.CITY_INFO' | translate: '{no_locations: city.no_locations}'}}</div>
-	        	<ion-reorder-button class="ion-navicon"
-	        						on-reorder="cityListCtrl.reorderCity(city, $fromIndex, $toIndex)">
-	        	</ion-reorder-button>
-	        	<ion-option-button class="button-assertive" ng-click="cityListCtrl.deleteCity(city)">{{'CITY_LIST.DELETE' | translate}}</ion-option-button>
-	      </ion-item>
-	    </ion-list>
-    </ion-scroll>
-    <!-- map -->
-    <div class="map-wrapper" ng-show="cityListCtrl.isActiveTab('map')">
-      <div class="overlay">
-      	<table>
-  	    	<tr>
-  	    		<td>{{'MAP.ROAD_DISTANCE' | translate}}:</td>
-  	    		<td>{{cityListCtrl.distance}}</td>
-  	    	</tr>
-  	    	<tr>
-  	    		<td>{{'MAP.TRAVEL_TIME' | translate}}:</td>
-  	    		<td>{{cityListCtrl.travelTime}}</td>
-  	    	</tr>
-      	</table>
-      </div>
-      <div class="map-container" id="map-canvas-cities"></div>
-    </div>
-  </ion-content>
-  <ion-footer-bar ng-hide="cityListCtrl.isActiveTab('map')" class="bar bar-positive triplist-footer">
-  	<button class="button button-icon icon ion-plus-round" ng-click="cityListCtrl.navToAddCity()">{{'CITY_LIST.ADD_CITY_BTN' | translate}}</button>
-  </ion-footer-bar>
+  	</ion-footer-bar>
 </ion-view>
