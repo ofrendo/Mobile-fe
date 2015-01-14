@@ -91,6 +91,10 @@
 		"CONFIRM_DELETE_TITLE": "Remove city",
 		"CONFIRM_DELETE_TEXT": "Do you really want to remove the city and all its locations from your trip?"
 	},
+	"EDIT_LOCATION": {
+		"TITLE": "Location {name}",
+		"SAVE_BTN": "Save changes"
+	},
 	"EDIT_TRIP": {
 		"TITLE": "Edit trip",
 		"GENERAL_DATA": "General trip data",

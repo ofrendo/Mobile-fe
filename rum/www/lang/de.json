@@ -91,6 +91,10 @@
 		"CONFIRM_DELETE_TITLE": "Stadt entfernen",
 		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie die Stadt und alle ihr zugeordneten Sehenswürdigkeiten aus der Reise entfernen möchten?"
 	},
+	"EDIT_LOCATION": {
+		"TITLE": "Ziel {name}",
+		"SAVE_BTN": "Änderungen speichern"
+	},
 	"EDIT_TRIP": {
 		"TITLE": "Reise bearbeiten",
 		"GENERAL_DATA": "Allgemeine Reisedaten",
