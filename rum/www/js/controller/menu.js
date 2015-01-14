@@ -45,22 +45,37 @@ app.controller("menuController",
 	}
 	
 	$scope.openListOptionsDropdown = function(){
-		// translate texts
-		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL']).then(function(translations){
+		// translate text
+		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL', 'MENU.OPTIMIZE']).then(function(translations){
 			//open actionSheet 
 			//check witch view is open
 			//if tripList is open show only Reorder Button
-			console.log($scope.showReordering);
-			console.log($scope.locationListCtrl);
-			if ($stateParams.trip_id) {
+			//show reorder and export if a trip is selected
+			switch ($state.current.name) {
+			case "app.locationList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']},
-				                  {text: translations['MENU.EXPORT']}
+				                  {text: translations['MENU.EXPORT']},
+				                  {text: translations['MENU.OPTIMIZE']}
 				                  ]
-			}else{
+				break;
+			case "app.tripList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']}
 				                  ]
+				break
+			case "app.cityList":
+				var ButtonList = [
+				                  {text: translations['MENU.REORDER']},
+				                  {text: translations['MENU.EXPORT']},
+				                  {text: translations['MENU.OPTIMIZE']}
+				                  ]
+				break
+			default:
+				var ButtonList = [
+				                  {text: translations['MENU.REORDER']}
+				                  ]
+				break;
 			}
 			$ionicActionSheet.show({
 
@@ -77,6 +92,9 @@ app.controller("menuController",
 						break;
 					case 1:
 						me.navToExport();
+						break;
+					case 2:
+						me.optimize();
 						break;
 					default:
 						break;
@@ -114,6 +132,10 @@ app.controller("menuController",
 	
 	this.reorder = function(){
 		globals.callReorderCallback();
+	}
+	
+	this.optimize = function(){
+		console.log("Optimize Trip/LoationList");
 	}
 	
 	this.logout = function(){

@@ -37,7 +37,8 @@
 		"CONFIRM_LOGOUT_TEXT": "Do you really want to logout?",
 		"EXPORT":"Export to Calendar",
 		"CANCEL":"Cancel",
-		"REORDER":"Reorder"
+		"REORDER":"Reorder",
+		"OPTIMIZE":"Optimize"
 	},
 	"WEEKDAYS": {
 		"MONDAY": "Monday",
