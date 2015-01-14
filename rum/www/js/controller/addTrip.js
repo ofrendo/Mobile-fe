@@ -2,10 +2,14 @@ app.controller("addTripController",
 	["$scope", "$timeout", "$state", "restAPI", "loginService", "globals",
 	function($scope, $timeout, $state, restAPI, loginService, globals) {
 	
+	//INIT	
 	console.log("----INIT addTripController----");
 	loginService.onInit(function() {
 		globals.setTripID(-1);
 	});
+	
+	//FUNCTIONS
+	
 	// create new trip
 	this.addTrip = function(){
 		console.log('Adding trip...');
