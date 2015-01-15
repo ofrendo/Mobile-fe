@@ -136,6 +136,7 @@ cordova plugin add org.apache.cordova.contacts
 cordova plugin add com.chariotsolutions.toast.plugin
 ionic plugin add https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git
 cordova plugin add org.apache.cordova.geolocation
+cordova plugin add https://github.com/katzer/cordova-plugin-email-composer.git
 ```
 
 Dies muss jeder lokal in seinem Projekt durchführen, da dieses File im Gitignore nicht beachtet wird.
