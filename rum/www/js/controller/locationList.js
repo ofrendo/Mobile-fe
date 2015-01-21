@@ -43,6 +43,11 @@ app.controller("locationListController",
 			mapManagerSuggest.suggestLocations();
 		}
 	};
+	mapManagerSuggest.onPlacesSuggestCallback = function(places) {
+		$timeout(function() {
+			$scope.suggestedPlaces = places;
+		});
+	}
 
 	//checks if list or map is active
 	//true  = list ; false = map
@@ -74,7 +79,7 @@ app.controller("locationListController",
 			$scope.city = city;
 
 			//Initialize suggestions map
-			mapManagerSuggest.initMap([$scope.city], "map-canvas-locations-suggest");
+			mapManagerSuggest.initSuggestMap([$scope.city], "map-canvas-locations-suggest");
 		});
 	};
 	this.getCityData();

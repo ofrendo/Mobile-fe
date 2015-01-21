@@ -4,9 +4,11 @@ app.service("maps", ["$timeout", function($timeout) {
 		var me = this;
 		this.first = true;
 		this.objects = []; //can be either locations or cities
+		this.markers = [];
 
 		var directionsService = new google.maps.DirectionsService();
 		var directionsDisplay = new google.maps.DirectionsRenderer();
+		var infoWindow = new google.maps.InfoWindow();
 
 		this.onTabSwitch = function(onDataChange) {
 			// workaround to width height problems with google maps when hiding the map and showing it again
@@ -48,10 +50,12 @@ app.service("maps", ["$timeout", function($timeout) {
 		};
 		
 		this.suggestLocations = function(categoryString) {
+			clearMarkers();
+
 			var cityCenter = new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude);
 			var request = {
 				location: cityCenter,
-				radius: 10000
+				radius: 20000
 			};
 
 			if (categoryString) {
@@ -72,7 +76,7 @@ app.service("maps", ["$timeout", function($timeout) {
 			placesService.nearbySearch(request, onPlacesSearch);
 		};
 
-		function onPlacesSearch(results) {
+		function onPlacesSearch(results, status) {
 			console.log("onPlacesSearch results:");
 			console.log(results);
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -80,6 +84,7 @@ app.service("maps", ["$timeout", function($timeout) {
 			    	var place = results[i];
 			    	createPlacesMarker(results[i]);
 			    }
+			    if (typeof me.onPlacesSuggestCallback == "function") me.onPlacesSuggestCallback(results);
 			} 
 			else {
 				console.log("Error during nearbySearch");
@@ -91,11 +96,18 @@ app.service("maps", ["$timeout", function($timeout) {
 				map: me.map,
 				position: place.geometry.location
 			});
+			me.markers.push(marker);
 
 			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.setContent(place.name);
-				infowindow.open(me.map, this);
+				infoWindow.setContent(place.name);
+				infoWindow.open(me.map, this);
 			});
+		}
+		function clearMarkers() {
+			for (var i = 0; i < me.markers.length; i++) {
+				me.markers[i].setMap(null);
+			}
+			me.markers = [];
 		}
 
 
@@ -143,7 +155,7 @@ app.service("maps", ["$timeout", function($timeout) {
 			});
 		}
 
-		this.initMap = function(objects, mapDivID) {
+		function initMap(objects, mapDivID) {
 			console.log('INIT google maps objects');
 			me.first = true;
 			console.log(objects);
@@ -151,7 +163,7 @@ app.service("maps", ["$timeout", function($timeout) {
 			var posCenter = new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude);
 			console.log(posCenter.toString());
 			var mapOptions = {
-					zoom: 8,
+					zoom: 11,
 					streetViewControl: false,
 					zoomControl: false,
 					panControl: false,
@@ -159,7 +171,11 @@ app.service("maps", ["$timeout", function($timeout) {
 					center: posCenter // the center positioning won't really work because the div size is not specified (the tab is not shown at initialization)
 			};
 			me.map = new google.maps.Map(document.getElementById(mapDivID), mapOptions);
-			// add markers for each city
+		}
+
+		this.initMap = function(objects, mapDivID) {
+			initMap(objects, mapDivID);
+			// add markers for each object
 			for (var i = 0; i < me.objects.length; i++){
 				var pos = new google.maps.LatLng(me.objects[i].latitude, me.objects[i].longitude);
 				var marker = new google.maps.Marker({
@@ -174,6 +190,9 @@ app.service("maps", ["$timeout", function($timeout) {
 			directionsDisplay.setOptions({ 
 				suppressMarkers: true
 			});
+		};
+		this.initSuggestMap = function(objects, mapDivID) {
+			initMap(objects, mapDivID);
 		}
 	}
 	
