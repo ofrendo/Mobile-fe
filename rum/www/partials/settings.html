@@ -39,7 +39,7 @@
 			<div class="item item-divider">{{'SETTINGS.PASSWORD' | translate}}</div>
 			<div class="item item-input">
 				<label class="input-label">{{'FORMS.NEW_PASSWORD' | translate}}</label>
-				<input type="password" ng-model="pw.new" ng-init="pw.new = ''">
+				<input type="password" ng-model="pw.new_pw" ng-init="pw.new_pw = ''">
 			</div>
 			<div class="item item-input">
 				<label class="input-label">{{'FORMS.PASSWORD_REPEAT' | translate}}</label>
@@ -48,10 +48,11 @@
 			<div class="item">
 				<button class="button button-positive button-block" 
 	      				ng-click="settingsCtrl.savePassword()"
-	      				ng-disabled="pw.new == '' || pw.repeat == '' || pw.new != pw.repeat">
+	      				ng-disabled="pw.new_pw == '' || pw.repeat == '' || pw.new_pw != pw.repeat">
 	      			{{'SETTINGS.SAVE_PW_BTN' | translate}}
 	      		</button>
 			</div>
 		</div>
+		<div class="reordering" ng-show="toast.show" ng-init="toast.show=false"><div class="text" ng-init="toast.content=''">{{toast.content}}</div></div>
   	</ion-content>
 </ion-view>
