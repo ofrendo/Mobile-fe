@@ -56,30 +56,35 @@ Um eine Stadt hinzuzufügen, muss zunächst eine über das obere Eingabefeld aus
 Im editCity können lediglich noch das Start- und Enddatum verändert werden.
 
 ###locationList
-Sobald eine Stadt zu einem Trip hinzugefügt wurde kann diese ausgewählt werden und der Nutzer gelangt zu der locationList, die jede einzelne Sehenswürdigkeit des Trips enthält.
-
+Sobald eine Stadt zu einem Trip hinzugefügt wurde kann diese ausgewählt werden und der Nutzer gelangt zu der locationList, die jede einzelne Sehenswürdigkeit des Trips enthält. 
+Hier sieht man zunächst in einem Tab eine Übersicht über alle Locations, die in der vorher ausgewählten Stadt besucht werden möchten. Ein Button in der Fußleiste ermöglicht die Navigation zum Hinzufügen von Locations. Zusätzlich können hier einzelne Locations bearbeitet und gelöscht werden.
+Ein weiterer Tab ist wiederum die Map, wo eine Karte der ausgewählten Stadt gezeigt wird, mit einer Route entlang der verschiedenen Locations in dieser Stadt.
+Der dritte Tab bietet verschiedene Vorschläge für Locations, die besucht werden können. Zunächst kann hier eine Kategorie ausgewählt werden, anhand derer die Vorschläge gefiltert werden. Aus der Liste an Vorschlägen kann nun eine Location in die LocationList übernommen werden.
 
 ####addLocation
+
+
+####editLocation
+In der EditLocation kann der Start- und Endzeitpunkt verändert werden (dies betrifft Datum und Uhrzeit).
+
 ####LocationDetail
+Die LocationDetail-Ansicht sieht man sobald eine Location ausgewählt wurde. Hier werden einige Informationen über die jeweilige Location angezeigt (Adresse, Internetseite und gegebenenfalls Öffnungszeiten). Desweiteren wird eine Slideshow von Bildern dieser Location angezeigt [autoscroll()].
 
 ###Chat
+[Teil der menu.html; Controller: chat.js]
+Ein Chatservice, der immer wenn ein Trip ausgewählt ist auf der Rechten Side-Bar angezeigt wird emöglicht eine Kommunikation zwischen den verschiedenen Teilnehmern eines Trips. Der Chat ist über Web-Sockets (socket.io) implementiert [nähere Informationen finden sich außerdem in der Backend-Dokumentation]. 
+Eine besondere Möglichkeit ist hierbei, seinen eigenen Avatar anzeigen zu lassen. Dies geschieht über den Internet-Service gravatar.com. Dort kann man sich mit seiner E-Mail Adresse registrieren und einen Avatar hinterlegen. Wenn man nun die selbe E-Mail Adresse in unserer App verwendet, wird dieser Avatar unter anderem im Chat angezeigt. 
 
 ###Kalenderexport
+Der Kalenderexport [export.js, export.html], der über das Kontextmenü erreichbar ist, ermöglicht es, seine Reise in den Kalender zu schreiben. Dazu wird zunächst ein Name eingegeben (voreingestellt ist der Reisename) und möglicherweise der Reisezeitraum angepasst (Voreinstellung wiederum von der Reise). Danach betätigt man den Export und ein Eintrag wird im Kalender erstellt [doExport()]. Dieser Export funktioniert mit dem Plugin "Calendar-PhoneGap-Plugin" ( https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin ).
+
 
 ###Mapservice
+Der Mapservice [maps.js] ermöglicht es uns in der CityList und der LocationList eine Google Maps Karte mit den verschiedenen Zielen anzuzeigen. Darin wird zunächst eine Map initialisiert [initMap()], die von Google Maps geladen wird. Danach werden die verschiedenen Ziele in der jeweiligen Karte angezeigt und eine Route berechnet [showRouting()]. Zusätzlich werden die Gesamtdauer und Gesamtentfernung in Kilometern ausgegeben.
 
 
 
 
-## TODO
-
-Unit Testing / Testing?
-
-Sehenswürdigkeiten in der Nähe
-
-## Unit Testing Information
-
-http://www.ng-newsletter.com/advent2013/#!/day/19
 
 
 ## Backend Github repo
