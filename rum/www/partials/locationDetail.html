@@ -26,6 +26,9 @@
 						{{addr_comp.short_name}}
 					</span>
 				</span>
+				<div class="phone_no" ng-show="googlePlace.international_phone_number != null">
+					{{'LOCATION_DETAIL.PHONE' | translate}}: {{googlePlace.international_phone_number}}
+				</div>
 			</div>
 			
 			<!-- Website -->

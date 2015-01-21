@@ -249,12 +249,15 @@ ion-side-menu ion-item {
 	content: ', ';
 }
 
-
-
 .week-day {
 	width: 100px;
 	display: inline-block;
 }
+
+.phone_no {
+	padding-top:15px;
+}
+
 
 /* For modal loading div */
 #divLoading {
