@@ -17,7 +17,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/user", "post", "create"),
 		new Route("/user/:user_id", "get", "read"),
 		new Route("/user/:user_id", "put", "update"),
-		new Route("/user/:user_id/changePassword", "put", "changePassword", true)
+		new Route("/user/:user_id/changePassword", "put", "changePassword", true),
 		new Route("/user/:user_id", "delete", "delete"),
 		new Route("/user/:user_id/trips", "get", "readTrips", true), // api.user.readTrips()
 		new Route("/trip", "post", "create"), // api.trip.create
