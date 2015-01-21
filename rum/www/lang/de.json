@@ -121,8 +121,10 @@
 		"LIST_TAB": "Liste",
 		"MAP_TAB": "Karte",
 		"SUGGEST_TAB": "Vorschläge",
+		"CHOOSE_CATEGORIES": "Kategorien wählen",
 		"TITLE": "Deine Ziele in {city_name}",
 		"ADD_LOCATION_BTN": "Ziel hinzufügen",
+		"ADD_CHOSEN_LOCATIONS_BTN": "Ausgewählte Ziele hinzufügen",
 		"CONFIRM_DELETE_TITLE": "Ziel entfernen",
 		"CONFIRM_DELETE_TEXT": "Sind Sie sicher, dass Sie dieses Ziel aus der Reise entfernen möchten?"
 	},

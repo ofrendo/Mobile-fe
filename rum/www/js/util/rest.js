@@ -9,6 +9,7 @@ app.service("restAPI", ["$http", function($http) {
 	module.url = url;
 	console.log("Using backend: " + url);
 	module.loading = false;
+	module.currLoading = 0;
 
 	var routes = [
 		new Route("/auth/login", "post", null, true), // api.auth.login()
@@ -16,6 +17,7 @@ app.service("restAPI", ["$http", function($http) {
 		new Route("/user", "post", "create"),
 		new Route("/user/:user_id", "get", "read"),
 		new Route("/user/:user_id", "put", "update"),
+		new Route("/user/:user_id/changePassword", "put", "changePassword", true)
 		new Route("/user/:user_id", "delete", "delete"),
 		new Route("/user/:user_id/trips", "get", "readTrips", true), // api.user.readTrips()
 		new Route("/trip", "post", "create"), // api.trip.create
@@ -43,7 +45,7 @@ app.service("restAPI", ["$http", function($http) {
 																				// y})
 		new Route("/trip/:trip_id/city/:city_id/locations", "get", "readLocations", true), // api.trip.city.readLocations(trip_id,
 																							// city_id)
-		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"),
+		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"), //location can be a single location or array
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "get", "read"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "put", "update"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "delete", "delete"),
@@ -122,6 +124,7 @@ app.service("restAPI", ["$http", function($http) {
 						}
 
 						module.loading = true;
+						module.currLoading++;
 						var request = $http[route.method](url + finishedPath, data)
 						.success(successFn);
 
@@ -130,7 +133,8 @@ app.service("restAPI", ["$http", function($http) {
 						}
 
 						request.finally(function() {
-							module.loading = false;
+							module.currLoading--;
+							if (module.currLoading === 0) module.loading = false;
 						});
 
 

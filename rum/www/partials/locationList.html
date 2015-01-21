@@ -62,8 +62,7 @@
           allow-empty="true"
           value="values"
           multi-select="true"
-          text="textPlacesCategories"
-          header-text="textPlacesCategories"
+          text="'LOCATION_LIST.CHOOSE_CATEGORIES' | translate"
           items="placesCategories">
       </fancy-select>
 
@@ -77,7 +76,8 @@
           <ion-list>
               <ion-checkbox ng-repeat="suggestedPlace in suggestedPlaces"
                     ng-checked="suggestedPlace.checked"
-                    ng-model="suggestedPlace.checked">
+                    ng-model="suggestedPlace.checked"
+                    ng-disabled="suggestedPlace.addedAlready">
                 <div class="fancy-select-icon" ng-if="suggestedPlace.icon != null">
                   <img ng-src="{{suggestedPlace.icon}}" />
                 </div>
@@ -98,9 +98,9 @@
 
     <!-- Add all chosen locations, only show in suggest tab -->
     <button class="button button-icon icon ion-plus-round" 
-      ng-click=""
+      ng-click="locationListCtrl.addChosenLocations()"
       ng-show="locationListCtrl.isActiveTab('suggest')" >
-      {{'LOCATION_LIST.ADD_CHOSEN_LOCATIONS' | translate}}
+      {{'LOCATION_LIST.ADD_CHOSEN_LOCATIONS_BTN' | translate}}
     </button>
   </ion-footer-bar>
 </ion-view>

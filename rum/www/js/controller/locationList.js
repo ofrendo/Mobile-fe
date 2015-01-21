@@ -46,6 +46,15 @@ app.controller("locationListController",
 	mapManagerSuggest.onPlacesSuggestCallback = function(places) {
 		$timeout(function() {
 			$scope.suggestedPlaces = places;
+
+			for (var i = 0; i < $scope.locations.length; i++) {
+				for (var j = 0; j < $scope.suggestedPlaces.length; j++) {
+					if ($scope.locations[i].place_id == $scope.suggestedPlaces[j].place_id) {
+						$scope.suggestedPlaces[j].checked = true;
+						$scope.suggestedPlaces[j].addedAlready = true;
+					}
+				}
+			}
 		});
 	}
 
@@ -87,7 +96,6 @@ app.controller("locationListController",
 	//Suggest tab
 	//Fancy select
 	$scope.values = null;
-	$scope.textPlacesCategories = "Choose categories";
 	$scope.placesCategories = [];
 	loadPlacesCategories(function(translations) {
 		$timeout(function() {
@@ -157,6 +165,30 @@ app.controller("locationListController",
 			);
 		});
 	};
+
+	//adds multiple locations, for use on suggest tab
+	this.addChosenLocations = function() {
+		var chosenLocations = [];
+		for (var i = 0; i < $scope.suggestedPlaces.length; i++) {
+			var suggestedPlace = $scope.suggestedPlaces[i];
+			if (suggestedPlace.checked === true && suggestedPlace.addedAlready !== true) {
+				// build location object for backend
+				var location = {
+						name: suggestedPlace.name, 			// the name of the city (without country etc.)
+						place_id: suggestedPlace.place_id,	// the unique placeid
+						city_id: parseInt($stateParams.city_id),
+						longitude: suggestedPlace.geometry.location.lng(),
+						latitude: suggestedPlace.geometry.location.lat(),
+						category: suggestedPlace.types[0]
+				};
+				chosenLocations.push(location);
+			}
+		}
+		restAPI.trip.city.location.create($stateParams.trip_id, $stateParams.city_id, {locations: chosenLocations}, function() {
+			me.setTab('list');
+			me.getLocationList();
+		});
+	};
 	
 	//deletes a location
 	this.deleteLocation = function(location){
@@ -186,5 +218,4 @@ app.controller("locationListController",
 		});
 	};
 	
-
 }]);
