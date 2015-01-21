@@ -13,6 +13,7 @@
 		"USERNAME": "Benutzername",
 		"PASSWORD": "Passwort",
 		"PASSWORD_REPEAT": "Passwort wiederholen",
+		"OLD_PASSWORD": "Altes Passwort",
 		"PHONE": "Telefonnummer",
 		"MAIL": "E-Mail",
 		"START_DATE": "Startdatum",
@@ -72,8 +73,8 @@
 		"ADD_PERSON":"Person hinzufügen",
 		"EMAIL":"E-Mail",
 		"ADD":"Hinzufügen",
-		"MAIL_CONTENT":"Sie wurden zu einer Reise bei RUM eingeladen.",
-		"MAIL_SUBJECT":"RUM Einladung"
+		"MAIL_CONTENT":"Hallo! Du wurdest von {user_name} zur Reise \"{trip_name}\" eingeladen. Um die Reise sehen und bearbeiten zu können, brauchst du die App RUM.",
+		"MAIL_SUBJECT":"RUM - Einladung zur Reise \"{trip_name}\""
 	},
 	"ADD_TRIP": {
 		"TITLE": "Reise hinzufügen",
@@ -166,7 +167,11 @@
 		"REGISTER_WITHOUT_PHONE": "Ignorieren"
 	},
 	"SETTINGS": {
-		"TITLE": "Einstellungen"
+		"TITLE": "Einstellungen",
+		"ACCOUNT": "Account",
+		"PASSWORD": "Passwort Ändern",
+		"SAVE_USER_BTN": "Änderungen speichern",
+		"SAVE_PW_BTN": "Passwort Ändern"
 	},
 	"TRIP_LIST": {
 		"TITLE": "Meine Reisen",

@@ -10,10 +10,11 @@
 	},
 	"FORMS": {
 		"NAME": "Name",
-		"USERNAME": "user name",
-		"PASSWORD": "password",
-		"PASSWORD_REPEAT": "repeat password",
-		"PHONE": "telephone number",
+		"USERNAME": "User name",
+		"PASSWORD": "Password",
+		"PASSWORD_REPEAT": "Repeat password",
+		"OLD_PASSWORD": "Old password",
+		"PHONE": "Telephone number",
 		"MAIL": "Mail",
 		"START_DATE": "Start date",
 		"END_DATE": "End date",
@@ -72,8 +73,8 @@
 		"ADD_PERSON":"Add Person",
 		"EMAIL":"email",
 		"ADD":"Add",
-		"MAIL_CONTENT":"Blablabla",
-		"MAIL_SUBJECT":"RUM Invitation"
+		"MAIL_CONTENT":"Hello! You have been invited to the trip \"{trip_name}\" by user {user_name}. To view and edit the trip, please install the App RUM.",
+		"MAIL_SUBJECT":"RUM - Invitation to trip \"{trip_name}\""
 	},
 	"ADD_TRIP": {
 		"TITLE": "Add trip",
@@ -166,7 +167,11 @@
 		"REGISTER_WITHOUT_PHONE": "Ignore"
 	},
 	"SETTINGS": {
-		"TITLE": "Settings"
+		"TITLE": "Settings",
+		"ACCOUNT": "Account",
+		"PASSWORD": "Change password",
+		"SAVE_USER_BTN": "Save changes",
+		"SAVE_PW_BTN": "Save password"
 	},
 	"TRIP_LIST": {
 		"TITLE": "My trips",
