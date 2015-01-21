@@ -47,6 +47,58 @@ app.service("maps", ["$timeout", function($timeout) {
 			return Math.floor(time / 60) + " h " + (time % 60) + " min ";
 		};
 		
+		this.suggestLocations = function(categoryString) {
+			var cityCenter = new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude);
+			var request = {
+				location: cityCenter,
+				radius: 10000
+			};
+
+			if (categoryString) {
+				var keywordString = ""; 
+				var categories = categoryString.split(",");
+				for (var i = 0; i < categories.length; i++) {
+					keywordString += categories[i].trim();
+
+					if (i !== categories.length-1) keywordString += "+";
+				}
+				request.keyword = keywordString;
+			}
+
+			console.log("Suggesting locations:");
+			console.log(request);
+
+			var placesService = new google.maps.places.PlacesService(me.map);
+			placesService.nearbySearch(request, onPlacesSearch);
+		};
+
+		function onPlacesSearch(results) {
+			console.log("onPlacesSearch results:");
+			console.log(results);
+			if (status == google.maps.places.PlacesServiceStatus.OK) {
+			    for (var i = 0; i < results.length; i++) {
+			    	var place = results[i];
+			    	createPlacesMarker(results[i]);
+			    }
+			} 
+			else {
+				console.log("Error during nearbySearch");
+			}
+		}
+		function createPlacesMarker(place) {
+			var placeLoc = place.geometry.location;
+			var marker = new google.maps.Marker({
+				map: me.map,
+				position: place.geometry.location
+			});
+
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.setContent(place.name);
+				infowindow.open(me.map, this);
+			});
+		}
+
+
 		this.showRouting = function(onDataChange) {
 			// create waypoints
 			var waypoints = [];
@@ -90,7 +142,7 @@ app.service("maps", ["$timeout", function($timeout) {
 				});
 			});
 		}
-		
+
 		this.initMap = function(objects, mapDivID) {
 			console.log('INIT google maps objects');
 			me.first = true;

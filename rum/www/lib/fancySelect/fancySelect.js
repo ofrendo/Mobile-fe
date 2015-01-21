@@ -36,7 +36,7 @@ app.directive('fancySelect',
                     scope.noteImgClass  = attrs.noteImgClass || '';
                     
                     /* Optionnal callback function */
-                    // scope.callback = attrs.callback || null;
+                    scope.callback = attrs.callback || null;
 
                     /* Instanciate ionic modal view and set params */
 
@@ -105,8 +105,8 @@ app.directive('fancySelect',
                         scope.hideItems();
                         
                         // Execute callback function
-                        if (typeof scope.callback == 'function') {
-                            scope.callback (scope.value);
+                        if (typeof scope.$parent.onChooseCategories == 'function') {
+                            scope.$parent.onChooseCategories(scope.text);
                         }
                     }
 

@@ -40,6 +40,7 @@ app.controller("locationListController",
 		}
 		else if (index == "suggest") {
 			mapManagerSuggest.onTabSwitch();
+			mapManagerSuggest.suggestLocations();
 		}
 	};
 
@@ -79,8 +80,8 @@ app.controller("locationListController",
 	this.getCityData();
 	
 	//Suggest tab
-	//Load keys
-	$scope.multiple = null;
+	//Fancy select
+	$scope.values = null;
 	$scope.textPlacesCategories = "Choose categories";
 	$scope.placesCategories = [];
 	loadPlacesCategories(function(translations) {
@@ -93,10 +94,14 @@ app.controller("locationListController",
 					text: translations[key],
 					icon: null
 				});
-			}
+			}	
 		});
 	});
 
+	$scope.onChooseCategories = function(categoryString) {
+		mapManagerSuggest.suggestLocations(categoryString);
+	};
+	//Load keys
 	function loadPlacesCategories(callback) {
 		$translate(["PLACES_CATEGORIES.SIGHTSEEING", 
 			"PLACES_CATEGORIES.CULTURE", 
