@@ -65,10 +65,10 @@ app.controller("addParticipantsController",
 			    	$scope.contacts = contacts;
 			    	//modify contacts to display photos
 				    for ( var i = 0; i < $scope.contacts.length; i++) {
-						if ($scope.contacts[i].photos != null) {
-							var imageURI = $scope.contacts[i].photos[0].value;
-							$scope.contacts[i].photos[0].value = me.modifyPhotoURL(imageURI);
-						}
+//						if ($scope.contacts[i].photos != null) {
+//							var imageURI = $scope.contacts[i].photos[0].value;
+//							$scope.contacts[i].photos[0].value = me.modifyPhotoURL(imageURI);
+//						}
 					}
 			    	// check whether a contact already is a participant
 				    for(var k = 0; k < $scope.contacts.length; k++){
@@ -79,9 +79,11 @@ app.controller("addParticipantsController",
 				    		// here it would be necessary to compare the phone numbers / mail addresses
 				    		// unfortunately the phone numbers are NOT in the participants data
 				    		// check only email-adress
-				    		if ($scope.participants[j].email == $scope.contacts[k].emails[0].value) {
-				    			$scope.contacts[k].is_participant = true;
-				    			break;
+				    		if ($scope.contacts[k].emails) {
+					    		if ($scope.participants[j].email == $scope.contacts[k].emails[0].value) {
+					    			$scope.contacts[k].is_participant = true;
+					    			break;
+								}
 							}
 				    	}
 				    }
@@ -111,8 +113,64 @@ app.controller("addParticipantsController",
 			catch (e) {
 				//catch if app is called in browser 
 				onError();
+				me.setDemoData();
 			}
 
+	};
+	
+	this.setDemoData = function(){
+		//load demo data
+		var demoArray = {
+			    "Contact": [
+			                {
+			                    "displayName": "Max Mustermann",
+			                    "phoneNumbers": [
+			                        {
+			                            "value": "123456789"
+			                        }
+			                    ],
+			                    "emails": [
+			                        {
+			                            "value": "test_user@gmail.com"
+			                        }
+			                    ]
+			                },
+			                {
+			                    "displayName": "Martina Musterfrau",
+			                    "phoneNumbers": [
+			                        {
+			                            "value": "987654321"
+			                        }
+			                    ],
+			                    "emails": [
+			                        {
+			                            "value": "test_user2@gmail.com"
+			                        }
+			                    ]
+			                }
+			            ]
+			        };
+		
+		// set demo data
+		$scope.contacts = demoArray.Contact;
+		
+		// check whether a contact already is a participant
+	    for(var k = 0; k < $scope.contacts.length; k++){
+	    	console.log('contact');
+	    	var isParticipant = false;
+	    	// check the participants list
+	    	for(var j = 0; j < $scope.participants.length; j++){
+	    		// here it would be necessary to compare the phone numbers / mail addresses
+	    		// unfortunately the phone numbers are NOT in the participants data
+	    		// check only email-adress
+	    		if ($scope.contacts[k].emails) {
+		    		if ($scope.participants[j].email == $scope.contacts[k].emails[0].value) {
+		    			$scope.contacts[k].is_participant = true;
+		    			break;
+					}
+				}
+	    	}
+	    }
 	};
 	
 	//closes addParticipant
