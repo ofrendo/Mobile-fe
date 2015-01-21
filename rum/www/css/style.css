@@ -241,6 +241,10 @@ ion-side-menu ion-item {
 	display: inline-block;
 }
 
+.phone_no {
+	padding-top:15px;
+}
+
 /* For loading */
 #divLoading {
 	position: fixed;

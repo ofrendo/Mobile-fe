@@ -113,7 +113,8 @@
 		"ADDRESS": "Adresse",
 		"OPENING_HOURS": "Öffnungzeiten",
 		"PICTURES": "Bilder",
-		"WEBSITE": "Webseite"
+		"WEBSITE": "Webseite",
+		"PHONE": "Tel.-Nr."
 	},
 	"LOCATION_LIST": {
 		"LIST_TAB": "Liste",
