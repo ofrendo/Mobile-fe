@@ -8,7 +8,7 @@ Für unser Projekt "Rum" (Reisen und Mehr) haben wir eine Android-App entwickelt
 
 Die App soll es dem Nutzer ermöglichen, eine Reise zu planen. Dabei kann er einer Reise verschiedene Städte und, in den Städten, einzelne Sehenswürdigkeiten hinzufügen, die er besuchen möchte. Zusätzliche Funktionen sind unter anderem eine Benutzerverwaltung (Login/Register), das Hinzufügen weiterer Personen zu der Reise (die diese dann mitbearbeiten können), ein Chat für jede Reise, ein Kalenderexport, das automatische Vorschlagen von Sehenswürdigkeiten in den Städten und die automatische Optimierung einer Route.
 
-Um die einzelnen Funktionalitäten der Applikation näher zu erläutern, gehen wir das Ganze an einem Beispiel durch:
+Im Folgenden werden die einzelnen Views und Funktionalitäten näher erläutert [ die Namen der Controller und Views entsprechen zumeist der Funktion]
 
 ###Login/Register
 Der Einstiegspunkt der App ist der Login-View, auf dem der Nutzer den Benutzernamen und Password eines bereits existierenden Nutzers eingeben und sich mit dem Klick auf "Login" anmelden kann. Dabei wird im 'loginController' überprüft, ob ein Name und Password eingegeben sind [verfiyLoginButton()], woraufhin der Nutzer eingeloggt wird [login()].
@@ -16,19 +16,19 @@ Für das eigentliche Anmelden am Server wird allerdings der 'loginService' verwe
 Für den ersten Gebrauch muss ein neuer Nutzer registriert werden. Dazu geht man zur Registrierung (register.html und registerController.js). Auf diesem Bildschirm werden nun alle Nutzerdaten eingegeben werden und die Registrierung getriggert [register()]. Diese Funktion überprüft zunächst, ob die optionalen Daten angegeben wurden (Telefonnummer) und fragt gegebenenfalls, ob der Nutzer diese noch ändern möchte. Danach wird der eigentliche Registrierungsvorgang gestartet [doRegistration], der den Nutzer im Backend registriert und einloggt. Zusätzlich wird vom Controller verifiziert, ob alle notwendigen Daten angegeben wurden, ob die Email ein gültiges Format besitzt und ob die beiden Passwörter übereinstimmen [verifyRegisterButton]. 
 
 ### Menü
-Alle folgenden Views haben eine gemeinsame Header-Leiste, sowie ein Menü auf der linken Seite und einen Chat auf der Rechten Seite (erst nachdem Trip asugewählt ist). Diese Gemeinsamkeit ist im menu.html und menuController.js. 
-In der Kopfzeile, der ion-nav-bar, wird zunächst auf der linken Seite ein Button zum Öffnen des Menüs angezeigt. Dieses Menü ist ein Side-Menu, auf der linken Seite, dass jederzeit durch den Nutzer von links reingeslided werden kann. Dieses enthält Funktionen, wie die Navigation zum Home-Screen (tripList), zu der Einstellungsseite (auf dieser kann die sprache in Englisch oder Deutsch geändert werden; die komplette App ist in beide Sprachen übersetzt) und einen Logout-Button.
+Alle folgenden Views haben eine gemeinsame Header-Leiste, sowie ein Menü auf der linken Seite und einen Chat auf der Rechten Seite (erst nachdem Trip ausgewählt ist). 
+In der Kopfzeile, der ion-nav-bar, wird zunächst auf der linken Seite ein Button zum Öffnen des Menüs angezeigt. Dieses Menü ist ein Side-Menu, auf der linken Seite, dass jederzeit durch den Nutzer von links reingezogen werden kann. Dieses enthält Funktionen, wie die Navigation zum Home-Screen (tripList), zu der Einstellungsseite (auf dieser kann die Sprache in Englisch oder Deutsch geändert werden - die komplette App ist in beide Sprachen übersetzt; Zusätzlich können hier Nutzerdaten angepasst werden) und einen Logout-Button.
 Sobald eine Navigation durchgeführt wurde, ersetzt ein Back-Button den Button für das Menü (dieses ist noch über das Sliden erreichbar). Der Back-Button ermöglicht es dem Nutzer zum vorherigen Screen zurückzukehren. Lediglich der Login und Register-Screen ist über diesen nicht erreichbar.
-Auf der Rechten Seite der Ion-Nav-Bar befindet sich ein Button für das Kontext Menü, dieses ermöglicht das Reordern und optimale Andordnen von Einträgen (wenn eine Liste angezeigt wird) und die Navigation zum Kalenderexport (sobald ein Trip ausgewählt wurde;siehe Kalenderexport).
-Ein weiterer Button auf der Rechten Seite ermöglicht das aufsliden des rechten Side-Menu, in dem sich ein Chat befindet [ siehe Chat]. Dieser wird ebenfalls nur angezeigt sobald ein Trip asugewählt wurde.
+Auf der Rechten Seite der Ion-Nav-Bar befindet sich ein Button für das Kontext Menü, dieses ermöglicht das Reordern und optimale Anordnen von Einträgen (wenn eine Liste angezeigt wird) und die Navigation zum Kalenderexport (sobald ein Trip ausgewählt wurde;siehe Kalenderexport).
+Ein weiterer Button auf der rechten Seite ermöglicht das aufsliden des rechten Side-Menu, in dem sich ein Chat befindet [ siehe Chat]. Dieser wird ebenfalls nur angezeigt sobald ein Trip asugewählt wurde.
 
 ### triplist
-Nachdem der Nutzer eingeloggt ist, kommt er zu dem Home-Screen, der tripList (tripList.html und tripList.js).
-Hier werden alle vorhandenem Trips, die er bereits angelegt hat angezeigt. Zu jedem Trip wird der Name, Start- und Enddatum, Anzahl der Städte in dem Trip und die Anzahl an Teilnehmern des Trips angezeigt. Wenn er einen Trip auswählt gelangt er zu der Citylist. Mit dem Bearbeiten-Button auf der Rechten Seite jedes Eintrags kommt man zum EditTrip. Eine weitere Möglichkeit ist das Löschen der Einträge, das dadurch erreicht wird, indem der Eintrag nach links gezogen wird. Dann wird ein Delete-Button angezeigt, der das Löschen ermöglicht [deleteTrip()].
-Zunächst wird der Nutzer allerdings einen neuen Trip anlegen müssen. Dies geschieht über den Button am in der Fußleiste.
+Nachdem der Nutzer eingeloggt ist, kommt er zu dem Home-Screen, der tripList.
+Hier werden alle vorhandenen Trips, dieder Nutzer bereits angelegt hat angezeigt. Zu jedem Trip wird der Name, Start- und Enddatum, Anzahl der Städte in dem Trip und die Anzahl an Teilnehmern des Trips angezeigt. Wenn ein Trip ausgewählt wird gelangt man zu der Citylist. Mit dem Bearbeiten-Button auf der Rechten Seite jedes Eintrags kommt man zum EditTrip. Eine weitere Möglichkeit ist das Löschen der Einträge, das dadurch erreicht wird, indem der Eintrag nach links gezogen wird. Dann wird ein Delete-Button angezeigt, der das Löschen ermöglicht [deleteTrip()].
+Zunächst wird der Nutzer allerdings einen neuen Trip anlegen müssen. Dies geschieht über den Button in der Fußleiste.
 
 #### addTrip
-Im addTrip wird ein Neuer Eintrag hinzugefügt. Dafür werden ein Name, sowie Start- und Enddatum (beide optional), welche daraufhin im addTripController an das Backend übergeben werden.
+Im addTrip wird ein Neuer Eintrag hinzugefügt. Dafür werden ein Name, sowie Start- und Enddatum (beide optional) eingegeben, welche daraufhin im addTripController an das Backend übergeben werden.
 
 #### editTrip
 Sobald ein Trip angelegt ist, kann dieser auch bearbeitet werden. Hier kann, ähnlich wie beim Hinzufügen, der Name, sowie Start- und Enddatum geändert werden. 
@@ -53,7 +53,7 @@ In der cityList gibt es neben der eigentlichen Liste noch einen weiteren Tab, di
 Um eine Stadt hinzuzufügen, muss zunächst eine über das obere Eingabefeld ausgewählt werden. Hier gibt der Nutzer den Namen der Stadt ein, die er hinzufügen möchte. Hierbei wird die Eingabe mit einem Autocorrect über Google-Maps unterstützt[autocomplete() und callGoogleAutocomlete()]. Aus der Liste an Vorschlägen wählt der Nutzer nun eine Stadt aus. Durch die Nutzung des Autocompletes von Google, werden direkt nähere Daten zu der Stadt (wie zum Beispiel die GoogleID und die Koordinaten) gespeichert. Zusammen mit einem Start- und Enddatum (optional) kann so nun die Stadt zu einem Trip hinzugefügt werden [addCity()].
 
 ####editCity
-Im editCity können lediglich noch das Start- und Enddatum verändert werden.
+Im editCity können das Start- und Enddatum des Besuches der Stadt verändert werden.
 
 ###locationList
 Sobald eine Stadt zu einem Trip hinzugefügt wurde kann diese ausgewählt werden und der Nutzer gelangt zu der locationList, die jede einzelne Sehenswürdigkeit des Trips enthält. 
@@ -62,6 +62,8 @@ Ein weiterer Tab ist wiederum die Map, wo eine Karte der ausgewählten Stadt gez
 Der dritte Tab bietet verschiedene Vorschläge für Locations, die besucht werden können. Zunächst kann hier eine Kategorie ausgewählt werden, anhand derer die Vorschläge gefiltert werden. Aus der Liste an Vorschlägen kann nun eine Location in die LocationList übernommen werden.
 
 ####addLocation
+Bei der addLocation ist, ähnlich wie beim addCity, wieder ein Google Autocomplete eingebunden. Wenn man in das Suchfeld nach einer Sehenswürdigkeit sucht, werden über Google verschiedene Locations Vorgeschlagen [autoComplete() und callGoogleAutocomplete()]. Aus der Liste von Vorschlägen, kann nun eine Location ausgewählt werden und die Daten (z.B. Koordinaten, Öffnungszeiten, Bilder, Adresse) werden automatisch von Google übernommen und gespeichert[addLocation()]. 
+Zusätzlich kann noch ein Start- und Endzeitpunkt eingefügt werden.
 
 
 ####editLocation
