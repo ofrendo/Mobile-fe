@@ -67,32 +67,40 @@
           items="placesCategories">
       </fancy-select>
 
-      <!-- Map container -->
-      <div class="map-container-small" id="map-canvas-locations-suggest"></div>  
+      <!-- container for map and suggestions -->
+      <div id="map-and-suggest-container">
+        <!-- Map container -->
+        <div class="map-container-small" id="map-canvas-locations-suggest"></div>  
 
-      <!-- List of suggestions -->
-      <ion-scroll>
-        <ion-list>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-          <ion-item class="item-text-wrap">Test</ion-item>
-        </ion-list>
-      </ion-scroll>
+        <!-- List of suggestions -->
+        <ion-scroll>
+          <ion-list>
+              <ion-checkbox ng-repeat="suggestedPlace in suggestedPlaces"
+                    ng-checked="suggestedPlace.checked"
+                    ng-model="suggestedPlace.checked">
+                <div class="fancy-select-icon" ng-if="suggestedPlace.icon != null">
+                  <img ng-src="{{suggestedPlace.icon}}" />
+                </div>
+                {{suggestedPlace.name}}
+              </ion-checkbox>
+          </ion-list>
+        </ion-scroll>
+      </div>
     </div>
   </ion-content>
-  <ion-footer-bar class="bar bar-positive triplist-footer" ng-show="locationListCtrl.isActiveTab('list')"">
-  	<button class="button button-icon icon ion-plus-round" ng-click="locationListCtrl.navToAddLocation()">
+  <ion-footer-bar class="bar bar-positive triplist-footer">
+    <!-- Add location button, only show in list tab -->
+  	<button class="button button-icon icon ion-plus-round" 
+      ng-click="locationListCtrl.navToAddLocation()"
+      ng-show="locationListCtrl.isActiveTab('list')" >
   		{{'LOCATION_LIST.ADD_LOCATION_BTN' | translate}}
   	</button>
+
+    <!-- Add all chosen locations, only show in suggest tab -->
+    <button class="button button-icon icon ion-plus-round" 
+      ng-click=""
+      ng-show="locationListCtrl.isActiveTab('suggest')" >
+      {{'LOCATION_LIST.ADD_CHOSEN_LOCATIONS' | translate}}
+    </button>
   </ion-footer-bar>
 </ion-view>
