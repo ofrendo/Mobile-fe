@@ -120,8 +120,10 @@
 		"LIST_TAB": "List",
 		"MAP_TAB": "Map",
 		"SUGGEST_TAB": "Suggest",
+		"CHOOSE_CATEGORIES": "Choose categories",
 		"TITLE": "Your locations in {city_name}",
 		"ADD_LOCATION_BTN": "Add location",
+		"ADD_CHOSEN_LOCATIONS_BTN": "Add chosen locations",
 		"CONFIRM_DELETE_TITLE": "Remove location",
 		"CONFIRM_DELETE_TEXT": "Do you want to remove this location from the trip?"
 	},
