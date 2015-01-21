@@ -73,8 +73,8 @@
 		"ADD_PERSON":"Person hinzufügen",
 		"EMAIL":"E-Mail",
 		"ADD":"Hinzufügen",
-		"MAIL_CONTENT":"Sie wurden zu einer Reise bei RUM eingeladen.",
-		"MAIL_SUBJECT":"RUM Einladung"
+		"MAIL_CONTENT":"Hallo! Du wurdest von {user_name} zur Reise \"{trip_name}\" eingeladen. Um die Reise sehen und bearbeiten zu können, brauchst du die App RUM.",
+		"MAIL_SUBJECT":"RUM - Einladung zur Reise \"{trip_name}\""
 	},
 	"ADD_TRIP": {
 		"TITLE": "Reise hinzufügen",

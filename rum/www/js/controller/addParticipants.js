@@ -1,6 +1,6 @@
 app.controller("addParticipantsController",
-		["$scope", "restAPI", "$timeout", "$stateParams", "loginService", "globals", "$translate" , "$ionicPopup",
-        function($scope, restAPI, $timeout, $stateParams, loginService, globals, $translate,$ionicPopup){
+		["$scope", "restAPI", "$timeout", "$stateParams", "loginService", "globals", "$translate" , "$ionicPopup", "globals",
+        function($scope, restAPI, $timeout, $stateParams, loginService, globals, $translate,$ionicPopup, globals){
 	
 			
 	//INIT
@@ -42,7 +42,7 @@ app.controller("addParticipantsController",
 	};
 	
 	this.sendMail = function(){
-		$translate(['ADD_PARTICIPANTS.MAIL_SUBJECT' , 'ADD_PARTICIPANTS.MAIL_CONTENT']).then(function(translations){
+		$translate(['ADD_PARTICIPANTS.MAIL_SUBJECT' , 'ADD_PARTICIPANTS.MAIL_CONTENT'], {trip_name: $scope.tripData.name, user_name: globals.user.name}).then(function(translations){
 			cordova.plugins.email.open({
 			    to:      me.email,
 			    subject: translations['ADD_PARTICIPANTS.MAIL_SUBJECT'],
