@@ -86,8 +86,7 @@ app.controller("menuController",
 			case "app.cityList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']},
-				                  {text: translations['MENU.EXPORT']},
-				                  {text: translations['MENU.OPTIMIZE']}
+				                  {text: translations['MENU.EXPORT']}
 				                  ]
 				break
 			default:

@@ -45,6 +45,7 @@ app.service("restAPI", ["$http", function($http) {
 																				// y})
 		new Route("/trip/:trip_id/city/:city_id/locations", "get", "readLocations", true), // api.trip.city.readLocations(trip_id,
 																							// city_id)
+		new Route("/trip/:trip_id/city/:city_id/changeLocationIndexes", "put", "changeLocationIndexes", true),
 		new Route("/trip/:trip_id/city/:city_id/location", "post", "create"), //location can be a single location or array
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "get", "read"),
 		new Route("/trip/:trip_id/city/:city_id/location/:location_id", "put", "update"),
