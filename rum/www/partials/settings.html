@@ -38,11 +38,7 @@
 		<div class="list card">
 			<div class="item item-divider">{{'SETTINGS.PASSWORD' | translate}}</div>
 			<div class="item item-input">
-				<label class="input-label">{{'FORMS.OLD_PASSWORD' | translate}}</label>
-				<input type="password" ng-model="pw.old" ng-init="pw.old = ''">
-			</div>
-			<div class="item item-input">
-				<label class="input-label">{{'FORMS.PASSWORD' | translate}}</label>
+				<label class="input-label">{{'FORMS.NEW_PASSWORD' | translate}}</label>
 				<input type="password" ng-model="pw.new" ng-init="pw.new = ''">
 			</div>
 			<div class="item item-input">
@@ -52,7 +48,7 @@
 			<div class="item">
 				<button class="button button-positive button-block" 
 	      				ng-click="settingsCtrl.savePassword()"
-	      				ng-disabled="pw.old == '' || pw.new == '' || pw.repeat == '' || pw.new != pw.repeat">
+	      				ng-disabled="pw.new == '' || pw.repeat == '' || pw.new != pw.repeat">
 	      			{{'SETTINGS.SAVE_PW_BTN' | translate}}
 	      		</button>
 			</div>
