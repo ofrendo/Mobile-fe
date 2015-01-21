@@ -10,10 +10,11 @@
 	},
 	"FORMS": {
 		"NAME": "Name",
-		"USERNAME": "user name",
-		"PASSWORD": "password",
-		"PASSWORD_REPEAT": "repeat password",
-		"PHONE": "telephone number",
+		"USERNAME": "User name",
+		"PASSWORD": "Password",
+		"PASSWORD_REPEAT": "Repeat password",
+		"OLD_PASSWORD": "Old password",
+		"PHONE": "Telephone number",
 		"MAIL": "Mail",
 		"START_DATE": "Start date",
 		"END_DATE": "End date",
@@ -166,7 +167,11 @@
 		"REGISTER_WITHOUT_PHONE": "Ignore"
 	},
 	"SETTINGS": {
-		"TITLE": "Settings"
+		"TITLE": "Settings",
+		"ACCOUNT": "Account",
+		"PASSWORD": "Change password",
+		"SAVE_USER_BTN": "Save changes",
+		"SAVE_PW_BTN": "Save password"
 	},
 	"TRIP_LIST": {
 		"TITLE": "My trips",

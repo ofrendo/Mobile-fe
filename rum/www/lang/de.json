@@ -13,6 +13,7 @@
 		"USERNAME": "Benutzername",
 		"PASSWORD": "Passwort",
 		"PASSWORD_REPEAT": "Passwort wiederholen",
+		"OLD_PASSWORD": "Altes Passwort",
 		"PHONE": "Telefonnummer",
 		"MAIL": "E-Mail",
 		"START_DATE": "Startdatum",
@@ -166,7 +167,11 @@
 		"REGISTER_WITHOUT_PHONE": "Ignorieren"
 	},
 	"SETTINGS": {
-		"TITLE": "Einstellungen"
+		"TITLE": "Einstellungen",
+		"ACCOUNT": "Account",
+		"PASSWORD": "Passwort Ändern",
+		"SAVE_USER_BTN": "Änderungen speichern",
+		"SAVE_PW_BTN": "Passwort Ändern"
 	},
 	"TRIP_LIST": {
 		"TITLE": "Meine Reisen",
