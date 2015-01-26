@@ -1,0 +1,202 @@
+{
+	"CHAT": {
+		"TITLE": "Chat",
+		"INSERT_MSG": "Inserte su mensaje."
+	},
+	"DIALOG": {
+		"CLOSE_BTN": "Cerrar",
+		"OK_BTN": "OK",
+		"CANCEL_BTN": "Cancelar"
+	},
+	"FORMS": {
+		"NAME": "Nombre",
+		"USERNAME": "Nombre de usario",
+		"PASSWORD": "Contraseña",
+		"PASSWORD_REPEAT": "Repita contraseña",
+		"OLD_PASSWORD": "contraseña vieja",
+		"NEW_PASSWORD": "contraseña nueva",
+		"PHONE": "Número de teléfono",
+		"MAIL": "E-mail",
+		"START_DATE": "Fecha de inicio",
+		"END_DATE": "Fecha de término",
+		"START_TIME": "Hora de inicio",
+		"END_TIME": "Hora de finalización",
+		"TRIP_START_DATE": "Inicio del viaje",
+		"TRIP_END_DATE": "Fin del viaje",
+		"LANGUAGE": "Idioma"
+	},
+	"LANGUAGES": {
+		"GERMAN": "Aleman",
+		"ENGLISH": "Inglés",
+		"SPANISH": "Español"
+	},
+	"MENU": {
+		"BACK_BTN": "Atrás",
+		"TITLE": "Menú",
+		"TRIP_LIST": "Mis viajes",
+		"SETTINGS": "Configuración",
+		"LOGOUT": "Salir",
+		"CONFIRM_LOGOUT_TITLE": "Salir",
+		"CONFIRM_LOGOUT_TEXT": "¿Seguro, que usted quiere salir?",
+		"EXPORT":"Exportar al calendario",
+		"CANCEL":"Cancelar",
+		"REORDER":"Mover",
+		"OPTIMIZE":"Optimizar"
+	},
+	"WEEKDAYS": {
+		"MONDAY": "Lunes",
+		"TUESDAY": "Martes",
+		"WEDNESDAY": "Miércoles",
+		"THURSDAY": "Jueves",
+		"FRIDAY": "Viernes",
+		"SATURDAY": "Sabado",
+		"SUNDAY": "Domingo"
+	},
+
+
+	"ADD_CITY": {
+		"TITLE": "Agregar una ciudad",
+		"CITY_SEARCH": "Buscar una ciudad",
+		"ADD_CITY_BTN": "Agregar"
+	},
+	"ADD_LOCATION":{
+		"TITLE": "Agregar lugares en {city_name}",
+		"LOCATION": "Lugar",
+		"LOC_SEARCH": "Buscar un lugar",
+		"ADD_LOCATION_BTN": "Agregar"
+	},
+	"ADD_PARTICIPANTS": {
+		"TITLE": "Agregar participante",
+		"CONTACT_LIST": "Lista de contactos",
+		"FILTER_NAME": "Inserte el nombre",
+		"ERROR":"¡Hubo un error en la carga de los contactos!",
+		"ERROR_TITLE":"Error",
+		"ERROR_MAIL":"¡La dirección de correo electrónico es invalido!",
+		"ADD_PERSON":"Agregar participante",
+		"EMAIL":"E-mail",
+		"ADD":"Agregar",
+		"MAIL_CONTENT":"¡Hola! {user_name} te invitó al viaje \"{trip_name}\". Para ver y editar el viaje, necesitas la aplicación RUM.",
+		"MAIL_SUBJECT":"RUM - Invitación al viaje \"{trip_name}\""
+	},
+	"ADD_TRIP": {
+		"TITLE": "Agregar viaje",
+		"ADD_TRIP_BTN": "Agregar"
+	},
+	"CITY_LIST": {
+		"LIST_TAB": "Lista",
+		"MAP_TAB": "Mapa",
+		"CITY_INFO": "{no_locations} {no_locations, plural, one{lugar} other{lugares}}",
+		"ADD_CITY_BTN": "Agregar una ciudad",
+		"DELETE": "Borrar"
+	},
+	"EDIT_CITY": {
+		"TITLE": "Ciudad {name}",
+		"SAVE_BTN": "Guardar",
+		"DELETE_BTN": "Borrar la ciudad",
+		"CONFIRM_DELETE_TITLE": "Borrar la ciudad",
+		"CONFIRM_DELETE_TEXT": "¿Seguro, que usted quiere borrar la ciudad y todos lugares agregados?"
+	},
+	"EDIT_LOCATION": {
+		"TITLE": "Lugar {name}",
+		"SAVE_BTN": "Guardar"
+	},
+	"EDIT_TRIP": {
+		"TITLE": "Editar viaje",
+		"GENERAL_DATA": "Datos generales del viaje",
+		"SAVE_BTN": "Guardar",
+		"PARTICIPANTS": "{participants} {participants, plural, one{participante} other{participantes}}",
+		"ADD_PARTICIPANTS": "Agregar participantes",
+		"LEAVE_TRIP_TITLE": "Abandonar viaje",
+		"LEAVE_TRIP_TEXT": "¿Seguro, que usted quiere abandonar el viaje?",
+		"DELETE_PARTICIPANT_TITLE": "Ausentar participante",
+		"DELETE_PARTICIPANT_TEXT": "¿Seguro, que usted quiere ausentar este participante?"
+	},
+	"LOCATION_DETAIL": {
+		"ADDRESS": "Dirección",
+		"OPENING_HOURS": "Horas de abrir",
+		"PICTURES": "Imagenes",
+		"WEBSITE": "Página web",
+		"PHONE": "Número de teléfono"
+	},
+	"LOCATION_LIST": {
+		"LIST_TAB": "Lista",
+		"MAP_TAB": "Mapa",
+		"SUGGEST_TAB": "Sugerencias",
+		"CHOOSE_CATEGORIES": "Elegir categorias",
+		"TITLE": "Sus lugares en {city_name}",
+		"ADD_LOCATION_BTN": "Agregar un lugar",
+		"ADD_CHOSEN_LOCATIONS_BTN": "Agregar lugares seleccionados",
+		"CONFIRM_DELETE_TITLE": "Remover lugar",
+		"CONFIRM_DELETE_TEXT": "¿Seguro, que usted quiere remover este lugar del viaje?"
+	},
+	"PLACES_CATEGORIES": {
+		"SIGHTSEEING": "Visitas turísticas",
+		"CULTURE": "Cultura",
+		"TRANSPORT": "Transporte",
+		"ACCOMODATION": "Alojamiento",
+		"SHOPPING": "Compras",
+		"FOOD": "Comida",
+		"SPORTS": "Deporte",
+		"NATURE": "Natura",
+		"FUN": "Diversión",
+		"RELIGION": "Religión",
+		"EDUCATION": "Educación"
+	},
+	"MAP": {
+		"ROAD_DISTANCE": "Distancia total",
+		"TRAVEL_TIME": "Tiempo total",
+		"ROUTING_NOT_POSSIBLE": "¡No es posible calcular la ruta!"
+	},
+	"LOGIN": {
+		"TITLE": "Login",
+		"LOGIN_BTN": "Entrar",
+		"TO_REGISTRATION": "A la inscripción",
+		"NOT_REGISTERED_YET": "¿Todavia no inscrito? ¡Inscriba ahora!",
+		"ERROR_OCCURRED": "¡Hubo un error!",
+		"ERROR_LOGIN": "¡Hubo un error en la procedura de entrar!",
+		"ERROR_TITLE": "Error"
+	},
+	"REGISTER": {
+		"TITLE": "Inscripción",
+		"REGISTER_BTN": "Inscribir",
+		"ALREADY_REGISTERED": "Ya inscrito? Entré ahora.",
+		"TO_LOGIN": "A la entrada",
+		"ERROR_TITLE": "Error",
+		"ERROR_ALREADY_EXISTS_MESSAGE" : "¡Este nombre de usario no es disponible nada mas!",
+		"ERROR_MESSAGE": "¡Hubo un error!",
+		"ERROR_SERVER_MESSAGE": "¡Hubo un error interno del servidor!",
+		"ERROR_INPUT_MESSAGE": "Por favor, corrija su entrada.",
+		"CONFIRM_REGISTER_TEXT": "No insertaste un número de teléfono. Por eso es posible que tu amigos no te encontrarán.",
+		"CONFIRM_REGISTER_TITLE": "Atención",
+		"CHANGE_PHONE": "Editar",
+		"REGISTER_WITHOUT_PHONE": "Ignorar"
+	},
+	"SETTINGS": {
+		"TITLE": "Configuración",
+		"ACCOUNT": "Cuenta",
+		"PASSWORD": "Cambiar contraseña",
+		"PASSWORD_CHANGED": "Contraseña cambiado.",
+		"ACC_DATA_CHANGED": "Cambios de cuenta estan guardados.",
+		"SAVE_USER_BTN": "Guardar cambios",
+		"SAVE_PW_BTN": "Cambiar contraseña"
+	},
+	"TRIP_LIST": {
+		"TITLE": "Mis viajes",
+		"ADD_TRIP_BTN": "Aggregar un viaje",
+		"TRIP_INFO": "{no_participants} {no_participants, plural, one{participante} other{participantes}} | {no_cities} {no_cities, plural, one{ciudad} other{ciudades}}",
+		"REORDERING": "Mover..."
+	},
+	"EXPORT": {
+		"TITLE": "Exporte al calendario",
+		"NAME" : "Nombre del viaje",
+		"STARTDATE" :"Fecha de inicio",
+		"ENDDATE" : "Fecha de término",
+		"EXPORTBTN" : "Exportar",
+		"ERROR_TITLE" : "Error",
+		"ERROR_TRIP_ID" : "Por favor, elija un viaje.",
+		"ERROR" : "¡Hubo un error!",
+		"SUCCESS" : "Exporte con éxito",
+		"ERROR_CORDOVA" : "¡En el navegador no hay un calendario!"
+	}
+
+}

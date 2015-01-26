@@ -15,6 +15,10 @@ app.controller("settingsController",
 			 {
 				 key: 'ENGLISH',
 				 short: 'en'
+			 },
+			 {
+				 key: 'SPANISH',
+				 short: 'es'
 			 }
 			];
 		
