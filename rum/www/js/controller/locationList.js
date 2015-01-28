@@ -180,11 +180,19 @@ app.controller("locationListController",
 
 	//Optimize order of waypoints
 	this.optimize = function() {
-		//Following chain of calls is used for optimization:
-		//user --(optimize)-> maps 
-		//user --(changeIndex)-> server 
-		//user --(reload)-> server
-
+		mapManagerSuggest.optimize(me.locations, function(changes) {
+			//Callback after google maps has responded with new order
+			//--> Update backend
+			restAPI.trip.city.changeLocationIndexes(
+				$stateParams.trip_id,
+				$stateParams.city_id, 
+				{locations: changes},
+				onBackendOptimized
+			);
+		});
+	};
+	function onBackendOptimized() {
+		me.getLocationList();
 	}
 
 	//adds multiple locations, for use on suggest tab
