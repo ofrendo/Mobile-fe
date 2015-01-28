@@ -34,7 +34,7 @@ app.service("globals", [ function() {
 		}
 	}
 
-	this.setOptimizeCallback = function() {
+	this.setOptimizeCallback = function(callback) {
 		this.optimizeCallback = callback;
 	}
 	this.callOptimizeCallback = function() {

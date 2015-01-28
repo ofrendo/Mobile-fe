@@ -58,7 +58,7 @@ app.service("maps", ["$timeout", function($timeout) {
 				radius: 20000
 			};
 
-			if (categoryString) {
+			if (categoryString !== undefined && categoryString !== "Choose categories") {
 				var keywordString = ""; 
 				var categories = categoryString.split(",");
 				for (var i = 0; i < categories.length; i++) {
@@ -69,7 +69,7 @@ app.service("maps", ["$timeout", function($timeout) {
 				request.keyword = keywordString;
 			}
 
-			console.log("Suggesting locations:");
+			console.log("Suggesting locations with keywords:" + keywordString);
 			console.log(request);
 
 			var placesService = new google.maps.places.PlacesService(me.map);

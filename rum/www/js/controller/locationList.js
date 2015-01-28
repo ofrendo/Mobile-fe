@@ -83,8 +83,10 @@ app.controller("locationListController",
 			me.locations = locations;
 			$scope.locations = locations;
 
-			// initialize map
-			mapManager.initMap(locations, "map-canvas-locations");
+			// initialize map (only if at least 1 location)
+			if (locations.length > 0) {
+				mapManager.initMap(locations, "map-canvas-locations");
+			}
 		});
 	};
 	this.getLocationList();

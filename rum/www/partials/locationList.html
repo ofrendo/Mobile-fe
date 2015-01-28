@@ -88,7 +88,7 @@
       </div>
     </div>
   </ion-content>
-  <ion-footer-bar class="bar bar-positive triplist-footer">
+  <ion-footer-bar class="bar bar-positive triplist-footer" ng-show="!locationListCtrl.isActiveTab('map')">
     <!-- Add location button, only show in list tab -->
   	<button class="button button-icon icon ion-plus-round" 
       ng-click="locationListCtrl.navToAddLocation()"
