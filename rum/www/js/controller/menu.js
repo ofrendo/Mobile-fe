@@ -126,6 +126,11 @@ app.controller("menuController",
 	this.navToSettings = function(){
 		$state.go('app.settings');
 	}
+	
+	this.navToSuggestions = function(){
+		$state.go('app.suggestions');
+	}
+	
 	this.navToExport = function(){
 		//check if trip_id is given
 		if($stateParams.trip_id < 0 || $stateParams.trip_id === undefined){

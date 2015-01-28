@@ -172,6 +172,11 @@ ion-side-menu ion-item {
 	height:100%;
 }
 
+.suggestions-wrapper {
+	width:100%;
+	height:100%;
+}
+
 .map-wrapper .overlay {
 	margin-top: 57px;
 	margin-left: 10px;
@@ -235,6 +240,9 @@ ion-side-menu ion-item {
 	height: 20px;
 }
 #map-and-suggest-container {
+	height: calc(100% - 88px);
+}
+#suggest-container {
 	height: calc(100% - 88px);
 }
 .map-container-small {
