@@ -41,7 +41,8 @@
 		"EXPORT":"Exportar al calendario",
 		"CANCEL":"Cancelar",
 		"REORDER":"Mover",
-		"OPTIMIZE":"Optimizar"
+		"OPTIMIZE":"Optimizar",
+		"RELOAD":"Recargar"
 	},
 	"WEEKDAYS": {
 		"MONDAY": "Lunes",

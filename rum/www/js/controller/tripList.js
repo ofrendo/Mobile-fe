@@ -30,6 +30,11 @@ app.controller("tripListController",
 		me.data.showReordering = !me.data.showReordering;
 	});
 	
+	//set callback for reload
+	globals.setReloadCallback(function(){
+		me.reloadDetails();
+	});
+	
 	
 	//FUNCTIONS
 	//get Trips
@@ -91,6 +96,10 @@ app.controller("tripListController",
 				}
 			);
 		});
+	};
+	//reload trips
+	this.reloadDetails = function(){
+		me.getTrip();
 	};
 	
 }]);
