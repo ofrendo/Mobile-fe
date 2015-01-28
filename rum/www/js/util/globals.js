@@ -24,6 +24,16 @@ app.service("globals", [ function() {
 			this.reorderCallback();
 		}
 	}
+	
+	this.setReloadCallback = function(callback) {
+		this.reloadCallback = callback;
+	}
+
+	this.callReloadCallback = function() {
+		if (typeof (this.reloadCallback) == "function") {
+			this.reloadCallback();
+		}
+	}
 
 	this.setTripID = function(trip_id) {
 		trip_id = parseInt(trip_id);
