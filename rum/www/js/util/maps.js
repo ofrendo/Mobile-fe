@@ -5,6 +5,7 @@ app.service("maps", ["$timeout", function($timeout) {
 		this.first = true;
 		this.objects = []; //can be either locations or cities
 		this.markers = [];
+		var range = 10000;
 
 		var directionsService = new google.maps.DirectionsService();
 		var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -38,6 +39,10 @@ app.service("maps", ["$timeout", function($timeout) {
 			return Math.round(distance) + " km";
 		};
 		
+		this.changeRange = function (newRange){
+			range = newRange;
+		}
+		
 		// returns travel time in min
 		this.calculateOverallTravelTime = function(route) {
 			var time = 0;
@@ -55,7 +60,7 @@ app.service("maps", ["$timeout", function($timeout) {
 			var cityCenter = new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude);
 			var request = {
 				location: cityCenter,
-				radius: 20000
+				radius: range,
 			};
 
 			if (categoryString !== undefined && categoryString !== "Choose categories") {

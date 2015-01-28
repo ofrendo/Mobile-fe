@@ -169,7 +169,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		views: {
 			'menuContent' :{
 				templateUrl: "partials/suggestions.html",
-				controller: 'suggestionsController as settingsCtrl'
+				controller: 'suggestionsController as suggestionsCtrl'
 			}
 		}
 	})

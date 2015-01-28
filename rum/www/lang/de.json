@@ -198,6 +198,11 @@
 		"ERROR" : "Ein Fehler ist aufgetreten",
 		"SUCCESS" : "Export efolgreich",
 		"ERROR_CORDOVA" : "Kein Kalender im Browser vorhanden"
+	},
+	"SUGGESTIONS" :{
+		"TITLE" : "Was ist in der Nähe",
+		"RANGE" : "Entfernung",
+		"MENU" : "In der Nähe"
 	}
 
 }

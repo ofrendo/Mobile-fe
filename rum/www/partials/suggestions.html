@@ -6,9 +6,17 @@
           allow-empty="true"
           value="values"
           multi-select="true"
-          text="'SUGGESTIONS.CHOOSE_CATEGORIES' | translate"
+          text="'LOCATION_LIST.CHOOSE_CATEGORIES' | translate"
           items="suggestCategories">
       </fancy-select>
+      
+      <div class="range">
+		 <p> {{'SUGGESTIONS.RANGE' | translate}} : {{data.range}} km</p>
+ 		<input type="range" name="Range" min="1" max = "20" ng-model="data.range">
+	  </div>
+	  
+	  
+	
 
       <!-- container for map and suggestions -->
       <div id="suggest-container">

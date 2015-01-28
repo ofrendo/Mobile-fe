@@ -1,12 +1,12 @@
 app.controller("suggestionsController", 
-	["$scope", "$state", "$ionicPopup", "loginService", "globals", "maps", "$stateParams", "$timeout", "$translate",
-	function($scope, $state, $ionicPopup, loginService, globals, maps, $stateParams, $timeout, $translate) {
+	["$scope","$rootScope","$state", "$ionicPopup", "loginService", "globals", "maps", "$stateParams", "$timeout", "$translate",
+	function($scope,$rootScope, $state, $ionicPopup, loginService, globals, maps, $stateParams, $timeout, $translate) {
 	
 
 	//VARIABLES
 	
 	var mapManagerSuggest = new maps.MapManager();
-
+	var categories;
 	$scope.suggestCategories = [];
 	
 
@@ -60,6 +60,7 @@ app.controller("suggestionsController",
 			console.log(position);
 			
 			mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
+			mapManagerSuggest.changeRange($scope.data.range*1000);
 			mapManagerSuggest.suggestLocations();
 		})
 	};
@@ -68,8 +69,37 @@ app.controller("suggestionsController",
 	
 	$scope.onChooseCategories = function(categoryString) {
 		mapManagerSuggest.suggestLocations(categoryString);
+		categories = categoryString;
 	};
+	
+		
+	//rangeSlider Handler
+    $scope.data = {'range' : "5"};
+    
+    var timeoutId = null;
+    
+    
+	 $scope.$watch('data.range', function() {
+	            
+	        if(timeoutId !== null) {
+	           //ignore
+	            return;
+	        }	        	
+	        
+	        timeoutId = $timeout( function() {
+	            
+	            console.log($scope.data.range);
 
+	            
+	            $timeout.cancel(timeoutId);
+	            timeoutId = null;
+	            
+	            // Now change range for map
+	            mapManagerSuggest.changeRange($scope.data.range*1000);
+	            mapManagerSuggest.suggestLocations(categories);
+	        }, 1000); 
+	        
+	 });
 
 
 }]);
