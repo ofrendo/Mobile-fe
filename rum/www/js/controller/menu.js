@@ -154,7 +154,7 @@ app.controller("menuController",
 	}
 	
 	this.optimize = function(){
-		console.log("Optimize Trip/LoationList");
+		globals.callOptimizeCallback();
 	}
 	
 	this.logout = function(){

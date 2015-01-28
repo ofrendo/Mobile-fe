@@ -113,15 +113,7 @@ app.service("maps", ["$timeout", function($timeout) {
 
 		this.showRouting = function(onDataChange) {
 			// create waypoints
-			var waypoints = [];
-			for(var i = 1; i < me.objects.length - 1; i++){
-				var pos = new google.maps.LatLng(me.objects[i].latitude, me.objects[i].longitude);
-				var waypoint = {
-					location: pos,
-					stopover: true
-				};
-				waypoints.push(waypoint);
-			}
+			var waypoints = buildWaypoints(me.objects);
 			// send maps request
 			var request = {
 				origin: new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude),
@@ -153,6 +145,60 @@ app.service("maps", ["$timeout", function($timeout) {
 					}
 				});
 			});
+		}
+
+		this.optimize = function(locations) {
+			//https://developers.google.com/maps/documentation/javascript/reference#DirectionsRequest
+			// create waypoints
+			var waypoints = buildWaypoints(locations);
+			// send maps request
+			var request = {
+				origin: new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude),
+				destination: new google.maps.LatLng(
+								me.objects[me.objects.length - 1].latitude, 
+								me.objects[me.objects.length - 1].longitude),
+				waypoints: waypoints,
+				provideRouteAlternatives: false,
+				travelMode: google.maps.TravelMode.DRIVING,
+				unitSystem: google.maps.UnitSystem.METRIC
+			};
+			directionsService.route(request, function(result, status) {
+				if (status != google.maps.DirectionsStatus.OK) {
+					console.error('Fehler beim Berechnen der Route: ' + status);
+					$translate('MAP.ROUTING_NOT_POSSIBLE').then(function(text){
+						toast.showLong(text);
+					});
+					return;
+				}
+				$timeout(function(){
+					console.log("Showrouting result:");
+					console.log(result);
+					directionsDisplay.setDirections(result);
+					if (typeof(onDataChange) == "function") {
+						onDataChange(
+							me.calculateOverallDistance(result.routes[0]),
+							me.calculateOverallTravelTime(result.routes[0])
+						);
+					}
+				});
+			});
+		};
+
+		function buildWaypoints(objects) {
+			var waypoints = [];
+			for(var i = 1; i < objects.length - 1; i++){
+				var pos = new google.maps.LatLng(objects[i].latitude, objects[i].longitude);
+				var waypoint = {
+					location: pos,
+					stopover: true
+				};
+				waypoints.push(waypoint);
+			}
+			return waypoints;
+		}
+
+		function buildDirectionsRequest() {
+			
 		}
 
 		function initMap(objects, mapDivID) {

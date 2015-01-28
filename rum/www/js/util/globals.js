@@ -18,10 +18,18 @@ app.service("globals", [ function() {
 	this.setReorderCallback = function(callback) {
 		this.reorderCallback = callback;
 	}
-
 	this.callReorderCallback = function() {
 		if (typeof (this.reorderCallback) == "function") {
 			this.reorderCallback();
+		}
+	}
+
+	this.setOptimizeCallback = function() {
+		this.optimizeCallback = callback;
+	}
+	this.callOptimizeCallback = function() {
+		if (typeof (this.optimizeCallback) == "function") {
+			this.optimizeCallback();
 		}
 	}
 
