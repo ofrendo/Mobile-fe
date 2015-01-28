@@ -1,15 +1,15 @@
 app.service("restAPI", ["$http", function($http) {
-	
-	//VARAIBLES
 	console.log("----INIT restAPI----");
+
+	//VARAIBLES
 	var module = this;
 	var url = (localStorage.getItem("useLocalServer") !== "true")
 			  ? "https://thawing-stream-4939.herokuapp.com"
-			  : "http://localhost:5000";
+			  : "http://localhost:5000"; //URL  that switches based on localstorage value for testing locally
 	module.url = url;
 	console.log("Using backend: " + url);
-	module.loading = false;
-	module.currLoading = 0;
+	module.loading = false; //Will be set to true if more than 1 request currently loading
+	module.currLoading = 0; //Integer for how many requests are currently loading
 
 	var routes = [
 		new Route("/auth/login", "post", null, true), // api.auth.login()

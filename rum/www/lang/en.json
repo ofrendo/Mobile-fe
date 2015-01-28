@@ -198,6 +198,11 @@
 		"ERROR" : "An error occured",
 		"SUCCESS" : "Export successfull",
 		"ERROR_CORDOVA" : "No calendar in browser available"
+	},
+		"SUGGESTIONS" :{
+		"TITLE" : "What's nearby?",
+		"RANGE" : "Range",
+		"MENU" : "What's nearby?"
 	}
 
 }

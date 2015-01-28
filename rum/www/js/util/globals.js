@@ -18,7 +18,6 @@ app.service("globals", [ function() {
 	this.setReorderCallback = function(callback) {
 		this.reorderCallback = callback;
 	}
-
 	this.callReorderCallback = function() {
 		if (typeof (this.reorderCallback) == "function") {
 			this.reorderCallback();
@@ -32,6 +31,15 @@ app.service("globals", [ function() {
 	this.callReloadCallback = function() {
 		if (typeof (this.reloadCallback) == "function") {
 			this.reloadCallback();
+		}
+	}
+
+	this.setOptimizeCallback = function(callback) {
+		this.optimizeCallback = callback;
+	}
+	this.callOptimizeCallback = function() {
+		if (typeof (this.optimizeCallback) == "function") {
+			this.optimizeCallback();
 		}
 	}
 

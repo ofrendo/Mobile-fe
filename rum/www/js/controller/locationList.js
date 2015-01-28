@@ -22,9 +22,13 @@ app.controller("locationListController",
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});	
-	// Callback to globals for reordering
+	// Callback to globals for reordering and optimization
 	globals.setReorderCallback(function(){
 		me.data.showReordering = !me.data.showReordering;
+	});
+
+	globals.setOptimizeCallback(function() {
+		me.optimize();
 	});
 	
 	//set callback for reload
@@ -52,6 +56,7 @@ app.controller("locationListController",
 		$timeout(function() {
 			$scope.suggestedPlaces = places;
 
+			//make sure places already added are checked and cant be unchecked
 			for (var i = 0; i < $scope.locations.length; i++) {
 				for (var j = 0; j < $scope.suggestedPlaces.length; j++) {
 					if ($scope.locations[i].place_id == $scope.suggestedPlaces[j].place_id) {
@@ -78,8 +83,10 @@ app.controller("locationListController",
 			me.locations = locations;
 			$scope.locations = locations;
 
-			// initialize map
-			mapManager.initMap(locations, "map-canvas-locations");
+			// initialize map (only if at least 1 location)
+			if (locations.length > 0) {
+				mapManager.initMap(locations, "map-canvas-locations");
+			}
 		});
 	};
 	this.getLocationList();
@@ -170,6 +177,23 @@ app.controller("locationListController",
 			);
 		});
 	};
+
+	//Optimize order of waypoints
+	this.optimize = function() {
+		mapManagerSuggest.optimize(me.locations, function(changes) {
+			//Callback after google maps has responded with new order
+			//--> Update backend
+			restAPI.trip.city.changeLocationIndexes(
+				$stateParams.trip_id,
+				$stateParams.city_id, 
+				{locations: changes},
+				onBackendOptimized
+			);
+		});
+	};
+	function onBackendOptimized() {
+		me.getLocationList();
+	}
 
 	//adds multiple locations, for use on suggest tab
 	this.addChosenLocations = function() {

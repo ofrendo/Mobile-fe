@@ -5,6 +5,7 @@ app.service("maps", ["$timeout", function($timeout) {
 		this.first = true;
 		this.objects = []; //can be either locations or cities
 		this.markers = [];
+		var range = 10000;
 
 		var directionsService = new google.maps.DirectionsService();
 		var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -38,6 +39,10 @@ app.service("maps", ["$timeout", function($timeout) {
 			return Math.round(distance) + " km";
 		};
 		
+		this.changeRange = function (newRange){
+			range = newRange;
+		}
+		
 		// returns travel time in min
 		this.calculateOverallTravelTime = function(route) {
 			var time = 0;
@@ -55,10 +60,10 @@ app.service("maps", ["$timeout", function($timeout) {
 			var cityCenter = new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude);
 			var request = {
 				location: cityCenter,
-				radius: 20000
+				radius: range,
 			};
 
-			if (categoryString) {
+			if (categoryString !== undefined && categoryString !== "Choose categories") {
 				var keywordString = ""; 
 				var categories = categoryString.split(",");
 				for (var i = 0; i < categories.length; i++) {
@@ -69,7 +74,7 @@ app.service("maps", ["$timeout", function($timeout) {
 				request.keyword = keywordString;
 			}
 
-			console.log("Suggesting locations:");
+			console.log("Suggesting locations with keywords:" + keywordString);
 			console.log(request);
 
 			var placesService = new google.maps.places.PlacesService(me.map);
@@ -113,26 +118,14 @@ app.service("maps", ["$timeout", function($timeout) {
 
 		this.showRouting = function(onDataChange) {
 			// create waypoints
-			var waypoints = [];
-			for(var i = 1; i < me.objects.length - 1; i++){
-				var pos = new google.maps.LatLng(me.objects[i].latitude, me.objects[i].longitude);
-				var waypoint = {
-					location: pos,
-					stopover: true
-				};
-				waypoints.push(waypoint);
-			}
+			var waypoints = buildWaypoints(me.objects);
 			// send maps request
-			var request = {
-				origin: new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude),
-				destination: new google.maps.LatLng(
-								me.objects[me.objects.length - 1].latitude, 
-								me.objects[me.objects.length - 1].longitude),
-				waypoints: waypoints,
-				provideRouteAlternatives: false,
-				travelMode: google.maps.TravelMode.DRIVING,
-				unitSystem: google.maps.UnitSystem.METRIC
-			};
+			var request = buildDirectionsRequest(
+				new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude),
+				new google.maps.LatLng(me.objects[me.objects.length - 1].latitude, 
+									       me.objects[me.objects.length - 1].longitude),
+				waypoints
+			);
 			directionsService.route(request, function(result, status) {
 				if (status != google.maps.DirectionsStatus.OK) {
 					console.error('Fehler beim Berechnen der Route: ' + status);
@@ -153,6 +146,70 @@ app.service("maps", ["$timeout", function($timeout) {
 					}
 				});
 			});
+		}
+
+		this.optimize = function(locations, onLocationsOptimized) {
+			//https://developers.google.com/maps/documentation/javascript/reference#DirectionsRequest
+			// create waypoints
+			var waypoints = buildWaypoints(locations);
+			var request = buildDirectionsRequest(
+				new google.maps.LatLng(me.objects[0].latitude, me.objects[0].longitude),
+				new google.maps.LatLng(
+								me.objects[me.objects.length - 1].latitude, 
+								me.objects[me.objects.length - 1].longitude),
+				waypoints,
+				true
+			);
+			console.log("Sending optimization request:");
+			console.log(request);
+			// send maps request
+			directionsService.route(request, function(result, status) {
+				if (status != google.maps.DirectionsStatus.OK) {
+					console.error('Error optimizing route: ' + status);
+					$translate('MAP.ROUTING_NOT_POSSIBLE').then(function(text){
+						toast.showLong(text);
+					});
+					return;
+				}
+				console.log("Optimzation result:");
+				console.log(result);
+				var changes = [];
+				var waypointOrder = result.routes[0].waypoint_order;
+				for (var i = 0; i < waypointOrder.length; i++) {
+					var currentIndex = i+1; //current index in locations array
+					var newIndex = waypointOrder[i]+locations[0].index+1; //what the new index should be. needs to be +index of first location because index doesnt start at 1
+					changes.push({
+						location_id: locations[currentIndex].location_id,
+						newIndex: newIndex 
+					});
+				}
+				if (typeof(onLocationsOptimized) == "function") onLocationsOptimized(changes);
+			});
+		};
+
+		function buildWaypoints(objects) {
+			var waypoints = [];
+			for(var i = 1; i < objects.length - 1; i++){
+				var pos = new google.maps.LatLng(objects[i].latitude, objects[i].longitude);
+				var waypoint = {
+					location: pos,
+					stopover: true
+				};
+				waypoints.push(waypoint);
+			}
+			return waypoints;
+		}
+
+		function buildDirectionsRequest(origin, destination, waypoints, optimizeWaypoints) {
+			return {
+				origin: origin,
+				destination: destination,
+				waypoints: waypoints,
+				provideRouteAlternatives: false,
+				travelMode: google.maps.TravelMode.DRIVING,
+				unitSystem: google.maps.UnitSystem.METRIC,
+				optimizeWaypoints: optimizeWaypoints || false
+			};
 		}
 
 		function initMap(objects, mapDivID) {

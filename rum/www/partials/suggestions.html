@@ -1,0 +1,43 @@
+<ion-view title="{{'SUGGESTIONS.TITLE' | translate}}">
+  	<content-header></content-header>
+  	<ion-content scroll=false class="has-header">
+  	<div class="suggestions-wrapper">
+	  <fancy-select
+          allow-empty="true"
+          value="values"
+          multi-select="true"
+          text="'LOCATION_LIST.CHOOSE_CATEGORIES' | translate"
+          items="suggestCategories">
+      </fancy-select>
+      
+      <div class="range">
+		 <p> {{'SUGGESTIONS.RANGE' | translate}} : {{data.range}} km</p>
+ 		<input type="range" name="Range" min="1" max = "20" ng-model="data.range">
+	  </div>
+	  
+	  
+	
+
+      <!-- container for map and suggestions -->
+      <div id="suggest-container">
+        <!-- Map container -->
+        <div class="map-container-small" id="map-canvas-locations-suggestions"></div>  
+
+        <!-- List of suggestions -->
+        <ion-scroll>
+          <ion-list>
+              <ion-checkbox ng-repeat="suggestedPlace in suggestedPlaces"
+                    ng-checked="suggestedPlace.checked"
+                    ng-model="suggestedPlace.checked"
+                    ng-disabled="suggestedPlace.addedAlready">
+                <div class="fancy-select-icon" ng-if="suggestedPlace.icon != null">
+                  <img ng-src="{{suggestedPlace.icon}}" />
+                </div>
+                {{suggestedPlace.name}}
+              </ion-checkbox>
+          </ion-list>
+        </ion-scroll>
+      </div>
+    </div>  
+  	</ion-content>
+</ion-view>

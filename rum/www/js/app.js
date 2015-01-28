@@ -164,6 +164,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		}
 	})
 	
+	.state('app.suggestions', {
+		url: "/suggestions",
+		views: {
+			'menuContent' :{
+				templateUrl: "partials/suggestions.html",
+				controller: 'suggestionsController as suggestionsCtrl'
+			}
+		}
+	})
+	
 	.state('app.export', {
 		url: "/export/:trip_id",
 		views: {
