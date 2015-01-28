@@ -182,7 +182,7 @@
 	},
 	"TRIP_LIST": {
 		"TITLE": "Mis viajes",
-		"ADD_TRIP_BTN": "Aggregar un viaje",
+		"ADD_TRIP_BTN": "Agregar un viaje",
 		"TRIP_INFO": "{no_participants} {no_participants, plural, one{participante} other{participantes}} | {no_cities} {no_cities, plural, one{ciudad} other{ciudades}}",
 		"REORDERING": "Mover..."
 	},
