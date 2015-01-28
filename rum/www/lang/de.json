@@ -27,7 +27,8 @@
 	},
 	"LANGUAGES": {
 		"GERMAN": "Deutsch",
-		"ENGLISH": "Englisch"
+		"ENGLISH": "Englisch",
+		"SPANISH": "Spanisch"
 	},
 	"MENU": {
 		"BACK_BTN": "Zurück",
@@ -40,7 +41,8 @@
 		"EXPORT":"In Kalender exportieren",
 		"CANCEL":"Abbrechen",
 		"REORDER":"Sortieren",
-		"OPTIMIZE":"Optimieren"
+		"OPTIMIZE":"Optimieren",
+		"RELOAD":"Neu Laden"
 	},
 	"WEEKDAYS": {
 		"MONDAY": "Montag",
@@ -174,6 +176,8 @@
 		"TITLE": "Einstellungen",
 		"ACCOUNT": "Account",
 		"PASSWORD": "Passwort Ändern",
+		"PASSWORD_CHANGED": "Passwort gespeichert.",
+		"ACC_DATA_CHANGED": "Benutzerdaten gespeichert.",
 		"SAVE_USER_BTN": "Änderungen speichern",
 		"SAVE_PW_BTN": "Passwort Ändern"
 	},

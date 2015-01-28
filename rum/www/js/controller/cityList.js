@@ -29,6 +29,12 @@ app.controller("cityListController",
 		me.data.showReordering = !me.data.showReordering;
 	});
 	
+	//set callback for reload
+	globals.setReloadCallback(function(){
+		me.reloadDetails();
+	});
+	
+	
 	
 	//FUNCTIONS
 	
@@ -146,5 +152,10 @@ app.controller("cityListController",
 				}
 			);
 		});
+	};
+	
+	//reload city List
+	this.reloadDetails = function(){
+		me.getCityList(me.trip);
 	};
 }]);

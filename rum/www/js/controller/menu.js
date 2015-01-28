@@ -65,7 +65,7 @@ app.controller("menuController",
 	//opens the dropdown menu for context menu on the right site
 	$scope.openListOptionsDropdown = function(){
 		// translate text
-		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL', 'MENU.OPTIMIZE']).then(function(translations){
+		$translate(['MENU.EXPORT','MENU.REORDER', 'MENU.CANCEL', 'MENU.OPTIMIZE', 'MENU.RELOAD']).then(function(translations){
 			//open actionSheet 
 			//check witch view is open
 			//if tripList is open show only Reorder Button
@@ -74,25 +74,28 @@ app.controller("menuController",
 			case "app.locationList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']},
+				                  {text: translations['MENU.RELOAD']},
 				                  {text: translations['MENU.EXPORT']},
-				                  {text: translations['MENU.OPTIMIZE']}
+				                  {text: translations['MENU.OPTIMIZE']},
 				                  ]
 				break;
 			case "app.tripList":
 				var ButtonList = [
-				                  {text: translations['MENU.REORDER']}
+				                  {text: translations['MENU.REORDER']},
+				                  {text: translations['MENU.RELOAD']},
 				                  ]
 				break
 			case "app.cityList":
 				var ButtonList = [
 				                  {text: translations['MENU.REORDER']},
-				                  {text: translations['MENU.EXPORT']},
-				                  {text: translations['MENU.OPTIMIZE']}
+				                  {text: translations['MENU.RELOAD']},
+				                  {text: translations['MENU.EXPORT']}
 				                  ]
 				break
 			default:
 				var ButtonList = [
-				                  {text: translations['MENU.REORDER']}
+				                  {text: translations['MENU.REORDER']},
+				                  {text: translations['MENU.RELOAD']}
 				                  ]
 				break;
 			}
@@ -110,9 +113,12 @@ app.controller("menuController",
 						me.reorder();
 						break;
 					case 1:
-						me.navToExport();
+						me.reload();
 						break;
 					case 2:
+						me.navToExport();
+						break;
+					case 3:
 						me.optimize();
 						break;
 					default:
@@ -155,6 +161,11 @@ app.controller("menuController",
 	
 	this.optimize = function(){
 		globals.callOptimizeCallback();
+	}
+	
+	this.reload = function(){
+		globals.callReloadCallback();
+		console.log("Reload details");
 	}
 	
 	this.logout = function(){

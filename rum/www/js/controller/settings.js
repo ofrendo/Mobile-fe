@@ -5,6 +5,7 @@ app.controller("settingsController",
 		//VARIABLES
 		var me = this;
 		$scope.pw = {};
+		$scope.toast = {};
 		this.languages = 
 			[
 			 {
@@ -14,6 +15,10 @@ app.controller("settingsController",
 			 {
 				 key: 'ENGLISH',
 				 short: 'en'
+			 },
+			 {
+				 key: 'SPANISH',
+				 short: 'es'
 			 }
 			];
 		
@@ -48,6 +53,10 @@ app.controller("settingsController",
 			console.log($scope.user);
 			restAPI.user.update($scope.user.user_id, {user: $scope.user}, function(){
 				console.log('user data successfully saved');
+				// show success toast
+				$translate(['SETTINGS.ACC_DATA_CHANGED']).then(function(translations){
+					showToast(translations['SETTINGS.ACC_DATA_CHANGED']);
+				});
 			});
 		};
 		
@@ -55,7 +64,25 @@ app.controller("settingsController",
 		this.savePassword = function(){
 			console.log('save password:');
 			console.log($scope.pw);
+			restAPI.user.changePassword($scope.user.user_id, {password: $scope.pw.new_pw}, function(){
+				console.log('successful');
+				// clear password field
+				$scope.pw.new_pw = '';
+				$scope.pw.repeat = '';
+				// show success toast
+				$translate(['SETTINGS.PASSWORD_CHANGED']).then(function(translations){
+					showToast(translations['SETTINGS.PASSWORD_CHANGED']);
+				});
+			})
 		};
+		
+		function showToast(text){
+			$scope.toast.content = text;
+			$scope.toast.show = true;
+			$timeout(function(){
+				$scope.toast.show = false;
+			}, 2000);
+		}
 		
 		// get the user data from backend
 		function getAccountData(){

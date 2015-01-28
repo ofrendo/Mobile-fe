@@ -27,7 +27,8 @@
 	},
 	"LANGUAGES": {
 		"GERMAN": "German",
-		"ENGLISH": "English"
+		"ENGLISH": "English",
+		"SPANISH": "Spanish"
 	},
 	"MENU": {
 		"BACK_BTN": "Back",
@@ -40,7 +41,8 @@
 		"EXPORT":"Export to Calendar",
 		"CANCEL":"Cancel",
 		"REORDER":"Reorder",
-		"OPTIMIZE":"Optimize"
+		"OPTIMIZE":"Optimize",
+		"RELOAD":"Reload"
 	},
 	"WEEKDAYS": {
 		"MONDAY": "Monday",
@@ -174,6 +176,8 @@
 		"TITLE": "Settings",
 		"ACCOUNT": "Account",
 		"PASSWORD": "Change password",
+		"PASSWORD_CHANGED": "Password saved.",
+		"ACC_DATA_CHANGED": "User data saved.",
 		"SAVE_USER_BTN": "Save changes",
 		"SAVE_PW_BTN": "Save password"
 	},
