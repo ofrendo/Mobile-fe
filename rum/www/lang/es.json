@@ -200,9 +200,9 @@
 		"ERROR_CORDOVA" : "¡En el navegador no hay un calendario!"
 	},
 	"SUGGESTIONS" :{
-		"TITLE" : "Was ist in der Nähe",
-		"RANGE" : "Entfernung",
-		"MENU" : "In der Nähe"
+		"TITLE" : "Lugares cerca de mi posición",
+		"RANGE" : "Distancia",
+		"MENU" : "Lugares cercanos"
 	}
 
 }
