@@ -27,6 +27,11 @@ app.controller("locationListController",
 		me.data.showReordering = !me.data.showReordering;
 	});
 	
+	//set callback for reload
+	globals.setReloadCallback(function(){
+		me.reloadDetails();
+	});
+	
 	// the tabbing functions
 	this.setTab = function(index){
 		me.tab = index;
@@ -216,6 +221,11 @@ app.controller("locationListController",
 				}
 			});
 		});
+	};
+	
+	//reload Location list
+	this.reloadDetails = function(){
+		me.getLocationList();
 	};
 	
 }]);
