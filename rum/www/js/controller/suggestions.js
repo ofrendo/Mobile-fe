@@ -54,6 +54,7 @@ app.controller("suggestionsController",
 	var initLocation = function() {
 		//get position nad initialize map
 		navigator.geolocation.getCurrentPosition (function (position){
+			console.log("Position: ");
 			console.log(position);
 			$translate(["SUGGESTIONS.POSITION"]).then(function(translations){
 				positionPlace = {
@@ -65,13 +66,39 @@ app.controller("suggestionsController",
 				};	
 				positionPlace.geometry.location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 				mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
+				
+				//rangeSlider Handler
+			    $scope.data = {'range' : "5"};
+			    
+			    var timeoutId = null;
+			    
+			    
+				 $scope.$watch('data.range', function() {
+					 console.log('watch');
+				            
+				        if(timeoutId !== null) {
+				           //ignore
+				            return;
+				        }	    
+				        timeoutId = $timeout( function() {
+				            
+				            $timeout.cancel(timeoutId);
+				            timeoutId = null;
+				            
+				            // Now change range for map
+				            mapManagerSuggest.changeRange($scope.data.range*1000);
+				            mapManagerSuggest.suggestLocations(categories);
+				        }, 1000); 
+				        
+				 });
+				
 				mapManagerSuggest.changeRange($scope.data.range*1000);
 			})
 		})
 	};
 	
 	//save the suggestions
-	mapManagerSuggest.onPlacesSuggestCallback = function(places) {
+	mapManagerSuggest.onPlacesSuggestCallback = function(places) {  
 		$timeout(function() {
 			$scope.suggestedPlaces = [positionPlace];
 			$scope.suggestedPlaces = $scope.suggestedPlaces.concat(places);
@@ -89,30 +116,8 @@ app.controller("suggestionsController",
 		categories = categoryString;
 	};
 	
-		
-	//rangeSlider Handler
-    $scope.data = {'range' : "5"};
+	
     
-    var timeoutId = null;
-    
-    
-	 $scope.$watch('data.range', function() {
-	            
-	        if(timeoutId !== null) {
-	           //ignore
-	            return;
-	        }	    
-	        timeoutId = $timeout( function() {
-	            
-	            $timeout.cancel(timeoutId);
-	            timeoutId = null;
-	            
-	            // Now change range for map
-	            mapManagerSuggest.changeRange($scope.data.range*1000);
-	            mapManagerSuggest.suggestLocations(categories);
-	        }, 1000); 
-	        
-	 });
 	 
 	 //checkboxes handler
 	 $scope.suggestionChecked = function () {
