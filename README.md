@@ -12,16 +12,69 @@ Im Folgenden werden die einzelnen Views und Funktionalitäten näher erläutert,
 
 ## Dateistruktur des WWW-Ordners
 
-| Ordner 		| Zweck |
-| ------------- | ----- |
-| - css	 		| Enthält alle relevanten CSS-Dateien ( zusätzliches Styling) |
-| -- chat.css	| zusätzliches CSS zum Formatieren des Chats |
-| - img  		| |
-| - js			| |
-| - lang		| |
-| - lib			| |
-| - partials	| |
-| - tests		| |
+| Ordner 				| Zweck |
+| ------------- 		| ----- |
+| - css	 				| enthält alle relevanten CSS-Dateien ( zusätzliches Styling) |
+| -- chat.css			| zusätzliches Styling des Chats |
+| -- lib.css			| zusätzliches Styling des FancySelects |
+| -- style.css			| zusätzliches Styling (allgemein) |
+| - img  				| enthält zusätzliche Bilder |
+| -- loading.gif		| animiertees GIF, das beim Warten auf eine Antwort vom Backend angezeigt wird |
+| -- powered-by-google.png| Google-Hinweis, der beim Autovervollständigen aus rechtlichen Gründen angezeigt werden muss |
+| - js					| enthält appeigenes JavaScript-Coding |
+| -- controller			| enthält alle Controller der App |
+| --- addCity.js		| addCityController |
+| --- addLocation.js	| addLocationController |
+| --- addParticipants.js| addParticipantsController |
+| --- addTrip.js		| addTripController |
+| --- chat.js			| chatController |
+| --- cityList.js		| cityListController |
+| --- editCtiy.js		| editCityController |
+| --- editLocation.js	| editLocationController |
+| --- editTrip.js		| editTripController |
+| --- export.js			| exportController |
+| --- loading.js| loadingController |
+| --- locationDetail.js	| locationDetailController |
+| --- login.js			| loginController |
+| --- menu.js			| menuController |
+| --- register.js		| registerConotroller |
+| --- settings.js		| settingsController |
+| --- suggestions.js	| suggestionsController |
+| --- tripList.js		| tripListController |
+| -- util				| enthält zusätzliche Services |
+| --- calendar.js 		| Service, der die Arbeit mit dem Kalender-PLugin vereinfacht |
+| --- globals.js		| Service, der von der App verwendete globale Variablen verwaltet |
+| --- loginService.js	| Service zur Sessionverwaltung beim Client |
+| --- maps.js			| Service zur Anzeige der GoogleMaps-Karte für diverse Views, inklusive Routing, Suggestions, ... |
+| --- rest.js			| Serivce, der zum Aufruf des Backends benutzt wird |
+| --- utils.js			| Service, der einige nützliche Funktionen Controller-übergreifend bereitstellt |
+| -- app.js				| Konfigurationsdatei, enthält vor allem das Routing |
+| -- directives.js		| enthält AngularJS-Direktiven |
+| - lang				| Ordner zur Verwaltung der Übersetzungsdateien |
+| -- de.json 			| JSON aller Texte in Deutsch |
+| -- en.json 			| JSON aller Texte in Englisch |
+| -- es.json 			| JSON aller Texte in Spanisch |
+| - lib					| enthält alle verwendeten Bibliotheken |
+| -> [...]				| auf die einzelnen Bibliotheken wird hier nicht näher eingegangen |
+| - partials			| enthält die Views der App |
+| -- addCity.html		| View zum Hinzufügen einer Stadt |
+| -- addLocation.html	| View zum Hinzufügen eines Ziels  |
+| -- addParticipants.html| View zum Hinzufügen von Teilnehmern |
+| -- addTrip.html		| View zum Hinzufügen einer Reise |
+| -- cityList.html		| View, der eine Liste aller Städte einer Reise anzeigt |
+| -- content-header.html| Subview zum Anzeigen der Sidebar-Buttons |
+| -- editCity.html		| View zum Bearbeiten einer Stadt |
+| -- editLocation.html	| View zum Bearbeiten eines Ziels |
+| -- editTrip.js		| View zum Bearbeiten einer Reise |
+| -- export.html		| View zum Kalenderexport |
+| -- locationDetail.html| View zum Anzeigen zusätzlicher Informationen für ein Ziel |
+| -- locationList.html	| View, der eine Liste aller einer Stadt hinzugefügten Ziele anzeigt|
+| -- login.html			| View zum Einloggen |
+| -- menu.html			| übergeordneter View für die Menüs links und rechts |
+| -- register.html		| View zum Registrieren |
+| -- settings.html		| View zum Anpassen der Einstellungen (Sprache und Benutzereinstellungen) |
+| -- suggestions.html	| View zum Anzeigen von Zielen, die in der Nähe liegen |
+| -- tripList.html		| View, der eine Liste aller Reisen des Benutzers anzeigt |
 
 ###Login/Register
 Der Einstiegspunkt der App ist der Login-View, auf dem der Nutzer den Benutzernamen und Password eines bereits existierenden Nutzers eingeben und sich mit dem Klick auf "Login" anmelden kann. Dabei wird im 'loginController' überprüft, ob ein Name und Password eingegeben sind `verfiyLoginButton()`, woraufhin der Nutzer eingeloggt wird `login()`.
