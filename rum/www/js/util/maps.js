@@ -1,4 +1,4 @@
-app.service("maps", ["$timeout", function($timeout) {
+app.service("maps", ["$timeout", "restAPI", function($timeout, restAPI) {
 
 	this.MapManager = function() {
 		var me = this;
@@ -79,11 +79,13 @@ app.service("maps", ["$timeout", function($timeout) {
 
 			var placesService = new google.maps.places.PlacesService(me.map);
 			placesService.nearbySearch(request, onPlacesSearch);
+			restAPI.loading = true;
 		};
 
 		function onPlacesSearch(results, status) {
 			console.log("onPlacesSearch results:");
 			console.log(results);
+			restAPI.loading = false;
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
 			    for (var i = 0; i < results.length; i++) {
 			    	var place = results[i];

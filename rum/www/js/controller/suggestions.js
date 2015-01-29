@@ -1,6 +1,6 @@
 app.controller("suggestionsController", 
-	["$scope", "loginService", "globals", "maps",  "$timeout", "$translate",
-	function($scope, loginService, globals, maps, $timeout, $translate) {
+	["$scope", "loginService", "globals", "$ionicPopup","maps",  "$timeout", "$translate",
+	function($scope, loginService, globals,$ionicPopup, maps, $timeout, $translate) {
 	
 
 	//VARIABLES
@@ -44,7 +44,7 @@ app.controller("suggestionsController",
 	
 
 	//INIT
-	console.log("---INIT locationListController----");
+	console.log("---INIT suggestionsController----");
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});	
@@ -54,9 +54,9 @@ app.controller("suggestionsController",
 	var initLocation = function() {
 		//get position nad initialize map
 		navigator.geolocation.getCurrentPosition (function (position){
-			console.log("Position: ");
-			console.log(position);
+			//translate
 			$translate(["SUGGESTIONS.POSITION"]).then(function(translations){
+				//create placeEntry for geoLocation
 				positionPlace = {
 						geometry : {},
 						id : "Position",
@@ -64,38 +64,51 @@ app.controller("suggestionsController",
 						place_id : "Position",
 						vicinity : "Position"
 				};	
+				//create LATLNG object for location
 				positionPlace.geometry.location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+				//init map
 				mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
 				
-				//rangeSlider Handler
+				//init RangeSlider Value
 			    $scope.data = {'range' : "5"};
 			    
 			    var timeoutId = null;
 			    
-			    
+			    //rangeSliderHandler
+			    //
 				 $scope.$watch('data.range', function() {
-					 console.log('watch');
-				            
 				        if(timeoutId !== null) {
-				           //ignore
+				           //ignored if slider has movement
 				            return;
 				        }	    
 				        timeoutId = $timeout( function() {
-				            
+				        	//called as the slider stands still			            
 				            $timeout.cancel(timeoutId);
-				            timeoutId = null;
-				            
+				            timeoutId = null;				            
 				            // Now change range for map
 				            mapManagerSuggest.changeRange($scope.data.range*1000);
+				            //ask for new suggestions
 				            mapManagerSuggest.suggestLocations(categories);
 				        }, 1000); 
 				        
 				 });
-				
+				//initial set for range in map; calls automatically new suggestions
 				mapManagerSuggest.changeRange($scope.data.range*1000);
+			}, function (){
+				//error callback for position
+				//default alertPopup
+				$translate(['LOGIN.ERROR_TITLE', 'LOGIN.ERROR_OCCURRED']).then(function(translations){
+					var alertPopup = $ionicPopup.alert({
+						title: translations['LOGIN.ERROR_TITLE'],
+						template: translations['LOGIN.ERROR_OCCURRED']
+					});
+				});
 			})
-		})
+		
+		});
+
 	};
+	initLocation();
 	
 	//save the suggestions
 	mapManagerSuggest.onPlacesSuggestCallback = function(places) {  
@@ -108,7 +121,7 @@ app.controller("suggestionsController",
 	}
 
 	
-	initLocation();
+
 	
 	//if category is choosen
 	$scope.onChooseCategories = function(categoryString) {
