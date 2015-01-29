@@ -202,7 +202,8 @@
 	"SUGGESTIONS" :{
 		"TITLE" : "Lugares cerca de mi posición",
 		"RANGE" : "Distancia",
-		"MENU" : "Lugares cercanos"
+		"MENU" : "Lugares cercanos",
+		"POSITION" : "Posición"
 	}
 
 }
