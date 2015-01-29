@@ -10,6 +10,19 @@ Die App soll es dem Nutzer ermöglichen, eine Reise zu planen. Dabei kann er ein
 
 Im Folgenden werden die einzelnen Views und Funktionalitäten näher erläutert, die Namen der Controller und Views entsprechen zumeist der Funktion.
 
+## Dateistruktur des WWW-Ordners
+
+| Ordner 		| Zweck |
+| ------------- | ----- |
+| - css	 		| Enthält alle relevanten CSS-Dateien ( zusätzliches Styling) |
+| -- chat.css	| zusätzliches CSS zum Formatieren des Chats |
+| - img  		| |
+| - js			| |
+| - lang		| |
+| - lib			| |
+| - partials	| |
+| - tests		| |
+
 ###Login/Register
 Der Einstiegspunkt der App ist der Login-View, auf dem der Nutzer den Benutzernamen und Password eines bereits existierenden Nutzers eingeben und sich mit dem Klick auf "Login" anmelden kann. Dabei wird im 'loginController' überprüft, ob ein Name und Password eingegeben sind `verfiyLoginButton()`, woraufhin der Nutzer eingeloggt wird `login()`.
 Für das eigentliche Anmelden am Server wird allerdings der 'loginService' verwendet. Dieser nimmt die Daten auf und schickt die login-Anfrage an das Backend `login()`. Im Backend wird eine Session für den Nutzer erstellt, sodass dieser sich nicht bei jedem Öffnen der App neu anmelden muss (wenn die Session noch nicht abgelaufen ist). Außerdem setzt der 'loginService' die Logout-Funktion um, die den Nutzer beim Server abmeldet und die Session beendet.
