@@ -44,7 +44,7 @@ app.controller("suggestionsController",
 	
 
 	//INIT
-	console.log("---INIT locationListController----");
+	console.log("---INIT suggestionsController----");
 	loginService.onInit(function() {
 		globals.checkTripID();
 	});	
@@ -54,9 +54,6 @@ app.controller("suggestionsController",
 	var initLocation = function() {
 		//get position nad initialize map
 		navigator.geolocation.getCurrentPosition (function (position){
-			//position
-			console.log("Position: ");
-			console.log(position);
 			//translate
 			$translate(["SUGGESTIONS.POSITION"]).then(function(translations){
 				//create placeEntry for geoLocation
@@ -80,8 +77,6 @@ app.controller("suggestionsController",
 			    //rangeSliderHandler
 			    //
 				 $scope.$watch('data.range', function() {
-					 console.log('watch');
-				            
 				        if(timeoutId !== null) {
 				           //ignored if slider has movement
 				            return;
