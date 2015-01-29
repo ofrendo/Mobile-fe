@@ -1,6 +1,6 @@
 app.controller("suggestionsController", 
-	["$scope","$rootScope","$state", "$ionicPopup", "loginService", "globals", "maps", "$stateParams", "$timeout", "$translate",
-	function($scope,$rootScope, $state, $ionicPopup, loginService, globals, maps, $stateParams, $timeout, $translate) {
+	["$scope", "loginService", "globals", "maps",  "$timeout", "$translate",
+	function($scope, loginService, globals, maps, $timeout, $translate) {
 	
 
 	//VARIABLES
@@ -8,6 +8,7 @@ app.controller("suggestionsController",
 	var mapManagerSuggest = new maps.MapManager();
 	var categories;
 	$scope.suggestCategories = [];
+	var positionPlace;
 	
 
 	//Load keys
@@ -26,6 +27,7 @@ app.controller("suggestionsController",
 		.then(callback);
 	}
 	
+	//loads all categories
 	loadSuggestCategories(function(translations) {
 		$timeout(function() {
 			var i = 0;
@@ -49,24 +51,39 @@ app.controller("suggestionsController",
 	
 	
 	
-	mapManagerSuggest.onPlacesSuggestCallback = function(places) {
-		$timeout(function() {
-			$scope.suggestedPlaces = places;
-		});
-	}
-	
 	var initLocation = function() {
+		//get position nad initialize map
 		navigator.geolocation.getCurrentPosition (function (position){
 			console.log(position);
-			
-			mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
-			mapManagerSuggest.changeRange($scope.data.range*1000);
-			mapManagerSuggest.suggestLocations();
+			$translate(["SUGGESTIONS.POSITION"]).then(function(translations){
+				positionPlace = {
+						geometry : {},
+						id : "Position",
+						name: translations["SUGGESTIONS.POSITION"],
+						place_id : "Position",
+						vicinity : "Position"
+				};	
+				positionPlace.geometry.location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+				mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
+				mapManagerSuggest.changeRange($scope.data.range*1000);
+			})
 		})
 	};
 	
+	//save the suggestions
+	mapManagerSuggest.onPlacesSuggestCallback = function(places) {
+		$timeout(function() {
+			$scope.suggestedPlaces = [positionPlace];
+			$scope.suggestedPlaces = $scope.suggestedPlaces.concat(places);
+			mapManagerSuggest.createPositionMarker(positionPlace);
+			
+		});
+	}
+
+	
 	initLocation();
 	
+	//if category is choosen
 	$scope.onChooseCategories = function(categoryString) {
 		mapManagerSuggest.suggestLocations(categoryString);
 		categories = categoryString;
@@ -84,12 +101,8 @@ app.controller("suggestionsController",
 	        if(timeoutId !== null) {
 	           //ignore
 	            return;
-	        }	        	
-	        
+	        }	    
 	        timeoutId = $timeout( function() {
-	            
-	            console.log($scope.data.range);
-
 	            
 	            $timeout.cancel(timeoutId);
 	            timeoutId = null;
@@ -100,6 +113,11 @@ app.controller("suggestionsController",
 	        }, 1000); 
 	        
 	 });
+	 
+	 //checkboxes handler
+	 $scope.suggestionChecked = function () {
+		 mapManagerSuggest.showOnlyCheckedMarkers($scope.suggestedPlaces);
+	 }
 
 
 }]);

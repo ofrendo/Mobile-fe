@@ -108,11 +108,32 @@ app.service("maps", ["$timeout", function($timeout) {
 				infoWindow.open(me.map, this);
 			});
 		}
+		
+		this.createPositionMarker = function (position) {
+			createPlacesMarker(position);
+		}
+		
 		function clearMarkers() {
 			for (var i = 0; i < me.markers.length; i++) {
 				me.markers[i].setMap(null);
 			}
 			me.markers = [];
+		}
+		
+		this.showOnlyCheckedMarkers = function (suggestions){
+			clearMarkers(); //clear all markers
+			var oneChecked = false; //check if one marker is at least shown
+			suggestions.forEach(function (suggestion){
+				if(suggestion.checked === true){
+					createPlacesMarker(suggestion);  //show all markes with "checked"
+					oneChecked = true;
+				}
+			});			
+			if(oneChecked === false){ //show all markes if no marker isshown yet
+				suggestions.forEach(function (suggestion){			
+					createPlacesMarker(suggestion);		
+				});
+			}		
 		}
 
 

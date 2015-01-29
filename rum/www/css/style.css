@@ -252,6 +252,9 @@ ion-side-menu ion-item {
 #map-and-suggest-container>.scroll-view {
 	height: 50%;
 }
+#suggest-container>.scroll-view {
+	height: 50%;
+}
 
 /* locationDetail */
 .administrative_area_level_1::before {
@@ -289,4 +292,7 @@ ion-side-menu ion-item {
 	margin-top: -100px;
 	margin-left: -100px;
 	z-index: 101;
+}
+.gm-style-cc {
+	z-index:-1 !important;
 }

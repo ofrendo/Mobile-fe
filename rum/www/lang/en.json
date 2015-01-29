@@ -202,7 +202,8 @@
 		"SUGGESTIONS" :{
 		"TITLE" : "What's nearby?",
 		"RANGE" : "Range",
-		"MENU" : "What's nearby?"
+		"MENU" : "What's nearby?",
+		"POSITION" : "Position"
 	}
 
 }

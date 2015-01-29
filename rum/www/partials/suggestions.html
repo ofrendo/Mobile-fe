@@ -29,7 +29,8 @@
               <ion-checkbox ng-repeat="suggestedPlace in suggestedPlaces"
                     ng-checked="suggestedPlace.checked"
                     ng-model="suggestedPlace.checked"
-                    ng-disabled="suggestedPlace.addedAlready">
+                    ng-disabled="suggestedPlace.addedAlready"
+                    ng-change="suggestionChecked()">
                 <div class="fancy-select-icon" ng-if="suggestedPlace.icon != null">
                   <img ng-src="{{suggestedPlace.icon}}" />
                 </div>

@@ -202,7 +202,8 @@
 	"SUGGESTIONS" :{
 		"TITLE" : "Was ist in der Nähe",
 		"RANGE" : "Entfernung",
-		"MENU" : "In der Nähe"
+		"MENU" : "In der Nähe",
+		"POSITION" : "Standort"
 	}
 
 }
