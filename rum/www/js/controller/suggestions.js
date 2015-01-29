@@ -1,6 +1,6 @@
 app.controller("suggestionsController", 
-	["$scope", "loginService", "globals", "maps",  "$timeout", "$translate",
-	function($scope, loginService, globals, maps, $timeout, $translate) {
+	["$scope", "loginService", "globals", "$ionicPopup","maps",  "$timeout", "$translate",
+	function($scope, loginService, globals,$ionicPopup, maps, $timeout, $translate) {
 	
 
 	//VARIABLES
@@ -53,21 +53,27 @@ app.controller("suggestionsController",
 	
 	var initLocation = function() {
 		//get position nad initialize map
-		navigator.geolocation.getCurrentPosition (function (position){
-			console.log(position);
-			$translate(["SUGGESTIONS.POSITION"]).then(function(translations){
-				positionPlace = {
-						geometry : {},
-						id : "Position",
-						name: translations["SUGGESTIONS.POSITION"],
-						place_id : "Position",
-						vicinity : "Position"
-				};	
-				positionPlace.geometry.location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-				mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
-				mapManagerSuggest.changeRange($scope.data.range*1000);
+	
+	
+			navigator.geolocation.getCurrentPosition (function (position){
+
+				console.log(position);
+				$translate(["SUGGESTIONS.POSITION"]).then(function(translations){
+					positionPlace = {
+							geometry : {},
+							id : "Position",
+							name: translations["SUGGESTIONS.POSITION"],
+							place_id : "Position",
+							vicinity : "Position"
+					};	
+					positionPlace.geometry.location = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+					mapManagerSuggest.initSuggestMap([position.coords], "map-canvas-locations-suggestions");
+					mapManagerSuggest.changeRange($scope.data.range*1000);
+				})
 			})
-		})
+		
+
+
 	};
 	
 	//save the suggestions
