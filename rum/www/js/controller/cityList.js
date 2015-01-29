@@ -148,7 +148,10 @@ app.controller("cityListController",
 					me.cities = cities;
 					sortCitiesByIndex();
 					// initialize map
-					mapManager.initMap(cities, "map-canvas-cities");
+
+					if (cities.length > 0) {
+						mapManager.initMap(cities, "map-canvas-cities");
+					}
 				}
 			);
 		});
