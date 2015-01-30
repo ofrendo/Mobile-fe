@@ -1,18 +1,19 @@
 app.service("globals", [ function() {
 	//VARIABLES
+	var self = this;
 	this.trips = [];
 	this.chat;
 
 	//FUNCTIONS
 	this.setChat = function(chat) {
-		this.chat = chat;
+		self.chat = chat;
 	};
 
 	this.setUser = function(user) {
-		this.user = user;
+		self.user = user;
 
 		// init chat
-		this.chat.connect();
+		self.chat.connect();
 	};
 
 	this.setReorderCallback = function(callback) {
@@ -46,23 +47,23 @@ app.service("globals", [ function() {
 	this.setTripID = function(trip_id) {
 		trip_id = parseInt(trip_id);
 		if (!isNaN(trip_id) && trip_id >= 0) {
-			this.chat.joinTripRoom(trip_id);
+			self.chat.joinTripRoom(trip_id);
 		} else if (!isNaN(this.trip_id)) {
-			this.chat.leaveTripRoom();
+			self.chat.leaveTripRoom();
 		}
-		this.trip_id = trip_id;
+		self.trip_id = trip_id;
 		localStorage.setItem("trip_id", trip_id);
 	};
 
 	this.checkTripID = function() {
 		var ltrip_id = localStorage.getItem("trip_id");
 		if (ltrip_id !== null) {
-			this.setTripID(ltrip_id);
+			self.setTripID(ltrip_id);
 		}
 	};
 
 	this.removeTripID = function() {
 		localStorage.removeItem("trip_id");
-		delete this.trip_id;
+		delete self.trip_id;
 	};
 } ]);

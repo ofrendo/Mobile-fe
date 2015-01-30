@@ -28,7 +28,6 @@ app.controller("locationDetailController",
 		var i = 0;
 		$timeout(function(){
 			var scroll = $interval(function(){
-				console.log('scroll');
 				// if pictures aren't available anymore, stop automatic scrolling
 				if (document.getElementById('photos') == null || document.getElementById('photos').children[0].children.length == 0) {
 		            $interval.cancel(scroll);
