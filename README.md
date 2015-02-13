@@ -3,6 +3,9 @@
 
 Mobile App "RUM" - Reisen und Mehr
 
+## Präsentation
+http://htmlpreview.github.io/?https://raw.githubusercontent.com/ofrendo/Mobile-fe/master/RUM%20Pr%C3%A4sentation.html#/
+
 ## Dokumentation
 Für unser Projekt "Rum" (Reisen und Mehr) haben wir eine Android-App entwickelt. Diese beruht auf den Frameworks Apache Cordova / Phonegap, AngularJS und Ionic. Zudem verwenden wir einen Heroku-Server mit Node.js als Backend. 
 
